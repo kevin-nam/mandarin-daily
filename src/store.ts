@@ -1,5 +1,5 @@
 import { createEmptyCard, fsrs, Rating, type Card, type Grade } from 'ts-fsrs'
-import { PHRASES, WORDS } from './data'
+import { PHRASES, WORD_BY_ID, WORDS } from './data'
 
 export type CardKind = 'listen' | 'speak' | 'read'
 export const KINDS: CardKind[] = ['listen', 'speak', 'read']
@@ -73,10 +73,10 @@ export function grade(s: AppState, key: string, rating: Grade, now = new Date())
   s.cards[key] = scheduler.next(s.cards[key], now, rating).card
 }
 
-/** Keys of cards due by `now`, most overdue first. */
+/** Keys of cards due by `now`, most overdue first. Cards for items removed from the content are skipped. */
 export function dueKeys(s: AppState, now = new Date()) {
   return Object.entries(s.cards)
-    .filter(([, c]) => c.due <= now)
+    .filter(([k, c]) => c.due <= now && WORD_BY_ID.has(parseKey(k).wordId))
     .sort((a, b) => +a[1].due - +b[1].due)
     .map(([k]) => k)
 }
@@ -130,18 +130,19 @@ export function streak(s: AppState) {
   return n
 }
 
-export function exportState(s: AppState) {
+/** Resolves true once the backup was handed off (share sheet completed or download started), false if cancelled. */
+export async function exportState(s: AppState): Promise<boolean> {
   const blob = new Blob([JSON.stringify(s)], { type: 'application/json' })
   const file = new File([blob], `mandarin-backup-${today()}.json`, { type: 'application/json' })
   // iOS: share sheet lets you "Save to Files"
   if (navigator.canShare?.({ files: [file] })) {
-    navigator.share({ files: [file] }).catch(() => {})
-  } else {
-    const a = document.createElement('a')
-    a.href = URL.createObjectURL(blob)
-    a.download = file.name
-    a.click()
+    return navigator.share({ files: [file] }).then(() => true, () => false)
   }
+  const a = document.createElement('a')
+  a.href = URL.createObjectURL(blob)
+  a.download = file.name
+  a.click()
+  return true
 }
 
 export async function importState(file: File): Promise<AppState> {

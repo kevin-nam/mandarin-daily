@@ -49,10 +49,11 @@ The app automatically uses the MP3s when `public/audio/manifest.json` exists.
 
 ## Editing content
 
-- Words: `content/words1-3.tsv` — `hanzi|pinyin|english|sentence|sentence pinyin|sentence english`. Order = teaching order.
-- Phrases: `content/phrases.tsv` — `phrase|pinyin|english|example|example pinyin|example english`. The example is the phrase in use, often with the reply you'll hear.
+- Words: `content/words1-3.tsv` — `id|hanzi|pinyin|english|sentence|sentence pinyin|sentence english`. Order = teaching order.
+- Phrases: `content/phrases.tsv` — `id|phrase|pinyin|english|example|example pinyin|example english`. The example is the phrase in use, often with the reply you'll hear.
+- **Ids are permanent** — your progress and audio files are keyed by them. Add new rows anywhere *without* an id; `npm run data` assigns the next free one and writes it into the file. Never change or reuse an existing id. Each word needs its own example sentence (the build checks).
 - Dialogues: `content/dialogues.json` (`unlockAfter` = number of words learned before it unlocks).
-- After editing: `npm run data` (rebuilds `src/data/*.json`), then `npm run audio` for new audio.
+- After editing: `npm run data` (rebuilds `src/data/*.json`), then `npm run audio`. It only generates audio for new or changed text (tracked in `scripts/audio-sources.json`) and deletes audio for removed rows.
 
 ## Structure
 

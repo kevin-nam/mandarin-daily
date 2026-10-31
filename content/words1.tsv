@@ -1,105 +1,105 @@
-# hanzi|pinyin|english|sentence|sentence pinyin|sentence english
+# id|hanzi|pinyin|english|sentence|sentence pinyin|sentence english
 # Unit 1 — Greetings & pronouns
-你|nǐ|you|你好！|Nǐ hǎo!|Hello!
-好|hǎo|good; well|我很好。|Wǒ hěn hǎo.|I'm very well.
-我|wǒ|I; me|我是学生。|Wǒ shì xuésheng.|I'm a student.
-是|shì|to be|他是老师。|Tā shì lǎoshī.|He is a teacher.
-很|hěn|very|今天很冷。|Jīntiān hěn lěng.|It's very cold today.
-吗|ma|(question particle)|你好吗？|Nǐ hǎo ma?|How are you?
-呢|ne|(follow-up question particle)|我很好，你呢？|Wǒ hěn hǎo, nǐ ne?|I'm well, and you?
-不|bù|not; no|我不是老师。|Wǒ bú shì lǎoshī.|I'm not a teacher.
-也|yě|also; too|我也是学生。|Wǒ yě shì xuésheng.|I'm a student too.
-您|nín|you (polite)|您好！|Nín hǎo!|Hello! (polite)
-他|tā|he; him|他是我朋友。|Tā shì wǒ péngyou.|He is my friend.
-她|tā|she; her|她是我妈妈。|Tā shì wǒ māma.|She is my mom.
-它|tā|it|它是我的猫。|Tā shì wǒ de māo.|It's my cat.
-们|men|(plural suffix)|老师们好！|Lǎoshīmen hǎo!|Hello, teachers!
-我们|wǒmen|we; us|我们是同学。|Wǒmen shì tóngxué.|We are classmates.
-你们|nǐmen|you (plural)|你们好！|Nǐmen hǎo!|Hello, everyone!
-他们|tāmen|they (male/mixed)|他们是中国人。|Tāmen shì Zhōngguó rén.|They are Chinese.
-她们|tāmen|they (female)|她们是姐姐和妹妹。|Tāmen shì jiějie hé mèimei.|They are older and younger sisters.
-它们|tāmen|they (things/animals)|它们是我的狗。|Tāmen shì wǒ de gǒu.|They are my dogs.
-大家|dàjiā|everyone|大家好！|Dàjiā hǎo!|Hello, everyone!
-谢谢|xièxie|thank you|谢谢你！|Xièxie nǐ!|Thank you!
-不客气|bú kèqi|you're welcome|不客气。|Bú kèqi.|You're welcome.
-对不起|duìbuqǐ|sorry|对不起，我来晚了。|Duìbuqǐ, wǒ lái wǎn le.|Sorry, I'm late.
-没关系|méi guānxi|it doesn't matter|没关系。|Méi guānxi.|No problem.
-再见|zàijiàn|goodbye|明天见！再见！|Míngtiān jiàn! Zàijiàn!|See you tomorrow! Bye!
-请|qǐng|please; to invite|请坐。|Qǐng zuò.|Please sit.
-请问|qǐngwèn|excuse me, may I ask|请问，你叫什么名字？|Qǐngwèn, nǐ jiào shénme míngzi?|Excuse me, what's your name?
-喂|wéi|hello (on the phone)|喂，你好！|Wéi, nǐ hǎo!|Hello? (phone)
-叫|jiào|to be called; to call|我叫王小明。|Wǒ jiào Wáng Xiǎomíng.|My name is Wang Xiaoming.
-名字|míngzi|name|你叫什么名字？|Nǐ jiào shénme míngzi?|What's your name?
-什么|shénme|what|这是什么？|Zhè shì shénme?|What is this?
-认识|rènshi|to know (a person)|认识你很高兴。|Rènshi nǐ hěn gāoxìng.|Nice to meet you.
-高兴|gāoxìng|happy; glad|我今天很高兴。|Wǒ jīntiān hěn gāoxìng.|I'm very happy today.
-的|de|(possessive particle)|这是我的书。|Zhè shì wǒ de shū.|This is my book.
-人|rén|person|他是中国人。|Tā shì Zhōngguó rén.|He is Chinese.
-中国|Zhōngguó|China|我想去中国。|Wǒ xiǎng qù Zhōngguó.|I want to go to China.
-国|guó|country|你是哪国人？|Nǐ shì nǎ guó rén?|Which country are you from?
-朋友|péngyou|friend|他是我的好朋友。|Tā shì wǒ de hǎo péngyou.|He is my good friend.
-先生|xiānsheng|Mr.; sir; husband|王先生在家吗？|Wáng xiānsheng zài jiā ma?|Is Mr. Wang home?
-女士|nǚshì|Ms.; lady|李女士是老师。|Lǐ nǚshì shì lǎoshī.|Ms. Li is a teacher.
+w001|你|nǐ|you|你好！|Nǐ hǎo!|Hello!
+w002|好|hǎo|good; well|我很好。|Wǒ hěn hǎo.|I'm very well.
+w003|我|wǒ|I; me|我今天很忙。|Wǒ jīntiān hěn máng.|I am busy today.
+w004|是|shì|to be|他是老师。|Tā shì lǎoshī.|He is a teacher.
+w005|很|hěn|very|他很高兴。|Tā hěn gāoxìng.|He is very happy.
+w006|吗|ma|(question particle)|你好吗？|Nǐ hǎo ma?|How are you?
+w007|呢|ne|(follow-up question particle)|我很好，你呢？|Wǒ hěn hǎo, nǐ ne?|I'm well, and you?
+w008|不|bù|not; no|我不是老师。|Wǒ bú shì lǎoshī.|I'm not a teacher.
+w009|也|yě|also; too|我也是学生。|Wǒ yě shì xuésheng.|I'm a student too.
+w010|您|nín|you (polite)|您好！|Nín hǎo!|Hello! (polite)
+w011|他|tā|he; him|他是我朋友。|Tā shì wǒ péngyou.|He is my friend.
+w012|她|tā|she; her|她是我妈妈。|Tā shì wǒ māma.|She is my mom.
+w013|它|tā|it|它是我的猫。|Tā shì wǒ de māo.|It's my cat.
+w014|们|men|(plural suffix)|老师们好！|Lǎoshīmen hǎo!|Hello, teachers!
+w015|我们|wǒmen|we; us|我们是同学。|Wǒmen shì tóngxué.|We are classmates.
+w016|你们|nǐmen|you (plural)|你们好！|Nǐmen hǎo!|Hello, everyone!
+w017|他们|tāmen|they (male/mixed)|他们是中国人。|Tāmen shì Zhōngguó rén.|They are Chinese.
+w018|她们|tāmen|they (female)|她们是姐姐和妹妹。|Tāmen shì jiějie hé mèimei.|They are older and younger sisters.
+w019|它们|tāmen|they (things/animals)|它们是我的狗。|Tāmen shì wǒ de gǒu.|They are my dogs.
+w020|大家|dàjiā|everyone|大家好！|Dàjiā hǎo!|Hello, everyone!
+w021|谢谢|xièxie|thank you|谢谢你！|Xièxie nǐ!|Thank you!
+w022|不客气|bú kèqi|you're welcome|不客气。|Bú kèqi.|You're welcome.
+w023|对不起|duìbuqǐ|sorry|对不起，我来晚了。|Duìbuqǐ, wǒ lái wǎn le.|Sorry, I'm late.
+w024|没关系|méi guānxi|it doesn't matter|没关系。|Méi guānxi.|No problem.
+w025|再见|zàijiàn|goodbye|明天见！再见！|Míngtiān jiàn! Zàijiàn!|See you tomorrow! Bye!
+w026|请|qǐng|please; to invite|请坐。|Qǐng zuò.|Please sit.
+w027|请问|qǐngwèn|excuse me, may I ask|请问，你叫什么名字？|Qǐngwèn, nǐ jiào shénme míngzi?|Excuse me, what's your name?
+w028|喂|wéi|hello (on the phone)|喂，你好！|Wéi, nǐ hǎo!|Hello? (phone)
+w029|叫|jiào|to be called; to call|我叫王小明。|Wǒ jiào Wáng Xiǎomíng.|My name is Wang Xiaoming.
+w030|名字|míngzi|name|你叫什么名字？|Nǐ jiào shénme míngzi?|What's your name?
+w031|什么|shénme|what|这是什么？|Zhè shì shénme?|What is this?
+w032|认识|rènshi|to know (a person)|认识你很高兴。|Rènshi nǐ hěn gāoxìng.|Nice to meet you.
+w033|高兴|gāoxìng|happy; glad|我今天很高兴。|Wǒ jīntiān hěn gāoxìng.|I'm very happy today.
+w034|的|de|(possessive particle)|这是我的书。|Zhè shì wǒ de shū.|This is my book.
+w035|人|rén|person|他是中国人。|Tā shì Zhōngguó rén.|He is Chinese.
+w036|中国|Zhōngguó|China|我想去中国。|Wǒ xiǎng qù Zhōngguó.|I want to go to China.
+w037|国|guó|country|你是哪国人？|Nǐ shì nǎ guó rén?|Which country are you from?
+w038|朋友|péngyou|friend|他是我的好朋友。|Tā shì wǒ de hǎo péngyou.|He is my good friend.
+w039|先生|xiānsheng|Mr.; sir; husband|王先生在家吗？|Wáng xiānsheng zài jiā ma?|Is Mr. Wang home?
+w040|女士|nǚshì|Ms.; lady|李女士是老师。|Lǐ nǚshì shì lǎoshī.|Ms. Li is a teacher.
 # Unit 2 — Numbers & quantity
-一|yī|one|我有一个哥哥。|Wǒ yǒu yí ge gēge.|I have one older brother.
-二|èr|two|今天是二号。|Jīntiān shì èr hào.|Today is the 2nd.
-三|sān|three|我有三本书。|Wǒ yǒu sān běn shū.|I have three books.
-四|sì|four|他四岁。|Tā sì suì.|He is four.
-五|wǔ|five|我们五点见。|Wǒmen wǔ diǎn jiàn.|See you at five.
-六|liù|six|我家有六个人。|Wǒ jiā yǒu liù ge rén.|There are six people in my family.
-七|qī|seven|一个星期有七天。|Yí ge xīngqī yǒu qī tiān.|A week has seven days.
-八|bā|eight|我八点起床。|Wǒ bā diǎn qǐchuáng.|I get up at eight.
-九|jiǔ|nine|现在九点。|Xiànzài jiǔ diǎn.|It's nine o'clock now.
-十|shí|ten|这个十块钱。|Zhège shí kuài qián.|This is ten yuan.
-零|líng|zero|我的电话号是零六八。|Wǒ de diànhuà hào shì líng liù bā.|My phone number is zero six eight.
-百|bǎi|hundred|这件衣服一百块。|Zhè jiàn yīfu yìbǎi kuài.|This piece of clothing is 100 yuan.
-千|qiān|thousand|这个手机三千块。|Zhège shǒujī sānqiān kuài.|This phone is 3,000 yuan.
-两|liǎng|two (with measure words)|我有两个妹妹。|Wǒ yǒu liǎng ge mèimei.|I have two younger sisters.
-半|bàn|half|现在八点半。|Xiànzài bā diǎn bàn.|It's 8:30 now.
-一半|yíbàn|half|我吃了一半。|Wǒ chī le yíbàn.|I ate half.
-第|dì|(ordinal prefix)|这是我第一次来中国。|Zhè shì wǒ dì yī cì lái Zhōngguó.|This is my first time in China.
-几|jǐ|how many; a few|你家有几个人？|Nǐ jiā yǒu jǐ ge rén?|How many people are in your family?
-多少|duōshao|how many; how much|这个多少钱？|Zhège duōshao qián?|How much is this?
-多|duō|many; much|这里人很多。|Zhèlǐ rén hěn duō.|There are many people here.
-少|shǎo|few; little|今天人很少。|Jīntiān rén hěn shǎo.|There are few people today.
-个|gè|(general measure word)|我想买一个苹果。|Wǒ xiǎng mǎi yí ge píngguǒ.|I want to buy an apple.
-本|běn|(measure word for books)|我买了两本书。|Wǒ mǎi le liǎng běn shū.|I bought two books.
-件|jiàn|(measure word for clothes, matters)|这件衣服很漂亮。|Zhè jiàn yīfu hěn piàoliang.|This piece of clothing is very pretty.
-口|kǒu|mouth; (measure word for family members)|我家有三口人。|Wǒ jiā yǒu sān kǒu rén.|There are three people in my family.
-些|xiē|some|我想买些水果。|Wǒ xiǎng mǎi xiē shuǐguǒ.|I want to buy some fruit.
-一些|yìxiē|some; a few|我有一些问题。|Wǒ yǒu yìxiē wèntí.|I have some questions.
-有些|yǒuxiē|some|有些人喜欢喝茶。|Yǒuxiē rén xǐhuan hē chá.|Some people like drinking tea.
-有的|yǒude|some (of)|有的人喜欢猫，有的人喜欢狗。|Yǒude rén xǐhuan māo, yǒude rén xǐhuan gǒu.|Some people like cats, some like dogs.
-一点儿|yìdiǎnr|a little|我会说一点儿汉语。|Wǒ huì shuō yìdiǎnr Hànyǔ.|I can speak a little Chinese.
-有点儿|yǒudiǎnr|a bit; somewhat|今天有点儿冷。|Jīntiān yǒudiǎnr lěng.|It's a bit cold today.
-岁|suì|years old|你几岁？|Nǐ jǐ suì?|How old are you?
-钱|qián|money|我没有钱。|Wǒ méiyǒu qián.|I don't have money.
-块|kuài|yuan (spoken); piece|一个苹果五块。|Yí ge píngguǒ wǔ kuài.|An apple is five yuan.
-元|yuán|yuan (written)|这本书二十元。|Zhè běn shū èrshí yuán.|This book is 20 yuan.
+w041|一|yī|one|我有一个哥哥。|Wǒ yǒu yí ge gēge.|I have one older brother.
+w042|二|èr|two|今天是二号。|Jīntiān shì èr hào.|Today is the 2nd.
+w043|三|sān|three|我有三本书。|Wǒ yǒu sān běn shū.|I have three books.
+w044|四|sì|four|他四岁。|Tā sì suì.|He is four.
+w045|五|wǔ|five|我们五点见。|Wǒmen wǔ diǎn jiàn.|See you at five.
+w046|六|liù|six|我家有六个人。|Wǒ jiā yǒu liù ge rén.|There are six people in my family.
+w047|七|qī|seven|一个星期有七天。|Yí ge xīngqī yǒu qī tiān.|A week has seven days.
+w048|八|bā|eight|我八点起床。|Wǒ bā diǎn qǐchuáng.|I get up at eight.
+w049|九|jiǔ|nine|现在九点。|Xiànzài jiǔ diǎn.|It's nine o'clock now.
+w050|十|shí|ten|这个十块钱。|Zhège shí kuài qián.|This is ten yuan.
+w051|零|líng|zero|我的电话号是零六八。|Wǒ de diànhuà hào shì líng liù bā.|My phone number is zero six eight.
+w052|百|bǎi|hundred|这件衣服一百块。|Zhè jiàn yīfu yìbǎi kuài.|This piece of clothing is 100 yuan.
+w053|千|qiān|thousand|这个手机三千块。|Zhège shǒujī sānqiān kuài.|This phone is 3,000 yuan.
+w054|两|liǎng|two (with measure words)|我有两个妹妹。|Wǒ yǒu liǎng ge mèimei.|I have two younger sisters.
+w055|半|bàn|half|现在八点半。|Xiànzài bā diǎn bàn.|It's 8:30 now.
+w056|一半|yíbàn|half|我吃了一半。|Wǒ chī le yíbàn.|I ate half.
+w057|第|dì|(ordinal prefix)|这是我第一次来中国。|Zhè shì wǒ dì yī cì lái Zhōngguó.|This is my first time in China.
+w058|几|jǐ|how many; a few|你家有几个人？|Nǐ jiā yǒu jǐ ge rén?|How many people are in your family?
+w059|多少|duōshao|how many; how much|这个多少钱？|Zhège duōshao qián?|How much is this?
+w060|多|duō|many; much|这里人很多。|Zhèlǐ rén hěn duō.|There are many people here.
+w061|少|shǎo|few; little|今天人很少。|Jīntiān rén hěn shǎo.|There are few people today.
+w062|个|gè|(general measure word)|我想买一个苹果。|Wǒ xiǎng mǎi yí ge píngguǒ.|I want to buy an apple.
+w063|本|běn|(measure word for books)|我买了两本书。|Wǒ mǎi le liǎng běn shū.|I bought two books.
+w064|件|jiàn|(measure word for clothes, matters)|这件衣服很漂亮。|Zhè jiàn yīfu hěn piàoliang.|This piece of clothing is very pretty.
+w065|口|kǒu|mouth; (measure word for family members)|我家有三口人。|Wǒ jiā yǒu sān kǒu rén.|There are three people in my family.
+w066|些|xiē|some|我想买些水果。|Wǒ xiǎng mǎi xiē shuǐguǒ.|I want to buy some fruit.
+w067|一些|yìxiē|some; a few|我有一些问题。|Wǒ yǒu yìxiē wèntí.|I have some questions.
+w068|有些|yǒuxiē|some|有些人喜欢喝茶。|Yǒuxiē rén xǐhuan hē chá.|Some people like drinking tea.
+w069|有的|yǒude|some (of)|有的人喜欢猫，有的人喜欢狗。|Yǒude rén xǐhuan māo, yǒude rén xǐhuan gǒu.|Some people like cats, some like dogs.
+w070|一点儿|yìdiǎnr|a little|我会说一点儿汉语。|Wǒ huì shuō yìdiǎnr Hànyǔ.|I can speak a little Chinese.
+w071|有点儿|yǒudiǎnr|a bit; somewhat|今天有点儿冷。|Jīntiān yǒudiǎnr lěng.|It's a bit cold today.
+w072|岁|suì|years old|你几岁？|Nǐ jǐ suì?|How old are you?
+w073|钱|qián|money|我没有钱。|Wǒ méiyǒu qián.|I don't have money.
+w074|块|kuài|yuan (spoken); piece|一个苹果五块。|Yí ge píngguǒ wǔ kuài.|An apple is five yuan.
+w075|元|yuán|yuan (written)|这本书二十元。|Zhè běn shū èrshí yuán.|This book is 20 yuan.
 # Unit 3 — Family & people
-家|jiā|home; family|我在家。|Wǒ zài jiā.|I'm at home.
-家人|jiārén|family member|我很爱我的家人。|Wǒ hěn ài wǒ de jiārén.|I love my family very much.
-爸爸|bàba|dad|我爸爸是医生。|Wǒ bàba shì yīshēng.|My dad is a doctor.
-妈妈|māma|mom|妈妈在做饭。|Māma zài zuò fàn.|Mom is cooking.
-哥哥|gēge|older brother|我哥哥很高兴。|Wǒ gēge hěn gāoxìng.|My older brother is very happy.
-姐姐|jiějie|older sister|我姐姐在公司工作。|Wǒ jiějie zài gōngsī gōngzuò.|My older sister works at a company.
-弟弟|dìdi|younger brother|我弟弟六岁。|Wǒ dìdi liù suì.|My younger brother is six.
-妹妹|mèimei|younger sister|我妹妹喜欢猫。|Wǒ mèimei xǐhuan māo.|My younger sister likes cats.
-儿子|érzi|son|他儿子是大学生。|Tā érzi shì dàxuéshēng.|His son is a university student.
-女儿|nǚ'ér|daughter|她女儿很漂亮。|Tā nǚ'ér hěn piàoliang.|Her daughter is very pretty.
-孩子|háizi|child|你有孩子吗？|Nǐ yǒu háizi ma?|Do you have children?
-小朋友|xiǎopéngyǒu|child; kid|小朋友，你好！|Xiǎopéngyǒu, nǐ hǎo!|Hi there, kid!
-男|nán|male|他是男老师。|Tā shì nán lǎoshī.|He is a male teacher.
-女|nǚ|female|我的老师是女的。|Wǒ de lǎoshī shì nǚ de.|My teacher is a woman.
-男朋友|nánpéngyou|boyfriend|她有男朋友。|Tā yǒu nánpéngyou.|She has a boyfriend.
-女朋友|nǚpéngyou|girlfriend|这是我女朋友。|Zhè shì wǒ nǚpéngyou.|This is my girlfriend.
-老师|lǎoshī|teacher|老师，你好！|Lǎoshī, nǐ hǎo!|Hello, teacher!
-学生|xuésheng|student|我是学生。|Wǒ shì xuésheng.|I'm a student.
-同学|tóngxué|classmate|他是我的同学。|Tā shì wǒ de tóngxué.|He's my classmate.
-医生|yīshēng|doctor|我想去看医生。|Wǒ xiǎng qù kàn yīshēng.|I want to see a doctor.
-大学生|dàxuéshēng|university student|我哥哥是大学生。|Wǒ gēge shì dàxuéshēng.|My older brother is a university student.
-中学生|zhōngxuéshēng|middle/high school student|她是中学生。|Tā shì zhōngxuéshēng.|She's a high school student.
-小学生|xiǎoxuéshēng|elementary school student|我弟弟是小学生。|Wǒ dìdi shì xiǎoxuéshēng.|My younger brother is in elementary school.
-狗|gǒu|dog|我家有一只狗。|Wǒ jiā yǒu yì zhī gǒu.|My family has a dog.
-猫|māo|cat|我喜欢猫。|Wǒ xǐhuan māo.|I like cats.
-只|zhī / zhǐ|(measure word for animals); only|我只有一只猫。|Wǒ zhǐ yǒu yì zhī māo.|I only have one cat.
+w076|家|jiā|home; family|我家有五口人。|Wǒ jiā yǒu wǔ kǒu rén.|There are five people in my family.
+w077|家人|jiārén|family member|我很爱我的家人。|Wǒ hěn ài wǒ de jiārén.|I love my family very much.
+w078|爸爸|bàba|dad|我爸爸是医生。|Wǒ bàba shì yīshēng.|My dad is a doctor.
+w079|妈妈|māma|mom|我妈妈是医生。|Wǒ māma shì yīshēng.|My mom is a doctor.
+w080|哥哥|gēge|older brother|我哥哥很高兴。|Wǒ gēge hěn gāoxìng.|My older brother is very happy.
+w081|姐姐|jiějie|older sister|我姐姐在公司工作。|Wǒ jiějie zài gōngsī gōngzuò.|My older sister works at a company.
+w082|弟弟|dìdi|younger brother|我弟弟六岁。|Wǒ dìdi liù suì.|My younger brother is six.
+w083|妹妹|mèimei|younger sister|我妹妹喜欢猫。|Wǒ mèimei xǐhuan māo.|My younger sister likes cats.
+w084|儿子|érzi|son|他儿子是大学生。|Tā érzi shì dàxuéshēng.|His son is a university student.
+w085|女儿|nǚ'ér|daughter|她女儿很漂亮。|Tā nǚ'ér hěn piàoliang.|Her daughter is very pretty.
+w086|孩子|háizi|child|你有孩子吗？|Nǐ yǒu háizi ma?|Do you have children?
+w087|小朋友|xiǎopéngyǒu|child; kid|小朋友，你好！|Xiǎopéngyǒu, nǐ hǎo!|Hi there, kid!
+w088|男|nán|male|他是男老师。|Tā shì nán lǎoshī.|He is a male teacher.
+w089|女|nǚ|female|我的老师是女的。|Wǒ de lǎoshī shì nǚ de.|My teacher is a woman.
+w090|男朋友|nánpéngyou|boyfriend|她有男朋友。|Tā yǒu nánpéngyou.|She has a boyfriend.
+w091|女朋友|nǚpéngyou|girlfriend|这是我女朋友。|Zhè shì wǒ nǚpéngyou.|This is my girlfriend.
+w092|老师|lǎoshī|teacher|老师，你好！|Lǎoshī, nǐ hǎo!|Hello, teacher!
+w093|学生|xuésheng|student|我是学生。|Wǒ shì xuésheng.|I'm a student.
+w094|同学|tóngxué|classmate|他是我的同学。|Tā shì wǒ de tóngxué.|He's my classmate.
+w095|医生|yīshēng|doctor|我想去看医生。|Wǒ xiǎng qù kàn yīshēng.|I want to see a doctor.
+w096|大学生|dàxuéshēng|university student|我哥哥是大学生。|Wǒ gēge shì dàxuéshēng.|My older brother is a university student.
+w097|中学生|zhōngxuéshēng|middle/high school student|她是中学生。|Tā shì zhōngxuéshēng.|She's a high school student.
+w098|小学生|xiǎoxuéshēng|elementary school student|我弟弟是小学生。|Wǒ dìdi shì xiǎoxuéshēng.|My younger brother is in elementary school.
+w099|狗|gǒu|dog|我家有一只狗。|Wǒ jiā yǒu yì zhī gǒu.|My family has a dog.
+w100|猫|māo|cat|我喜欢猫。|Wǒ xǐhuan māo.|I like cats.
+w101|只|zhī / zhǐ|(measure word for animals); only|我只有一只猫。|Wǒ zhǐ yǒu yì zhī māo.|I only have one cat.

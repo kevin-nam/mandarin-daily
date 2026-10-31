@@ -46,5 +46,10 @@ export function toneOf(pinyin: string): number {
   return tones.length === 1 ? tones[0] : 0
 }
 
+/** Characters with more than one reading: heard on their own, the voice may say a different tone. */
+const AMBIGUOUS = new Set([...'只还都要和'])
+
 /** Single-character words with a clear tone — used for the tone drill. */
-export const TONE_ITEMS = WORDS.filter((w) => [...w.hanzi].length === 1 && toneOf(w.pinyin) > 0)
+export const TONE_ITEMS = WORDS.filter(
+  (w) => [...w.hanzi].length === 1 && toneOf(w.pinyin) > 0 && !w.pinyin.includes('/') && !AMBIGUOUS.has(w.hanzi),
+)

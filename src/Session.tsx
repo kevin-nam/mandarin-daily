@@ -303,7 +303,7 @@ const thinkSeconds = (w: Word) => Math.min(12, Math.max(5, Math.round(2 + [...ta
 
 function Drill({ state, learnedNow, onDone }: { state: AppState; learnedNow: string[]; onDone: () => void }) {
   const [queue, setQueue] = useState<DrillItem[]>(() => {
-    const recent = state.introduced.slice(-30).filter((id) => !learnedNow.includes(id))
+    const recent = state.introduced.slice(-30).filter((id) => !learnedNow.includes(id) && WORD_BY_ID.has(id))
     const ids = [...learnedNow.slice(0, 12), ...shuffle(recent).slice(0, Math.max(3, 8 - learnedNow.length))]
     return ids.map((id) => ({ w: WORD_BY_ID.get(id)!, hits: 0 }))
   })

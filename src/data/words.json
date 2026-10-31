@@ -33,9 +33,9 @@
   "en": "I; me",
   "unit": "Unit 1 — Greetings & pronouns",
   "sentence": {
-   "zh": "我是学生。",
-   "py": "Wǒ shì xuésheng.",
-   "en": "I'm a student."
+   "zh": "我今天很忙。",
+   "py": "Wǒ jīntiān hěn máng.",
+   "en": "I am busy today."
   }
  },
  {
@@ -59,9 +59,9 @@
   "en": "very",
   "unit": "Unit 1 — Greetings & pronouns",
   "sentence": {
-   "zh": "今天很冷。",
-   "py": "Jīntiān hěn lěng.",
-   "en": "It's very cold today."
+   "zh": "他很高兴。",
+   "py": "Tā hěn gāoxìng.",
+   "en": "He is very happy."
   }
  },
  {
@@ -982,9 +982,9 @@
   "en": "home; family",
   "unit": "Unit 3 — Family & people",
   "sentence": {
-   "zh": "我在家。",
-   "py": "Wǒ zài jiā.",
-   "en": "I'm at home."
+   "zh": "我家有五口人。",
+   "py": "Wǒ jiā yǒu wǔ kǒu rén.",
+   "en": "There are five people in my family."
   }
  },
  {
@@ -1021,9 +1021,9 @@
   "en": "mom",
   "unit": "Unit 3 — Family & people",
   "sentence": {
-   "zh": "妈妈在做饭。",
-   "py": "Māma zài zuò fàn.",
-   "en": "Mom is cooking."
+   "zh": "我妈妈是医生。",
+   "py": "Wǒ māma shì yīshēng.",
+   "en": "My mom is a doctor."
   }
  },
  {
@@ -1333,9 +1333,9 @@
   "en": "tomorrow",
   "unit": "Unit 4 — Time & dates",
   "sentence": {
-   "zh": "明天见！",
-   "py": "Míngtiān jiàn!",
-   "en": "See you tomorrow!"
+   "zh": "明天是星期天。",
+   "py": "Míngtiān shì xīngqītiān.",
+   "en": "Tomorrow is Sunday."
   }
  },
  {
@@ -1684,9 +1684,9 @@
   "en": "late",
   "unit": "Unit 4 — Time & dates",
   "sentence": {
-   "zh": "对不起，我来晚了。",
-   "py": "Duìbuqǐ, wǒ lái wǎn le.",
-   "en": "Sorry I'm late."
+   "zh": "太晚了，我要睡觉了。",
+   "py": "Tài wǎn le, wǒ yào shuìjiào le.",
+   "en": "It's late — I'm going to bed."
   }
  },
  {
@@ -2048,9 +2048,9 @@
   "en": "to go",
   "unit": "Unit 6 — Core verbs",
   "sentence": {
-   "zh": "你去哪儿？",
-   "py": "Nǐ qù nǎr?",
-   "en": "Where are you going?"
+   "zh": "我们去吃饭吧！",
+   "py": "Wǒmen qù chī fàn ba!",
+   "en": "Let's go eat!"
   }
  },
  {
@@ -2061,9 +2061,9 @@
   "en": "to come",
   "unit": "Unit 6 — Core verbs",
   "sentence": {
-   "zh": "你什么时候来？",
-   "py": "Nǐ shénme shíhou lái?",
-   "en": "When are you coming?"
+   "zh": "你来我家吧！",
+   "py": "Nǐ lái wǒ jiā ba!",
+   "en": "Come over to my place!"
   }
  },
  {
@@ -2503,9 +2503,9 @@
   "en": "song",
   "unit": "Unit 6 — Core verbs",
   "sentence": {
-   "zh": "这首歌很好听。",
-   "py": "Zhè shǒu gē hěn hǎotīng.",
-   "en": "This song sounds great."
+   "zh": "她喜欢唱歌。",
+   "py": "Tā xǐhuan chàng gē.",
+   "en": "She likes singing."
   }
  },
  {

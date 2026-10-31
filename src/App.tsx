@@ -7,6 +7,11 @@ import {
   wordsLearned, type AppState,
 } from './store'
 
+/** Only count it as backed up once the file was actually saved, not if the share sheet was cancelled. */
+async function backup(state: AppState, commit: (fn: (s: AppState) => void) => void) {
+  if (await exportState(state)) commit((s) => { s.lastBackup = new Date().toISOString() })
+}
+
 export default function App() {
   const [state, setState] = useState<AppState>(load)
   const [screen, setScreen] = useState<'home' | 'session' | 'settings'>('home')
@@ -70,7 +75,7 @@ export default function App() {
       </button>
 
       {needsBackup && (
-        <button className="banner" onClick={() => { exportState(state); commit((s) => { s.lastBackup = new Date().toISOString() }) }}>
+        <button className="banner" onClick={() => backup(state, commit)}>
           💾 Back up your progress (Save to Files)
         </button>
       )}
@@ -127,7 +132,7 @@ function Settings({ state, commit, replace, onBack }: {
         </label>
       </div>
       <div className="card form">
-        <button className="secondary wide" onClick={() => { exportState(state); commit((s) => { s.lastBackup = new Date().toISOString() }) }}>
+        <button className="secondary wide" onClick={() => backup(state, commit)}>
           💾 Export backup
         </button>
         <button className="secondary wide" onClick={() => fileRef.current?.click()}>📂 Import backup</button>
