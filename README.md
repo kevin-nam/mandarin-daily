@@ -6,13 +6,13 @@ A personal, offline-first PWA for daily Mandarin listening and speaking practice
 
 | Step | Time | What you do | Why |
 |---|---|---|---|
-| Review | ≤10 min | Due cards, mixed: **listen** (audio → meaning), **speak** (English → say it aloud), **read** (character → pinyin/meaning). Rate Again/Hard/Good/Easy. | Retrieval practice + FSRS spaced repetition |
-| New words | ~5 min | 5 words, each inside a sentence. Shadow ×4 (slow → normal). | Context + production effect |
-| Speak | ≤5 min | English prompt → 4 s to say it aloud → hear the answer twice. Missed items come back sooner; items retire after 2 hits. | Prompted recall with expanding intervals |
+| Review | ≤8 min | Due cards, mixed: **listen** (audio → meaning), **speak** (English → say it), **read** (character → pinyin/meaning). Speak cards come first (2 speak : 1 other). Rate Again/Hard/Good/Easy. | Retrieval practice + FSRS spaced repetition; productive recall builds speaking |
+| New words | ~5 min | 5 words (each inside a sentence) + 2 phrases. Hear it first: **I know it** → confirm → skipped ahead (listen card marked Easy, speak/read still tested, doesn't use up the daily quota). **New to me** → shadow ×4 (slow → normal). | Skip what you already understand (heritage learners); context + production effect |
+| Speak | ≤7 min | English prompt → 4 s to say it (whisper/mouth is fine) → hear the answer twice. Missed items come back sooner; items retire after 2 hits. | Prompted recall with expanding intervals |
 | Dialogue | ~3 min | Listen with no text → listen while reading → shadow line by line. | Comprehensible input |
 | Tones | ~2 min | Hear a syllable, pick the tone (15 rounds). | Early tone perception training |
 
-At 5 new words/day you cover all of HSK 1 in about 9 weeks.
+At 5 new words/day you cover all of HSK 1 in about 9 weeks, faster if you mark words you already know. Phrases (travel and conversation, 58 total) take about a month at 2/day.
 
 ## Run it
 
@@ -28,7 +28,7 @@ Out of the box the app uses the iPhone's built-in Chinese voice. For natural neu
 
 ```bash
 pip install edge-tts
-npm run audio        # writes public/audio/*.mp3 + manifest.json (~650 files)
+npm run audio        # writes public/audio/*.mp3 + manifest.json (~760 files)
 npm run build
 ```
 
@@ -50,6 +50,7 @@ The app automatically uses the MP3s when `public/audio/manifest.json` exists.
 ## Editing content
 
 - Words: `content/words1-3.tsv` — `hanzi|pinyin|english|sentence|sentence pinyin|sentence english`. Order = teaching order.
+- Phrases: `content/phrases.tsv` — `phrase|pinyin|english|example|example pinyin|example english`. The example is the phrase in use, often with the reply you'll hear.
 - Dialogues: `content/dialogues.json` (`unlockAfter` = number of words learned before it unlocks).
 - After editing: `npm run data` (rebuilds `src/data/*.json`), then `npm run audio` for new audio.
 

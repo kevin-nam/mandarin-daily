@@ -1,0 +1,756 @@
+[
+ {
+  "id": "p001",
+  "kind": "phrase",
+  "hanzi": "我听不懂。",
+  "pinyin": "Wǒ tīng bu dǒng.",
+  "en": "I don't understand (what you said).",
+  "unit": "Phrases — Getting by",
+  "sentence": {
+   "zh": "我听不懂，请再说一遍。",
+   "py": "Wǒ tīng bu dǒng, qǐng zài shuō yí biàn.",
+   "en": "I don't understand, please say it again."
+  }
+ },
+ {
+  "id": "p002",
+  "kind": "phrase",
+  "hanzi": "请说慢一点。",
+  "pinyin": "Qǐng shuō màn yìdiǎn.",
+  "en": "Please speak a little slower.",
+  "unit": "Phrases — Getting by",
+  "sentence": {
+   "zh": "对不起，请说慢一点。",
+   "py": "Duìbuqǐ, qǐng shuō màn yìdiǎn.",
+   "en": "Sorry, please speak a bit slower."
+  }
+ },
+ {
+  "id": "p003",
+  "kind": "phrase",
+  "hanzi": "你说得太快了。",
+  "pinyin": "Nǐ shuō de tài kuài le.",
+  "en": "You're talking too fast.",
+  "unit": "Phrases — Getting by",
+  "sentence": {
+   "zh": "你说得太快了，我听不懂。",
+   "py": "Nǐ shuō de tài kuài le, wǒ tīng bu dǒng.",
+   "en": "You're talking too fast; I can't follow."
+  }
+ },
+ {
+  "id": "p004",
+  "kind": "phrase",
+  "hanzi": "我会说一点儿中文。",
+  "pinyin": "Wǒ huì shuō yìdiǎnr Zhōngwén.",
+  "en": "I can speak a little Chinese.",
+  "unit": "Phrases — Getting by",
+  "sentence": {
+   "zh": "我会说一点儿中文，可是说得不好。",
+   "py": "Wǒ huì shuō yìdiǎnr Zhōngwén, kěshì shuō de bù hǎo.",
+   "en": "I speak a little Chinese, but not well."
+  }
+ },
+ {
+  "id": "p005",
+  "kind": "phrase",
+  "hanzi": "我小时候听过中文。",
+  "pinyin": "Wǒ xiǎoshíhou tīngguo Zhōngwén.",
+  "en": "I heard Chinese as a kid.",
+  "unit": "Phrases — Getting by",
+  "sentence": {
+   "zh": "我小时候听过中文，可是不太会说。",
+   "py": "Wǒ xiǎoshíhou tīngguo Zhōngwén, kěshì bú tài huì shuō.",
+   "en": "I heard Chinese as a kid, but I can't really speak it."
+  }
+ },
+ {
+  "id": "p006",
+  "kind": "phrase",
+  "hanzi": "这是什么意思？",
+  "pinyin": "Zhè shì shénme yìsi?",
+  "en": "What does this mean?",
+  "unit": "Phrases — Getting by",
+  "sentence": {
+   "zh": "对不起，这是什么意思？",
+   "py": "Duìbuqǐ, zhè shì shénme yìsi?",
+   "en": "Sorry, what does this mean?"
+  }
+ },
+ {
+  "id": "p007",
+  "kind": "phrase",
+  "hanzi": "这个用中文怎么说？",
+  "pinyin": "Zhège yòng Zhōngwén zěnme shuō?",
+  "en": "How do you say this in Chinese?",
+  "unit": "Phrases — Getting by",
+  "sentence": {
+   "zh": "请问，这个用中文怎么说？",
+   "py": "Qǐngwèn, zhège yòng Zhōngwén zěnme shuō?",
+   "en": "Excuse me, how do you say this in Chinese?"
+  }
+ },
+ {
+  "id": "p008",
+  "kind": "phrase",
+  "hanzi": "不好意思。",
+  "pinyin": "Bù hǎoyìsi.",
+  "en": "Excuse me / sorry to bother you.",
+  "unit": "Phrases — Polite basics",
+  "sentence": {
+   "zh": "不好意思，请问洗手间在哪儿？",
+   "py": "Bù hǎoyìsi, qǐngwèn xǐshǒujiān zài nǎr?",
+   "en": "Excuse me, where's the restroom?"
+  }
+ },
+ {
+  "id": "p009",
+  "kind": "phrase",
+  "hanzi": "没关系。",
+  "pinyin": "Méi guānxi.",
+  "en": "That's OK (reply to \"sorry\").",
+  "unit": "Phrases — Polite basics",
+  "sentence": {
+   "zh": "对不起！——没关系。",
+   "py": "Duìbuqǐ! — Méi guānxi.",
+   "en": "Sorry! — That's OK."
+  }
+ },
+ {
+  "id": "p010",
+  "kind": "phrase",
+  "hanzi": "不用谢。",
+  "pinyin": "Bú yòng xiè.",
+  "en": "No need to thank me.",
+  "unit": "Phrases — Polite basics",
+  "sentence": {
+   "zh": "谢谢你！——不用谢。",
+   "py": "Xièxie nǐ! — Bú yòng xiè.",
+   "en": "Thank you! — Don't mention it."
+  }
+ },
+ {
+  "id": "p011",
+  "kind": "phrase",
+  "hanzi": "好的，没问题。",
+  "pinyin": "Hǎo de, méi wèntí.",
+  "en": "OK, no problem.",
+  "unit": "Phrases — Polite basics",
+  "sentence": {
+   "zh": "能帮我一下吗？——好的，没问题。",
+   "py": "Néng bāng wǒ yíxià ma? — Hǎo de, méi wèntí.",
+   "en": "Can you help me? — OK, no problem."
+  }
+ },
+ {
+  "id": "p012",
+  "kind": "phrase",
+  "hanzi": "等一下。",
+  "pinyin": "Děng yíxià.",
+  "en": "Wait a moment.",
+  "unit": "Phrases — Polite basics",
+  "sentence": {
+   "zh": "请等一下，我马上来。",
+   "py": "Qǐng děng yíxià, wǒ mǎshàng lái.",
+   "en": "Please wait a moment, I'll be right there."
+  }
+ },
+ {
+  "id": "p013",
+  "kind": "phrase",
+  "hanzi": "能帮我一下吗？",
+  "pinyin": "Néng bāng wǒ yíxià ma?",
+  "en": "Could you help me?",
+  "unit": "Phrases — Polite basics",
+  "sentence": {
+   "zh": "不好意思，能帮我一下吗？",
+   "py": "Bù hǎoyìsi, néng bāng wǒ yíxià ma?",
+   "en": "Excuse me, could you help me?"
+  }
+ },
+ {
+  "id": "p014",
+  "kind": "phrase",
+  "hanzi": "几位？",
+  "pinyin": "Jǐ wèi?",
+  "en": "How many people? (you'll hear this)",
+  "unit": "Phrases — Food & ordering",
+  "sentence": {
+   "zh": "你好，几位？——两位。",
+   "py": "Nǐ hǎo, jǐ wèi? — Liǎng wèi.",
+   "en": "Hi, how many? — Two."
+  }
+ },
+ {
+  "id": "p015",
+  "kind": "phrase",
+  "hanzi": "有菜单吗？",
+  "pinyin": "Yǒu càidān ma?",
+  "en": "Is there a menu?",
+  "unit": "Phrases — Food & ordering",
+  "sentence": {
+   "zh": "你好，有英文菜单吗？",
+   "py": "Nǐ hǎo, yǒu Yīngwén càidān ma?",
+   "en": "Hi, is there an English menu?"
+  }
+ },
+ {
+  "id": "p016",
+  "kind": "phrase",
+  "hanzi": "我要这个。",
+  "pinyin": "Wǒ yào zhège.",
+  "en": "I'll have this one.",
+  "unit": "Phrases — Food & ordering",
+  "sentence": {
+   "zh": "服务员，我要这个，谢谢。",
+   "py": "Fúwùyuán, wǒ yào zhège, xièxie.",
+   "en": "Waiter, I'll have this, thanks."
+  }
+ },
+ {
+  "id": "p017",
+  "kind": "phrase",
+  "hanzi": "这个辣吗？",
+  "pinyin": "Zhège là ma?",
+  "en": "Is this spicy?",
+  "unit": "Phrases — Food & ordering",
+  "sentence": {
+   "zh": "这个辣吗？——有一点儿辣。",
+   "py": "Zhège là ma? — Yǒu yìdiǎnr là.",
+   "en": "Is this spicy? — A little."
+  }
+ },
+ {
+  "id": "p018",
+  "kind": "phrase",
+  "hanzi": "不要辣。",
+  "pinyin": "Bú yào là.",
+  "en": "No spice, please.",
+  "unit": "Phrases — Food & ordering",
+  "sentence": {
+   "zh": "这个菜不要辣，谢谢。",
+   "py": "Zhège cài bú yào là, xièxie.",
+   "en": "No spice in this dish, please."
+  }
+ },
+ {
+  "id": "p019",
+  "kind": "phrase",
+  "hanzi": "我要一杯水。",
+  "pinyin": "Wǒ yào yì bēi shuǐ.",
+  "en": "I'd like a glass of water.",
+  "unit": "Phrases — Food & ordering",
+  "sentence": {
+   "zh": "你好，我要一杯水，谢谢。",
+   "py": "Nǐ hǎo, wǒ yào yì bēi shuǐ, xièxie.",
+   "en": "Hi, a glass of water please."
+  }
+ },
+ {
+  "id": "p020",
+  "kind": "phrase",
+  "hanzi": "在这儿吃还是带走？",
+  "pinyin": "Zài zhèr chī háishi dài zǒu?",
+  "en": "For here or to go? (you'll hear this)",
+  "unit": "Phrases — Food & ordering",
+  "sentence": {
+   "zh": "在这儿吃还是带走？——带走，谢谢。",
+   "py": "Zài zhèr chī háishi dài zǒu? — Dài zǒu, xièxie.",
+   "en": "For here or to go? — To go, thanks."
+  }
+ },
+ {
+  "id": "p021",
+  "kind": "phrase",
+  "hanzi": "很好吃！",
+  "pinyin": "Hěn hǎochī!",
+  "en": "It's delicious!",
+  "unit": "Phrases — Food & ordering",
+  "sentence": {
+   "zh": "这个菜很好吃！",
+   "py": "Zhège cài hěn hǎochī!",
+   "en": "This dish is delicious!"
+  }
+ },
+ {
+  "id": "p022",
+  "kind": "phrase",
+  "hanzi": "我吃饱了。",
+  "pinyin": "Wǒ chī bǎo le.",
+  "en": "I'm full.",
+  "unit": "Phrases — Food & ordering",
+  "sentence": {
+   "zh": "我吃饱了，谢谢！",
+   "py": "Wǒ chī bǎo le, xièxie!",
+   "en": "I'm full, thank you!"
+  }
+ },
+ {
+  "id": "p023",
+  "kind": "phrase",
+  "hanzi": "买单。",
+  "pinyin": "Mǎidān.",
+  "en": "The bill, please.",
+  "unit": "Phrases — Food & ordering",
+  "sentence": {
+   "zh": "服务员，买单！",
+   "py": "Fúwùyuán, mǎidān!",
+   "en": "Waiter, the bill please!"
+  }
+ },
+ {
+  "id": "p024",
+  "kind": "phrase",
+  "hanzi": "多少钱？",
+  "pinyin": "Duōshao qián?",
+  "en": "How much is it?",
+  "unit": "Phrases — Shopping & paying",
+  "sentence": {
+   "zh": "这个多少钱？——二十块。",
+   "py": "Zhège duōshao qián? — Èrshí kuài.",
+   "en": "How much is this? — Twenty yuan."
+  }
+ },
+ {
+  "id": "p025",
+  "kind": "phrase",
+  "hanzi": "太贵了！",
+  "pinyin": "Tài guì le!",
+  "en": "Too expensive!",
+  "unit": "Phrases — Shopping & paying",
+  "sentence": {
+   "zh": "太贵了！我不要了。",
+   "py": "Tài guì le! Wǒ bú yào le.",
+   "en": "Too expensive! I'll pass."
+  }
+ },
+ {
+  "id": "p026",
+  "kind": "phrase",
+  "hanzi": "能便宜一点儿吗？",
+  "pinyin": "Néng piányi yìdiǎnr ma?",
+  "en": "Can you make it cheaper?",
+  "unit": "Phrases — Shopping & paying",
+  "sentence": {
+   "zh": "能便宜一点儿吗？——好吧，十五块。",
+   "py": "Néng piányi yìdiǎnr ma? — Hǎo ba, shíwǔ kuài.",
+   "en": "Can you make it cheaper? — OK, fifteen yuan."
+  }
+ },
+ {
+  "id": "p027",
+  "kind": "phrase",
+  "hanzi": "我先看看。",
+  "pinyin": "Wǒ xiān kànkan.",
+  "en": "I'm just looking.",
+  "unit": "Phrases — Shopping & paying",
+  "sentence": {
+   "zh": "我先看看，谢谢。",
+   "py": "Wǒ xiān kànkan, xièxie.",
+   "en": "I'm just looking first, thanks."
+  }
+ },
+ {
+  "id": "p028",
+  "kind": "phrase",
+  "hanzi": "有没有大一点儿的？",
+  "pinyin": "Yǒu méiyǒu dà yìdiǎnr de?",
+  "en": "Do you have a bigger one?",
+  "unit": "Phrases — Shopping & paying",
+  "sentence": {
+   "zh": "这个太小了，有没有大一点儿的？",
+   "py": "Zhège tài xiǎo le, yǒu méiyǒu dà yìdiǎnr de?",
+   "en": "This is too small — do you have a bigger one?"
+  }
+ },
+ {
+  "id": "p029",
+  "kind": "phrase",
+  "hanzi": "可以扫码吗？",
+  "pinyin": "Kěyǐ sǎo mǎ ma?",
+  "en": "Can I pay by scanning a QR code?",
+  "unit": "Phrases — Shopping & paying",
+  "sentence": {
+   "zh": "可以扫码吗？——可以，扫这儿。",
+   "py": "Kěyǐ sǎo mǎ ma? — Kěyǐ, sǎo zhèr.",
+   "en": "Can I scan to pay? — Yes, scan here."
+  }
+ },
+ {
+  "id": "p030",
+  "kind": "phrase",
+  "hanzi": "可以刷卡吗？",
+  "pinyin": "Kěyǐ shuā kǎ ma?",
+  "en": "Can I pay by card?",
+  "unit": "Phrases — Shopping & paying",
+  "sentence": {
+   "zh": "可以刷卡吗？——不可以，只能扫码。",
+   "py": "Kěyǐ shuā kǎ ma? — Bù kěyǐ, zhǐ néng sǎo mǎ.",
+   "en": "Can I pay by card? — No, QR code only."
+  }
+ },
+ {
+  "id": "p031",
+  "kind": "phrase",
+  "hanzi": "很高兴认识你。",
+  "pinyin": "Hěn gāoxìng rènshi nǐ.",
+  "en": "Nice to meet you.",
+  "unit": "Phrases — Meeting people",
+  "sentence": {
+   "zh": "你好，很高兴认识你！",
+   "py": "Nǐ hǎo, hěn gāoxìng rènshi nǐ!",
+   "en": "Hi, nice to meet you!"
+  }
+ },
+ {
+  "id": "p032",
+  "kind": "phrase",
+  "hanzi": "你叫什么名字？",
+  "pinyin": "Nǐ jiào shénme míngzi?",
+  "en": "What's your name?",
+  "unit": "Phrases — Meeting people",
+  "sentence": {
+   "zh": "你好！你叫什么名字？",
+   "py": "Nǐ hǎo! Nǐ jiào shénme míngzi?",
+   "en": "Hi! What's your name?"
+  }
+ },
+ {
+  "id": "p033",
+  "kind": "phrase",
+  "hanzi": "你是哪国人？",
+  "pinyin": "Nǐ shì nǎ guó rén?",
+  "en": "What country are you from?",
+  "unit": "Phrases — Meeting people",
+  "sentence": {
+   "zh": "你是哪国人？你是中国人吗？",
+   "py": "Nǐ shì nǎ guó rén? Nǐ shì Zhōngguó rén ma?",
+   "en": "Where are you from? Are you Chinese?"
+  }
+ },
+ {
+  "id": "p034",
+  "kind": "phrase",
+  "hanzi": "你做什么工作？",
+  "pinyin": "Nǐ zuò shénme gōngzuò?",
+  "en": "What do you do for work?",
+  "unit": "Phrases — Meeting people",
+  "sentence": {
+   "zh": "你做什么工作？——我是老师。",
+   "py": "Nǐ zuò shénme gōngzuò? — Wǒ shì lǎoshī.",
+   "en": "What do you do? — I'm a teacher."
+  }
+ },
+ {
+  "id": "p035",
+  "kind": "phrase",
+  "hanzi": "你住在哪儿？",
+  "pinyin": "Nǐ zhù zài nǎr?",
+  "en": "Where do you live?",
+  "unit": "Phrases — Meeting people",
+  "sentence": {
+   "zh": "你住在哪儿？——我住在北京。",
+   "py": "Nǐ zhù zài nǎr? — Wǒ zhù zài Běijīng.",
+   "en": "Where do you live? — I live in Beijing."
+  }
+ },
+ {
+  "id": "p036",
+  "kind": "phrase",
+  "hanzi": "我是第一次来。",
+  "pinyin": "Wǒ shì dì yī cì lái.",
+  "en": "It's my first time here.",
+  "unit": "Phrases — Meeting people",
+  "sentence": {
+   "zh": "我是第一次来中国。",
+   "py": "Wǒ shì dì yī cì lái Zhōngguó.",
+   "en": "It's my first time in China."
+  }
+ },
+ {
+  "id": "p037",
+  "kind": "phrase",
+  "hanzi": "洗手间在哪儿？",
+  "pinyin": "Xǐshǒujiān zài nǎr?",
+  "en": "Where's the restroom?",
+  "unit": "Phrases — Getting around",
+  "sentence": {
+   "zh": "请问，洗手间在哪儿？——在那边。",
+   "py": "Qǐngwèn, xǐshǒujiān zài nǎr? — Zài nàbiān.",
+   "en": "Excuse me, where's the restroom? — Over there."
+  }
+ },
+ {
+  "id": "p038",
+  "kind": "phrase",
+  "hanzi": "地铁站怎么走？",
+  "pinyin": "Dìtiě zhàn zěnme zǒu?",
+  "en": "How do I get to the subway station?",
+  "unit": "Phrases — Getting around",
+  "sentence": {
+   "zh": "请问，地铁站怎么走？——一直往前走。",
+   "py": "Qǐngwèn, dìtiě zhàn zěnme zǒu? — Yìzhí wǎng qián zǒu.",
+   "en": "Excuse me, how do I get to the subway? — Go straight ahead."
+  }
+ },
+ {
+  "id": "p039",
+  "kind": "phrase",
+  "hanzi": "远吗？",
+  "pinyin": "Yuǎn ma?",
+  "en": "Is it far?",
+  "unit": "Phrases — Getting around",
+  "sentence": {
+   "zh": "远吗？——不远，走路五分钟。",
+   "py": "Yuǎn ma? — Bù yuǎn, zǒulù wǔ fēnzhōng.",
+   "en": "Is it far? — No, five minutes on foot."
+  }
+ },
+ {
+  "id": "p040",
+  "kind": "phrase",
+  "hanzi": "往左拐。",
+  "pinyin": "Wǎng zuǒ guǎi.",
+  "en": "Turn left.",
+  "unit": "Phrases — Getting around",
+  "sentence": {
+   "zh": "往前走，然后往左拐。",
+   "py": "Wǎng qián zǒu, ránhòu wǎng zuǒ guǎi.",
+   "en": "Go straight, then turn left."
+  }
+ },
+ {
+  "id": "p041",
+  "kind": "phrase",
+  "hanzi": "往右拐。",
+  "pinyin": "Wǎng yòu guǎi.",
+  "en": "Turn right.",
+  "unit": "Phrases — Getting around",
+  "sentence": {
+   "zh": "到路口往右拐。",
+   "py": "Dào lùkǒu wǎng yòu guǎi.",
+   "en": "Turn right at the intersection."
+  }
+ },
+ {
+  "id": "p042",
+  "kind": "phrase",
+  "hanzi": "师傅，去这个地方。",
+  "pinyin": "Shīfu, qù zhège dìfang.",
+  "en": "Driver, please go to this place.",
+  "unit": "Phrases — Getting around",
+  "sentence": {
+   "zh": "师傅，去这个地方，谢谢。",
+   "py": "Shīfu, qù zhège dìfang, xièxie.",
+   "en": "Driver, to this place please."
+  }
+ },
+ {
+  "id": "p043",
+  "kind": "phrase",
+  "hanzi": "在这儿停就行。",
+  "pinyin": "Zài zhèr tíng jiù xíng.",
+  "en": "You can stop here.",
+  "unit": "Phrases — Getting around",
+  "sentence": {
+   "zh": "师傅，在这儿停就行。",
+   "py": "Shīfu, zài zhèr tíng jiù xíng.",
+   "en": "Driver, stopping here is fine."
+  }
+ },
+ {
+  "id": "p044",
+  "kind": "phrase",
+  "hanzi": "我迷路了。",
+  "pinyin": "Wǒ mílù le.",
+  "en": "I'm lost.",
+  "unit": "Phrases — Getting around",
+  "sentence": {
+   "zh": "不好意思，我迷路了，这是哪儿？",
+   "py": "Bù hǎoyìsi, wǒ mílù le, zhè shì nǎr?",
+   "en": "Excuse me, I'm lost — where is this?"
+  }
+ },
+ {
+  "id": "p045",
+  "kind": "phrase",
+  "hanzi": "我有预订。",
+  "pinyin": "Wǒ yǒu yùdìng.",
+  "en": "I have a reservation.",
+  "unit": "Phrases — Hotel & needs",
+  "sentence": {
+   "zh": "你好，我有预订。这是我的护照。",
+   "py": "Nǐ hǎo, wǒ yǒu yùdìng. Zhè shì wǒ de hùzhào.",
+   "en": "Hi, I have a reservation. Here's my passport."
+  }
+ },
+ {
+  "id": "p046",
+  "kind": "phrase",
+  "hanzi": "几点退房？",
+  "pinyin": "Jǐ diǎn tuì fáng?",
+  "en": "What time is checkout?",
+  "unit": "Phrases — Hotel & needs",
+  "sentence": {
+   "zh": "请问，几点退房？——十二点。",
+   "py": "Qǐngwèn, jǐ diǎn tuì fáng? — Shí'èr diǎn.",
+   "en": "Excuse me, what time is checkout? — Twelve."
+  }
+ },
+ {
+  "id": "p047",
+  "kind": "phrase",
+  "hanzi": "无线网密码是多少？",
+  "pinyin": "Wúxiàn wǎng mìmǎ shì duōshao?",
+  "en": "What's the Wi-Fi password?",
+  "unit": "Phrases — Hotel & needs",
+  "sentence": {
+   "zh": "请问，无线网密码是多少？",
+   "py": "Qǐngwèn, wúxiàn wǎng mìmǎ shì duōshao?",
+   "en": "Excuse me, what's the Wi-Fi password?"
+  }
+ },
+ {
+  "id": "p048",
+  "kind": "phrase",
+  "hanzi": "可以拍照吗？",
+  "pinyin": "Kěyǐ pāizhào ma?",
+  "en": "Can I take photos?",
+  "unit": "Phrases — Hotel & needs",
+  "sentence": {
+   "zh": "这儿可以拍照吗？——可以。",
+   "py": "Zhèr kěyǐ pāizhào ma? — Kěyǐ.",
+   "en": "Can I take photos here? — Yes."
+  }
+ },
+ {
+  "id": "p049",
+  "kind": "phrase",
+  "hanzi": "我不舒服。",
+  "pinyin": "Wǒ bù shūfu.",
+  "en": "I don't feel well.",
+  "unit": "Phrases — Hotel & needs",
+  "sentence": {
+   "zh": "我有点儿不舒服，想休息一下。",
+   "py": "Wǒ yǒudiǎnr bù shūfu, xiǎng xiūxi yíxià.",
+   "en": "I don't feel well; I want to rest a bit."
+  }
+ },
+ {
+  "id": "p050",
+  "kind": "phrase",
+  "hanzi": "你吃饭了吗？",
+  "pinyin": "Nǐ chī fàn le ma?",
+  "en": "Have you eaten? (a common greeting)",
+  "unit": "Phrases — Everyday conversation",
+  "sentence": {
+   "zh": "你吃饭了吗？——吃了，你呢？",
+   "py": "Nǐ chī fàn le ma? — Chī le, nǐ ne?",
+   "en": "Have you eaten? — Yes, and you?"
+  }
+ },
+ {
+  "id": "p051",
+  "kind": "phrase",
+  "hanzi": "最近怎么样？",
+  "pinyin": "Zuìjìn zěnmeyàng?",
+  "en": "How have you been lately?",
+  "unit": "Phrases — Everyday conversation",
+  "sentence": {
+   "zh": "好久不见！最近怎么样？",
+   "py": "Hǎojiǔ bú jiàn! Zuìjìn zěnmeyàng?",
+   "en": "Long time no see! How have you been?"
+  }
+ },
+ {
+  "id": "p052",
+  "kind": "phrase",
+  "hanzi": "还可以。",
+  "pinyin": "Hái kěyǐ.",
+  "en": "Not bad / so-so.",
+  "unit": "Phrases — Everyday conversation",
+  "sentence": {
+   "zh": "最近怎么样？——还可以，有点儿忙。",
+   "py": "Zuìjìn zěnmeyàng? — Hái kěyǐ, yǒudiǎnr máng.",
+   "en": "How's it going? — Not bad, a bit busy."
+  }
+ },
+ {
+  "id": "p053",
+  "kind": "phrase",
+  "hanzi": "多吃点儿！",
+  "pinyin": "Duō chī diǎnr!",
+  "en": "Eat more! (you'll hear this)",
+  "unit": "Phrases — Everyday conversation",
+  "sentence": {
+   "zh": "多吃点儿，别客气！",
+   "py": "Duō chī diǎnr, bié kèqi!",
+   "en": "Eat more, don't be shy!"
+  }
+ },
+ {
+  "id": "p054",
+  "kind": "phrase",
+  "hanzi": "你有兄弟姐妹吗？",
+  "pinyin": "Nǐ yǒu xiōngdì jiěmèi ma?",
+  "en": "Do you have siblings?",
+  "unit": "Phrases — Everyday conversation",
+  "sentence": {
+   "zh": "你有兄弟姐妹吗？——我有一个哥哥。",
+   "py": "Nǐ yǒu xiōngdì jiěmèi ma? — Wǒ yǒu yí ge gēge.",
+   "en": "Do you have siblings? — I have an older brother."
+  }
+ },
+ {
+  "id": "p055",
+  "kind": "phrase",
+  "hanzi": "你周末做什么？",
+  "pinyin": "Nǐ zhōumò zuò shénme?",
+  "en": "What do you do on weekends?",
+  "unit": "Phrases — Everyday conversation",
+  "sentence": {
+   "zh": "你周末做什么？——我喜欢看电影。",
+   "py": "Nǐ zhōumò zuò shénme? — Wǒ xǐhuan kàn diànyǐng.",
+   "en": "What do you do on weekends? — I like watching movies."
+  }
+ },
+ {
+  "id": "p056",
+  "kind": "phrase",
+  "hanzi": "我也是。",
+  "pinyin": "Wǒ yě shì.",
+  "en": "Me too.",
+  "unit": "Phrases — Everyday conversation",
+  "sentence": {
+   "zh": "我很喜欢吃饺子。——我也是！",
+   "py": "Wǒ hěn xǐhuan chī jiǎozi. — Wǒ yě shì!",
+   "en": "I love dumplings. — Me too!"
+  }
+ },
+ {
+  "id": "p057",
+  "kind": "phrase",
+  "hanzi": "真的吗？",
+  "pinyin": "Zhēn de ma?",
+  "en": "Really?",
+  "unit": "Phrases — Everyday conversation",
+  "sentence": {
+   "zh": "我会说三种语言。——真的吗？",
+   "py": "Wǒ huì shuō sān zhǒng yǔyán. — Zhēn de ma?",
+   "en": "I speak three languages. — Really?"
+  }
+ },
+ {
+  "id": "p058",
+  "kind": "phrase",
+  "hanzi": "我想你了。",
+  "pinyin": "Wǒ xiǎng nǐ le.",
+  "en": "I missed you.",
+  "unit": "Phrases — Everyday conversation",
+  "sentence": {
+   "zh": "好久不见，我很想你！",
+   "py": "Hǎojiǔ bú jiàn, wǒ hěn xiǎng nǐ!",
+   "en": "Long time no see, I missed you!"
+  }
+ }
+]

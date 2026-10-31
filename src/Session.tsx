@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { Grade } from 'ts-fsrs'
-import { DIALOGUES, TONE_ITEMS, WORD_BY_ID, toneOf, type Word } from './data'
-import { epoch, lineKey, play, sentenceKey, sleep, stop, wordKey } from './audio'
+import { DIALOGUES, TONE_ITEMS, WORD_BY_ID, target, toneOf, type Word } from './data'
+import { epoch, lineKey, play, sleep, stop, wordKey } from './audio'
 import {
-  dueKeys, grade, introduce, logDay, newDoneToday, nextNewWords, parseKey, Rating, type AppState,
+  dueKeys, grade, introduce, logDay, markKnown, newDoneToday, nextNewItems, parseKey, phrasesDoneToday,
+  Rating, wordsLearned, type AppState,
 } from './store'
 import { PlayButton, StepHeader, WordFace, shuffle } from './ui'
 
@@ -11,9 +12,9 @@ type Commit = (fn: (s: AppState) => void) => void
 type StepId = 'reviews' | 'new' | 'drill' | 'dialogue' | 'tones' | 'done'
 
 const STEPS: { id: StepId; label: string; minutes: number }[] = [
-  { id: 'reviews', label: 'Review', minutes: 10 },
+  { id: 'reviews', label: 'Review', minutes: 8 },
   { id: 'new', label: 'New words', minutes: 5 },
-  { id: 'drill', label: 'Speak', minutes: 5 },
+  { id: 'drill', label: 'Speak', minutes: 7 },
   { id: 'dialogue', label: 'Dialogue', minutes: 3 },
   { id: 'tones', label: 'Tones', minutes: 2 },
 ]
@@ -21,6 +22,7 @@ const STEPS: { id: StepId; label: string; minutes: number }[] = [
 export default function Session({ state, commit, onExit }: { state: AppState; commit: Commit; onExit: () => void }) {
   const [step, setStep] = useState<StepId>('reviews')
   const [learnedNow, setLearnedNow] = useState<string[]>([])
+  const [knownNow, setKnownNow] = useState(0)
   const startRef = useRef(Date.now())
   const [elapsed, setElapsed] = useState(0)
 
@@ -62,7 +64,7 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
 
       {step === 'reviews' && <Reviews state={state} commit={commit} onDone={next} />}
       {step === 'new' && (
-        <NewWords state={state} commit={commit} onDone={(ids) => { setLearnedNow(ids); next() }} />
+        <NewWords state={state} commit={commit} onDone={(ids, known) => { setLearnedNow(ids); setKnownNow(known); next() }} />
       )}
       {step === 'drill' && <Drill state={state} learnedNow={learnedNow} onDone={next} />}
       {step === 'dialogue' && <DialogueStep state={state} onDone={next} />}
@@ -70,7 +72,7 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
       {step === 'done' && (
         <div className="card center-text">
           <h2>Done for today 🎉</h2>
-          <p>{mm} · {learnedNow.length} new words</p>
+          <p>{mm} · {learnedNow.length - knownNow} new{knownNow > 0 && ` · ${knownNow} already known`}</p>
           <button className="primary" onClick={finish}>Finish</button>
         </div>
       )}
@@ -80,8 +82,20 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
 
 /* ---------------- Reviews ---------------- */
 
+const REVIEW_MINUTES = 8
+
+/** Due cards, speak cards first (2 speak : 1 other) so the main gap gets the most time, still interleaved. */
+function reviewQueue(state: AppState) {
+  const due = shuffle(dueKeys(state)).slice(0, 80)
+  const speak = due.filter((k) => parseKey(k).kind === 'speak')
+  const other = due.filter((k) => parseKey(k).kind !== 'speak')
+  const out: string[] = []
+  while (speak.length || other.length) out.push(...speak.splice(0, 2), ...other.splice(0, 1))
+  return out
+}
+
 function Reviews({ state, commit, onDone }: { state: AppState; commit: Commit; onDone: () => void }) {
-  const [queue, setQueue] = useState(() => shuffle(dueKeys(state)).slice(0, 80))
+  const [queue, setQueue] = useState(() => reviewQueue(state))
   const [revealed, setRevealed] = useState(false)
   const [count, setCount] = useState(0)
   const start = useRef(Date.now())
@@ -94,7 +108,8 @@ function Reviews({ state, commit, onDone }: { state: AppState; commit: Commit; o
   const key = queue[0]
   const { wordId, kind } = parseKey(key)
   const w = WORD_BY_ID.get(wordId)!
-  const timeUp = Date.now() - start.current > 10 * 60 * 1000
+  const t = target(w)
+  const timeUp = Date.now() - start.current > REVIEW_MINUTES * 60 * 1000
 
   const rate = (r: Grade) => {
     commit((s) => {
@@ -105,7 +120,7 @@ function Reviews({ state, commit, onDone }: { state: AppState; commit: Commit; o
     setRevealed(false)
     setQueue((q) => {
       const rest = q.slice(1)
-      if (timeUp) return [] // 10-minute cap reached
+      if (timeUp) return [] // time cap reached
       if (r === Rating.Again) rest.splice(Math.min(4, rest.length), 0, key) // see it again soon
       return rest
     })
@@ -113,13 +128,13 @@ function Reviews({ state, commit, onDone }: { state: AppState; commit: Commit; o
 
   const reveal = () => {
     setRevealed(true)
-    if (kind === 'speak') play(sentenceKey(w.id), w.sentence.zh)
+    if (kind === 'speak') play(t.key, t.zh)
     if (kind === 'read') play(wordKey(w.id), w.hanzi)
   }
 
   const prompt = {
     listen: 'Listen. What does it mean?',
-    speak: 'Say it in Mandarin — out loud.',
+    speak: 'Say it in Mandarin. Whispering or mouthing it counts.',
     read: 'Read it. Pinyin and meaning?',
   }[kind]
 
@@ -130,18 +145,18 @@ function Reviews({ state, commit, onDone }: { state: AppState; commit: Commit; o
         <div className="front" onClick={kind !== 'listen' ? reveal : undefined}>
           {kind === 'listen' && (
             <div className="center-col">
-              <PlayButton k={sentenceKey(w.id)} text={w.sentence.zh} label="▶ play" autoPlay />
-              <PlayButton k={sentenceKey(w.id)} text={w.sentence.zh} label="🐢 slow" slow />
-              <p className="hint">Focus word: listen for it in the sentence.</p>
+              <PlayButton k={t.key} text={t.zh} label="▶ play" autoPlay />
+              <PlayButton k={t.key} text={t.zh} label="🐢 slow" slow />
+              {w.kind === 'word' && <p className="hint">Focus word: listen for it in the sentence.</p>}
             </div>
           )}
           {kind === 'speak' && (
             <div className="center-col">
-              <div className="meaning big">{w.sentence.en}</div>
-              <p className="hint">Key word: {w.en}</p>
+              <div className="meaning big">{t.en}</div>
+              {w.kind === 'word' && <p className="hint">Key word: {w.en}</p>}
             </div>
           )}
-          {kind === 'read' && <div className="hanzi huge">{w.hanzi}</div>}
+          {kind === 'read' && <div className={`hanzi ${w.kind === 'phrase' ? 'phrase' : 'huge'}`}>{w.hanzi}</div>}
         </div>
       )}
       {revealed && <WordFace w={w} />}
@@ -157,32 +172,41 @@ function Reviews({ state, commit, onDone }: { state: AppState; commit: Commit; o
           </div>
         )}
       </div>
-      {count > 0 && timeUp && <p className="hint center-text">10 min reached — finishing after this card.</p>}
+      {count > 0 && timeUp && <p className="hint center-text">{REVIEW_MINUTES} min reached — finishing after this card.</p>}
     </div>
   )
 }
 
-/* ---------------- New words ---------------- */
+/* ---------------- New words & phrases (skip what you already know) ---------------- */
 
-function NewWords({ state, commit, onDone }: { state: AppState; commit: Commit; onDone: (ids: string[]) => void }) {
-  const words = useMemo(
-    () => nextNewWords(state, Math.max(0, state.settings.newPerDay - newDoneToday(state))),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
+/** Cap on extra items pulled in per session when you mark things as known. */
+const MAX_KNOWN = 20
+
+function NewWords({ state, commit, onDone }: { state: AppState; commit: Commit; onDone: (ids: string[], known: number) => void }) {
+  const [items, setItems] = useState(() =>
+    nextNewItems(
+      state,
+      Math.max(0, state.settings.newPerDay - newDoneToday(state)),
+      Math.max(0, state.settings.phrasesPerDay - phrasesDoneToday(state)),
+    ),
   )
   const [i, setI] = useState(0)
+  // probe: audio only, "do you know it?" → check: reveal to confirm → teach: normal lesson
+  const [phase, setPhase] = useState<'probe' | 'check' | 'teach'>('probe')
   const [shadowing, setShadowing] = useState(false)
+  const [known, setKnown] = useState(0)
 
   useEffect(() => {
-    if (words.length === 0) onDone([])
-  }, [words.length, onDone])
-  if (words.length === 0) return null
-  const w = words[i]
+    if (items.length === 0) onDone([], 0)
+  }, [items.length, onDone])
+  if (items.length === 0) return null
+  const w = items[i]
+  const t = target(w)
 
   const shadow = async () => {
     setShadowing(true)
     for (const slow of [true, true, false, false]) {
-      const p = play(sentenceKey(w.id), w.sentence.zh, { slow })
+      const p = play(t.key, t.zh, { slow })
       const e = epoch() // play() bumps the epoch; any later stop() changes it again
       await p
       await sleep(2500) // your turn: repeat it
@@ -191,31 +215,81 @@ function NewWords({ state, commit, onDone }: { state: AppState; commit: Commit; 
     setShadowing(false)
   }
 
-  const nextWord = () => {
+  const advance = (list: Word[], knownCount: number) => {
     stop()
+    setPhase('probe')
+    if (i + 1 < list.length) setI(i + 1)
+    else onDone(list.map((x) => x.id), knownCount)
+  }
+
+  const knewIt = () => {
+    commit((s) => {
+      markKnown(s, w.id)
+      logDay(s, { known: 1 })
+    })
+    // Known items don't use up today's quota: pull in the next one of the same kind.
+    const extra = known < MAX_KNOWN
+      ? nextNewItems(state, w.kind === 'word' ? 1 : 0, w.kind === 'phrase' ? 1 : 0, items.map((x) => x.id))
+      : []
+    const list = [...items, ...extra]
+    setItems(list)
+    setKnown(known + 1)
+    advance(list, known + 1)
+  }
+
+  const learned = () => {
     commit((s) => {
       introduce(s, w.id)
-      logDay(s, { newWords: 1 })
+      logDay(s, w.kind === 'word' ? { newWords: 1 } : { newPhrases: 1 })
     })
-    if (i + 1 < words.length) setI(i + 1)
-    else onDone(words.map((x) => x.id))
+    advance(items, known)
   }
+
+  const header = (
+    <StepHeader
+      title={w.kind === 'word' ? 'New word' : 'New phrase'}
+      hint={{
+        probe: 'Listen first. Do you already understand it?',
+        check: 'Were you right?',
+        teach: 'Hear it, read it, then shadow it (a whisper is fine).',
+      }[phase]}
+      right={<span className="count">{i + 1}/{items.length}</span>}
+    />
+  )
+
+  if (phase === 'probe')
+    return (
+      <div className="card">
+        {header}
+        <div className="center-col">
+          <PlayButton k={t.key} text={t.zh} label="▶ play" autoPlay />
+          <PlayButton k={t.key} text={t.zh} label="🐢 slow" slow />
+        </div>
+        <div className="grades two">
+          <button className="g good" onClick={() => setPhase('check')}>I know it</button>
+          <button className="g again" onClick={() => setPhase('teach')}>New to me</button>
+        </div>
+      </div>
+    )
 
   return (
     <div className="card">
-      <StepHeader
-        title="New word"
-        hint="Hear it, read it, then shadow the sentence out loud."
-        right={<span className="count">{i + 1}/{words.length}</span>}
-      />
+      {header}
       <div className="unit">{w.unit}</div>
       <WordFace w={w} />
-      <div className="actions">
-        <button className="secondary wide" onClick={shadow} disabled={shadowing}>
-          {shadowing ? 'Repeat after each play…' : '🗣 Shadow ×4 (slow → normal)'}
-        </button>
-        <button className="primary wide" onClick={nextWord}>Got it →</button>
-      </div>
+      {phase === 'check' ? (
+        <div className="grades two">
+          <button className="g good" onClick={knewIt}>Yes, knew it</button>
+          <button className="g again" onClick={() => setPhase('teach')}>Not quite</button>
+        </div>
+      ) : (
+        <div className="actions">
+          <button className="secondary wide" onClick={shadow} disabled={shadowing}>
+            {shadowing ? 'Repeat after each play…' : '🗣 Shadow ×4 (slow → normal)'}
+          </button>
+          <button className="primary wide" onClick={learned}>Got it →</button>
+        </div>
+      )}
     </div>
   )
 }
@@ -227,7 +301,7 @@ interface DrillItem { w: Word; hits: number }
 function Drill({ state, learnedNow, onDone }: { state: AppState; learnedNow: string[]; onDone: () => void }) {
   const [queue, setQueue] = useState<DrillItem[]>(() => {
     const recent = state.introduced.slice(-30).filter((id) => !learnedNow.includes(id))
-    const ids = [...learnedNow, ...shuffle(recent).slice(0, Math.max(3, 8 - learnedNow.length))]
+    const ids = [...learnedNow.slice(0, 12), ...shuffle(recent).slice(0, Math.max(3, 8 - learnedNow.length))]
     return ids.map((id) => ({ w: WORD_BY_ID.get(id)!, hits: 0 }))
   })
   const [phase, setPhase] = useState<'prompt' | 'answer'>('prompt')
@@ -240,7 +314,6 @@ function Drill({ state, learnedNow, onDone }: { state: AppState; learnedNow: str
 
   useEffect(() => {
     if (phase !== 'prompt' || queue.length === 0) return
-    setCountdown(4)
     const t = setInterval(() => setCountdown((c) => c - 1), 1000)
     return () => clearInterval(t)
   }, [phase, queue])
@@ -250,23 +323,25 @@ function Drill({ state, learnedNow, onDone }: { state: AppState; learnedNow: str
     if (phase === 'prompt' && countdown <= 0 && item) {
       setPhase('answer')
       ;(async () => {
-        const p = play(sentenceKey(item.w.id), item.w.sentence.zh)
+        const t = target(item.w)
+        const p = play(t.key, t.zh)
         const e = epoch()
         await p
         await sleep(1500)
-        if (e === epoch()) play(sentenceKey(item.w.id), item.w.sentence.zh)
+        if (e === epoch()) play(t.key, t.zh)
       })()
     }
   }, [countdown, phase, item])
 
   if (!item) return null
+  const t = target(item.w)
 
   const mark = (ok: boolean) => {
     stop()
-    const timeUp = Date.now() - start.current > 5 * 60 * 1000
+    const timeUp = Date.now() - start.current > 7 * 60 * 1000
     setQueue((q) => {
       const [cur, ...rest] = q
-      if (timeUp) return [] // 5-minute cap reached
+      if (timeUp) return [] // 7-minute cap reached
       const hits = ok ? cur.hits + 1 : 0
       if (hits >= 2) return rest // retired: recalled twice with growing gaps
       const gap = ok ? 5 : 2 // expanding interval: short after a miss, longer after a hit
@@ -274,14 +349,16 @@ function Drill({ state, learnedNow, onDone }: { state: AppState; learnedNow: str
       copy.splice(Math.min(gap, copy.length), 0, { ...cur, hits })
       return copy
     })
+    // Reset together with the phase so the answer effect never sees a stale 0.
+    setCountdown(4)
     setPhase('prompt')
   }
 
   return (
     <div className="card">
-      <StepHeader title="Speak" hint="Say the Mandarin aloud before the answer plays." right={<span className="count">{queue.length} left</span>} />
+      <StepHeader title="Speak" hint="Say the Mandarin before the answer plays. Whisper or mouth it if you need to." right={<span className="count">{queue.length} left</span>} />
       <div className="center-col">
-        <div className="meaning big">{item.w.sentence.en}</div>
+        <div className="meaning big">{t.en}</div>
         {phase === 'prompt' ? (
           <>
             <div className="countdown">{countdown > 0 ? countdown : ''}</div>
@@ -289,9 +366,9 @@ function Drill({ state, learnedNow, onDone }: { state: AppState; learnedNow: str
           </>
         ) : (
           <div className="sentence">
-            <div className="zh">{item.w.sentence.zh}</div>
-            <div className="py">{item.w.sentence.py}</div>
-            <PlayButton k={sentenceKey(item.w.id)} text={item.w.sentence.zh} label="▶ again" />
+            <div className="zh">{t.zh}</div>
+            <div className="py">{t.py}</div>
+            <PlayButton k={t.key} text={t.zh} label="▶ again" />
           </div>
         )}
       </div>
@@ -308,7 +385,7 @@ function Drill({ state, learnedNow, onDone }: { state: AppState; learnedNow: str
 /* ---------------- Dialogue: listen → read → shadow ---------------- */
 
 function pickDialogue(state: AppState) {
-  const n = state.introduced.length
+  const n = wordsLearned(state)
   const unlocked = DIALOGUES.filter((d) => d.unlockAfter <= n)
   if (unlocked.length === 0) return DIALOGUES[0]
   // Mostly the newest unlocked one; sometimes revisit an older one.
@@ -316,7 +393,8 @@ function pickDialogue(state: AppState) {
 }
 
 function DialogueStep({ state, onDone }: { state: AppState; onDone: () => void }) {
-  const d = useMemo(() => pickDialogue(state), [state.introduced.length]) // eslint-disable-line react-hooks/exhaustive-deps
+  const learned = wordsLearned(state)
+  const d = useMemo(() => pickDialogue(state), [learned]) // eslint-disable-line react-hooks/exhaustive-deps
   const [phase, setPhase] = useState<0 | 1 | 2>(0)
   const [active, setActive] = useState(-1)
   const [slow, setSlow] = useState(false)
@@ -339,7 +417,7 @@ function DialogueStep({ state, onDone }: { state: AppState; onDone: () => void }
   const hints = [
     'Listen with no text. How much do you catch?',
     'Listen again while reading.',
-    'Shadow: repeat each line out loud after it plays (tap a line to replay).',
+    'Shadow: repeat each line after it plays, whispering is fine (tap a line to replay).',
   ]
 
   return (

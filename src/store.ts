@@ -1,5 +1,5 @@
 import { createEmptyCard, fsrs, Rating, type Card, type Grade } from 'ts-fsrs'
-import { WORDS } from './data'
+import { PHRASES, WORDS } from './data'
 
 export type CardKind = 'listen' | 'speak' | 'read'
 export const KINDS: CardKind[] = ['listen', 'speak', 'read']
@@ -8,10 +8,13 @@ export interface AppState {
   version: 1
   cards: Record<string, Card> // key: `${wordId}:${kind}`
   introduced: string[] // word ids, in order introduced
-  history: Record<string, { reviews: number; newWords: number; minutes: number }> // by YYYY-MM-DD
-  settings: { newPerDay: number; sessionMinutes: number }
+  history: Record<string, DayLog> // by YYYY-MM-DD
+  settings: { newPerDay: number; phrasesPerDay: number; sessionMinutes: number }
   lastBackup?: string
 }
+
+// `newPhrases` and `known` were added later, so older days don't have them.
+export interface DayLog { reviews: number; newWords: number; newPhrases?: number; known?: number; minutes: number }
 
 const KEY = 'mandarin-daily:v1'
 const scheduler = fsrs({ enable_fuzz: true, request_retention: 0.9 })
@@ -20,10 +23,11 @@ export const today = (d = new Date()) =>
   `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
 
 function emptyState(): AppState {
-  return { version: 1, cards: {}, introduced: [], history: {}, settings: { newPerDay: 5, sessionMinutes: 25 } }
+  return { version: 1, cards: {}, introduced: [], history: {}, settings: { newPerDay: 5, phrasesPerDay: 2, sessionMinutes: 25 } }
 }
 
 function revive(s: AppState): AppState {
+  s.settings = { ...emptyState().settings, ...s.settings }
   for (const c of Object.values(s.cards)) {
     c.due = new Date(c.due)
     if (c.last_review) c.last_review = new Date(c.last_review)
@@ -77,19 +81,41 @@ export function dueKeys(s: AppState, now = new Date()) {
     .map(([k]) => k)
 }
 
-export function nextNewWords(s: AppState, n: number) {
-  const seen = new Set(s.introduced)
-  return WORDS.filter((w) => !seen.has(w.id)).slice(0, n)
+/** Mark an item you already understand: its listen card jumps ahead, speak and read still get tested. */
+export function markKnown(s: AppState, wordId: string, now = new Date()) {
+  introduce(s, wordId, now)
+  grade(s, cardKey(wordId, 'listen'), Rating.Easy, now)
+}
+
+/** Next unseen words and phrases, in teaching order, skipping ids in `exclude`. */
+export function nextNewItems(s: AppState, words: number, phrases: number, exclude: string[] = []) {
+  const skip = new Set([...s.introduced, ...exclude])
+  const fresh = (list: typeof WORDS, n: number) => list.filter((w) => !skip.has(w.id)).slice(0, n)
+  return [...fresh(WORDS, words), ...fresh(PHRASES, phrases)]
 }
 
 export function newDoneToday(s: AppState) {
   return s.history[today()]?.newWords ?? 0
 }
 
-export function logDay(s: AppState, patch: Partial<{ reviews: number; newWords: number; minutes: number }>) {
+export function phrasesDoneToday(s: AppState) {
+  return s.history[today()]?.newPhrases ?? 0
+}
+
+export function wordsLearned(s: AppState) {
+  return s.introduced.filter((id) => id.startsWith('w')).length
+}
+
+export function phrasesLearned(s: AppState) {
+  return s.introduced.filter((id) => id.startsWith('p')).length
+}
+
+export function logDay(s: AppState, patch: Partial<DayLog>) {
   const d = (s.history[today()] ??= { reviews: 0, newWords: 0, minutes: 0 })
   d.reviews += patch.reviews ?? 0
   d.newWords += patch.newWords ?? 0
+  d.newPhrases = (d.newPhrases ?? 0) + (patch.newPhrases ?? 0)
+  d.known = (d.known ?? 0) + (patch.known ?? 0)
   d.minutes += patch.minutes ?? 0
 }
 

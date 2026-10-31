@@ -1,6 +1,7 @@
 [
  {
   "id": "w001",
+  "kind": "word",
   "hanzi": "你",
   "pinyin": "nǐ",
   "en": "you",
@@ -13,6 +14,7 @@
  },
  {
   "id": "w002",
+  "kind": "word",
   "hanzi": "好",
   "pinyin": "hǎo",
   "en": "good; well",
@@ -25,6 +27,7 @@
  },
  {
   "id": "w003",
+  "kind": "word",
   "hanzi": "我",
   "pinyin": "wǒ",
   "en": "I; me",
@@ -37,6 +40,7 @@
  },
  {
   "id": "w004",
+  "kind": "word",
   "hanzi": "是",
   "pinyin": "shì",
   "en": "to be",
@@ -49,6 +53,7 @@
  },
  {
   "id": "w005",
+  "kind": "word",
   "hanzi": "很",
   "pinyin": "hěn",
   "en": "very",
@@ -61,6 +66,7 @@
  },
  {
   "id": "w006",
+  "kind": "word",
   "hanzi": "吗",
   "pinyin": "ma",
   "en": "(question particle)",
@@ -73,6 +79,7 @@
  },
  {
   "id": "w007",
+  "kind": "word",
   "hanzi": "呢",
   "pinyin": "ne",
   "en": "(follow-up question particle)",
@@ -85,6 +92,7 @@
  },
  {
   "id": "w008",
+  "kind": "word",
   "hanzi": "不",
   "pinyin": "bù",
   "en": "not; no",
@@ -97,6 +105,7 @@
  },
  {
   "id": "w009",
+  "kind": "word",
   "hanzi": "也",
   "pinyin": "yě",
   "en": "also; too",
@@ -109,6 +118,7 @@
  },
  {
   "id": "w010",
+  "kind": "word",
   "hanzi": "您",
   "pinyin": "nín",
   "en": "you (polite)",
@@ -121,6 +131,7 @@
  },
  {
   "id": "w011",
+  "kind": "word",
   "hanzi": "他",
   "pinyin": "tā",
   "en": "he; him",
@@ -133,6 +144,7 @@
  },
  {
   "id": "w012",
+  "kind": "word",
   "hanzi": "她",
   "pinyin": "tā",
   "en": "she; her",
@@ -145,6 +157,7 @@
  },
  {
   "id": "w013",
+  "kind": "word",
   "hanzi": "它",
   "pinyin": "tā",
   "en": "it",
@@ -157,6 +170,7 @@
  },
  {
   "id": "w014",
+  "kind": "word",
   "hanzi": "们",
   "pinyin": "men",
   "en": "(plural suffix)",
@@ -169,6 +183,7 @@
  },
  {
   "id": "w015",
+  "kind": "word",
   "hanzi": "我们",
   "pinyin": "wǒmen",
   "en": "we; us",
@@ -181,6 +196,7 @@
  },
  {
   "id": "w016",
+  "kind": "word",
   "hanzi": "你们",
   "pinyin": "nǐmen",
   "en": "you (plural)",
@@ -193,6 +209,7 @@
  },
  {
   "id": "w017",
+  "kind": "word",
   "hanzi": "他们",
   "pinyin": "tāmen",
   "en": "they (male/mixed)",
@@ -205,6 +222,7 @@
  },
  {
   "id": "w018",
+  "kind": "word",
   "hanzi": "她们",
   "pinyin": "tāmen",
   "en": "they (female)",
@@ -217,6 +235,7 @@
  },
  {
   "id": "w019",
+  "kind": "word",
   "hanzi": "它们",
   "pinyin": "tāmen",
   "en": "they (things/animals)",
@@ -229,6 +248,7 @@
  },
  {
   "id": "w020",
+  "kind": "word",
   "hanzi": "大家",
   "pinyin": "dàjiā",
   "en": "everyone",
@@ -241,6 +261,7 @@
  },
  {
   "id": "w021",
+  "kind": "word",
   "hanzi": "谢谢",
   "pinyin": "xièxie",
   "en": "thank you",
@@ -253,6 +274,7 @@
  },
  {
   "id": "w022",
+  "kind": "word",
   "hanzi": "不客气",
   "pinyin": "bú kèqi",
   "en": "you're welcome",
@@ -265,6 +287,7 @@
  },
  {
   "id": "w023",
+  "kind": "word",
   "hanzi": "对不起",
   "pinyin": "duìbuqǐ",
   "en": "sorry",
@@ -277,6 +300,7 @@
  },
  {
   "id": "w024",
+  "kind": "word",
   "hanzi": "没关系",
   "pinyin": "méi guānxi",
   "en": "it doesn't matter",
@@ -289,6 +313,7 @@
  },
  {
   "id": "w025",
+  "kind": "word",
   "hanzi": "再见",
   "pinyin": "zàijiàn",
   "en": "goodbye",
@@ -301,6 +326,7 @@
  },
  {
   "id": "w026",
+  "kind": "word",
   "hanzi": "请",
   "pinyin": "qǐng",
   "en": "please; to invite",
@@ -313,6 +339,7 @@
  },
  {
   "id": "w027",
+  "kind": "word",
   "hanzi": "请问",
   "pinyin": "qǐngwèn",
   "en": "excuse me, may I ask",
@@ -325,6 +352,7 @@
  },
  {
   "id": "w028",
+  "kind": "word",
   "hanzi": "喂",
   "pinyin": "wéi",
   "en": "hello (on the phone)",
@@ -337,6 +365,7 @@
  },
  {
   "id": "w029",
+  "kind": "word",
   "hanzi": "叫",
   "pinyin": "jiào",
   "en": "to be called; to call",
@@ -349,6 +378,7 @@
  },
  {
   "id": "w030",
+  "kind": "word",
   "hanzi": "名字",
   "pinyin": "míngzi",
   "en": "name",
@@ -361,6 +391,7 @@
  },
  {
   "id": "w031",
+  "kind": "word",
   "hanzi": "什么",
   "pinyin": "shénme",
   "en": "what",
@@ -373,6 +404,7 @@
  },
  {
   "id": "w032",
+  "kind": "word",
   "hanzi": "认识",
   "pinyin": "rènshi",
   "en": "to know (a person)",
@@ -385,6 +417,7 @@
  },
  {
   "id": "w033",
+  "kind": "word",
   "hanzi": "高兴",
   "pinyin": "gāoxìng",
   "en": "happy; glad",
@@ -397,6 +430,7 @@
  },
  {
   "id": "w034",
+  "kind": "word",
   "hanzi": "的",
   "pinyin": "de",
   "en": "(possessive particle)",
@@ -409,6 +443,7 @@
  },
  {
   "id": "w035",
+  "kind": "word",
   "hanzi": "人",
   "pinyin": "rén",
   "en": "person",
@@ -421,6 +456,7 @@
  },
  {
   "id": "w036",
+  "kind": "word",
   "hanzi": "中国",
   "pinyin": "Zhōngguó",
   "en": "China",
@@ -433,6 +469,7 @@
  },
  {
   "id": "w037",
+  "kind": "word",
   "hanzi": "国",
   "pinyin": "guó",
   "en": "country",
@@ -445,6 +482,7 @@
  },
  {
   "id": "w038",
+  "kind": "word",
   "hanzi": "朋友",
   "pinyin": "péngyou",
   "en": "friend",
@@ -457,6 +495,7 @@
  },
  {
   "id": "w039",
+  "kind": "word",
   "hanzi": "先生",
   "pinyin": "xiānsheng",
   "en": "Mr.; sir; husband",
@@ -469,6 +508,7 @@
  },
  {
   "id": "w040",
+  "kind": "word",
   "hanzi": "女士",
   "pinyin": "nǚshì",
   "en": "Ms.; lady",
@@ -481,6 +521,7 @@
  },
  {
   "id": "w041",
+  "kind": "word",
   "hanzi": "一",
   "pinyin": "yī",
   "en": "one",
@@ -493,6 +534,7 @@
  },
  {
   "id": "w042",
+  "kind": "word",
   "hanzi": "二",
   "pinyin": "èr",
   "en": "two",
@@ -505,6 +547,7 @@
  },
  {
   "id": "w043",
+  "kind": "word",
   "hanzi": "三",
   "pinyin": "sān",
   "en": "three",
@@ -517,6 +560,7 @@
  },
  {
   "id": "w044",
+  "kind": "word",
   "hanzi": "四",
   "pinyin": "sì",
   "en": "four",
@@ -529,6 +573,7 @@
  },
  {
   "id": "w045",
+  "kind": "word",
   "hanzi": "五",
   "pinyin": "wǔ",
   "en": "five",
@@ -541,6 +586,7 @@
  },
  {
   "id": "w046",
+  "kind": "word",
   "hanzi": "六",
   "pinyin": "liù",
   "en": "six",
@@ -553,6 +599,7 @@
  },
  {
   "id": "w047",
+  "kind": "word",
   "hanzi": "七",
   "pinyin": "qī",
   "en": "seven",
@@ -565,6 +612,7 @@
  },
  {
   "id": "w048",
+  "kind": "word",
   "hanzi": "八",
   "pinyin": "bā",
   "en": "eight",
@@ -577,6 +625,7 @@
  },
  {
   "id": "w049",
+  "kind": "word",
   "hanzi": "九",
   "pinyin": "jiǔ",
   "en": "nine",
@@ -589,6 +638,7 @@
  },
  {
   "id": "w050",
+  "kind": "word",
   "hanzi": "十",
   "pinyin": "shí",
   "en": "ten",
@@ -601,6 +651,7 @@
  },
  {
   "id": "w051",
+  "kind": "word",
   "hanzi": "零",
   "pinyin": "líng",
   "en": "zero",
@@ -613,6 +664,7 @@
  },
  {
   "id": "w052",
+  "kind": "word",
   "hanzi": "百",
   "pinyin": "bǎi",
   "en": "hundred",
@@ -625,6 +677,7 @@
  },
  {
   "id": "w053",
+  "kind": "word",
   "hanzi": "千",
   "pinyin": "qiān",
   "en": "thousand",
@@ -637,6 +690,7 @@
  },
  {
   "id": "w054",
+  "kind": "word",
   "hanzi": "两",
   "pinyin": "liǎng",
   "en": "two (with measure words)",
@@ -649,6 +703,7 @@
  },
  {
   "id": "w055",
+  "kind": "word",
   "hanzi": "半",
   "pinyin": "bàn",
   "en": "half",
@@ -661,6 +716,7 @@
  },
  {
   "id": "w056",
+  "kind": "word",
   "hanzi": "一半",
   "pinyin": "yíbàn",
   "en": "half",
@@ -673,6 +729,7 @@
  },
  {
   "id": "w057",
+  "kind": "word",
   "hanzi": "第",
   "pinyin": "dì",
   "en": "(ordinal prefix)",
@@ -685,6 +742,7 @@
  },
  {
   "id": "w058",
+  "kind": "word",
   "hanzi": "几",
   "pinyin": "jǐ",
   "en": "how many; a few",
@@ -697,6 +755,7 @@
  },
  {
   "id": "w059",
+  "kind": "word",
   "hanzi": "多少",
   "pinyin": "duōshao",
   "en": "how many; how much",
@@ -709,6 +768,7 @@
  },
  {
   "id": "w060",
+  "kind": "word",
   "hanzi": "多",
   "pinyin": "duō",
   "en": "many; much",
@@ -721,6 +781,7 @@
  },
  {
   "id": "w061",
+  "kind": "word",
   "hanzi": "少",
   "pinyin": "shǎo",
   "en": "few; little",
@@ -733,6 +794,7 @@
  },
  {
   "id": "w062",
+  "kind": "word",
   "hanzi": "个",
   "pinyin": "gè",
   "en": "(general measure word)",
@@ -745,6 +807,7 @@
  },
  {
   "id": "w063",
+  "kind": "word",
   "hanzi": "本",
   "pinyin": "běn",
   "en": "(measure word for books)",
@@ -757,6 +820,7 @@
  },
  {
   "id": "w064",
+  "kind": "word",
   "hanzi": "件",
   "pinyin": "jiàn",
   "en": "(measure word for clothes, matters)",
@@ -769,6 +833,7 @@
  },
  {
   "id": "w065",
+  "kind": "word",
   "hanzi": "口",
   "pinyin": "kǒu",
   "en": "mouth; (measure word for family members)",
@@ -781,6 +846,7 @@
  },
  {
   "id": "w066",
+  "kind": "word",
   "hanzi": "些",
   "pinyin": "xiē",
   "en": "some",
@@ -793,6 +859,7 @@
  },
  {
   "id": "w067",
+  "kind": "word",
   "hanzi": "一些",
   "pinyin": "yìxiē",
   "en": "some; a few",
@@ -805,6 +872,7 @@
  },
  {
   "id": "w068",
+  "kind": "word",
   "hanzi": "有些",
   "pinyin": "yǒuxiē",
   "en": "some",
@@ -817,6 +885,7 @@
  },
  {
   "id": "w069",
+  "kind": "word",
   "hanzi": "有的",
   "pinyin": "yǒude",
   "en": "some (of)",
@@ -829,6 +898,7 @@
  },
  {
   "id": "w070",
+  "kind": "word",
   "hanzi": "一点儿",
   "pinyin": "yìdiǎnr",
   "en": "a little",
@@ -841,6 +911,7 @@
  },
  {
   "id": "w071",
+  "kind": "word",
   "hanzi": "有点儿",
   "pinyin": "yǒudiǎnr",
   "en": "a bit; somewhat",
@@ -853,6 +924,7 @@
  },
  {
   "id": "w072",
+  "kind": "word",
   "hanzi": "岁",
   "pinyin": "suì",
   "en": "years old",
@@ -865,6 +937,7 @@
  },
  {
   "id": "w073",
+  "kind": "word",
   "hanzi": "钱",
   "pinyin": "qián",
   "en": "money",
@@ -877,6 +950,7 @@
  },
  {
   "id": "w074",
+  "kind": "word",
   "hanzi": "块",
   "pinyin": "kuài",
   "en": "yuan (spoken); piece",
@@ -889,6 +963,7 @@
  },
  {
   "id": "w075",
+  "kind": "word",
   "hanzi": "元",
   "pinyin": "yuán",
   "en": "yuan (written)",
@@ -901,6 +976,7 @@
  },
  {
   "id": "w076",
+  "kind": "word",
   "hanzi": "家",
   "pinyin": "jiā",
   "en": "home; family",
@@ -913,6 +989,7 @@
  },
  {
   "id": "w077",
+  "kind": "word",
   "hanzi": "家人",
   "pinyin": "jiārén",
   "en": "family member",
@@ -925,6 +1002,7 @@
  },
  {
   "id": "w078",
+  "kind": "word",
   "hanzi": "爸爸",
   "pinyin": "bàba",
   "en": "dad",
@@ -937,6 +1015,7 @@
  },
  {
   "id": "w079",
+  "kind": "word",
   "hanzi": "妈妈",
   "pinyin": "māma",
   "en": "mom",
@@ -949,6 +1028,7 @@
  },
  {
   "id": "w080",
+  "kind": "word",
   "hanzi": "哥哥",
   "pinyin": "gēge",
   "en": "older brother",
@@ -961,6 +1041,7 @@
  },
  {
   "id": "w081",
+  "kind": "word",
   "hanzi": "姐姐",
   "pinyin": "jiějie",
   "en": "older sister",
@@ -973,6 +1054,7 @@
  },
  {
   "id": "w082",
+  "kind": "word",
   "hanzi": "弟弟",
   "pinyin": "dìdi",
   "en": "younger brother",
@@ -985,6 +1067,7 @@
  },
  {
   "id": "w083",
+  "kind": "word",
   "hanzi": "妹妹",
   "pinyin": "mèimei",
   "en": "younger sister",
@@ -997,6 +1080,7 @@
  },
  {
   "id": "w084",
+  "kind": "word",
   "hanzi": "儿子",
   "pinyin": "érzi",
   "en": "son",
@@ -1009,6 +1093,7 @@
  },
  {
   "id": "w085",
+  "kind": "word",
   "hanzi": "女儿",
   "pinyin": "nǚ'ér",
   "en": "daughter",
@@ -1021,6 +1106,7 @@
  },
  {
   "id": "w086",
+  "kind": "word",
   "hanzi": "孩子",
   "pinyin": "háizi",
   "en": "child",
@@ -1033,6 +1119,7 @@
  },
  {
   "id": "w087",
+  "kind": "word",
   "hanzi": "小朋友",
   "pinyin": "xiǎopéngyǒu",
   "en": "child; kid",
@@ -1045,6 +1132,7 @@
  },
  {
   "id": "w088",
+  "kind": "word",
   "hanzi": "男",
   "pinyin": "nán",
   "en": "male",
@@ -1057,6 +1145,7 @@
  },
  {
   "id": "w089",
+  "kind": "word",
   "hanzi": "女",
   "pinyin": "nǚ",
   "en": "female",
@@ -1069,6 +1158,7 @@
  },
  {
   "id": "w090",
+  "kind": "word",
   "hanzi": "男朋友",
   "pinyin": "nánpéngyou",
   "en": "boyfriend",
@@ -1081,6 +1171,7 @@
  },
  {
   "id": "w091",
+  "kind": "word",
   "hanzi": "女朋友",
   "pinyin": "nǚpéngyou",
   "en": "girlfriend",
@@ -1093,6 +1184,7 @@
  },
  {
   "id": "w092",
+  "kind": "word",
   "hanzi": "老师",
   "pinyin": "lǎoshī",
   "en": "teacher",
@@ -1105,6 +1197,7 @@
  },
  {
   "id": "w093",
+  "kind": "word",
   "hanzi": "学生",
   "pinyin": "xuésheng",
   "en": "student",
@@ -1117,6 +1210,7 @@
  },
  {
   "id": "w094",
+  "kind": "word",
   "hanzi": "同学",
   "pinyin": "tóngxué",
   "en": "classmate",
@@ -1129,6 +1223,7 @@
  },
  {
   "id": "w095",
+  "kind": "word",
   "hanzi": "医生",
   "pinyin": "yīshēng",
   "en": "doctor",
@@ -1141,6 +1236,7 @@
  },
  {
   "id": "w096",
+  "kind": "word",
   "hanzi": "大学生",
   "pinyin": "dàxuéshēng",
   "en": "university student",
@@ -1153,6 +1249,7 @@
  },
  {
   "id": "w097",
+  "kind": "word",
   "hanzi": "中学生",
   "pinyin": "zhōngxuéshēng",
   "en": "middle/high school student",
@@ -1165,6 +1262,7 @@
  },
  {
   "id": "w098",
+  "kind": "word",
   "hanzi": "小学生",
   "pinyin": "xiǎoxuéshēng",
   "en": "elementary school student",
@@ -1177,6 +1275,7 @@
  },
  {
   "id": "w099",
+  "kind": "word",
   "hanzi": "狗",
   "pinyin": "gǒu",
   "en": "dog",
@@ -1189,6 +1288,7 @@
  },
  {
   "id": "w100",
+  "kind": "word",
   "hanzi": "猫",
   "pinyin": "māo",
   "en": "cat",
@@ -1201,6 +1301,7 @@
  },
  {
   "id": "w101",
+  "kind": "word",
   "hanzi": "只",
   "pinyin": "zhī / zhǐ",
   "en": "(measure word for animals); only",
@@ -1213,6 +1314,7 @@
  },
  {
   "id": "w102",
+  "kind": "word",
   "hanzi": "今天",
   "pinyin": "jīntiān",
   "en": "today",
@@ -1225,6 +1327,7 @@
  },
  {
   "id": "w103",
+  "kind": "word",
   "hanzi": "明天",
   "pinyin": "míngtiān",
   "en": "tomorrow",
@@ -1237,6 +1340,7 @@
  },
  {
   "id": "w104",
+  "kind": "word",
   "hanzi": "昨天",
   "pinyin": "zuótiān",
   "en": "yesterday",
@@ -1249,6 +1353,7 @@
  },
  {
   "id": "w105",
+  "kind": "word",
   "hanzi": "今年",
   "pinyin": "jīnnián",
   "en": "this year",
@@ -1261,6 +1366,7 @@
  },
  {
   "id": "w106",
+  "kind": "word",
   "hanzi": "明年",
   "pinyin": "míngnián",
   "en": "next year",
@@ -1273,6 +1379,7 @@
  },
  {
   "id": "w107",
+  "kind": "word",
   "hanzi": "去年",
   "pinyin": "qùnián",
   "en": "last year",
@@ -1285,6 +1392,7 @@
  },
  {
   "id": "w108",
+  "kind": "word",
   "hanzi": "年",
   "pinyin": "nián",
   "en": "year",
@@ -1297,6 +1405,7 @@
  },
  {
   "id": "w109",
+  "kind": "word",
   "hanzi": "月",
   "pinyin": "yuè",
   "en": "month; moon",
@@ -1309,6 +1418,7 @@
  },
  {
   "id": "w110",
+  "kind": "word",
   "hanzi": "日",
   "pinyin": "rì",
   "en": "day; date (written)",
@@ -1321,6 +1431,7 @@
  },
  {
   "id": "w111",
+  "kind": "word",
   "hanzi": "号",
   "pinyin": "hào",
   "en": "date; number",
@@ -1333,6 +1444,7 @@
  },
  {
   "id": "w112",
+  "kind": "word",
   "hanzi": "天",
   "pinyin": "tiān",
   "en": "day; sky",
@@ -1345,6 +1457,7 @@
  },
  {
   "id": "w113",
+  "kind": "word",
   "hanzi": "星期",
   "pinyin": "xīngqī",
   "en": "week",
@@ -1357,6 +1470,7 @@
  },
  {
   "id": "w114",
+  "kind": "word",
   "hanzi": "星期天",
   "pinyin": "xīngqītiān",
   "en": "Sunday",
@@ -1369,6 +1483,7 @@
  },
  {
   "id": "w115",
+  "kind": "word",
   "hanzi": "星期日",
   "pinyin": "xīngqīrì",
   "en": "Sunday (formal)",
@@ -1381,6 +1496,7 @@
  },
  {
   "id": "w116",
+  "kind": "word",
   "hanzi": "现在",
   "pinyin": "xiànzài",
   "en": "now",
@@ -1393,6 +1509,7 @@
  },
  {
   "id": "w117",
+  "kind": "word",
   "hanzi": "点",
   "pinyin": "diǎn",
   "en": "o'clock; point",
@@ -1405,6 +1522,7 @@
  },
  {
   "id": "w118",
+  "kind": "word",
   "hanzi": "分",
   "pinyin": "fēn",
   "en": "minute; cent; to divide",
@@ -1417,6 +1535,7 @@
  },
  {
   "id": "w119",
+  "kind": "word",
   "hanzi": "分钟",
   "pinyin": "fēnzhōng",
   "en": "minute (duration)",
@@ -1429,6 +1548,7 @@
  },
  {
   "id": "w120",
+  "kind": "word",
   "hanzi": "小时",
   "pinyin": "xiǎoshí",
   "en": "hour",
@@ -1441,6 +1561,7 @@
  },
  {
   "id": "w121",
+  "kind": "word",
   "hanzi": "时候",
   "pinyin": "shíhou",
   "en": "time; moment",
@@ -1453,6 +1574,7 @@
  },
  {
   "id": "w122",
+  "kind": "word",
   "hanzi": "时间",
   "pinyin": "shíjiān",
   "en": "time",
@@ -1465,6 +1587,7 @@
  },
  {
   "id": "w123",
+  "kind": "word",
   "hanzi": "早上",
   "pinyin": "zǎoshang",
   "en": "early morning",
@@ -1477,6 +1600,7 @@
  },
  {
   "id": "w124",
+  "kind": "word",
   "hanzi": "上午",
   "pinyin": "shàngwǔ",
   "en": "morning (before noon)",
@@ -1489,6 +1613,7 @@
  },
  {
   "id": "w125",
+  "kind": "word",
   "hanzi": "中午",
   "pinyin": "zhōngwǔ",
   "en": "noon",
@@ -1501,6 +1626,7 @@
  },
  {
   "id": "w126",
+  "kind": "word",
   "hanzi": "下午",
   "pinyin": "xiàwǔ",
   "en": "afternoon",
@@ -1513,6 +1639,7 @@
  },
  {
   "id": "w127",
+  "kind": "word",
   "hanzi": "晚上",
   "pinyin": "wǎnshang",
   "en": "evening",
@@ -1525,6 +1652,7 @@
  },
  {
   "id": "w128",
+  "kind": "word",
   "hanzi": "白天",
   "pinyin": "báitiān",
   "en": "daytime",
@@ -1537,6 +1665,7 @@
  },
  {
   "id": "w129",
+  "kind": "word",
   "hanzi": "早",
   "pinyin": "zǎo",
   "en": "early; good morning",
@@ -1549,6 +1678,7 @@
  },
  {
   "id": "w130",
+  "kind": "word",
   "hanzi": "晚",
   "pinyin": "wǎn",
   "en": "late",
@@ -1561,6 +1691,7 @@
  },
  {
   "id": "w131",
+  "kind": "word",
   "hanzi": "前",
   "pinyin": "qián",
   "en": "front; before",
@@ -1573,6 +1704,7 @@
  },
  {
   "id": "w132",
+  "kind": "word",
   "hanzi": "后",
   "pinyin": "hòu",
   "en": "back; after",
@@ -1585,6 +1717,7 @@
  },
  {
   "id": "w133",
+  "kind": "word",
   "hanzi": "吃",
   "pinyin": "chī",
   "en": "to eat",
@@ -1597,6 +1730,7 @@
  },
  {
   "id": "w134",
+  "kind": "word",
   "hanzi": "喝",
   "pinyin": "hē",
   "en": "to drink",
@@ -1609,6 +1743,7 @@
  },
  {
   "id": "w135",
+  "kind": "word",
   "hanzi": "饭",
   "pinyin": "fàn",
   "en": "meal; cooked rice",
@@ -1621,6 +1756,7 @@
  },
  {
   "id": "w136",
+  "kind": "word",
   "hanzi": "米饭",
   "pinyin": "mǐfàn",
   "en": "cooked rice",
@@ -1633,6 +1769,7 @@
  },
  {
   "id": "w137",
+  "kind": "word",
   "hanzi": "早饭",
   "pinyin": "zǎofàn",
   "en": "breakfast",
@@ -1645,6 +1782,7 @@
  },
  {
   "id": "w138",
+  "kind": "word",
   "hanzi": "午饭",
   "pinyin": "wǔfàn",
   "en": "lunch",
@@ -1657,6 +1795,7 @@
  },
  {
   "id": "w139",
+  "kind": "word",
   "hanzi": "晚饭",
   "pinyin": "wǎnfàn",
   "en": "dinner",
@@ -1669,6 +1808,7 @@
  },
  {
   "id": "w140",
+  "kind": "word",
   "hanzi": "做饭",
   "pinyin": "zuò fàn",
   "en": "to cook",
@@ -1681,6 +1821,7 @@
  },
  {
   "id": "w141",
+  "kind": "word",
   "hanzi": "菜",
   "pinyin": "cài",
   "en": "dish; vegetable",
@@ -1693,6 +1834,7 @@
  },
  {
   "id": "w142",
+  "kind": "word",
   "hanzi": "茶",
   "pinyin": "chá",
   "en": "tea",
@@ -1705,6 +1847,7 @@
  },
  {
   "id": "w143",
+  "kind": "word",
   "hanzi": "水",
   "pinyin": "shuǐ",
   "en": "water",
@@ -1717,6 +1860,7 @@
  },
  {
   "id": "w144",
+  "kind": "word",
   "hanzi": "牛奶",
   "pinyin": "niúnǎi",
   "en": "milk",
@@ -1729,6 +1873,7 @@
  },
  {
   "id": "w145",
+  "kind": "word",
   "hanzi": "杯子",
   "pinyin": "bēizi",
   "en": "cup; glass",
@@ -1741,6 +1886,7 @@
  },
  {
   "id": "w146",
+  "kind": "word",
   "hanzi": "苹果",
   "pinyin": "píngguǒ",
   "en": "apple",
@@ -1753,6 +1899,7 @@
  },
  {
   "id": "w147",
+  "kind": "word",
   "hanzi": "水果",
   "pinyin": "shuǐguǒ",
   "en": "fruit",
@@ -1765,6 +1912,7 @@
  },
  {
   "id": "w148",
+  "kind": "word",
   "hanzi": "鸡蛋",
   "pinyin": "jīdàn",
   "en": "egg",
@@ -1777,6 +1925,7 @@
  },
  {
   "id": "w149",
+  "kind": "word",
   "hanzi": "面包",
   "pinyin": "miànbāo",
   "en": "bread",
@@ -1789,6 +1938,7 @@
  },
  {
   "id": "w150",
+  "kind": "word",
   "hanzi": "面条儿",
   "pinyin": "miàntiáor",
   "en": "noodles",
@@ -1801,6 +1951,7 @@
  },
  {
   "id": "w151",
+  "kind": "word",
   "hanzi": "饺子",
   "pinyin": "jiǎozi",
   "en": "dumplings",
@@ -1813,6 +1964,7 @@
  },
  {
   "id": "w152",
+  "kind": "word",
   "hanzi": "包子",
   "pinyin": "bāozi",
   "en": "steamed bun",
@@ -1825,6 +1977,7 @@
  },
  {
   "id": "w153",
+  "kind": "word",
   "hanzi": "好吃",
   "pinyin": "hǎochī",
   "en": "delicious",
@@ -1837,6 +1990,7 @@
  },
  {
   "id": "w154",
+  "kind": "word",
   "hanzi": "饭店",
   "pinyin": "fàndiàn",
   "en": "restaurant; hotel",
@@ -1849,6 +2003,7 @@
  },
  {
   "id": "w155",
+  "kind": "word",
   "hanzi": "有",
   "pinyin": "yǒu",
   "en": "to have; there is",
@@ -1861,6 +2016,7 @@
  },
  {
   "id": "w156",
+  "kind": "word",
   "hanzi": "没有",
   "pinyin": "méiyǒu",
   "en": "not have; there isn't",
@@ -1873,6 +2029,7 @@
  },
  {
   "id": "w157",
+  "kind": "word",
   "hanzi": "在",
   "pinyin": "zài",
   "en": "at; in; to be at",
@@ -1885,6 +2042,7 @@
  },
  {
   "id": "w158",
+  "kind": "word",
   "hanzi": "去",
   "pinyin": "qù",
   "en": "to go",
@@ -1897,6 +2055,7 @@
  },
  {
   "id": "w159",
+  "kind": "word",
   "hanzi": "来",
   "pinyin": "lái",
   "en": "to come",
@@ -1909,6 +2068,7 @@
  },
  {
   "id": "w160",
+  "kind": "word",
   "hanzi": "回",
   "pinyin": "huí",
   "en": "to return",
@@ -1921,6 +2081,7 @@
  },
  {
   "id": "w161",
+  "kind": "word",
   "hanzi": "到",
   "pinyin": "dào",
   "en": "to arrive; to",
@@ -1933,6 +2094,7 @@
  },
  {
   "id": "w162",
+  "kind": "word",
   "hanzi": "看",
   "pinyin": "kàn",
   "en": "to look; to watch; to read",
@@ -1945,6 +2107,7 @@
  },
  {
   "id": "w163",
+  "kind": "word",
   "hanzi": "看见",
   "pinyin": "kànjiàn",
   "en": "to see",
@@ -1957,6 +2120,7 @@
  },
  {
   "id": "w164",
+  "kind": "word",
   "hanzi": "听",
   "pinyin": "tīng",
   "en": "to listen",
@@ -1969,6 +2133,7 @@
  },
  {
   "id": "w165",
+  "kind": "word",
   "hanzi": "听见",
   "pinyin": "tīngjiàn",
   "en": "to hear",
@@ -1981,6 +2146,7 @@
  },
  {
   "id": "w166",
+  "kind": "word",
   "hanzi": "说",
   "pinyin": "shuō",
   "en": "to speak; to say",
@@ -1993,6 +2159,7 @@
  },
  {
   "id": "w167",
+  "kind": "word",
   "hanzi": "说话",
   "pinyin": "shuō huà",
   "en": "to talk",
@@ -2005,6 +2172,7 @@
  },
  {
   "id": "w168",
+  "kind": "word",
   "hanzi": "见",
   "pinyin": "jiàn",
   "en": "to see; to meet",
@@ -2017,6 +2185,7 @@
  },
  {
   "id": "w169",
+  "kind": "word",
   "hanzi": "做",
   "pinyin": "zuò",
   "en": "to do; to make",
@@ -2029,6 +2198,7 @@
  },
  {
   "id": "w170",
+  "kind": "word",
   "hanzi": "想",
   "pinyin": "xiǎng",
   "en": "to want; to think; to miss",
@@ -2041,6 +2211,7 @@
  },
  {
   "id": "w171",
+  "kind": "word",
   "hanzi": "要",
   "pinyin": "yào",
   "en": "to want; will; need",
@@ -2053,6 +2224,7 @@
  },
  {
   "id": "w172",
+  "kind": "word",
   "hanzi": "不要",
   "pinyin": "búyào",
   "en": "don't; not want",
@@ -2065,6 +2237,7 @@
  },
  {
   "id": "w173",
+  "kind": "word",
   "hanzi": "喜欢",
   "pinyin": "xǐhuan",
   "en": "to like",
@@ -2077,6 +2250,7 @@
  },
  {
   "id": "w174",
+  "kind": "word",
   "hanzi": "爱",
   "pinyin": "ài",
   "en": "to love",
@@ -2089,6 +2263,7 @@
  },
  {
   "id": "w175",
+  "kind": "word",
   "hanzi": "会",
   "pinyin": "huì",
   "en": "can (learned skill); will",
@@ -2101,6 +2276,7 @@
  },
  {
   "id": "w176",
+  "kind": "word",
   "hanzi": "能",
   "pinyin": "néng",
   "en": "can; be able to",
@@ -2113,6 +2289,7 @@
  },
  {
   "id": "w177",
+  "kind": "word",
   "hanzi": "可以",
   "pinyin": "kěyǐ",
   "en": "may; can",
@@ -2125,6 +2302,7 @@
  },
  {
   "id": "w178",
+  "kind": "word",
   "hanzi": "知道",
   "pinyin": "zhīdào",
   "en": "to know (a fact)",
@@ -2137,6 +2315,7 @@
  },
  {
   "id": "w179",
+  "kind": "word",
   "hanzi": "觉得",
   "pinyin": "juéde",
   "en": "to feel; to think",
@@ -2149,6 +2328,7 @@
  },
  {
   "id": "w180",
+  "kind": "word",
   "hanzi": "买",
   "pinyin": "mǎi",
   "en": "to buy",
@@ -2161,6 +2341,7 @@
  },
  {
   "id": "w181",
+  "kind": "word",
   "hanzi": "卖",
   "pinyin": "mài",
   "en": "to sell",
@@ -2173,6 +2354,7 @@
  },
  {
   "id": "w182",
+  "kind": "word",
   "hanzi": "给",
   "pinyin": "gěi",
   "en": "to give; for",
@@ -2185,6 +2367,7 @@
  },
  {
   "id": "w183",
+  "kind": "word",
   "hanzi": "找",
   "pinyin": "zhǎo",
   "en": "to look for",
@@ -2197,6 +2380,7 @@
  },
  {
   "id": "w184",
+  "kind": "word",
   "hanzi": "问",
   "pinyin": "wèn",
   "en": "to ask",
@@ -2209,6 +2393,7 @@
  },
  {
   "id": "w185",
+  "kind": "word",
   "hanzi": "问题",
   "pinyin": "wèntí",
   "en": "question; problem",
@@ -2221,6 +2406,7 @@
  },
  {
   "id": "w186",
+  "kind": "word",
   "hanzi": "住",
   "pinyin": "zhù",
   "en": "to live; to stay",
@@ -2233,6 +2419,7 @@
  },
  {
   "id": "w187",
+  "kind": "word",
   "hanzi": "坐",
   "pinyin": "zuò",
   "en": "to sit; to take (transport)",
@@ -2245,6 +2432,7 @@
  },
  {
   "id": "w188",
+  "kind": "word",
   "hanzi": "开",
   "pinyin": "kāi",
   "en": "to open; to drive",
@@ -2257,6 +2445,7 @@
  },
  {
   "id": "w189",
+  "kind": "word",
   "hanzi": "开车",
   "pinyin": "kāi chē",
   "en": "to drive",
@@ -2269,6 +2458,7 @@
  },
  {
   "id": "w190",
+  "kind": "word",
   "hanzi": "穿",
   "pinyin": "chuān",
   "en": "to wear",
@@ -2281,6 +2471,7 @@
  },
  {
   "id": "w191",
+  "kind": "word",
   "hanzi": "玩",
   "pinyin": "wán",
   "en": "to play; to have fun",
@@ -2293,6 +2484,7 @@
  },
  {
   "id": "w192",
+  "kind": "word",
   "hanzi": "唱",
   "pinyin": "chàng",
   "en": "to sing",
@@ -2305,6 +2497,7 @@
  },
  {
   "id": "w193",
+  "kind": "word",
   "hanzi": "歌",
   "pinyin": "gē",
   "en": "song",
@@ -2317,6 +2510,7 @@
  },
  {
   "id": "w194",
+  "kind": "word",
   "hanzi": "写",
   "pinyin": "xiě",
   "en": "to write",
@@ -2329,6 +2523,7 @@
  },
  {
   "id": "w195",
+  "kind": "word",
   "hanzi": "读",
   "pinyin": "dú",
   "en": "to read (aloud)",
@@ -2341,6 +2536,7 @@
  },
  {
   "id": "w196",
+  "kind": "word",
   "hanzi": "读书",
   "pinyin": "dú shū",
   "en": "to read; to study",
@@ -2353,6 +2549,7 @@
  },
  {
   "id": "w197",
+  "kind": "word",
   "hanzi": "学",
   "pinyin": "xué",
   "en": "to learn",
@@ -2365,6 +2562,7 @@
  },
  {
   "id": "w198",
+  "kind": "word",
   "hanzi": "学习",
   "pinyin": "xuéxí",
   "en": "to study",
@@ -2377,6 +2575,7 @@
  },
  {
   "id": "w199",
+  "kind": "word",
   "hanzi": "睡",
   "pinyin": "shuì",
   "en": "to sleep",
@@ -2389,6 +2588,7 @@
  },
  {
   "id": "w200",
+  "kind": "word",
   "hanzi": "睡觉",
   "pinyin": "shuì jiào",
   "en": "to go to bed; sleep",
@@ -2401,6 +2601,7 @@
  },
  {
   "id": "w201",
+  "kind": "word",
   "hanzi": "起床",
   "pinyin": "qǐ chuáng",
   "en": "to get up",
@@ -2413,6 +2614,7 @@
  },
  {
   "id": "w202",
+  "kind": "word",
   "hanzi": "休息",
   "pinyin": "xiūxi",
   "en": "to rest",
@@ -2425,6 +2627,7 @@
  },
  {
   "id": "w203",
+  "kind": "word",
   "hanzi": "工作",
   "pinyin": "gōngzuò",
   "en": "to work; job",
@@ -2437,6 +2640,7 @@
  },
  {
   "id": "w204",
+  "kind": "word",
   "hanzi": "打电话",
   "pinyin": "dǎ diànhuà",
   "en": "to make a phone call",
@@ -2449,6 +2653,7 @@
  },
  {
   "id": "w205",
+  "kind": "word",
   "hanzi": "上班",
   "pinyin": "shàng bān",
   "en": "to go to work",
@@ -2461,6 +2666,7 @@
  },
  {
   "id": "w206",
+  "kind": "word",
   "hanzi": "下班",
   "pinyin": "xià bān",
   "en": "to get off work",
@@ -2473,6 +2679,7 @@
  },
  {
   "id": "w207",
+  "kind": "word",
   "hanzi": "上学",
   "pinyin": "shàng xué",
   "en": "to go to school",
@@ -2485,6 +2692,7 @@
  },
  {
   "id": "w208",
+  "kind": "word",
   "hanzi": "上课",
   "pinyin": "shàng kè",
   "en": "to attend class",
@@ -2497,6 +2705,7 @@
  },
  {
   "id": "w209",
+  "kind": "word",
   "hanzi": "下课",
   "pinyin": "xià kè",
   "en": "class is over",
@@ -2509,6 +2718,7 @@
  },
  {
   "id": "w210",
+  "kind": "word",
   "hanzi": "这",
   "pinyin": "zhè",
   "en": "this",
@@ -2521,6 +2731,7 @@
  },
  {
   "id": "w211",
+  "kind": "word",
   "hanzi": "那",
   "pinyin": "nà",
   "en": "that",
@@ -2533,6 +2744,7 @@
  },
  {
   "id": "w212",
+  "kind": "word",
   "hanzi": "哪",
   "pinyin": "nǎ",
   "en": "which",
@@ -2545,6 +2757,7 @@
  },
  {
   "id": "w213",
+  "kind": "word",
   "hanzi": "这些",
   "pinyin": "zhèxiē",
   "en": "these",
@@ -2557,6 +2770,7 @@
  },
  {
   "id": "w214",
+  "kind": "word",
   "hanzi": "那些",
   "pinyin": "nàxiē",
   "en": "those",
@@ -2569,6 +2783,7 @@
  },
  {
   "id": "w215",
+  "kind": "word",
   "hanzi": "哪些",
   "pinyin": "nǎxiē",
   "en": "which ones",
@@ -2581,6 +2796,7 @@
  },
  {
   "id": "w216",
+  "kind": "word",
   "hanzi": "这儿",
   "pinyin": "zhèr",
   "en": "here",
@@ -2593,6 +2809,7 @@
  },
  {
   "id": "w217",
+  "kind": "word",
   "hanzi": "那儿",
   "pinyin": "nàr",
   "en": "there",
@@ -2605,6 +2822,7 @@
  },
  {
   "id": "w218",
+  "kind": "word",
   "hanzi": "哪儿",
   "pinyin": "nǎr",
   "en": "where",
@@ -2617,6 +2835,7 @@
  },
  {
   "id": "w219",
+  "kind": "word",
   "hanzi": "这里",
   "pinyin": "zhèlǐ",
   "en": "here",
@@ -2629,6 +2848,7 @@
  },
  {
   "id": "w220",
+  "kind": "word",
   "hanzi": "那里",
   "pinyin": "nàlǐ",
   "en": "there",
@@ -2641,6 +2861,7 @@
  },
  {
   "id": "w221",
+  "kind": "word",
   "hanzi": "哪里",
   "pinyin": "nǎlǐ",
   "en": "where",
@@ -2653,6 +2874,7 @@
  },
  {
   "id": "w222",
+  "kind": "word",
   "hanzi": "这边",
   "pinyin": "zhèbiān",
   "en": "this side; over here",
@@ -2665,6 +2887,7 @@
  },
  {
   "id": "w223",
+  "kind": "word",
   "hanzi": "那边",
   "pinyin": "nàbiān",
   "en": "that side; over there",
@@ -2677,6 +2900,7 @@
  },
  {
   "id": "w224",
+  "kind": "word",
   "hanzi": "边",
   "pinyin": "biān",
   "en": "side",
@@ -2689,6 +2913,7 @@
  },
  {
   "id": "w225",
+  "kind": "word",
   "hanzi": "谁",
   "pinyin": "shéi",
   "en": "who",
@@ -2701,6 +2926,7 @@
  },
  {
   "id": "w226",
+  "kind": "word",
   "hanzi": "怎么",
   "pinyin": "zěnme",
   "en": "how; why",
@@ -2713,6 +2939,7 @@
  },
  {
   "id": "w227",
+  "kind": "word",
   "hanzi": "怎么样",
   "pinyin": "zěnmeyàng",
   "en": "how about; how is it",
@@ -2725,6 +2952,7 @@
  },
  {
   "id": "w228",
+  "kind": "word",
   "hanzi": "上",
   "pinyin": "shàng",
   "en": "up; on; last",
@@ -2737,6 +2965,7 @@
  },
  {
   "id": "w229",
+  "kind": "word",
   "hanzi": "下",
   "pinyin": "xià",
   "en": "down; under; next",
@@ -2749,6 +2978,7 @@
  },
  {
   "id": "w230",
+  "kind": "word",
   "hanzi": "里",
   "pinyin": "lǐ",
   "en": "inside",
@@ -2761,6 +2991,7 @@
  },
  {
   "id": "w231",
+  "kind": "word",
   "hanzi": "外",
   "pinyin": "wài",
   "en": "outside",
@@ -2773,6 +3004,7 @@
  },
  {
   "id": "w232",
+  "kind": "word",
   "hanzi": "外边",
   "pinyin": "wàibian",
   "en": "outside",
@@ -2785,6 +3017,7 @@
  },
  {
   "id": "w233",
+  "kind": "word",
   "hanzi": "学校",
   "pinyin": "xuéxiào",
   "en": "school",
@@ -2797,6 +3030,7 @@
  },
  {
   "id": "w234",
+  "kind": "word",
   "hanzi": "大学",
   "pinyin": "dàxué",
   "en": "university",
@@ -2809,6 +3043,7 @@
  },
  {
   "id": "w235",
+  "kind": "word",
   "hanzi": "中学",
   "pinyin": "zhōngxué",
   "en": "middle/high school",
@@ -2821,6 +3056,7 @@
  },
  {
   "id": "w236",
+  "kind": "word",
   "hanzi": "小学",
   "pinyin": "xiǎoxué",
   "en": "elementary school",
@@ -2833,6 +3069,7 @@
  },
  {
   "id": "w237",
+  "kind": "word",
   "hanzi": "公司",
   "pinyin": "gōngsī",
   "en": "company",
@@ -2845,6 +3082,7 @@
  },
  {
   "id": "w238",
+  "kind": "word",
   "hanzi": "医院",
   "pinyin": "yīyuàn",
   "en": "hospital",
@@ -2857,6 +3095,7 @@
  },
  {
   "id": "w239",
+  "kind": "word",
   "hanzi": "商店",
   "pinyin": "shāngdiàn",
   "en": "store",
@@ -2869,6 +3108,7 @@
  },
  {
   "id": "w240",
+  "kind": "word",
   "hanzi": "店",
   "pinyin": "diàn",
   "en": "shop",
@@ -2881,6 +3121,7 @@
  },
  {
   "id": "w241",
+  "kind": "word",
   "hanzi": "超市",
   "pinyin": "chāoshì",
   "en": "supermarket",
@@ -2893,6 +3134,7 @@
  },
  {
   "id": "w242",
+  "kind": "word",
   "hanzi": "书店",
   "pinyin": "shūdiàn",
   "en": "bookstore",
@@ -2905,6 +3147,7 @@
  },
  {
   "id": "w243",
+  "kind": "word",
   "hanzi": "电影院",
   "pinyin": "diànyǐngyuàn",
   "en": "cinema",
@@ -2917,6 +3160,7 @@
  },
  {
   "id": "w244",
+  "kind": "word",
   "hanzi": "房间",
   "pinyin": "fángjiān",
   "en": "room",
@@ -2929,6 +3173,7 @@
  },
  {
   "id": "w245",
+  "kind": "word",
   "hanzi": "东西",
   "pinyin": "dōngxi",
   "en": "thing; stuff",
@@ -2941,6 +3186,7 @@
  },
  {
   "id": "w246",
+  "kind": "word",
   "hanzi": "书",
   "pinyin": "shū",
   "en": "book",
@@ -2953,6 +3199,7 @@
  },
  {
   "id": "w247",
+  "kind": "word",
   "hanzi": "字",
   "pinyin": "zì",
   "en": "character; word",
@@ -2965,6 +3212,7 @@
  },
  {
   "id": "w248",
+  "kind": "word",
   "hanzi": "汉字",
   "pinyin": "Hànzì",
   "en": "Chinese character",
@@ -2977,6 +3225,7 @@
  },
  {
   "id": "w249",
+  "kind": "word",
   "hanzi": "汉语",
   "pinyin": "Hànyǔ",
   "en": "Chinese (language)",
@@ -2989,6 +3238,7 @@
  },
  {
   "id": "w250",
+  "kind": "word",
   "hanzi": "中文",
   "pinyin": "Zhōngwén",
   "en": "Chinese (language)",
@@ -3001,6 +3251,7 @@
  },
  {
   "id": "w251",
+  "kind": "word",
   "hanzi": "课",
   "pinyin": "kè",
   "en": "class; lesson",
@@ -3013,6 +3264,7 @@
  },
  {
   "id": "w252",
+  "kind": "word",
   "hanzi": "手机",
   "pinyin": "shǒujī",
   "en": "cell phone",
@@ -3025,6 +3277,7 @@
  },
  {
   "id": "w253",
+  "kind": "word",
   "hanzi": "电话",
   "pinyin": "diànhuà",
   "en": "telephone",
@@ -3037,6 +3290,7 @@
  },
  {
   "id": "w254",
+  "kind": "word",
   "hanzi": "电脑",
   "pinyin": "diànnǎo",
   "en": "computer",
@@ -3049,6 +3303,7 @@
  },
  {
   "id": "w255",
+  "kind": "word",
   "hanzi": "电视",
   "pinyin": "diànshì",
   "en": "television",
@@ -3061,6 +3316,7 @@
  },
  {
   "id": "w256",
+  "kind": "word",
   "hanzi": "电影",
   "pinyin": "diànyǐng",
   "en": "movie",
@@ -3073,6 +3329,7 @@
  },
  {
   "id": "w257",
+  "kind": "word",
   "hanzi": "衣服",
   "pinyin": "yīfu",
   "en": "clothes",
@@ -3085,6 +3342,7 @@
  },
  {
   "id": "w258",
+  "kind": "word",
   "hanzi": "桌子",
   "pinyin": "zhuōzi",
   "en": "table; desk",
@@ -3097,6 +3355,7 @@
  },
  {
   "id": "w259",
+  "kind": "word",
   "hanzi": "椅子",
   "pinyin": "yǐzi",
   "en": "chair",
@@ -3109,6 +3368,7 @@
  },
  {
   "id": "w260",
+  "kind": "word",
   "hanzi": "车",
   "pinyin": "chē",
   "en": "vehicle; car",
@@ -3121,6 +3381,7 @@
  },
  {
   "id": "w261",
+  "kind": "word",
   "hanzi": "出租车",
   "pinyin": "chūzūchē",
   "en": "taxi",
@@ -3133,6 +3394,7 @@
  },
  {
   "id": "w262",
+  "kind": "word",
   "hanzi": "火车",
   "pinyin": "huǒchē",
   "en": "train",
@@ -3145,6 +3407,7 @@
  },
  {
   "id": "w263",
+  "kind": "word",
   "hanzi": "飞机",
   "pinyin": "fēijī",
   "en": "airplane",
@@ -3157,6 +3420,7 @@
  },
  {
   "id": "w264",
+  "kind": "word",
   "hanzi": "事",
   "pinyin": "shì",
   "en": "matter; thing to do",
@@ -3169,6 +3433,7 @@
  },
  {
   "id": "w265",
+  "kind": "word",
   "hanzi": "大",
   "pinyin": "dà",
   "en": "big",
@@ -3181,6 +3446,7 @@
  },
  {
   "id": "w266",
+  "kind": "word",
   "hanzi": "小",
   "pinyin": "xiǎo",
   "en": "small",
@@ -3193,6 +3459,7 @@
  },
  {
   "id": "w267",
+  "kind": "word",
   "hanzi": "新",
   "pinyin": "xīn",
   "en": "new",
@@ -3205,6 +3472,7 @@
  },
  {
   "id": "w268",
+  "kind": "word",
   "hanzi": "贵",
   "pinyin": "guì",
   "en": "expensive",
@@ -3217,6 +3485,7 @@
  },
  {
   "id": "w269",
+  "kind": "word",
   "hanzi": "便宜",
   "pinyin": "piányi",
   "en": "cheap",
@@ -3229,6 +3498,7 @@
  },
  {
   "id": "w270",
+  "kind": "word",
   "hanzi": "漂亮",
   "pinyin": "piàoliang",
   "en": "pretty",
@@ -3241,6 +3511,7 @@
  },
  {
   "id": "w271",
+  "kind": "word",
   "hanzi": "好看",
   "pinyin": "hǎokàn",
   "en": "good-looking; good (to watch)",
@@ -3253,6 +3524,7 @@
  },
  {
   "id": "w272",
+  "kind": "word",
   "hanzi": "好听",
   "pinyin": "hǎotīng",
   "en": "nice to hear",
@@ -3265,6 +3537,7 @@
  },
  {
   "id": "w273",
+  "kind": "word",
   "hanzi": "好玩儿",
   "pinyin": "hǎowánr",
   "en": "fun",
@@ -3277,6 +3550,7 @@
  },
  {
   "id": "w274",
+  "kind": "word",
   "hanzi": "忙",
   "pinyin": "máng",
   "en": "busy",
@@ -3289,6 +3563,7 @@
  },
  {
   "id": "w275",
+  "kind": "word",
   "hanzi": "冷",
   "pinyin": "lěng",
   "en": "cold",
@@ -3301,6 +3576,7 @@
  },
  {
   "id": "w276",
+  "kind": "word",
   "hanzi": "热",
   "pinyin": "rè",
   "en": "hot",
@@ -3313,6 +3589,7 @@
  },
  {
   "id": "w277",
+  "kind": "word",
   "hanzi": "病",
   "pinyin": "bìng",
   "en": "illness; sick",
@@ -3325,6 +3602,7 @@
  },
  {
   "id": "w278",
+  "kind": "word",
   "hanzi": "生病",
   "pinyin": "shēng bìng",
   "en": "to get sick",
@@ -3337,6 +3615,7 @@
  },
  {
   "id": "w279",
+  "kind": "word",
   "hanzi": "看病",
   "pinyin": "kàn bìng",
   "en": "to see a doctor",
@@ -3349,6 +3628,7 @@
  },
  {
   "id": "w280",
+  "kind": "word",
   "hanzi": "天气",
   "pinyin": "tiānqì",
   "en": "weather",
@@ -3361,6 +3641,7 @@
  },
  {
   "id": "w281",
+  "kind": "word",
   "hanzi": "雨",
   "pinyin": "yǔ",
   "en": "rain",
@@ -3373,6 +3654,7 @@
  },
  {
   "id": "w282",
+  "kind": "word",
   "hanzi": "下雨",
   "pinyin": "xià yǔ",
   "en": "to rain",
@@ -3385,6 +3667,7 @@
  },
  {
   "id": "w283",
+  "kind": "word",
   "hanzi": "雪",
   "pinyin": "xuě",
   "en": "snow",
@@ -3397,6 +3680,7 @@
  },
  {
   "id": "w284",
+  "kind": "word",
   "hanzi": "都",
   "pinyin": "dōu",
   "en": "all; both",
@@ -3409,6 +3693,7 @@
  },
  {
   "id": "w285",
+  "kind": "word",
   "hanzi": "太",
   "pinyin": "tài",
   "en": "too; extremely",
@@ -3421,6 +3706,7 @@
  },
  {
   "id": "w286",
+  "kind": "word",
   "hanzi": "非常",
   "pinyin": "fēicháng",
   "en": "extremely",
@@ -3433,6 +3719,7 @@
  },
  {
   "id": "w287",
+  "kind": "word",
   "hanzi": "真",
   "pinyin": "zhēn",
   "en": "really",
@@ -3445,6 +3732,7 @@
  },
  {
   "id": "w288",
+  "kind": "word",
   "hanzi": "再",
   "pinyin": "zài",
   "en": "again",
@@ -3457,6 +3745,7 @@
  },
  {
   "id": "w289",
+  "kind": "word",
   "hanzi": "还",
   "pinyin": "hái",
   "en": "still; also",
@@ -3469,6 +3758,7 @@
  },
  {
   "id": "w290",
+  "kind": "word",
   "hanzi": "正在",
   "pinyin": "zhèngzài",
   "en": "in the middle of (doing)",
@@ -3481,6 +3771,7 @@
  },
  {
   "id": "w291",
+  "kind": "word",
   "hanzi": "对",
   "pinyin": "duì",
   "en": "correct; toward",
@@ -3493,6 +3784,7 @@
  },
  {
   "id": "w292",
+  "kind": "word",
   "hanzi": "和",
   "pinyin": "hé",
   "en": "and; with",
@@ -3505,6 +3797,7 @@
  },
  {
   "id": "w293",
+  "kind": "word",
   "hanzi": "了",
   "pinyin": "le",
   "en": "(change / completed action)",
@@ -3517,6 +3810,7 @@
  },
  {
   "id": "w294",
+  "kind": "word",
   "hanzi": "吧",
   "pinyin": "ba",
   "en": "(suggestion particle)",

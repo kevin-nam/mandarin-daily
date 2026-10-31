@@ -1,8 +1,11 @@
 import wordsJson from './data/words.json'
+import phrasesJson from './data/phrases.json'
 import dialoguesJson from './data/dialogues.json'
 
+/** A study item: an HSK word, or a ready-made phrase for conversation and travel. */
 export interface Word {
   id: string
+  kind: 'word' | 'phrase'
   hanzi: string
   pinyin: string
   en: string
@@ -13,9 +16,21 @@ export interface Word {
 export interface DialogueLine { s: string; zh: string; py: string; en: string }
 export interface Dialogue { id: string; title: string; unlockAfter: number; lines: DialogueLine[] }
 
-export const WORDS: Word[] = wordsJson
+export const WORDS = wordsJson as Word[]
+export const PHRASES = phrasesJson as Word[]
 export const DIALOGUES: Dialogue[] = dialoguesJson
-export const WORD_BY_ID = new Map(WORDS.map((w) => [w.id, w]))
+/** All items (words and phrases) by id. */
+export const WORD_BY_ID = new Map([...WORDS, ...PHRASES].map((w) => [w.id, w]))
+
+/**
+ * What to say or hear for an item: a word is practised inside its sentence,
+ * a phrase is practised as itself.
+ */
+export function target(w: Word) {
+  return w.kind === 'phrase'
+    ? { key: w.id, zh: w.hanzi, py: w.pinyin, en: w.en }
+    : { key: `${w.id}s`, zh: w.sentence.zh, py: w.sentence.py, en: w.sentence.en }
+}
 
 /** Tone (1-4) of a single-syllable pinyin string, or 0 if neutral / multi-syllable. */
 export function toneOf(pinyin: string): number {

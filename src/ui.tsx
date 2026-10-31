@@ -22,7 +22,7 @@ export function PlayButton({ k, text, label = '▶', slow, autoPlay }: { k: stri
 
 export function WordFace({ w, showSentence = true }: { w: Word; showSentence?: boolean }) {
   return (
-    <div className="word-face">
+    <div className={`word-face ${w.kind}`}>
       <div className="hanzi">{w.hanzi}</div>
       <div className="pinyin">{w.pinyin}</div>
       <div className="meaning">{w.en}</div>

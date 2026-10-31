@@ -45,6 +45,7 @@ h2 { font-size: 20px; }
 .stats b { display: block; font-size: 30px; }
 .stats span { color: var(--muted); font-size: 13px; }
 .progress-label { font-size: 14px; color: var(--muted); margin-bottom: 8px; }
+.progress-label.gap { margin-top: 14px; }
 .progress { height: 10px; background: var(--line); border-radius: 99px; overflow: hidden; }
 .progress div { height: 100%; background: var(--jade); border-radius: 99px; }
 
@@ -81,6 +82,8 @@ h2 { font-size: 20px; }
 .word-face .hanzi { font-size: 64px; line-height: 1.15; font-weight: 500; }
 .word-face.small .hanzi { font-size: 44px; }
 .hanzi.huge { font-size: 96px; }
+.word-face.phrase .hanzi, .hanzi.phrase { font-size: 36px; line-height: 1.3; }
+.hanzi.phrase { text-align: center; font-weight: 500; }
 .pinyin { font-size: 22px; color: var(--blue); margin-top: 2px; }
 .meaning { font-size: 17px; margin: 6px 0 10px; }
 .meaning.big { font-size: 22px; text-align: center; line-height: 1.35; }

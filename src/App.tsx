@@ -1,9 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Session from './Session'
-import { WORDS } from './data'
+import { PHRASES, WORDS } from './data'
 import { hasRecordedAudio, initAudio } from './audio'
 import {
-  dueKeys, exportState, importState, load, newDoneToday, save, streak, today, type AppState,
+  dueKeys, exportState, importState, load, newDoneToday, phrasesDoneToday, phrasesLearned, save, streak, today,
+  wordsLearned, type AppState,
 } from './store'
 
 export default function App() {
@@ -31,8 +32,11 @@ export default function App() {
     return <Settings state={state} commit={commit} replace={(s) => { save(s); setState(s) }} onBack={() => setScreen('home')} />
 
   const due = dueKeys(state).length
-  const newLeft = Math.max(0, state.settings.newPerDay - newDoneToday(state))
-  const learned = state.introduced.length
+  const newLeft =
+    Math.max(0, state.settings.newPerDay - newDoneToday(state)) +
+    Math.max(0, state.settings.phrasesPerDay - phrasesDoneToday(state))
+  const learned = wordsLearned(state)
+  const phrases = phrasesLearned(state)
   const doneToday = !!state.history[today()]
   const pct = Math.round((learned / WORDS.length) * 100)
   const daysSinceBackup = state.lastBackup ? Math.floor((Date.now() - +new Date(state.lastBackup)) / 86400000) : null
@@ -54,6 +58,8 @@ export default function App() {
       <div className="card">
         <div className="progress-label">HSK 1 · {learned}/{WORDS.length} words</div>
         <div className="progress"><div style={{ width: `${pct}%` }} /></div>
+        <div className="progress-label gap">Phrases · {phrases}/{PHRASES.length}</div>
+        <div className="progress"><div style={{ width: `${Math.round((phrases / PHRASES.length) * 100)}%` }} /></div>
       </div>
 
       <button className="primary start" onClick={() => setScreen('session')}>
@@ -80,7 +86,7 @@ function Settings({ state, commit, replace, onBack }: {
   onBack: () => void
 }) {
   const fileRef = useRef<HTMLInputElement>(null)
-  const set = (k: 'newPerDay' | 'sessionMinutes', v: number) => commit((s) => { s.settings[k] = v })
+  const set = (k: keyof AppState['settings'], v: number) => commit((s) => { s.settings[k] = v })
 
   return (
     <div className="home">
@@ -96,7 +102,14 @@ function Settings({ state, commit, replace, onBack }: {
             {[3, 4, 5, 6, 7, 8, 10].map((n) => <option key={n}>{n}</option>)}
           </select>
         </label>
-        <p className="hint">5/day finishes all {WORDS.length} HSK 1 words in ~9 weeks.</p>
+        <p className="hint">5/day finishes all {WORDS.length} HSK 1 words in ~9 weeks. Words you mark as already known don't count.</p>
+        <label>
+          New phrases per day
+          <select value={state.settings.phrasesPerDay} onChange={(e) => set('phrasesPerDay', +e.target.value)}>
+            {[0, 1, 2, 3, 4, 5].map((n) => <option key={n}>{n}</option>)}
+          </select>
+        </label>
+        <p className="hint">Travel and conversation phrases ({PHRASES.length} total).</p>
         <label>
           Session length (min)
           <select value={state.settings.sessionMinutes} onChange={(e) => set('sessionMinutes', +e.target.value)}>
@@ -116,7 +129,7 @@ function Settings({ state, commit, replace, onBack }: {
             if (!f) return
             try {
               const s = await importState(f)
-              if (confirm(`Replace current progress with this backup (${s.introduced.length} words)?`)) replace(s)
+              if (confirm(`Replace current progress with this backup (${wordsLearned(s)} words)?`)) replace(s)
             } catch (err) {
               alert((err as Error).message)
             }

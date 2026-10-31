@@ -25,8 +25,9 @@ DEFAULT_VOICE = VOICES["A"]
 
 def jobs():
     words = json.loads((ROOT / "src/data/words.json").read_text("utf8"))
+    phrases = json.loads((ROOT / "src/data/phrases.json").read_text("utf8"))
     dialogues = json.loads((ROOT / "src/data/dialogues.json").read_text("utf8"))
-    for w in words:
+    for w in words + phrases:
         yield w["id"], w["hanzi"], DEFAULT_VOICE
         yield f'{w["id"]}s', w["sentence"]["zh"], DEFAULT_VOICE
     for d in dialogues:
