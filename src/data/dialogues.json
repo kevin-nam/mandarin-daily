@@ -1,5 +1,140 @@
 [
  {
+  "id": "d11",
+  "title": "I don't understand",
+  "unlockAfter": 0,
+  "unlockAfterPhrases": 2,
+  "you": "B",
+  "lines": [
+   {
+    "s": "A",
+    "zh": "你好！",
+    "py": "Nǐ hǎo!",
+    "en": "Hello!"
+   },
+   {
+    "s": "B",
+    "zh": "你好！",
+    "py": "Nǐ hǎo!",
+    "en": "Hello!"
+   },
+   {
+    "s": "A",
+    "zh": "你是学生吗？",
+    "py": "Nǐ shì xuésheng ma?",
+    "en": "Are you a student?"
+   },
+   {
+    "s": "B",
+    "zh": "对不起，我听不懂。请说慢一点。",
+    "py": "Duìbuqǐ, wǒ tīng bu dǒng. Qǐng shuō màn yìdiǎn.",
+    "en": "Sorry, I don't understand. Please speak a little slower."
+   },
+   {
+    "s": "A",
+    "zh": "好的。你是学生吗？",
+    "py": "Hǎo de. Nǐ shì xuésheng ma?",
+    "en": "OK. Are you a student?"
+   },
+   {
+    "s": "B",
+    "zh": "是，我是学生。",
+    "py": "Shì, wǒ shì xuésheng.",
+    "en": "Yes, I'm a student."
+   }
+  ]
+ },
+ {
+  "id": "d12",
+  "title": "A little Chinese",
+  "unlockAfter": 0,
+  "unlockAfterPhrases": 5,
+  "you": "B",
+  "lines": [
+   {
+    "s": "A",
+    "zh": "你会说中文吗？",
+    "py": "Nǐ huì shuō Zhōngwén ma?",
+    "en": "Do you speak Chinese?"
+   },
+   {
+    "s": "B",
+    "zh": "我会说一点儿中文。",
+    "py": "Wǒ huì shuō yìdiǎnr Zhōngwén.",
+    "en": "I can speak a little Chinese."
+   },
+   {
+    "s": "A",
+    "zh": "你说得很好！",
+    "py": "Nǐ shuō de hěn hǎo!",
+    "en": "You speak well!"
+   },
+   {
+    "s": "B",
+    "zh": "谢谢！我小时候听过中文。",
+    "py": "Xièxie! Wǒ xiǎoshíhou tīngguo Zhōngwén.",
+    "en": "Thanks! I heard Chinese as a kid."
+   },
+   {
+    "s": "A",
+    "zh": "我说得太快了吗？",
+    "py": "Wǒ shuō de tài kuài le ma?",
+    "en": "Am I talking too fast?"
+   },
+   {
+    "s": "B",
+    "zh": "有点儿快。请说慢一点。",
+    "py": "Yǒudiǎnr kuài. Qǐng shuō màn yìdiǎn.",
+    "en": "A bit fast. Please speak a little slower."
+   }
+  ]
+ },
+ {
+  "id": "d13",
+  "title": "How do you say this?",
+  "unlockAfter": 0,
+  "unlockAfterPhrases": 7,
+  "you": "A",
+  "lines": [
+   {
+    "s": "A",
+    "zh": "请问，这个用中文怎么说？",
+    "py": "Qǐngwèn, zhège yòng Zhōngwén zěnme shuō?",
+    "en": "Excuse me, how do you say this in Chinese?"
+   },
+   {
+    "s": "B",
+    "zh": "这个叫杯子。",
+    "py": "Zhège jiào bēizi.",
+    "en": "This is called a bēizi (cup)."
+   },
+   {
+    "s": "A",
+    "zh": "杯子。谢谢！那个呢？",
+    "py": "Bēizi. Xièxie! Nàge ne?",
+    "en": "Bēizi. Thanks! And that one?"
+   },
+   {
+    "s": "B",
+    "zh": "那个叫手机。",
+    "py": "Nàge jiào shǒujī.",
+    "en": "That's called a shǒujī (phone)."
+   },
+   {
+    "s": "A",
+    "zh": "这是什么意思？",
+    "py": "Zhè shì shénme yìsi?",
+    "en": "What does this mean?"
+   },
+   {
+    "s": "B",
+    "zh": "这是“谢谢”的意思。",
+    "py": "Zhè shì “xièxie” de yìsi.",
+    "en": "This means “thank you”."
+   }
+  ]
+ },
+ {
   "id": "d1",
   "title": "Meeting someone",
   "unlockAfter": 30,
@@ -43,6 +178,51 @@
   ]
  },
  {
+  "id": "d14",
+  "title": "Can you help me?",
+  "unlockAfter": 0,
+  "unlockAfterPhrases": 13,
+  "you": "A",
+  "lines": [
+   {
+    "s": "A",
+    "zh": "不好意思，能帮我一下吗？",
+    "py": "Bù hǎoyìsi, néng bāng wǒ yíxià ma?",
+    "en": "Excuse me, could you help me?"
+   },
+   {
+    "s": "B",
+    "zh": "好的，没问题。",
+    "py": "Hǎo de, méi wèntí.",
+    "en": "OK, no problem."
+   },
+   {
+    "s": "A",
+    "zh": "这个用中文怎么说？",
+    "py": "Zhège yòng Zhōngwén zěnme shuō?",
+    "en": "How do you say this in Chinese?"
+   },
+   {
+    "s": "B",
+    "zh": "等一下……这个叫地铁。",
+    "py": "Děng yíxià… zhège jiào dìtiě.",
+    "en": "Wait a moment… this is called dìtiě (subway)."
+   },
+   {
+    "s": "A",
+    "zh": "谢谢你！",
+    "py": "Xièxie nǐ!",
+    "en": "Thank you!"
+   },
+   {
+    "s": "B",
+    "zh": "不用谢。",
+    "py": "Bú yòng xiè.",
+    "en": "Don't mention it."
+   }
+  ]
+ },
+ {
   "id": "d2",
   "title": "Where are you from?",
   "unlockAfter": 40,
@@ -76,6 +256,153 @@
     "zh": "不是，我是学生。",
     "py": "Bú shì, wǒ shì xuésheng.",
     "en": "No, I'm a student."
+   }
+  ]
+ },
+ {
+  "id": "d15",
+  "title": "Ordering noodles",
+  "unlockAfter": 0,
+  "unlockAfterPhrases": 19,
+  "you": "B",
+  "lines": [
+   {
+    "s": "A",
+    "zh": "你好，几位？",
+    "py": "Nǐ hǎo, jǐ wèi?",
+    "en": "Hi, how many?"
+   },
+   {
+    "s": "B",
+    "zh": "两位。有菜单吗？",
+    "py": "Liǎng wèi. Yǒu càidān ma?",
+    "en": "Two. Is there a menu?"
+   },
+   {
+    "s": "A",
+    "zh": "有，在这儿。",
+    "py": "Yǒu, zài zhèr.",
+    "en": "Yes, here you go."
+   },
+   {
+    "s": "B",
+    "zh": "这个辣吗？",
+    "py": "Zhège là ma?",
+    "en": "Is this spicy?"
+   },
+   {
+    "s": "A",
+    "zh": "有一点儿辣。",
+    "py": "Yǒu yìdiǎnr là.",
+    "en": "A little."
+   },
+   {
+    "s": "B",
+    "zh": "我要这个，不要辣。",
+    "py": "Wǒ yào zhège, bú yào là.",
+    "en": "I'll have this, no spice."
+   },
+   {
+    "s": "A",
+    "zh": "好的。",
+    "py": "Hǎo de.",
+    "en": "OK."
+   }
+  ]
+ },
+ {
+  "id": "d16",
+  "title": "For here or to go?",
+  "unlockAfter": 0,
+  "unlockAfterPhrases": 23,
+  "you": "B",
+  "lines": [
+   {
+    "s": "A",
+    "zh": "在这儿吃还是带走？",
+    "py": "Zài zhèr chī háishi dài zǒu?",
+    "en": "For here or to go?"
+   },
+   {
+    "s": "B",
+    "zh": "在这儿吃。我要一杯水。",
+    "py": "Zài zhèr chī. Wǒ yào yì bēi shuǐ.",
+    "en": "For here. And a glass of water, please."
+   },
+   {
+    "s": "A",
+    "zh": "好的。",
+    "py": "Hǎo de.",
+    "en": "OK."
+   },
+   {
+    "s": "B",
+    "zh": "很好吃！我吃饱了。服务员，买单！",
+    "py": "Hěn hǎochī! Wǒ chī bǎo le. Fúwùyuán, mǎidān!",
+    "en": "Delicious! I'm full. Waiter, the bill please!"
+   },
+   {
+    "s": "A",
+    "zh": "一共三十块。",
+    "py": "Yígòng sānshí kuài.",
+    "en": "That's thirty yuan altogether."
+   },
+   {
+    "s": "B",
+    "zh": "好的，谢谢！",
+    "py": "Hǎo de, xièxie!",
+    "en": "OK, thanks!"
+   }
+  ]
+ },
+ {
+  "id": "d17",
+  "title": "Bargaining",
+  "unlockAfter": 0,
+  "unlockAfterPhrases": 27,
+  "you": "A",
+  "lines": [
+   {
+    "s": "A",
+    "zh": "这个多少钱？",
+    "py": "Zhège duōshao qián?",
+    "en": "How much is this?"
+   },
+   {
+    "s": "B",
+    "zh": "五十块。",
+    "py": "Wǔshí kuài.",
+    "en": "Fifty yuan."
+   },
+   {
+    "s": "A",
+    "zh": "太贵了！能便宜一点儿吗？",
+    "py": "Tài guì le! Néng piányi yìdiǎnr ma?",
+    "en": "Too expensive! Can you make it cheaper?"
+   },
+   {
+    "s": "B",
+    "zh": "四十块，好吗？",
+    "py": "Sìshí kuài, hǎo ma?",
+    "en": "Forty, OK?"
+   },
+   {
+    "s": "A",
+    "zh": "三十块吧。",
+    "py": "Sānshí kuài ba.",
+    "en": "How about thirty."
+   },
+   {
+    "s": "B",
+    "zh": "好吧，三十五。",
+    "py": "Hǎo ba, sānshíwǔ.",
+    "en": "Fine, thirty-five."
+   },
+   {
+    "s": "A",
+    "zh": "好的，我要了。",
+    "py": "Hǎo de, wǒ yào le.",
+    "en": "OK, I'll take it."
    }
   ]
  },
@@ -160,6 +487,57 @@
   ]
  },
  {
+  "id": "d18",
+  "title": "I'm lost",
+  "unlockAfter": 0,
+  "unlockAfterPhrases": 44,
+  "you": "A",
+  "lines": [
+   {
+    "s": "A",
+    "zh": "不好意思，我迷路了。",
+    "py": "Bù hǎoyìsi, wǒ mílù le.",
+    "en": "Excuse me, I'm lost."
+   },
+   {
+    "s": "B",
+    "zh": "你去哪儿？",
+    "py": "Nǐ qù nǎr?",
+    "en": "Where are you going?"
+   },
+   {
+    "s": "A",
+    "zh": "地铁站怎么走？",
+    "py": "Dìtiě zhàn zěnme zǒu?",
+    "en": "How do I get to the subway station?"
+   },
+   {
+    "s": "B",
+    "zh": "一直往前走，然后往左拐。",
+    "py": "Yìzhí wǎng qián zǒu, ránhòu wǎng zuǒ guǎi.",
+    "en": "Go straight, then turn left."
+   },
+   {
+    "s": "A",
+    "zh": "远吗？",
+    "py": "Yuǎn ma?",
+    "en": "Is it far?"
+   },
+   {
+    "s": "B",
+    "zh": "不远，走路五分钟。",
+    "py": "Bù yuǎn, zǒulù wǔ fēnzhōng.",
+    "en": "Not far, five minutes on foot."
+   },
+   {
+    "s": "A",
+    "zh": "谢谢！",
+    "py": "Xièxie!",
+    "en": "Thanks!"
+   }
+  ]
+ },
+ {
   "id": "d5",
   "title": "What time is it?",
   "unlockAfter": 130,
@@ -199,6 +577,51 @@
     "zh": "有。下午见！",
     "py": "Yǒu. Xiàwǔ jiàn!",
     "en": "Yes. See you in the afternoon!"
+   }
+  ]
+ },
+ {
+  "id": "d19",
+  "title": "Catching up",
+  "unlockAfter": 0,
+  "unlockAfterPhrases": 52,
+  "you": "B",
+  "lines": [
+   {
+    "s": "A",
+    "zh": "好久不见！最近怎么样？",
+    "py": "Hǎojiǔ bú jiàn! Zuìjìn zěnmeyàng?",
+    "en": "Long time no see! How have you been?"
+   },
+   {
+    "s": "B",
+    "zh": "还可以，有点儿忙。你呢？",
+    "py": "Hái kěyǐ, yǒudiǎnr máng. Nǐ ne?",
+    "en": "Not bad, a bit busy. And you?"
+   },
+   {
+    "s": "A",
+    "zh": "我也是。你吃饭了吗？",
+    "py": "Wǒ yě shì. Nǐ chī fàn le ma?",
+    "en": "Me too. Have you eaten?"
+   },
+   {
+    "s": "B",
+    "zh": "还没有。",
+    "py": "Hái méiyǒu.",
+    "en": "Not yet."
+   },
+   {
+    "s": "A",
+    "zh": "我们去吃饺子吧！",
+    "py": "Wǒmen qù chī jiǎozi ba!",
+    "en": "Let's go eat dumplings!"
+   },
+   {
+    "s": "B",
+    "zh": "好啊！",
+    "py": "Hǎo a!",
+    "en": "Great!"
    }
   ]
  },

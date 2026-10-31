@@ -6,6 +6,29 @@
 // can leave the id out; this script assigns the next free one and writes it back.
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 
+const MARKS = {
+  ā: 1, ē: 1, ī: 1, ō: 1, ū: 1, ǖ: 1,
+  á: 2, é: 2, í: 2, ó: 2, ú: 2, ǘ: 2,
+  ǎ: 3, ě: 3, ǐ: 3, ǒ: 3, ǔ: 3, ǚ: 3,
+  à: 4, è: 4, ì: 4, ò: 4, ù: 4, ǜ: 4,
+}
+// More than one reading: heard on their own, the voice may say a different tone.
+const AMBIGUOUS = new Set([...'只还都要和'])
+
+/**
+ * Tones for the tone drill (1–2 syllables), or undefined if the word isn't a fair test:
+ * neutral tones, several readings, or 3+3 (pronounced 2+3, so the written tones mislead).
+ */
+function drillTones(hanzi, pinyin) {
+  const chars = [...hanzi]
+  if (chars.length > 2 || pinyin.includes('/')) return undefined
+  const tones = [...pinyin].map((c) => MARKS[c]).filter(Boolean)
+  if (tones.length !== chars.length) return undefined
+  if (chars.length === 1 && AMBIGUOUS.has(hanzi)) return undefined
+  if (tones.join() === '3,3') return undefined
+  return tones
+}
+
 function parse(files, prefix, kind) {
   const rows = []
   for (const f of files) {
@@ -44,6 +67,7 @@ function parse(files, prefix, kind) {
   const items = rows.map(({ id, unit, cols: [hanzi, pinyin, en, zh, py, sen] }) => ({
     id, kind, hanzi, pinyin, en, unit,
     sentence: { zh, py, en: sen },
+    ...(kind === 'word' && drillTones(hanzi, pinyin) && { tones: drillTones(hanzi, pinyin) }),
   }))
   for (const field of ['id', 'hanzi']) {
     const seen = new Set()
@@ -58,6 +82,9 @@ function parse(files, prefix, kind) {
 const words = parse(['content/words1.tsv', 'content/words2.tsv', 'content/words3.tsv'], 'w', 'word')
 const phrases = parse(['content/phrases.tsv'], 'p', 'phrase')
 const dialogues = JSON.parse(readFileSync('content/dialogues.json', 'utf8'))
+for (const d of dialogues) {
+  if (d.you && !d.lines.some((l) => l.s === d.you)) throw new Error(`Dialogue ${d.id}: "you" is ${d.you} but nobody speaks as ${d.you}`)
+}
 
 // Listen cards play the example sentence, so two words sharing one would be ambiguous.
 const bySentence = new Map()

@@ -4,9 +4,11 @@ import WordBank from './WordBank'
 import { PHRASES, WORDS } from './data'
 import { hasRecordedAudio, initAudio, setSpeed } from './audio'
 import {
-  dueKeys, exportState, importState, load, newQuota, phrasesLearned, save, streak, today,
+  dueKeys, exportState, importState, load, newQuota, phrasesLearned, save, speedSuggestion, streak, today,
   wordsLearned, type AppState,
 } from './store'
+
+const inDays = (n: number) => new Date(Date.now() + n * 86400000).toISOString()
 
 /** Only count it as backed up once the file was actually saved, not if the share sheet was cancelled. */
 async function backup(state: AppState, commit: (fn: (s: AppState) => void) => void) {
@@ -48,6 +50,7 @@ export default function App() {
   const startedToday = !!state.history[today()]
   const doneToday = startedToday && due === 0 && newLeft === 0
   const days = streak(state)
+  const faster = speedSuggestion(state)
   const pct = Math.round((learned / WORDS.length) * 100)
   const daysSinceBackup = state.lastBackup ? Math.floor((Date.now() - +new Date(state.lastBackup)) / 86400000) : null
   const needsBackup = learned > 0 && (daysSinceBackup === null || daysSinceBackup >= 7)
@@ -74,6 +77,18 @@ export default function App() {
           <button className="secondary wide gap" onClick={() => setScreen('bank')}>📖 Word bank</button>
         )}
       </div>
+
+      {faster && (
+        <div className="banner speed">
+          <p>🎧 Your listening is going well. Try audio at {Math.round(faster * 100)}% (now {Math.round(state.settings.audioSpeed * 100)}%)?</p>
+          <div className="row center">
+            <button className="secondary" onClick={() => commit((s) => { s.settings.audioSpeed = faster; s.settings.speedNudgeAfter = inDays(7) })}>
+              Try {Math.round(faster * 100)}%
+            </button>
+            <button className="link small" onClick={() => commit((s) => { s.settings.speedNudgeAfter = inDays(7) })}>Not now</button>
+          </div>
+        </div>
+      )}
 
       {quota.paused && newLeft === 0 && !doneToday && (
         <p className="hint center-text">New words paused: catch up on reviews first.</p>
@@ -114,7 +129,11 @@ function Settings({ state, commit, replace, onBack }: {
   onBack: () => void
 }) {
   const fileRef = useRef<HTMLInputElement>(null)
-  const set = (k: keyof AppState['settings'], v: number) => commit((s) => { s.settings[k] = v })
+  const set = (k: 'newPerDay' | 'phrasesPerDay' | 'sessionMinutes' | 'audioSpeed', v: number) =>
+    commit((s) => {
+      s.settings[k] = v
+      if (k === 'audioSpeed') s.settings.speedNudgeAfter = inDays(7) // you chose a speed: don't nudge for a week
+    })
 
   return (
     <div className="home">

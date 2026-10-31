@@ -121,6 +121,11 @@ h2 { font-size: 20px; }
 .tone { padding: 18px; border-radius: 14px; background: var(--line); font-size: 20px; font-weight: 600; }
 .tone.right { background: var(--jade); color: #fff; }
 .tone.wrong { background: var(--red); color: #fff; }
+.tone.picked { background: color-mix(in srgb, var(--blue) 35%, var(--line)); }
+.tones.compact { grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 4px 0 10px; }
+.tones.compact .tone { padding: 14px 2px; font-size: 16px; }
+.line.mine { outline: 2px dashed color-mix(in srgb, var(--blue) 50%, transparent); outline-offset: -2px; }
+.line .en.big { font-size: 18px; color: var(--ink); }
 
 /* Word bank */
 .secondary.gap { margin-top: 16px; }
@@ -156,3 +161,7 @@ h2 { font-size: 20px; }
 .bank-stat .chip { align-self: flex-start; }
 .bank-stat .hint { margin: 0; font-size: 13px; }
 .streak-big { font-size: 20px; font-weight: 600; margin: 8px 0 0; }
+.banner.speed { margin-bottom: 14px; text-align: center; }
+.banner.speed p { margin: 0 0 8px; }
+.link.small { font-size: 15px; }
+.lv.locked { opacity: 0.35; }

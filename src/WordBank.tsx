@@ -8,7 +8,11 @@ const SKILLS: { kind: CardKind; icon: string; label: string }[] = [
   { kind: 'listen', icon: '👂', label: 'Listening' },
   { kind: 'speak', icon: '🗣', label: 'Speaking' },
   { kind: 'read', icon: '字', label: 'Reading' },
+  // Words only, unlocked once Reading is Good (phrases are already sentences).
+  { kind: 'sentence', icon: '句', label: 'Sentences' },
 ]
+const applies = (kind: CardKind, w: Word) => kind !== 'sentence' || w.kind === 'word'
+const locked = (state: AppState, kind: CardKind, w: Word) => kind === 'sentence' && !state.cards[cardKey(w.id, kind)]
 
 type Filter = 'all' | 'word' | 'phrase'
 type Sort = 'weakest' | 'newest' | 'oldest'
@@ -29,7 +33,8 @@ export default function WordBank({ state, onBack }: { state: AppState; onBack: (
       const w = WORD_BY_ID.get(id)
       if (!w) return // removed from the content
       const levels = SKILLS.map((s) => level(state.cards[cardKey(id, s.kind)]))
-      out.push({ w, order, levels, score: levels.reduce<number>((a, b) => a + b, 0) })
+      // Sort score ignores sentences, which start locked.
+      out.push({ w, order, levels, score: levels.slice(0, 3).reduce<number>((a, b) => a + b, 0) })
     })
     return out
   }, [state])
@@ -60,9 +65,12 @@ export default function WordBank({ state, onBack }: { state: AppState; onBack: (
                 <span className="bank-skill-name">{s.icon} {s.label}</span>
                 <span className="row">
                   {LEVELS.map((name, l) => {
-                    const n = ofKind.filter((e) => e.levels[i] === l).length
+                    const n = ofKind.filter((e) => applies(s.kind, e.w) && !locked(state, s.kind, e.w) && e.levels[i] === l).length
                     return n > 0 && <span key={l} className={`chip lv${l}`} title={name}>{n} {name.toLowerCase()}</span>
                   })}
+                  {s.kind === 'sentence' && !ofKind.some((e) => applies(s.kind, e.w) && !locked(state, s.kind, e.w)) && (
+                    <span className="hint">Unlocks per word once its Reading is Good</span>
+                  )}
                 </span>
               </div>
             ))}
@@ -107,9 +115,13 @@ function BankRow({ e, state, open, onToggle }: { e: Entry; state: AppState; open
           <span className="en">{w.en}</span>
         </span>
         <span className="bank-levels">
-          {levels.map((l, i) => (
-            <span key={i} className={`lv lv${l}`} aria-label={`${SKILLS[i].label}: ${LEVELS[l]}`}>{SKILLS[i].icon}</span>
-          ))}
+          {levels.map((l, i) =>
+            applies(SKILLS[i].kind, w)
+              ? locked(state, SKILLS[i].kind, w)
+                ? <span key={i} className="lv lv0 locked" aria-label={`${SKILLS[i].label}: locked`}>{SKILLS[i].icon}</span>
+                : <span key={i} className={`lv lv${l}`} aria-label={`${SKILLS[i].label}: ${LEVELS[l]}`}>{SKILLS[i].icon}</span>
+              : <span key={i} className="lv" aria-hidden />,
+          )}
         </span>
       </button>
       {open && (
@@ -124,14 +136,16 @@ function BankRow({ e, state, open, onToggle }: { e: Entry; state: AppState; open
             <div className="py">{w.sentence.py}</div>
             <div className="en">{w.sentence.en}</div>
           </div>
-          {SKILLS.map((s, i) => {
+          {SKILLS.filter((s) => applies(s.kind, w)).map((s, i) => {
             const c = state.cards[cardKey(w.id, s.kind)]
             const r = recallChance(c)
             return (
               <div key={s.kind} className="bank-stat">
                 <span className={`chip lv${levels[i]}`}>{s.icon} {LEVELS[levels[i]]}</span>
                 <span className="hint">
-                  {r === null || !c
+                  {!c && s.kind === 'sentence'
+                    ? 'Unlocks once Reading is Good'
+                    : r === null || !c
                     ? 'Comes up in your next review'
                     : `${Math.round(r * 100)}% recall now · ${dueText(c.due)} · forgot ${c.lapses}×`}
                 </span>

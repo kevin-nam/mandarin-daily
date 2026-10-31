@@ -10,7 +10,10 @@
    "zh": "你好！",
    "py": "Nǐ hǎo!",
    "en": "Hello!"
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w002",
@@ -23,7 +26,10 @@
    "zh": "我很好。",
    "py": "Wǒ hěn hǎo.",
    "en": "I'm very well."
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w003",
@@ -36,7 +42,10 @@
    "zh": "我今天很忙。",
    "py": "Wǒ jīntiān hěn máng.",
    "en": "I am busy today."
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w004",
@@ -49,7 +58,10 @@
    "zh": "他是老师。",
    "py": "Tā shì lǎoshī.",
    "en": "He is a teacher."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w005",
@@ -62,7 +74,10 @@
    "zh": "他很高兴。",
    "py": "Tā hěn gāoxìng.",
    "en": "He is very happy."
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w006",
@@ -101,7 +116,10 @@
    "zh": "我不是老师。",
    "py": "Wǒ bú shì lǎoshī.",
    "en": "I'm not a teacher."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w009",
@@ -114,7 +132,10 @@
    "zh": "我也是学生。",
    "py": "Wǒ yě shì xuésheng.",
    "en": "I'm a student too."
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w010",
@@ -127,7 +148,10 @@
    "zh": "您好！",
    "py": "Nín hǎo!",
    "en": "Hello! (polite)"
-  }
+  },
+  "tones": [
+   2
+  ]
  },
  {
   "id": "w011",
@@ -140,7 +164,10 @@
    "zh": "他是我朋友。",
    "py": "Tā shì wǒ péngyou.",
    "en": "He is my friend."
-  }
+  },
+  "tones": [
+   1
+  ]
  },
  {
   "id": "w012",
@@ -153,7 +180,10 @@
    "zh": "她是我妈妈。",
    "py": "Tā shì wǒ māma.",
    "en": "She is my mom."
-  }
+  },
+  "tones": [
+   1
+  ]
  },
  {
   "id": "w013",
@@ -166,7 +196,10 @@
    "zh": "它是我的猫。",
    "py": "Tā shì wǒ de māo.",
    "en": "It's my cat."
-  }
+  },
+  "tones": [
+   1
+  ]
  },
  {
   "id": "w014",
@@ -257,7 +290,11 @@
    "zh": "大家好！",
    "py": "Dàjiā hǎo!",
    "en": "Hello, everyone!"
-  }
+  },
+  "tones": [
+   4,
+   1
+  ]
  },
  {
   "id": "w021",
@@ -322,7 +359,11 @@
    "zh": "明天见！再见！",
    "py": "Míngtiān jiàn! Zàijiàn!",
    "en": "See you tomorrow! Bye!"
-  }
+  },
+  "tones": [
+   4,
+   4
+  ]
  },
  {
   "id": "w026",
@@ -335,7 +376,10 @@
    "zh": "请坐。",
    "py": "Qǐng zuò.",
    "en": "Please sit."
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w027",
@@ -348,7 +392,11 @@
    "zh": "请问，你叫什么名字？",
    "py": "Qǐngwèn, nǐ jiào shénme míngzi?",
    "en": "Excuse me, what's your name?"
-  }
+  },
+  "tones": [
+   3,
+   4
+  ]
  },
  {
   "id": "w028",
@@ -361,7 +409,10 @@
    "zh": "喂，你好！",
    "py": "Wéi, nǐ hǎo!",
    "en": "Hello? (phone)"
-  }
+  },
+  "tones": [
+   2
+  ]
  },
  {
   "id": "w029",
@@ -374,7 +425,10 @@
    "zh": "我叫王小明。",
    "py": "Wǒ jiào Wáng Xiǎomíng.",
    "en": "My name is Wang Xiaoming."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w030",
@@ -426,7 +480,11 @@
    "zh": "我今天很高兴。",
    "py": "Wǒ jīntiān hěn gāoxìng.",
    "en": "I'm very happy today."
-  }
+  },
+  "tones": [
+   1,
+   4
+  ]
  },
  {
   "id": "w034",
@@ -452,7 +510,10 @@
    "zh": "他是中国人。",
    "py": "Tā shì Zhōngguó rén.",
    "en": "He is Chinese."
-  }
+  },
+  "tones": [
+   2
+  ]
  },
  {
   "id": "w036",
@@ -465,7 +526,11 @@
    "zh": "我想去中国。",
    "py": "Wǒ xiǎng qù Zhōngguó.",
    "en": "I want to go to China."
-  }
+  },
+  "tones": [
+   1,
+   2
+  ]
  },
  {
   "id": "w037",
@@ -478,7 +543,10 @@
    "zh": "你是哪国人？",
    "py": "Nǐ shì nǎ guó rén?",
    "en": "Which country are you from?"
-  }
+  },
+  "tones": [
+   2
+  ]
  },
  {
   "id": "w038",
@@ -517,7 +585,11 @@
    "zh": "李女士是老师。",
    "py": "Lǐ nǚshì shì lǎoshī.",
    "en": "Ms. Li is a teacher."
-  }
+  },
+  "tones": [
+   3,
+   4
+  ]
  },
  {
   "id": "w041",
@@ -530,7 +602,10 @@
    "zh": "我有一个哥哥。",
    "py": "Wǒ yǒu yí ge gēge.",
    "en": "I have one older brother."
-  }
+  },
+  "tones": [
+   1
+  ]
  },
  {
   "id": "w042",
@@ -543,7 +618,10 @@
    "zh": "今天是二号。",
    "py": "Jīntiān shì èr hào.",
    "en": "Today is the 2nd."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w043",
@@ -556,7 +634,10 @@
    "zh": "我有三本书。",
    "py": "Wǒ yǒu sān běn shū.",
    "en": "I have three books."
-  }
+  },
+  "tones": [
+   1
+  ]
  },
  {
   "id": "w044",
@@ -569,7 +650,10 @@
    "zh": "他四岁。",
    "py": "Tā sì suì.",
    "en": "He is four."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w045",
@@ -582,7 +666,10 @@
    "zh": "我们五点见。",
    "py": "Wǒmen wǔ diǎn jiàn.",
    "en": "See you at five."
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w046",
@@ -595,7 +682,10 @@
    "zh": "我家有六个人。",
    "py": "Wǒ jiā yǒu liù ge rén.",
    "en": "There are six people in my family."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w047",
@@ -608,7 +698,10 @@
    "zh": "一个星期有七天。",
    "py": "Yí ge xīngqī yǒu qī tiān.",
    "en": "A week has seven days."
-  }
+  },
+  "tones": [
+   1
+  ]
  },
  {
   "id": "w048",
@@ -621,7 +714,10 @@
    "zh": "我八点起床。",
    "py": "Wǒ bā diǎn qǐchuáng.",
    "en": "I get up at eight."
-  }
+  },
+  "tones": [
+   1
+  ]
  },
  {
   "id": "w049",
@@ -634,7 +730,10 @@
    "zh": "现在九点。",
    "py": "Xiànzài jiǔ diǎn.",
    "en": "It's nine o'clock now."
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w050",
@@ -647,7 +746,10 @@
    "zh": "这个十块钱。",
    "py": "Zhège shí kuài qián.",
    "en": "This is ten yuan."
-  }
+  },
+  "tones": [
+   2
+  ]
  },
  {
   "id": "w051",
@@ -660,7 +762,10 @@
    "zh": "我的电话号是零六八。",
    "py": "Wǒ de diànhuà hào shì líng liù bā.",
    "en": "My phone number is zero six eight."
-  }
+  },
+  "tones": [
+   2
+  ]
  },
  {
   "id": "w052",
@@ -673,7 +778,10 @@
    "zh": "这件衣服一百块。",
    "py": "Zhè jiàn yīfu yìbǎi kuài.",
    "en": "This piece of clothing is 100 yuan."
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w053",
@@ -686,7 +794,10 @@
    "zh": "这个手机三千块。",
    "py": "Zhège shǒujī sānqiān kuài.",
    "en": "This phone is 3,000 yuan."
-  }
+  },
+  "tones": [
+   1
+  ]
  },
  {
   "id": "w054",
@@ -699,7 +810,10 @@
    "zh": "我有两个妹妹。",
    "py": "Wǒ yǒu liǎng ge mèimei.",
    "en": "I have two younger sisters."
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w055",
@@ -712,7 +826,10 @@
    "zh": "现在八点半。",
    "py": "Xiànzài bā diǎn bàn.",
    "en": "It's 8:30 now."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w056",
@@ -725,7 +842,11 @@
    "zh": "我吃了一半。",
    "py": "Wǒ chī le yíbàn.",
    "en": "I ate half."
-  }
+  },
+  "tones": [
+   2,
+   4
+  ]
  },
  {
   "id": "w057",
@@ -738,7 +859,10 @@
    "zh": "这是我第一次来中国。",
    "py": "Zhè shì wǒ dì yī cì lái Zhōngguó.",
    "en": "This is my first time in China."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w058",
@@ -751,7 +875,10 @@
    "zh": "你家有几个人？",
    "py": "Nǐ jiā yǒu jǐ ge rén?",
    "en": "How many people are in your family?"
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w059",
@@ -777,7 +904,10 @@
    "zh": "这里人很多。",
    "py": "Zhèlǐ rén hěn duō.",
    "en": "There are many people here."
-  }
+  },
+  "tones": [
+   1
+  ]
  },
  {
   "id": "w061",
@@ -790,7 +920,10 @@
    "zh": "今天人很少。",
    "py": "Jīntiān rén hěn shǎo.",
    "en": "There are few people today."
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w062",
@@ -803,7 +936,10 @@
    "zh": "我想买一个苹果。",
    "py": "Wǒ xiǎng mǎi yí ge píngguǒ.",
    "en": "I want to buy an apple."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w063",
@@ -816,7 +952,10 @@
    "zh": "我买了两本书。",
    "py": "Wǒ mǎi le liǎng běn shū.",
    "en": "I bought two books."
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w064",
@@ -829,7 +968,10 @@
    "zh": "这件衣服很漂亮。",
    "py": "Zhè jiàn yīfu hěn piàoliang.",
    "en": "This piece of clothing is very pretty."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w065",
@@ -842,7 +984,10 @@
    "zh": "我家有三口人。",
    "py": "Wǒ jiā yǒu sān kǒu rén.",
    "en": "There are three people in my family."
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w066",
@@ -855,7 +1000,10 @@
    "zh": "我想买些水果。",
    "py": "Wǒ xiǎng mǎi xiē shuǐguǒ.",
    "en": "I want to buy some fruit."
-  }
+  },
+  "tones": [
+   1
+  ]
  },
  {
   "id": "w067",
@@ -868,7 +1016,11 @@
    "zh": "我有一些问题。",
    "py": "Wǒ yǒu yìxiē wèntí.",
    "en": "I have some questions."
-  }
+  },
+  "tones": [
+   4,
+   1
+  ]
  },
  {
   "id": "w068",
@@ -881,7 +1033,11 @@
    "zh": "有些人喜欢喝茶。",
    "py": "Yǒuxiē rén xǐhuan hē chá.",
    "en": "Some people like drinking tea."
-  }
+  },
+  "tones": [
+   3,
+   1
+  ]
  },
  {
   "id": "w069",
@@ -933,7 +1089,10 @@
    "zh": "你几岁？",
    "py": "Nǐ jǐ suì?",
    "en": "How old are you?"
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w073",
@@ -946,7 +1105,10 @@
    "zh": "我没有钱。",
    "py": "Wǒ méiyǒu qián.",
    "en": "I don't have money."
-  }
+  },
+  "tones": [
+   2
+  ]
  },
  {
   "id": "w074",
@@ -959,7 +1121,10 @@
    "zh": "一个苹果五块。",
    "py": "Yí ge píngguǒ wǔ kuài.",
    "en": "An apple is five yuan."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w075",
@@ -972,7 +1137,10 @@
    "zh": "这本书二十元。",
    "py": "Zhè běn shū èrshí yuán.",
    "en": "This book is 20 yuan."
-  }
+  },
+  "tones": [
+   2
+  ]
  },
  {
   "id": "w076",
@@ -985,7 +1153,10 @@
    "zh": "我家有五口人。",
    "py": "Wǒ jiā yǒu wǔ kǒu rén.",
    "en": "There are five people in my family."
-  }
+  },
+  "tones": [
+   1
+  ]
  },
  {
   "id": "w077",
@@ -998,7 +1169,11 @@
    "zh": "我很爱我的家人。",
    "py": "Wǒ hěn ài wǒ de jiārén.",
    "en": "I love my family very much."
-  }
+  },
+  "tones": [
+   1,
+   2
+  ]
  },
  {
   "id": "w078",
@@ -1102,7 +1277,11 @@
    "zh": "她女儿很漂亮。",
    "py": "Tā nǚ'ér hěn piàoliang.",
    "en": "Her daughter is very pretty."
-  }
+  },
+  "tones": [
+   3,
+   2
+  ]
  },
  {
   "id": "w086",
@@ -1141,7 +1320,10 @@
    "zh": "他是男老师。",
    "py": "Tā shì nán lǎoshī.",
    "en": "He is a male teacher."
-  }
+  },
+  "tones": [
+   2
+  ]
  },
  {
   "id": "w089",
@@ -1154,7 +1336,10 @@
    "zh": "我的老师是女的。",
    "py": "Wǒ de lǎoshī shì nǚ de.",
    "en": "My teacher is a woman."
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w090",
@@ -1193,7 +1378,11 @@
    "zh": "老师，你好！",
    "py": "Lǎoshī, nǐ hǎo!",
    "en": "Hello, teacher!"
-  }
+  },
+  "tones": [
+   3,
+   1
+  ]
  },
  {
   "id": "w093",
@@ -1219,7 +1408,11 @@
    "zh": "他是我的同学。",
    "py": "Tā shì wǒ de tóngxué.",
    "en": "He's my classmate."
-  }
+  },
+  "tones": [
+   2,
+   2
+  ]
  },
  {
   "id": "w095",
@@ -1232,7 +1425,11 @@
    "zh": "我想去看医生。",
    "py": "Wǒ xiǎng qù kàn yīshēng.",
    "en": "I want to see a doctor."
-  }
+  },
+  "tones": [
+   1,
+   1
+  ]
  },
  {
   "id": "w096",
@@ -1284,7 +1481,10 @@
    "zh": "我家有一只狗。",
    "py": "Wǒ jiā yǒu yì zhī gǒu.",
    "en": "My family has a dog."
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w100",
@@ -1297,7 +1497,10 @@
    "zh": "我喜欢猫。",
    "py": "Wǒ xǐhuan māo.",
    "en": "I like cats."
-  }
+  },
+  "tones": [
+   1
+  ]
  },
  {
   "id": "w101",
@@ -1323,7 +1526,11 @@
    "zh": "今天星期几？",
    "py": "Jīntiān xīngqī jǐ?",
    "en": "What day is it today?"
-  }
+  },
+  "tones": [
+   1,
+   1
+  ]
  },
  {
   "id": "w103",
@@ -1336,7 +1543,11 @@
    "zh": "明天是星期天。",
    "py": "Míngtiān shì xīngqītiān.",
    "en": "Tomorrow is Sunday."
-  }
+  },
+  "tones": [
+   2,
+   1
+  ]
  },
  {
   "id": "w104",
@@ -1349,7 +1560,11 @@
    "zh": "昨天我很忙。",
    "py": "Zuótiān wǒ hěn máng.",
    "en": "I was very busy yesterday."
-  }
+  },
+  "tones": [
+   2,
+   1
+  ]
  },
  {
   "id": "w105",
@@ -1362,7 +1577,11 @@
    "zh": "我今年三十岁。",
    "py": "Wǒ jīnnián sānshí suì.",
    "en": "I'm thirty this year."
-  }
+  },
+  "tones": [
+   1,
+   2
+  ]
  },
  {
   "id": "w106",
@@ -1375,7 +1594,11 @@
    "zh": "明年我想去中国。",
    "py": "Míngnián wǒ xiǎng qù Zhōngguó.",
    "en": "Next year I want to go to China."
-  }
+  },
+  "tones": [
+   2,
+   2
+  ]
  },
  {
   "id": "w107",
@@ -1388,7 +1611,11 @@
    "zh": "去年我在北京。",
    "py": "Qùnián wǒ zài Běijīng.",
    "en": "Last year I was in Beijing."
-  }
+  },
+  "tones": [
+   4,
+   2
+  ]
  },
  {
   "id": "w108",
@@ -1401,7 +1628,10 @@
    "zh": "一年有十二个月。",
    "py": "Yì nián yǒu shí'èr ge yuè.",
    "en": "A year has twelve months."
-  }
+  },
+  "tones": [
+   2
+  ]
  },
  {
   "id": "w109",
@@ -1414,7 +1644,10 @@
    "zh": "现在是十月。",
    "py": "Xiànzài shì shí yuè.",
    "en": "It's October now."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w110",
@@ -1427,7 +1660,10 @@
    "zh": "今天是十月一日。",
    "py": "Jīntiān shì shí yuè yī rì.",
    "en": "Today is October 1st."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w111",
@@ -1440,7 +1676,10 @@
    "zh": "你的生日是几号？",
    "py": "Nǐ de shēngrì shì jǐ hào?",
    "en": "What date is your birthday?"
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w112",
@@ -1453,7 +1692,10 @@
    "zh": "我去了三天。",
    "py": "Wǒ qù le sān tiān.",
    "en": "I went for three days."
-  }
+  },
+  "tones": [
+   1
+  ]
  },
  {
   "id": "w113",
@@ -1466,7 +1708,11 @@
    "zh": "这个星期我很忙。",
    "py": "Zhège xīngqī wǒ hěn máng.",
    "en": "I'm very busy this week."
-  }
+  },
+  "tones": [
+   1,
+   1
+  ]
  },
  {
   "id": "w114",
@@ -1505,7 +1751,11 @@
    "zh": "现在几点？",
    "py": "Xiànzài jǐ diǎn?",
    "en": "What time is it now?"
-  }
+  },
+  "tones": [
+   4,
+   4
+  ]
  },
  {
   "id": "w117",
@@ -1518,7 +1768,10 @@
    "zh": "我七点起床。",
    "py": "Wǒ qī diǎn qǐchuáng.",
    "en": "I get up at seven."
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w118",
@@ -1531,7 +1784,10 @@
    "zh": "现在八点十分。",
    "py": "Xiànzài bā diǎn shí fēn.",
    "en": "It's 8:10 now."
-  }
+  },
+  "tones": [
+   1
+  ]
  },
  {
   "id": "w119",
@@ -1544,7 +1800,11 @@
    "zh": "请等五分钟。",
    "py": "Qǐng děng wǔ fēnzhōng.",
    "en": "Please wait five minutes."
-  }
+  },
+  "tones": [
+   1,
+   1
+  ]
  },
  {
   "id": "w120",
@@ -1557,7 +1817,11 @@
    "zh": "我每天学习一个小时。",
    "py": "Wǒ měi tiān xuéxí yí ge xiǎoshí.",
    "en": "I study one hour every day."
-  }
+  },
+  "tones": [
+   3,
+   2
+  ]
  },
  {
   "id": "w121",
@@ -1583,7 +1847,11 @@
    "zh": "你有时间吗？",
    "py": "Nǐ yǒu shíjiān ma?",
    "en": "Do you have time?"
-  }
+  },
+  "tones": [
+   2,
+   1
+  ]
  },
  {
   "id": "w123",
@@ -1609,7 +1877,11 @@
    "zh": "我上午工作。",
    "py": "Wǒ shàngwǔ gōngzuò.",
    "en": "I work in the morning."
-  }
+  },
+  "tones": [
+   4,
+   3
+  ]
  },
  {
   "id": "w125",
@@ -1622,7 +1894,11 @@
    "zh": "中午我们吃饺子。",
    "py": "Zhōngwǔ wǒmen chī jiǎozi.",
    "en": "We'll eat dumplings at noon."
-  }
+  },
+  "tones": [
+   1,
+   3
+  ]
  },
  {
   "id": "w126",
@@ -1635,7 +1911,11 @@
    "zh": "下午我去商店。",
    "py": "Xiàwǔ wǒ qù shāngdiàn.",
    "en": "I'm going to the store this afternoon."
-  }
+  },
+  "tones": [
+   4,
+   3
+  ]
  },
  {
   "id": "w127",
@@ -1661,7 +1941,11 @@
    "zh": "白天我很忙。",
    "py": "Báitiān wǒ hěn máng.",
    "en": "I'm busy during the day."
-  }
+  },
+  "tones": [
+   2,
+   1
+  ]
  },
  {
   "id": "w129",
@@ -1674,7 +1958,10 @@
    "zh": "你来得很早。",
    "py": "Nǐ lái de hěn zǎo.",
    "en": "You came very early."
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w130",
@@ -1687,7 +1974,10 @@
    "zh": "太晚了，我要睡觉了。",
    "py": "Tài wǎn le, wǒ yào shuìjiào le.",
    "en": "It's late — I'm going to bed."
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w131",
@@ -1700,7 +1990,10 @@
    "zh": "学校前边有一个商店。",
    "py": "Xuéxiào qiánbian yǒu yí ge shāngdiàn.",
    "en": "There's a store in front of the school."
-  }
+  },
+  "tones": [
+   2
+  ]
  },
  {
   "id": "w132",
@@ -1713,7 +2006,10 @@
    "zh": "下课后我回家。",
    "py": "Xià kè hòu wǒ huí jiā.",
    "en": "I go home after class."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w133",
@@ -1726,7 +2022,10 @@
    "zh": "你想吃什么？",
    "py": "Nǐ xiǎng chī shénme?",
    "en": "What do you want to eat?"
-  }
+  },
+  "tones": [
+   1
+  ]
  },
  {
   "id": "w134",
@@ -1739,7 +2038,10 @@
    "zh": "我想喝茶。",
    "py": "Wǒ xiǎng hē chá.",
    "en": "I want to drink tea."
-  }
+  },
+  "tones": [
+   1
+  ]
  },
  {
   "id": "w135",
@@ -1752,7 +2054,10 @@
    "zh": "你吃饭了吗？",
    "py": "Nǐ chī fàn le ma?",
    "en": "Have you eaten?"
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w136",
@@ -1765,7 +2070,11 @@
    "zh": "我要一碗米饭。",
    "py": "Wǒ yào yì wǎn mǐfàn.",
    "en": "I'd like a bowl of rice."
-  }
+  },
+  "tones": [
+   3,
+   4
+  ]
  },
  {
   "id": "w137",
@@ -1778,7 +2087,11 @@
    "zh": "你吃早饭了吗？",
    "py": "Nǐ chī zǎofàn le ma?",
    "en": "Have you had breakfast?"
-  }
+  },
+  "tones": [
+   3,
+   4
+  ]
  },
  {
   "id": "w138",
@@ -1791,7 +2104,11 @@
    "zh": "我们一起吃午饭吧。",
    "py": "Wǒmen yìqǐ chī wǔfàn ba.",
    "en": "Let's have lunch together."
-  }
+  },
+  "tones": [
+   3,
+   4
+  ]
  },
  {
   "id": "w139",
@@ -1804,7 +2121,11 @@
    "zh": "晚饭吃什么？",
    "py": "Wǎnfàn chī shénme?",
    "en": "What's for dinner?"
-  }
+  },
+  "tones": [
+   3,
+   4
+  ]
  },
  {
   "id": "w140",
@@ -1817,7 +2138,11 @@
    "zh": "妈妈在做饭。",
    "py": "Māma zài zuò fàn.",
    "en": "Mom is cooking."
-  }
+  },
+  "tones": [
+   4,
+   4
+  ]
  },
  {
   "id": "w141",
@@ -1830,7 +2155,10 @@
    "zh": "这个菜很好吃。",
    "py": "Zhège cài hěn hǎochī.",
    "en": "This dish is delicious."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w142",
@@ -1843,7 +2171,10 @@
    "zh": "中国人喜欢喝茶。",
    "py": "Zhōngguó rén xǐhuan hē chá.",
    "en": "Chinese people like drinking tea."
-  }
+  },
+  "tones": [
+   2
+  ]
  },
  {
   "id": "w143",
@@ -1856,7 +2187,10 @@
    "zh": "我想喝水。",
    "py": "Wǒ xiǎng hē shuǐ.",
    "en": "I want to drink water."
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w144",
@@ -1869,7 +2203,11 @@
    "zh": "我早上喝牛奶。",
    "py": "Wǒ zǎoshang hē niúnǎi.",
    "en": "I drink milk in the morning."
-  }
+  },
+  "tones": [
+   2,
+   3
+  ]
  },
  {
   "id": "w145",
@@ -1895,7 +2233,11 @@
    "zh": "我喜欢吃苹果。",
    "py": "Wǒ xǐhuan chī píngguǒ.",
    "en": "I like eating apples."
-  }
+  },
+  "tones": [
+   2,
+   3
+  ]
  },
  {
   "id": "w147",
@@ -1921,7 +2263,11 @@
    "zh": "我早饭吃鸡蛋。",
    "py": "Wǒ zǎofàn chī jīdàn.",
    "en": "I eat eggs for breakfast."
-  }
+  },
+  "tones": [
+   1,
+   4
+  ]
  },
  {
   "id": "w149",
@@ -1934,7 +2280,11 @@
    "zh": "我想买面包。",
    "py": "Wǒ xiǎng mǎi miànbāo.",
    "en": "I want to buy bread."
-  }
+  },
+  "tones": [
+   4,
+   1
+  ]
  },
  {
   "id": "w150",
@@ -1986,7 +2336,11 @@
    "zh": "饺子很好吃！",
    "py": "Jiǎozi hěn hǎochī!",
    "en": "Dumplings are delicious!"
-  }
+  },
+  "tones": [
+   3,
+   1
+  ]
  },
  {
   "id": "w154",
@@ -1999,7 +2353,11 @@
    "zh": "我们去饭店吃饭吧。",
    "py": "Wǒmen qù fàndiàn chī fàn ba.",
    "en": "Let's go eat at a restaurant."
-  }
+  },
+  "tones": [
+   4,
+   4
+  ]
  },
  {
   "id": "w155",
@@ -2012,7 +2370,10 @@
    "zh": "我有一个妹妹。",
    "py": "Wǒ yǒu yí ge mèimei.",
    "en": "I have a younger sister."
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w156",
@@ -2025,7 +2386,11 @@
    "zh": "我没有时间。",
    "py": "Wǒ méiyǒu shíjiān.",
    "en": "I don't have time."
-  }
+  },
+  "tones": [
+   2,
+   3
+  ]
  },
  {
   "id": "w157",
@@ -2038,7 +2403,10 @@
    "zh": "我在家。",
    "py": "Wǒ zài jiā.",
    "en": "I'm at home."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w158",
@@ -2051,7 +2419,10 @@
    "zh": "我们去吃饭吧！",
    "py": "Wǒmen qù chī fàn ba!",
    "en": "Let's go eat!"
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w159",
@@ -2064,7 +2435,10 @@
    "zh": "你来我家吧！",
    "py": "Nǐ lái wǒ jiā ba!",
    "en": "Come over to my place!"
-  }
+  },
+  "tones": [
+   2
+  ]
  },
  {
   "id": "w160",
@@ -2077,7 +2451,10 @@
    "zh": "我想回家。",
    "py": "Wǒ xiǎng huí jiā.",
    "en": "I want to go home."
-  }
+  },
+  "tones": [
+   2
+  ]
  },
  {
   "id": "w161",
@@ -2090,7 +2467,10 @@
    "zh": "我到了！",
    "py": "Wǒ dào le!",
    "en": "I've arrived!"
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w162",
@@ -2103,7 +2483,10 @@
    "zh": "我在看书。",
    "py": "Wǒ zài kàn shū.",
    "en": "I'm reading a book."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w163",
@@ -2116,7 +2499,11 @@
    "zh": "你看见我的手机了吗？",
    "py": "Nǐ kànjiàn wǒ de shǒujī le ma?",
    "en": "Did you see my phone?"
-  }
+  },
+  "tones": [
+   4,
+   4
+  ]
  },
  {
   "id": "w164",
@@ -2129,7 +2516,10 @@
    "zh": "我喜欢听歌。",
    "py": "Wǒ xǐhuan tīng gē.",
    "en": "I like listening to songs."
-  }
+  },
+  "tones": [
+   1
+  ]
  },
  {
   "id": "w165",
@@ -2142,7 +2532,11 @@
    "zh": "我听见了。",
    "py": "Wǒ tīngjiàn le.",
    "en": "I heard it."
-  }
+  },
+  "tones": [
+   1,
+   4
+  ]
  },
  {
   "id": "w166",
@@ -2155,7 +2549,10 @@
    "zh": "请再说一次。",
    "py": "Qǐng zài shuō yí cì.",
    "en": "Please say it again."
-  }
+  },
+  "tones": [
+   1
+  ]
  },
  {
   "id": "w167",
@@ -2168,7 +2565,11 @@
    "zh": "他不喜欢说话。",
    "py": "Tā bù xǐhuan shuō huà.",
    "en": "He doesn't like to talk."
-  }
+  },
+  "tones": [
+   1,
+   4
+  ]
  },
  {
   "id": "w168",
@@ -2181,7 +2582,10 @@
    "zh": "明天见！",
    "py": "Míngtiān jiàn!",
    "en": "See you tomorrow!"
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w169",
@@ -2194,7 +2598,10 @@
    "zh": "你在做什么？",
    "py": "Nǐ zài zuò shénme?",
    "en": "What are you doing?"
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w170",
@@ -2207,7 +2614,10 @@
    "zh": "我想你。",
    "py": "Wǒ xiǎng nǐ.",
    "en": "I miss you."
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w171",
@@ -2233,7 +2643,11 @@
    "zh": "不要说话。",
    "py": "Búyào shuō huà.",
    "en": "Don't talk."
-  }
+  },
+  "tones": [
+   2,
+   4
+  ]
  },
  {
   "id": "w173",
@@ -2259,7 +2673,10 @@
    "zh": "我爱我的家。",
    "py": "Wǒ ài wǒ de jiā.",
    "en": "I love my family."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w175",
@@ -2272,7 +2689,10 @@
    "zh": "我会说汉语。",
    "py": "Wǒ huì shuō Hànyǔ.",
    "en": "I can speak Chinese."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w176",
@@ -2285,7 +2705,10 @@
    "zh": "你能来吗？",
    "py": "Nǐ néng lái ma?",
    "en": "Can you come?"
-  }
+  },
+  "tones": [
+   2
+  ]
  },
  {
   "id": "w177",
@@ -2311,7 +2734,11 @@
    "zh": "我不知道。",
    "py": "Wǒ bù zhīdào.",
    "en": "I don't know."
-  }
+  },
+  "tones": [
+   1,
+   4
+  ]
  },
  {
   "id": "w179",
@@ -2337,7 +2764,10 @@
    "zh": "我想买一件衣服。",
    "py": "Wǒ xiǎng mǎi yí jiàn yīfu.",
    "en": "I want to buy a piece of clothing."
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w181",
@@ -2350,7 +2780,10 @@
    "zh": "这个商店卖水果。",
    "py": "Zhège shāngdiàn mài shuǐguǒ.",
    "en": "This store sells fruit."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w182",
@@ -2363,7 +2796,10 @@
    "zh": "请给我一杯水。",
    "py": "Qǐng gěi wǒ yì bēi shuǐ.",
    "en": "Please give me a glass of water."
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w183",
@@ -2376,7 +2812,10 @@
    "zh": "我在找我的手机。",
    "py": "Wǒ zài zhǎo wǒ de shǒujī.",
    "en": "I'm looking for my phone."
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w184",
@@ -2389,7 +2828,10 @@
    "zh": "我可以问你一个问题吗？",
    "py": "Wǒ kěyǐ wèn nǐ yí ge wèntí ma?",
    "en": "Can I ask you a question?"
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w185",
@@ -2402,7 +2844,11 @@
    "zh": "没问题！",
    "py": "Méi wèntí!",
    "en": "No problem!"
-  }
+  },
+  "tones": [
+   4,
+   2
+  ]
  },
  {
   "id": "w186",
@@ -2415,7 +2861,10 @@
    "zh": "你住在哪儿？",
    "py": "Nǐ zhù zài nǎr?",
    "en": "Where do you live?"
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w187",
@@ -2428,7 +2877,10 @@
    "zh": "我坐出租车去。",
    "py": "Wǒ zuò chūzūchē qù.",
    "en": "I'll take a taxi."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w188",
@@ -2441,7 +2893,10 @@
    "zh": "请开门。",
    "py": "Qǐng kāi mén.",
    "en": "Please open the door."
-  }
+  },
+  "tones": [
+   1
+  ]
  },
  {
   "id": "w189",
@@ -2454,7 +2909,11 @@
    "zh": "我会开车。",
    "py": "Wǒ huì kāi chē.",
    "en": "I can drive."
-  }
+  },
+  "tones": [
+   1,
+   1
+  ]
  },
  {
   "id": "w190",
@@ -2467,7 +2926,10 @@
    "zh": "今天穿什么？",
    "py": "Jīntiān chuān shénme?",
    "en": "What should I wear today?"
-  }
+  },
+  "tones": [
+   1
+  ]
  },
  {
   "id": "w191",
@@ -2480,7 +2942,10 @@
    "zh": "周末我们去玩。",
    "py": "Zhōumò wǒmen qù wán.",
    "en": "We'll go have fun on the weekend."
-  }
+  },
+  "tones": [
+   2
+  ]
  },
  {
   "id": "w192",
@@ -2493,7 +2958,10 @@
    "zh": "她很会唱歌。",
    "py": "Tā hěn huì chàng gē.",
    "en": "She sings really well."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w193",
@@ -2506,7 +2974,10 @@
    "zh": "她喜欢唱歌。",
    "py": "Tā xǐhuan chàng gē.",
    "en": "She likes singing."
-  }
+  },
+  "tones": [
+   1
+  ]
  },
  {
   "id": "w194",
@@ -2519,7 +2990,10 @@
    "zh": "我会写汉字。",
    "py": "Wǒ huì xiě Hànzì.",
    "en": "I can write Chinese characters."
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w195",
@@ -2532,7 +3006,10 @@
    "zh": "请读一下。",
    "py": "Qǐng dú yíxià.",
    "en": "Please read it aloud."
-  }
+  },
+  "tones": [
+   2
+  ]
  },
  {
   "id": "w196",
@@ -2545,7 +3022,11 @@
    "zh": "他在读书。",
    "py": "Tā zài dú shū.",
    "en": "He's reading."
-  }
+  },
+  "tones": [
+   2,
+   1
+  ]
  },
  {
   "id": "w197",
@@ -2558,7 +3039,10 @@
    "zh": "我在学汉语。",
    "py": "Wǒ zài xué Hànyǔ.",
    "en": "I'm learning Chinese."
-  }
+  },
+  "tones": [
+   2
+  ]
  },
  {
   "id": "w198",
@@ -2571,7 +3055,11 @@
    "zh": "我每天学习汉语。",
    "py": "Wǒ měi tiān xuéxí Hànyǔ.",
    "en": "I study Chinese every day."
-  }
+  },
+  "tones": [
+   2,
+   2
+  ]
  },
  {
   "id": "w199",
@@ -2584,7 +3072,10 @@
    "zh": "他还在睡。",
    "py": "Tā hái zài shuì.",
    "en": "He's still sleeping."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w200",
@@ -2597,7 +3088,11 @@
    "zh": "我十一点睡觉。",
    "py": "Wǒ shíyī diǎn shuì jiào.",
    "en": "I go to bed at eleven."
-  }
+  },
+  "tones": [
+   4,
+   4
+  ]
  },
  {
   "id": "w201",
@@ -2610,7 +3105,11 @@
    "zh": "你几点起床？",
    "py": "Nǐ jǐ diǎn qǐchuáng?",
    "en": "What time do you get up?"
-  }
+  },
+  "tones": [
+   3,
+   2
+  ]
  },
  {
   "id": "w202",
@@ -2636,7 +3135,11 @@
    "zh": "你做什么工作？",
    "py": "Nǐ zuò shénme gōngzuò?",
    "en": "What do you do for work?"
-  }
+  },
+  "tones": [
+   1,
+   4
+  ]
  },
  {
   "id": "w204",
@@ -2662,7 +3165,11 @@
    "zh": "我八点上班。",
    "py": "Wǒ bā diǎn shàng bān.",
    "en": "I start work at eight."
-  }
+  },
+  "tones": [
+   4,
+   1
+  ]
  },
  {
   "id": "w206",
@@ -2675,7 +3182,11 @@
    "zh": "你几点下班？",
    "py": "Nǐ jǐ diǎn xià bān?",
    "en": "What time do you get off work?"
-  }
+  },
+  "tones": [
+   4,
+   1
+  ]
  },
  {
   "id": "w207",
@@ -2688,7 +3199,11 @@
    "zh": "弟弟七点去上学。",
    "py": "Dìdi qī diǎn qù shàng xué.",
    "en": "My younger brother goes to school at seven."
-  }
+  },
+  "tones": [
+   4,
+   2
+  ]
  },
  {
   "id": "w208",
@@ -2701,7 +3216,11 @@
    "zh": "我们九点上课。",
    "py": "Wǒmen jiǔ diǎn shàng kè.",
    "en": "Class starts at nine."
-  }
+  },
+  "tones": [
+   4,
+   4
+  ]
  },
  {
   "id": "w209",
@@ -2714,7 +3233,11 @@
    "zh": "下课了！",
    "py": "Xià kè le!",
    "en": "Class is over!"
-  }
+  },
+  "tones": [
+   4,
+   4
+  ]
  },
  {
   "id": "w210",
@@ -2727,7 +3250,10 @@
    "zh": "这是我的手机。",
    "py": "Zhè shì wǒ de shǒujī.",
    "en": "This is my phone."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w211",
@@ -2740,7 +3266,10 @@
    "zh": "那是什么？",
    "py": "Nà shì shénme?",
    "en": "What is that?"
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w212",
@@ -2753,7 +3282,10 @@
    "zh": "你要哪个？",
    "py": "Nǐ yào nǎ ge?",
    "en": "Which one do you want?"
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w213",
@@ -2766,7 +3298,11 @@
    "zh": "这些是我的书。",
    "py": "Zhèxiē shì wǒ de shū.",
    "en": "These are my books."
-  }
+  },
+  "tones": [
+   4,
+   1
+  ]
  },
  {
   "id": "w214",
@@ -2779,7 +3315,11 @@
    "zh": "那些人是谁？",
    "py": "Nàxiē rén shì shéi?",
    "en": "Who are those people?"
-  }
+  },
+  "tones": [
+   4,
+   1
+  ]
  },
  {
   "id": "w215",
@@ -2792,7 +3332,11 @@
    "zh": "你喜欢哪些菜？",
    "py": "Nǐ xǐhuan nǎxiē cài?",
    "en": "Which dishes do you like?"
-  }
+  },
+  "tones": [
+   3,
+   1
+  ]
  },
  {
   "id": "w216",
@@ -2844,7 +3388,11 @@
    "zh": "这里很漂亮。",
    "py": "Zhèlǐ hěn piàoliang.",
    "en": "It's beautiful here."
-  }
+  },
+  "tones": [
+   4,
+   3
+  ]
  },
  {
   "id": "w220",
@@ -2857,7 +3405,11 @@
    "zh": "那里有很多人。",
    "py": "Nàlǐ yǒu hěn duō rén.",
    "en": "There are lots of people there."
-  }
+  },
+  "tones": [
+   4,
+   3
+  ]
  },
  {
   "id": "w221",
@@ -2883,7 +3435,11 @@
    "zh": "请这边走。",
    "py": "Qǐng zhèbiān zǒu.",
    "en": "This way, please."
-  }
+  },
+  "tones": [
+   4,
+   1
+  ]
  },
  {
   "id": "w223",
@@ -2896,7 +3452,11 @@
    "zh": "商店在那边。",
    "py": "Shāngdiàn zài nàbiān.",
    "en": "The store is over there."
-  }
+  },
+  "tones": [
+   4,
+   1
+  ]
  },
  {
   "id": "w224",
@@ -2909,7 +3469,10 @@
    "zh": "我坐你边上。",
    "py": "Wǒ zuò nǐ biān shang.",
    "en": "I'll sit beside you."
-  }
+  },
+  "tones": [
+   1
+  ]
  },
  {
   "id": "w225",
@@ -2922,7 +3485,10 @@
    "zh": "他是谁？",
    "py": "Tā shì shéi?",
    "en": "Who is he?"
-  }
+  },
+  "tones": [
+   2
+  ]
  },
  {
   "id": "w226",
@@ -2961,7 +3527,10 @@
    "zh": "书在桌子上。",
    "py": "Shū zài zhuōzi shang.",
    "en": "The book is on the table."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w229",
@@ -2974,7 +3543,10 @@
    "zh": "猫在椅子下。",
    "py": "Māo zài yǐzi xià.",
    "en": "The cat is under the chair."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w230",
@@ -2987,7 +3559,10 @@
    "zh": "妈妈在房间里。",
    "py": "Māma zài fángjiān lǐ.",
    "en": "Mom is in the room."
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w231",
@@ -3000,7 +3575,10 @@
    "zh": "外面很冷。",
    "py": "Wàimiàn hěn lěng.",
    "en": "It's cold outside."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w232",
@@ -3026,7 +3604,11 @@
    "zh": "我们的学校很大。",
    "py": "Wǒmen de xuéxiào hěn dà.",
    "en": "Our school is very big."
-  }
+  },
+  "tones": [
+   2,
+   4
+  ]
  },
  {
   "id": "w234",
@@ -3039,7 +3621,11 @@
    "zh": "她在大学学习。",
    "py": "Tā zài dàxué xuéxí.",
    "en": "She studies at university."
-  }
+  },
+  "tones": [
+   4,
+   2
+  ]
  },
  {
   "id": "w235",
@@ -3052,7 +3638,11 @@
    "zh": "我弟弟上中学。",
    "py": "Wǒ dìdi shàng zhōngxué.",
    "en": "My younger brother is in high school."
-  }
+  },
+  "tones": [
+   1,
+   2
+  ]
  },
  {
   "id": "w236",
@@ -3065,7 +3655,11 @@
    "zh": "我家前边有一个小学。",
    "py": "Wǒ jiā qiánbian yǒu yí ge xiǎoxué.",
    "en": "There's an elementary school in front of my home."
-  }
+  },
+  "tones": [
+   3,
+   2
+  ]
  },
  {
   "id": "w237",
@@ -3078,7 +3672,11 @@
    "zh": "我在公司工作。",
    "py": "Wǒ zài gōngsī gōngzuò.",
    "en": "I work at a company."
-  }
+  },
+  "tones": [
+   1,
+   1
+  ]
  },
  {
   "id": "w238",
@@ -3091,7 +3689,11 @@
    "zh": "医院在哪儿？",
    "py": "Yīyuàn zài nǎr?",
    "en": "Where is the hospital?"
-  }
+  },
+  "tones": [
+   1,
+   4
+  ]
  },
  {
   "id": "w239",
@@ -3104,7 +3706,11 @@
    "zh": "这个商店很大。",
    "py": "Zhège shāngdiàn hěn dà.",
    "en": "This store is very big."
-  }
+  },
+  "tones": [
+   1,
+   4
+  ]
  },
  {
   "id": "w240",
@@ -3117,7 +3723,10 @@
    "zh": "这家店卖什么？",
    "py": "Zhè jiā diàn mài shénme?",
    "en": "What does this shop sell?"
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w241",
@@ -3130,7 +3739,11 @@
    "zh": "我去超市买水果。",
    "py": "Wǒ qù chāoshì mǎi shuǐguǒ.",
    "en": "I'm going to the supermarket to buy fruit."
-  }
+  },
+  "tones": [
+   1,
+   4
+  ]
  },
  {
   "id": "w242",
@@ -3143,7 +3756,11 @@
    "zh": "书店在学校前边。",
    "py": "Shūdiàn zài xuéxiào qiánbian.",
    "en": "The bookstore is in front of the school."
-  }
+  },
+  "tones": [
+   1,
+   4
+  ]
  },
  {
   "id": "w243",
@@ -3169,7 +3786,11 @@
    "zh": "我的房间很小。",
    "py": "Wǒ de fángjiān hěn xiǎo.",
    "en": "My room is small."
-  }
+  },
+  "tones": [
+   2,
+   1
+  ]
  },
  {
   "id": "w245",
@@ -3195,7 +3816,10 @@
    "zh": "这本书很好看。",
    "py": "Zhè běn shū hěn hǎokàn.",
    "en": "This book is good."
-  }
+  },
+  "tones": [
+   1
+  ]
  },
  {
   "id": "w247",
@@ -3208,7 +3832,10 @@
    "zh": "这个字我不认识。",
    "py": "Zhège zì wǒ bú rènshi.",
    "en": "I don't know this character."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w248",
@@ -3221,7 +3848,11 @@
    "zh": "汉字很漂亮。",
    "py": "Hànzì hěn piàoliang.",
    "en": "Chinese characters are beautiful."
-  }
+  },
+  "tones": [
+   4,
+   4
+  ]
  },
  {
   "id": "w249",
@@ -3234,7 +3865,11 @@
    "zh": "你会说汉语吗？",
    "py": "Nǐ huì shuō Hànyǔ ma?",
    "en": "Can you speak Chinese?"
-  }
+  },
+  "tones": [
+   4,
+   3
+  ]
  },
  {
   "id": "w250",
@@ -3247,7 +3882,11 @@
    "zh": "我在学中文。",
    "py": "Wǒ zài xué Zhōngwén.",
    "en": "I'm learning Chinese."
-  }
+  },
+  "tones": [
+   1,
+   2
+  ]
  },
  {
   "id": "w251",
@@ -3260,7 +3899,10 @@
    "zh": "今天有汉语课。",
    "py": "Jīntiān yǒu Hànyǔ kè.",
    "en": "There's Chinese class today."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w252",
@@ -3273,7 +3915,11 @@
    "zh": "我的手机在哪儿？",
    "py": "Wǒ de shǒujī zài nǎr?",
    "en": "Where's my phone?"
-  }
+  },
+  "tones": [
+   3,
+   1
+  ]
  },
  {
   "id": "w253",
@@ -3286,7 +3932,11 @@
    "zh": "你的电话！",
    "py": "Nǐ de diànhuà!",
    "en": "Your phone's ringing!"
-  }
+  },
+  "tones": [
+   4,
+   4
+  ]
  },
  {
   "id": "w254",
@@ -3299,7 +3949,11 @@
    "zh": "我用电脑工作。",
    "py": "Wǒ yòng diànnǎo gōngzuò.",
    "en": "I work on a computer."
-  }
+  },
+  "tones": [
+   4,
+   3
+  ]
  },
  {
   "id": "w255",
@@ -3312,7 +3966,11 @@
    "zh": "我不喜欢看电视。",
    "py": "Wǒ bù xǐhuan kàn diànshì.",
    "en": "I don't like watching TV."
-  }
+  },
+  "tones": [
+   4,
+   4
+  ]
  },
  {
   "id": "w256",
@@ -3325,7 +3983,11 @@
    "zh": "我们去看电影吧。",
    "py": "Wǒmen qù kàn diànyǐng ba.",
    "en": "Let's go see a movie."
-  }
+  },
+  "tones": [
+   4,
+   3
+  ]
  },
  {
   "id": "w257",
@@ -3377,7 +4039,10 @@
    "zh": "这是我的车。",
    "py": "Zhè shì wǒ de chē.",
    "en": "This is my car."
-  }
+  },
+  "tones": [
+   1
+  ]
  },
  {
   "id": "w261",
@@ -3403,7 +4068,11 @@
    "zh": "我坐火车去北京。",
    "py": "Wǒ zuò huǒchē qù Běijīng.",
    "en": "I'm taking the train to Beijing."
-  }
+  },
+  "tones": [
+   3,
+   1
+  ]
  },
  {
   "id": "w263",
@@ -3416,7 +4085,11 @@
    "zh": "我坐飞机去中国。",
    "py": "Wǒ zuò fēijī qù Zhōngguó.",
    "en": "I'm flying to China."
-  }
+  },
+  "tones": [
+   1,
+   1
+  ]
  },
  {
   "id": "w264",
@@ -3429,7 +4102,10 @@
    "zh": "你有什么事？",
    "py": "Nǐ yǒu shénme shì?",
    "en": "What's up? / What do you need?"
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w265",
@@ -3442,7 +4118,10 @@
    "zh": "这个房间很大。",
    "py": "Zhège fángjiān hěn dà.",
    "en": "This room is big."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w266",
@@ -3455,7 +4134,10 @@
    "zh": "我的狗很小。",
    "py": "Wǒ de gǒu hěn xiǎo.",
    "en": "My dog is small."
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w267",
@@ -3468,7 +4150,10 @@
    "zh": "这是新手机。",
    "py": "Zhè shì xīn shǒujī.",
    "en": "This is a new phone."
-  }
+  },
+  "tones": [
+   1
+  ]
  },
  {
   "id": "w268",
@@ -3481,7 +4166,10 @@
    "zh": "这个太贵了！",
    "py": "Zhège tài guì le!",
    "en": "This is too expensive!"
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w269",
@@ -3520,7 +4208,11 @@
    "zh": "这个电影很好看。",
    "py": "Zhège diànyǐng hěn hǎokàn.",
    "en": "This movie is good."
-  }
+  },
+  "tones": [
+   3,
+   4
+  ]
  },
  {
   "id": "w272",
@@ -3533,7 +4225,11 @@
    "zh": "这首歌很好听。",
    "py": "Zhè shǒu gē hěn hǎotīng.",
    "en": "This song is nice."
-  }
+  },
+  "tones": [
+   3,
+   1
+  ]
  },
  {
   "id": "w273",
@@ -3559,7 +4255,10 @@
    "zh": "你忙吗？",
    "py": "Nǐ máng ma?",
    "en": "Are you busy?"
-  }
+  },
+  "tones": [
+   2
+  ]
  },
  {
   "id": "w275",
@@ -3572,7 +4271,10 @@
    "zh": "今天很冷。",
    "py": "Jīntiān hěn lěng.",
    "en": "It's cold today."
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w276",
@@ -3585,7 +4287,10 @@
    "zh": "今天太热了。",
    "py": "Jīntiān tài rè le.",
    "en": "It's too hot today."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w277",
@@ -3598,7 +4303,10 @@
    "zh": "他病了。",
    "py": "Tā bìng le.",
    "en": "He's sick."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w278",
@@ -3611,7 +4319,11 @@
    "zh": "我生病了。",
    "py": "Wǒ shēng bìng le.",
    "en": "I got sick."
-  }
+  },
+  "tones": [
+   1,
+   4
+  ]
  },
  {
   "id": "w279",
@@ -3624,7 +4336,11 @@
    "zh": "我下午去看病。",
    "py": "Wǒ xiàwǔ qù kàn bìng.",
    "en": "I'm seeing a doctor this afternoon."
-  }
+  },
+  "tones": [
+   4,
+   4
+  ]
  },
  {
   "id": "w280",
@@ -3637,7 +4353,11 @@
    "zh": "今天天气怎么样？",
    "py": "Jīntiān tiānqì zěnmeyàng?",
    "en": "How's the weather today?"
-  }
+  },
+  "tones": [
+   1,
+   4
+  ]
  },
  {
   "id": "w281",
@@ -3650,7 +4370,10 @@
    "zh": "雨很大。",
    "py": "Yǔ hěn dà.",
    "en": "The rain is heavy."
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w282",
@@ -3663,7 +4386,11 @@
    "zh": "明天会下雨。",
    "py": "Míngtiān huì xià yǔ.",
    "en": "It will rain tomorrow."
-  }
+  },
+  "tones": [
+   4,
+   3
+  ]
  },
  {
   "id": "w283",
@@ -3676,7 +4403,10 @@
    "zh": "北京冬天会下雪。",
    "py": "Běijīng dōngtiān huì xià xuě.",
    "en": "It snows in Beijing in winter."
-  }
+  },
+  "tones": [
+   3
+  ]
  },
  {
   "id": "w284",
@@ -3702,7 +4432,10 @@
    "zh": "太好了！",
    "py": "Tài hǎo le!",
    "en": "Great!"
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w286",
@@ -3715,7 +4448,11 @@
    "zh": "我非常喜欢中国菜。",
    "py": "Wǒ fēicháng xǐhuan Zhōngguó cài.",
    "en": "I really love Chinese food."
-  }
+  },
+  "tones": [
+   1,
+   2
+  ]
  },
  {
   "id": "w287",
@@ -3728,7 +4465,10 @@
    "zh": "你真好！",
    "py": "Nǐ zhēn hǎo!",
    "en": "You're so kind!"
-  }
+  },
+  "tones": [
+   1
+  ]
  },
  {
   "id": "w288",
@@ -3741,7 +4481,10 @@
    "zh": "请再说一遍。",
    "py": "Qǐng zài shuō yí biàn.",
    "en": "Please say it once more."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w289",
@@ -3767,7 +4510,11 @@
    "zh": "我正在吃饭。",
    "py": "Wǒ zhèngzài chī fàn.",
    "en": "I'm eating right now."
-  }
+  },
+  "tones": [
+   4,
+   4
+  ]
  },
  {
   "id": "w291",
@@ -3780,7 +4527,10 @@
    "zh": "你说得对。",
    "py": "Nǐ shuō de duì.",
    "en": "You're right."
-  }
+  },
+  "tones": [
+   4
+  ]
  },
  {
   "id": "w292",

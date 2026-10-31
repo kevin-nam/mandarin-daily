@@ -1,10 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { Grade } from 'ts-fsrs'
-import { DIALOGUES, TONE_ITEMS, WORD_BY_ID, target, toneOf, type Word } from './data'
+import { DIALOGUES, PAIR_ITEMS, TONE_ITEMS, TONE_VOICES, WORD_BY_ID, target, voiceKey, type Word } from './data'
 import { epoch, lineKey, play, sleep, stop, wordKey } from './audio'
 import {
-  byRisk, dueKeys, grade, introduce, logDay, markKnown, newQuota, nextNewItems, parseKey, Rating, streak,
-  wordsLearned, type AppState,
+  byRisk, dueKeys, grade, introduce, logDay, markKnown, newQuota, nextNewItems, parseKey, phrasesLearned, Rating,
+  streak, wordsLearned, type AppState,
 } from './store'
 import { PlayButton, StepHeader, WordFace, shuffle } from './ui'
 
@@ -14,8 +14,8 @@ type StepId = 'reviews' | 'new' | 'drill' | 'dialogue' | 'tones' | 'done'
 const STEPS: { id: StepId; label: string; minutes: number }[] = [
   { id: 'reviews', label: 'Review', minutes: 8 },
   { id: 'new', label: 'New words', minutes: 5 },
-  { id: 'drill', label: 'Speak', minutes: 7 },
-  { id: 'dialogue', label: 'Dialogue', minutes: 3 },
+  { id: 'drill', label: 'Speak', minutes: 6 },
+  { id: 'dialogue', label: 'Dialogue', minutes: 4 },
   { id: 'tones', label: 'Tones', minutes: 2 },
 ]
 
@@ -135,12 +135,14 @@ function Reviews({ state, commit, onDone }: { state: AppState; commit: Commit; o
     setRevealed(true)
     if (kind === 'speak') play(t.key, t.zh)
     if (kind === 'read') play(wordKey(w.id), w.hanzi)
+    if (kind === 'sentence') play(t.key, t.zh)
   }
 
   const prompt = {
     listen: 'Listen. What does it mean?',
     speak: 'Say it in Mandarin. Whispering or mouthing it counts.',
     read: 'Read it. Pinyin and meaning?',
+    sentence: 'Read the sentence. What does it say?',
   }[kind]
 
   return (
@@ -162,6 +164,7 @@ function Reviews({ state, commit, onDone }: { state: AppState; commit: Commit; o
             </div>
           )}
           {kind === 'read' && <div className={`hanzi ${w.kind === 'phrase' ? 'phrase' : 'huge'}`}>{w.hanzi}</div>}
+          {kind === 'sentence' && <div className="hanzi phrase">{w.sentence.zh}</div>}
         </div>
       )}
       {revealed && <WordFace w={w} />}
@@ -301,7 +304,8 @@ function NewWords({ state, commit, onDone }: { state: AppState; commit: Commit; 
 interface DrillItem { w: Word; hits: number }
 
 /** Time to form the answer: longer sentences need longer. */
-const thinkSeconds = (w: Word) => Math.min(12, Math.max(5, Math.round(2 + [...target(w).zh].length * 0.5)))
+const thinkFor = (zh: string) => Math.min(12, Math.max(5, Math.round(2 + [...zh].length * 0.5)))
+const thinkSeconds = (w: Word) => thinkFor(target(w).zh)
 
 function Drill({ state, learnedNow, onDone }: { state: AppState; learnedNow: string[]; onDone: () => void }) {
   const [queue, setQueue] = useState<DrillItem[]>(() => {
@@ -343,10 +347,10 @@ function Drill({ state, learnedNow, onDone }: { state: AppState; learnedNow: str
 
   const mark = (ok: boolean) => {
     stop()
-    const timeUp = Date.now() - start.current > 7 * 60 * 1000
+    const timeUp = Date.now() - start.current > 6 * 60 * 1000
     const next = (() => {
       const [cur, ...rest] = queue
-      if (timeUp) return [] // 7-minute cap reached
+      if (timeUp) return [] // 6-minute cap reached
       const hits = ok ? cur.hits + 1 : 0
       if (hits >= 2) return rest // retired: recalled twice with growing gaps
       const gap = ok ? 5 : 2 // expanding interval: short after a miss, longer after a hit
@@ -391,8 +395,9 @@ function Drill({ state, learnedNow, onDone }: { state: AppState; learnedNow: str
 /* ---------------- Dialogue: listen → read → shadow ---------------- */
 
 function pickDialogue(state: AppState) {
-  const n = wordsLearned(state)
-  const unlocked = DIALOGUES.filter((d) => d.unlockAfter <= n)
+  const words = wordsLearned(state)
+  const phrases = phrasesLearned(state)
+  const unlocked = DIALOGUES.filter((d) => d.unlockAfter <= words && (d.unlockAfterPhrases ?? 0) <= phrases)
   if (unlocked.length === 0) return DIALOGUES[0]
   // Mostly the newest unlocked one; sometimes revisit an older one.
   return Math.random() < 0.6 ? unlocked[unlocked.length - 1] : unlocked[Math.floor(Math.random() * unlocked.length)]
@@ -400,8 +405,9 @@ function pickDialogue(state: AppState) {
 
 function DialogueStep({ state, onDone }: { state: AppState; onDone: () => void }) {
   const learned = wordsLearned(state)
-  const d = useMemo(() => pickDialogue(state), [learned]) // eslint-disable-line react-hooks/exhaustive-deps
-  const [phase, setPhase] = useState<0 | 1 | 2>(0)
+  const phrases = phrasesLearned(state)
+  const d = useMemo(() => pickDialogue(state), [learned, phrases]) // eslint-disable-line react-hooks/exhaustive-deps
+  const [phase, setPhase] = useState<0 | 1 | 2 | 3>(0)
   const [active, setActive] = useState(-1)
   const [slow, setSlow] = useState(false)
   const [playing, setPlaying] = useState(false)
@@ -420,20 +426,57 @@ function DialogueStep({ state, onDone }: { state: AppState; onDone: () => void }
     setPlaying(false)
   }
 
+  // Role-play: the app plays the other speaker; you say your line before the model plays.
+  const [me, setMe] = useState(d.you ?? 'B')
+  const [line, setLine] = useState(-1)
+  const [reveal, setReveal] = useState(false)
+  const [countdown, setCountdown] = useState(0)
+  const run = useRef(0) // bumped to cancel a running role-play
+  const skip = useRef(false)
+  useEffect(() => () => { run.current++ }, [])
+
+  const rolePlay = async () => {
+    const id = ++run.current
+    const live = () => run.current === id
+    setPlaying(true)
+    for (let i = 0; i < d.lines.length && live(); i++) {
+      const l = d.lines[i]
+      setLine(i)
+      if (l.s === me) {
+        setReveal(false)
+        skip.current = false
+        for (let s = thinkFor(l.zh); s > 0 && !skip.current && live(); s--) {
+          setCountdown(s)
+          await sleep(1000)
+        }
+        setCountdown(0)
+        if (!live()) break
+      }
+      setReveal(true)
+      await play(lineKey(d.id, i), l.zh, { slow })
+      await sleep(l.s === me ? 1200 : 500)
+    }
+    if (live()) setPlaying(false)
+  }
+
+  const cancelRun = () => { run.current++; stop(); setPlaying(false) }
+
   const hints = [
     'Listen with no text. How much do you catch?',
     'Listen again while reading.',
     'Shadow: repeat each line after it plays, whispering is fine (tap a line to replay).',
+    `Role-play: you're ${me}. Say your line from the English before the answer plays.`,
   ]
+  const lastLine = line === d.lines.length - 1 && !playing
 
   return (
     <div className="card">
-      <StepHeader title={d.title} hint={hints[phase]} right={<span className="count">{phase + 1}/3</span>} />
+      <StepHeader title={d.title} hint={hints[phase]} right={<span className="count">{phase + 1}/4</span>} />
       {phase === 0 ? (
         <div className="center-col">
           <button className="play big" onClick={() => playAll()} disabled={playing}>{playing ? '…' : '▶'}</button>
         </div>
-      ) : (
+      ) : phase < 3 ? (
         <div className="dialogue">
           {d.lines.map((l, i) => (
             <div
@@ -453,45 +496,91 @@ function DialogueStep({ state, onDone }: { state: AppState; onDone: () => void }
             <label className="toggle"><input type="checkbox" checked={slow} onChange={(e) => setSlow(e.target.checked)} /> slow</label>
           </div>
         </div>
+      ) : (
+        <div className="dialogue">
+          {d.lines.slice(0, line + 1).map((l, i) => {
+            const hidden = i === line && l.s === me && !reveal
+            return (
+              <div key={i} className={`line ${l.s === 'A' ? 'a' : 'b'} ${l.s === me ? 'mine' : ''} ${i === line ? 'active' : ''}`}>
+                {hidden ? (
+                  <>
+                    <div className="en big">{l.en}</div>
+                    <div className="countdown">{countdown || ''}</div>
+                    <button className="link" onClick={() => { skip.current = true }}>Skip wait</button>
+                  </>
+                ) : (
+                  <>
+                    <div className="zh">{l.zh}</div>
+                    <div className="py">{l.py}</div>
+                    <div className="en">{l.en}</div>
+                  </>
+                )}
+              </div>
+            )
+          })}
+          <div className="row center">
+            {!playing && (
+              <button className="secondary" onClick={rolePlay}>{line < 0 ? `▶ Start (you're ${me})` : '▶ Again'}</button>
+            )}
+            {(line < 0 || lastLine) && (
+              <button className="secondary" onClick={() => { cancelRun(); setLine(-1); setMe(me === 'A' ? 'B' : 'A') }}>
+                ⇄ Be {me === 'A' ? 'B' : 'A'}
+              </button>
+            )}
+          </div>
+        </div>
       )}
       <div className="actions">
-        <button className="primary wide" onClick={() => { stop(); if (phase < 2) setPhase((phase + 1) as 1 | 2); else onDone() }}>
-          {phase < 2 ? 'Next →' : 'Done →'}
+        <button className="primary wide" onClick={() => { cancelRun(); if (phase < 3) setPhase((phase + 1) as 1 | 2 | 3); else onDone() }}>
+          {phase < 3 ? 'Next →' : 'Done →'}
         </button>
       </div>
     </div>
   )
 }
 
-/* ---------------- Tone drill ---------------- */
+/* ---------------- Tone drill (single syllables, then two-syllable words; several voices) ---------------- */
 
 const TONE_LABELS = ['ˉ 1st', 'ˊ 2nd', 'ˇ 3rd', 'ˋ 4th']
+const randomVoice = () => Math.floor(Math.random() * TONE_VOICES)
 
 function Tones({ onDone }: { onDone: () => void }) {
-  const items = useMemo(() => shuffle(TONE_ITEMS).slice(0, 15), [])
+  // Each round in a random voice: hearing many speakers makes tone perception carry over.
+  const items = useMemo(
+    () => [...shuffle(TONE_ITEMS).slice(0, 6), ...shuffle(PAIR_ITEMS).slice(0, 9)]
+      .map((w) => ({ w, voice: randomVoice() })),
+    [],
+  )
   const [i, setI] = useState(0)
-  const [answer, setAnswer] = useState<number | null>(null)
+  const [picks, setPicks] = useState<(number | undefined)[]>([])
   const [score, setScore] = useState(0)
-  const w = items[i]
-  const tone = toneOf(w.pinyin)
+  const { w, voice } = items[i]
+  const tones = w.tones!
+  const done = tones.every((_, k) => picks[k] !== undefined)
 
-  const choose = (t: number) => {
-    if (answer !== null) return
-    setAnswer(t)
-    if (t === tone) setScore((s) => s + 1)
+  const choose = (syllable: number, t: number) => {
+    if (done) return
+    const p = [...picks]
+    p[syllable] = t
+    setPicks(p)
+    if (tones.every((x, k) => p[k] === x)) setScore((s) => s + 1)
   }
   const next = () => {
-    setAnswer(null)
+    setPicks([])
     if (i + 1 < items.length) setI(i + 1)
     else onDone()
   }
 
   return (
     <div className="card">
-      <StepHeader title="Tones" hint="Which tone do you hear?" right={<span className="count">{i + 1}/{items.length} · {score}✓</span>} />
+      <StepHeader
+        title="Tones"
+        hint={tones.length === 1 ? 'Which tone do you hear?' : 'Two syllables: pick the tone of each.'}
+        right={<span className="count">{i + 1}/{items.length} · {score}✓</span>}
+      />
       <div className="center-col">
-        <PlayButton k={wordKey(w.id)} text={w.hanzi} label="▶" autoPlay />
-        {answer !== null && (
+        <PlayButton k={voiceKey(w.id, voice)} text={w.hanzi} label="▶" autoPlay />
+        {done && (
           <div className="word-face small">
             <div className="hanzi">{w.hanzi}</div>
             <div className="pinyin">{w.pinyin}</div>
@@ -499,15 +588,20 @@ function Tones({ onDone }: { onDone: () => void }) {
           </div>
         )}
       </div>
-      <div className="tones">
-        {TONE_LABELS.map((lbl, idx) => {
-          const t = idx + 1
-          const cls = answer === null ? '' : t === tone ? 'right' : t === answer ? 'wrong' : ''
-          return <button key={t} className={`tone ${cls}`} onClick={() => choose(t)}>{lbl}</button>
-        })}
-      </div>
-      {answer !== null && <button className="primary wide" onClick={next}>Next →</button>}
-      <p className="hint center-text">Tap ▶ as often as you like.</p>
+      {tones.map((tone, k) => (
+        <div key={`${i}-${k}`}>
+          {tones.length > 1 && <p className="hint">{k === 0 ? '1st syllable' : '2nd syllable'}</p>}
+          <div className={`tones ${tones.length > 1 ? 'compact' : ''}`}>
+            {TONE_LABELS.map((lbl, idx) => {
+              const t = idx + 1
+              const cls = !done ? (picks[k] === t ? 'picked' : '') : t === tone ? 'right' : t === picks[k] ? 'wrong' : ''
+              return <button key={t} className={`tone ${cls}`} onClick={() => choose(k, t)}>{lbl}</button>
+            })}
+          </div>
+        </div>
+      ))}
+      {done && <button className="primary wide" onClick={next}>Next →</button>}
+      <p className="hint center-text">Tap ▶ as often as you like. The voice changes between rounds.</p>
     </div>
   )
 }

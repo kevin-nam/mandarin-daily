@@ -1,7 +1,9 @@
 import { createEmptyCard, fsrs, Rating, State, type Card, type Grade } from 'ts-fsrs'
 import { PHRASES, WORD_BY_ID, WORDS } from './data'
 
-export type CardKind = 'listen' | 'speak' | 'read'
+/** `sentence` (read the example sentence, characters only) unlocks once a word's `read` card is Good. */
+export type CardKind = 'listen' | 'speak' | 'read' | 'sentence'
+/** Cards every item gets when introduced. */
 export const KINDS: CardKind[] = ['listen', 'speak', 'read']
 
 export interface AppState {
@@ -9,7 +11,14 @@ export interface AppState {
   cards: Record<string, Card> // key: `${wordId}:${kind}`
   introduced: string[] // word ids, in order introduced
   history: Record<string, DayLog> // by YYYY-MM-DD
-  settings: { newPerDay: number; phrasesPerDay: number; sessionMinutes: number; audioSpeed: number }
+  settings: {
+    newPerDay: number
+    phrasesPerDay: number
+    sessionMinutes: number
+    audioSpeed: number
+    /** ISO date: don't suggest a faster audio speed before this. */
+    speedNudgeAfter?: string
+  }
   lastBackup?: string
 }
 
@@ -79,6 +88,12 @@ export function introduce(s: AppState, wordId: string, now = new Date()) {
 
 export function grade(s: AppState, key: string, rating: Grade, now = new Date()) {
   s.cards[key] = scheduler.next(s.cards[key], now, rating).card
+  // Reading a word on its own reliably unlocks reading its whole sentence, characters only.
+  const { wordId, kind } = parseKey(key)
+  const sentence = cardKey(wordId, 'sentence')
+  if (kind === 'read' && WORD_BY_ID.get(wordId)?.kind === 'word' && level(s.cards[key]) >= 3 && !s.cards[sentence]) {
+    s.cards[sentence] = { ...createEmptyCard(now), due: startOfDay(now, 1) }
+  }
 }
 
 /** Keys of cards due by `now`, most overdue first. Cards for items removed from the content are skipped. */
@@ -171,6 +186,18 @@ export function level(c: Card | undefined): Level {
   if (c.stability < 7) return 2
   if (c.stability < 30) return 3
   return 4
+}
+
+/**
+ * A faster audio speed (next 5% step) once listening is solid: at least 20 listen
+ * cards reviewed and 70% of them Good or Strong. Null if no suggestion right now.
+ */
+export function speedSuggestion(s: AppState, now = new Date()) {
+  const speed = s.settings.audioSpeed
+  if (speed >= 1 || (s.settings.speedNudgeAfter && now < new Date(s.settings.speedNudgeAfter))) return null
+  const tested = s.introduced.map((id) => s.cards[cardKey(id, 'listen')]).filter((c) => c && c.reps > 0)
+  if (tested.length < 20 || tested.filter((c) => level(c) >= 3).length / tested.length < 0.7) return null
+  return Math.min(1, Math.round((speed + 0.05) * 100) / 100)
 }
 
 /** Estimated chance you'd recall it right now, 0–1 (null if never reviewed). */

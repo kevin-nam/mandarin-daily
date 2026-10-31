@@ -23,6 +23,9 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "public" / "audio"
 VOICES = {"A": "zh-CN-XiaoxiaoNeural", "B": "zh-CN-YunxiNeural"}  # female / male
 DEFAULT_VOICE = VOICES["A"]
+# Extra voices for the tone drill (v1-v3; v0 is the normal word audio): hearing
+# tones from several speakers trains perception that carries over to new voices.
+TONE_VOICES = ["zh-CN-YunyangNeural", "zh-CN-XiaoyiNeural", "zh-CN-YunjianNeural"]
 RATE = "-10%"  # slightly slower than default: clearer for learners
 SOURCES = ROOT / "scripts" / "audio-sources.json"
 
@@ -34,6 +37,10 @@ def jobs():
     for w in words + phrases:
         yield w["id"], w["hanzi"], DEFAULT_VOICE
         yield f'{w["id"]}s', w["sentence"]["zh"], DEFAULT_VOICE
+    for w in words:
+        if w.get("tones"):
+            for i, voice in enumerate(TONE_VOICES, 1):
+                yield f'v{i}-{w["id"]}', w["hanzi"], voice
     for d in dialogues:
         for i, line in enumerate(d["lines"]):
             yield f'{d["id"]}-{i}', line["zh"], VOICES.get(line["s"], DEFAULT_VOICE)
