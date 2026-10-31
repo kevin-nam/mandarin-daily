@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Session from './Session'
+import WordBank from './WordBank'
 import { PHRASES, WORDS } from './data'
 import { hasRecordedAudio, initAudio, setSpeed } from './audio'
 import {
@@ -14,7 +15,7 @@ async function backup(state: AppState, commit: (fn: (s: AppState) => void) => vo
 
 export default function App() {
   const [state, setState] = useState<AppState>(load)
-  const [screen, setScreen] = useState<'home' | 'session' | 'settings'>('home')
+  const [screen, setScreen] = useState<'home' | 'session' | 'settings' | 'bank'>('home')
   const [audioReady, setAudioReady] = useState(false)
 
   useEffect(() => {
@@ -35,6 +36,7 @@ export default function App() {
   }, [])
 
   if (screen === 'session') return <Session state={state} commit={commit} onExit={() => setScreen('home')} />
+  if (screen === 'bank') return <WordBank state={state} onBack={() => setScreen('home')} />
   if (screen === 'settings')
     return <Settings state={state} commit={commit} replace={(s) => { save(s); setState(s) }} onBack={() => setScreen('home')} />
 
@@ -67,6 +69,9 @@ export default function App() {
         <div className="progress"><div style={{ width: `${pct}%` }} /></div>
         <div className="progress-label gap">Phrases · {phrases}/{PHRASES.length}</div>
         <div className="progress"><div style={{ width: `${Math.round((phrases / PHRASES.length) * 100)}%` }} /></div>
+        {learned + phrases > 0 && (
+          <button className="secondary wide gap" onClick={() => setScreen('bank')}>📖 Word bank</button>
+        )}
       </div>
 
       <button className="primary start" onClick={() => setScreen('session')}>

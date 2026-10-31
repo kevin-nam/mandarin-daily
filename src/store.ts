@@ -1,4 +1,4 @@
-import { createEmptyCard, fsrs, Rating, type Card, type Grade } from 'ts-fsrs'
+import { createEmptyCard, fsrs, Rating, State, type Card, type Grade } from 'ts-fsrs'
 import { PHRASES, WORD_BY_ID, WORDS } from './data'
 
 export type CardKind = 'listen' | 'speak' | 'read'
@@ -128,6 +128,24 @@ export function streak(s: AppState) {
     d.setDate(d.getDate() - 1)
   }
   return n
+}
+
+/** How well a card is known, from FSRS stability (roughly: days until recall drops to 90%). */
+export const LEVELS = ['Not tested', 'Learning', 'Getting there', 'Good', 'Strong'] as const
+export type Level = 0 | 1 | 2 | 3 | 4
+
+export function level(c: Card | undefined): Level {
+  if (!c || c.reps === 0) return 0
+  if (c.state === State.Learning || c.state === State.Relearning || c.stability < 2) return 1
+  if (c.stability < 7) return 2
+  if (c.stability < 30) return 3
+  return 4
+}
+
+/** Estimated chance you'd recall it right now, 0–1 (null if never reviewed). */
+export function recallChance(c: Card | undefined, now = new Date()) {
+  if (!c || c.reps === 0) return null
+  return scheduler.get_retrievability(c, now, false)
 }
 
 /** Resolves true once the backup was handed off (share sheet completed or download started), false if cancelled. */
