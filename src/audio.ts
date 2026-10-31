@@ -7,6 +7,9 @@ let manifest: Set<string> | null = null
 let el: HTMLAudioElement | null = null
 const audioEl = () => (el ??= new Audio())
 let pending: (() => void) | null = null
+let speed = 1
+/** Playback speed for "normal" audio (1 = as recorded); slow is 70% of this. */
+export const setSpeed = (x: number) => { speed = x }
 let ep = 0
 /** Changes every time playback is stopped — loops use it to bail out. */
 export const epoch = () => ep
@@ -40,7 +43,7 @@ export function stop() {
 /** key: audio file name (without .mp3); text: Chinese text for the TTS fallback. */
 export function play(key: string, text: string, opts: { slow?: boolean } = {}): Promise<void> {
   stop()
-  const rate = opts.slow ? 0.65 : 1
+  const rate = speed * (opts.slow ? 0.7 : 1)
   if (manifest?.has(key)) {
     return new Promise((resolve) => {
       pending = resolve
@@ -58,7 +61,7 @@ export function play(key: string, text: string, opts: { slow?: boolean } = {}): 
     u.lang = 'zh-CN'
     const v = zhVoice()
     if (v) u.voice = v
-    u.rate = opts.slow ? 0.6 : 0.9
+    u.rate = 0.9 * rate
     u.onend = () => resolve()
     u.onerror = () => resolve()
     speechSynthesis.speak(u)

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Session from './Session'
 import { PHRASES, WORDS } from './data'
-import { hasRecordedAudio, initAudio } from './audio'
+import { hasRecordedAudio, initAudio, setSpeed } from './audio'
 import {
   dueKeys, exportState, importState, load, newDoneToday, phrasesDoneToday, phrasesLearned, save, streak, today,
   wordsLearned, type AppState,
@@ -17,6 +17,8 @@ export default function App() {
     // Ask the browser to keep our storage (helps on iOS)
     navigator.storage?.persist?.().catch(() => {})
   }, [])
+
+  useEffect(() => setSpeed(state.settings.audioSpeed), [state.settings.audioSpeed])
 
   const commit = useCallback((fn: (s: AppState) => void) => {
     setState((prev) => {
@@ -110,6 +112,13 @@ function Settings({ state, commit, replace, onBack }: {
           </select>
         </label>
         <p className="hint">Travel and conversation phrases ({PHRASES.length} total).</p>
+        <label>
+          Audio speed
+          <select value={state.settings.audioSpeed} onChange={(e) => set('audioSpeed', +e.target.value)}>
+            {[0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1].map((n) => <option key={n} value={n}>{Math.round(n * 100)}%</option>)}
+          </select>
+        </label>
+        <p className="hint">Start slow; move toward 100% as listening gets easier.</p>
         <label>
           Session length (min)
           <select value={state.settings.sessionMinutes} onChange={(e) => set('sessionMinutes', +e.target.value)}>

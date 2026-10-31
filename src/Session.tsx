@@ -298,6 +298,9 @@ function NewWords({ state, commit, onDone }: { state: AppState; commit: Commit; 
 
 interface DrillItem { w: Word; hits: number }
 
+/** Time to form the answer: longer sentences need longer. */
+const thinkSeconds = (w: Word) => Math.min(12, Math.max(5, Math.round(2 + [...target(w).zh].length * 0.5)))
+
 function Drill({ state, learnedNow, onDone }: { state: AppState; learnedNow: string[]; onDone: () => void }) {
   const [queue, setQueue] = useState<DrillItem[]>(() => {
     const recent = state.introduced.slice(-30).filter((id) => !learnedNow.includes(id))
@@ -305,7 +308,7 @@ function Drill({ state, learnedNow, onDone }: { state: AppState; learnedNow: str
     return ids.map((id) => ({ w: WORD_BY_ID.get(id)!, hits: 0 }))
   })
   const [phase, setPhase] = useState<'prompt' | 'answer'>('prompt')
-  const [countdown, setCountdown] = useState(4)
+  const [countdown, setCountdown] = useState(() => (queue[0] ? thinkSeconds(queue[0].w) : 0))
   const start = useRef(Date.now())
 
   useEffect(() => {
@@ -339,8 +342,8 @@ function Drill({ state, learnedNow, onDone }: { state: AppState; learnedNow: str
   const mark = (ok: boolean) => {
     stop()
     const timeUp = Date.now() - start.current > 7 * 60 * 1000
-    setQueue((q) => {
-      const [cur, ...rest] = q
+    const next = (() => {
+      const [cur, ...rest] = queue
       if (timeUp) return [] // 7-minute cap reached
       const hits = ok ? cur.hits + 1 : 0
       if (hits >= 2) return rest // retired: recalled twice with growing gaps
@@ -348,9 +351,10 @@ function Drill({ state, learnedNow, onDone }: { state: AppState; learnedNow: str
       const copy = [...rest]
       copy.splice(Math.min(gap, copy.length), 0, { ...cur, hits })
       return copy
-    })
+    })()
+    setQueue(next)
     // Reset together with the phase so the answer effect never sees a stale 0.
-    setCountdown(4)
+    if (next[0]) setCountdown(thinkSeconds(next[0].w))
     setPhase('prompt')
   }
 

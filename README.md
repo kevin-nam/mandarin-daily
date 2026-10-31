@@ -8,7 +8,7 @@ A personal, offline-first PWA for daily Mandarin listening and speaking practice
 |---|---|---|---|
 | Review | ≤8 min | Due cards, mixed: **listen** (audio → meaning), **speak** (English → say it), **read** (character → pinyin/meaning). Speak cards come first (2 speak : 1 other). Rate Again/Hard/Good/Easy. | Retrieval practice + FSRS spaced repetition; productive recall builds speaking |
 | New words | ~5 min | 5 words (each inside a sentence) + 2 phrases. Hear it first: **I know it** → confirm → skipped ahead (listen card marked Easy, speak/read still tested, doesn't use up the daily quota). **New to me** → shadow ×4 (slow → normal). | Skip what you already understand (heritage learners); context + production effect |
-| Speak | ≤7 min | English prompt → 4 s to say it (whisper/mouth is fine) → hear the answer twice. Missed items come back sooner; items retire after 2 hits. | Prompted recall with expanding intervals |
+| Speak | ≤7 min | English prompt → 5–12 s (scaled to length) to say it (whisper/mouth is fine) → hear the answer twice. Missed items come back sooner; items retire after 2 hits. | Prompted recall with expanding intervals |
 | Dialogue | ~3 min | Listen with no text → listen while reading → shadow line by line. | Comprehensible input |
 | Tones | ~2 min | Hear a syllable, pick the tone (15 rounds). | Early tone perception training |
 

@@ -9,7 +9,7 @@ export interface AppState {
   cards: Record<string, Card> // key: `${wordId}:${kind}`
   introduced: string[] // word ids, in order introduced
   history: Record<string, DayLog> // by YYYY-MM-DD
-  settings: { newPerDay: number; phrasesPerDay: number; sessionMinutes: number }
+  settings: { newPerDay: number; phrasesPerDay: number; sessionMinutes: number; audioSpeed: number }
   lastBackup?: string
 }
 
@@ -23,7 +23,7 @@ export const today = (d = new Date()) =>
   `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
 
 function emptyState(): AppState {
-  return { version: 1, cards: {}, introduced: [], history: {}, settings: { newPerDay: 5, phrasesPerDay: 2, sessionMinutes: 25 } }
+  return { version: 1, cards: {}, introduced: [], history: {}, settings: { newPerDay: 5, phrasesPerDay: 2, sessionMinutes: 25, audioSpeed: 0.85 } }
 }
 
 function revive(s: AppState): AppState {
