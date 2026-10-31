@@ -22,6 +22,11 @@ const scheduler = fsrs({ enable_fuzz: true, request_retention: 0.9 })
 export const today = (d = new Date()) =>
   `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
 
+/** Local midnight at the start of the day `days` from `d`. */
+export function startOfDay(d = new Date(), days = 0) {
+  return new Date(d.getFullYear(), d.getMonth(), d.getDate() + days)
+}
+
 function emptyState(): AppState {
   return { version: 1, cards: {}, introduced: [], history: {}, settings: { newPerDay: 5, phrasesPerDay: 2, sessionMinutes: 25, audioSpeed: 0.85 } }
 }
@@ -62,11 +67,14 @@ export function parseKey(key: string) {
   return { wordId, kind: kind as CardKind }
 }
 
-/** Introduce a word: create its three cards, due now. */
+/**
+ * Introduce a word: create its three cards, first due tomorrow. Today's
+ * lesson and Speak drill already cover it; the first real review comes after a night's sleep.
+ */
 export function introduce(s: AppState, wordId: string, now = new Date()) {
   if (s.introduced.includes(wordId)) return
   s.introduced.push(wordId)
-  for (const k of KINDS) s.cards[cardKey(wordId, k)] = createEmptyCard(now)
+  for (const k of KINDS) s.cards[cardKey(wordId, k)] = { ...createEmptyCard(now), due: startOfDay(now, 1) }
 }
 
 export function grade(s: AppState, key: string, rating: Grade, now = new Date()) {
@@ -92,6 +100,29 @@ export function nextNewItems(s: AppState, words: number, phrases: number, exclud
   const skip = new Set([...s.introduced, ...exclude])
   const fresh = (list: typeof WORDS, n: number) => list.filter((w) => !skip.has(w.id)).slice(0, n)
   return [...fresh(WORDS, words), ...fresh(PHRASES, phrases)]
+}
+
+/** Lowest chance of recall first: never-reviewed cards, then the ones you're most likely to have forgotten. */
+export function byRisk(s: AppState, keys: string[], now = new Date()) {
+  const risk = (k: string) => recallChance(s.cards[k], now) ?? 0
+  return [...keys].sort((a, b) => risk(a) - risk(b))
+}
+
+/**
+ * New words and phrases allowed right now. Cut back when reviews are carried over
+ * from earlier days (missed days, or more than the review cap): reviewing beats adding.
+ */
+export function newQuota(s: AppState, now = new Date()) {
+  // Only reviewed cards count: a never-reviewed card waiting a day isn't a sign of falling behind.
+  const behind = Object.entries(s.cards).filter(
+    ([k, c]) => c.reps > 0 && c.due < startOfDay(now) && WORD_BY_ID.has(parseKey(k).wordId),
+  ).length
+  const scale = behind > 30 ? 0 : behind > 10 ? 0.5 : 1
+  return {
+    words: Math.ceil(Math.max(0, s.settings.newPerDay - newDoneToday(s)) * scale),
+    phrases: Math.ceil(Math.max(0, s.settings.phrasesPerDay - phrasesDoneToday(s)) * scale),
+    paused: scale < 1,
+  }
 }
 
 export function newDoneToday(s: AppState) {

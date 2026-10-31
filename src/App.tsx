@@ -4,7 +4,7 @@ import WordBank from './WordBank'
 import { PHRASES, WORDS } from './data'
 import { hasRecordedAudio, initAudio, setSpeed } from './audio'
 import {
-  dueKeys, exportState, importState, load, newDoneToday, phrasesDoneToday, phrasesLearned, save, streak, today,
+  dueKeys, exportState, importState, load, newQuota, phrasesLearned, save, streak, today,
   wordsLearned, type AppState,
 } from './store'
 
@@ -41,12 +41,13 @@ export default function App() {
     return <Settings state={state} commit={commit} replace={(s) => { save(s); setState(s) }} onBack={() => setScreen('home')} />
 
   const due = dueKeys(state).length
-  const newLeft =
-    Math.max(0, state.settings.newPerDay - newDoneToday(state)) +
-    Math.max(0, state.settings.phrasesPerDay - phrasesDoneToday(state))
+  const quota = newQuota(state)
+  const newLeft = quota.words + quota.phrases
   const learned = wordsLearned(state)
   const phrases = phrasesLearned(state)
-  const doneToday = !!state.history[today()]
+  const startedToday = !!state.history[today()]
+  const doneToday = startedToday && due === 0 && newLeft === 0
+  const days = streak(state)
   const pct = Math.round((learned / WORDS.length) * 100)
   const daysSinceBackup = state.lastBackup ? Math.floor((Date.now() - +new Date(state.lastBackup)) / 86400000) : null
   const needsBackup = learned > 0 && (daysSinceBackup === null || daysSinceBackup >= 7)
@@ -59,7 +60,7 @@ export default function App() {
       </header>
 
       <div className="card stats">
-        <div><b>{streak(state)}</b><span>day streak</span></div>
+        <div><b>{days > 0 ? `🔥${days}` : 0}</b><span>day streak</span></div>
         <div><b>{due}</b><span>due</span></div>
         <div><b>{newLeft}</b><span>new today</span></div>
       </div>
@@ -74,10 +75,25 @@ export default function App() {
         )}
       </div>
 
-      <button className="primary start" onClick={() => setScreen('session')}>
-        {doneToday ? 'Practice again' : 'Start today’s session'}
-        <small>~{state.settings.sessionMinutes} min</small>
-      </button>
+      {quota.paused && newLeft === 0 && !doneToday && (
+        <p className="hint center-text">New words paused: catch up on reviews first.</p>
+      )}
+      {quota.paused && newLeft > 0 && <p className="hint center-text">Fewer new words today while you catch up on reviews.</p>}
+
+      {doneToday ? (
+        <>
+          <div className="card center-text">
+            <h2>✓ Done for today</h2>
+            <p className="hint">Come back tomorrow, after a night's sleep.</p>
+          </div>
+          <button className="secondary wide" onClick={() => setScreen('session')}>Practice anyway</button>
+        </>
+      ) : (
+        <button className="primary start" onClick={() => setScreen('session')}>
+          {startedToday ? 'Continue today’s session' : 'Start today’s session'}
+          <small>~{state.settings.sessionMinutes} min</small>
+        </button>
+      )}
 
       {needsBackup && (
         <button className="banner" onClick={() => backup(state, commit)}>

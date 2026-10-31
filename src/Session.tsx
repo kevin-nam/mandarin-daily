@@ -3,8 +3,8 @@ import type { Grade } from 'ts-fsrs'
 import { DIALOGUES, TONE_ITEMS, WORD_BY_ID, target, toneOf, type Word } from './data'
 import { epoch, lineKey, play, sleep, stop, wordKey } from './audio'
 import {
-  dueKeys, grade, introduce, logDay, markKnown, newDoneToday, nextNewItems, parseKey, phrasesDoneToday,
-  Rating, wordsLearned, type AppState,
+  byRisk, dueKeys, grade, introduce, logDay, markKnown, newQuota, nextNewItems, parseKey, Rating, streak,
+  wordsLearned, type AppState,
 } from './store'
 import { PlayButton, StepHeader, WordFace, shuffle } from './ui'
 
@@ -72,7 +72,9 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
       {step === 'done' && (
         <div className="card center-text">
           <h2>Done for today 🎉</h2>
+          <p className="streak-big">🔥 {streak(state)}-day streak</p>
           <p>{mm} · {learnedNow.length - knownNow} new{knownNow > 0 && ` · ${knownNow} already known`}</p>
+          <p className="hint">Next session: tomorrow, after a night's sleep.</p>
           <button className="primary" onClick={finish}>Finish</button>
         </div>
       )}
@@ -84,9 +86,12 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
 
 const REVIEW_MINUTES = 8
 
-/** Due cards, speak cards first (2 speak : 1 other) so the main gap gets the most time, still interleaved. */
+/**
+ * Due cards, most at risk of being forgotten first (only ~40 fit in the time cap), with
+ * speak cards prioritised (2 speak : 1 other) so the main gap gets the most time, still interleaved.
+ */
 function reviewQueue(state: AppState) {
-  const due = shuffle(dueKeys(state)).slice(0, 80)
+  const due = byRisk(state, dueKeys(state)).slice(0, 80)
   const speak = due.filter((k) => parseKey(k).kind === 'speak')
   const other = due.filter((k) => parseKey(k).kind !== 'speak')
   const out: string[] = []
@@ -183,13 +188,10 @@ function Reviews({ state, commit, onDone }: { state: AppState; commit: Commit; o
 const MAX_KNOWN = 20
 
 function NewWords({ state, commit, onDone }: { state: AppState; commit: Commit; onDone: (ids: string[], known: number) => void }) {
-  const [items, setItems] = useState(() =>
-    nextNewItems(
-      state,
-      Math.max(0, state.settings.newPerDay - newDoneToday(state)),
-      Math.max(0, state.settings.phrasesPerDay - phrasesDoneToday(state)),
-    ),
-  )
+  const [items, setItems] = useState(() => {
+    const q = newQuota(state)
+    return nextNewItems(state, q.words, q.phrases)
+  })
   const [i, setI] = useState(0)
   // probe: audio only, "do you know it?" → check: reveal to confirm → teach: normal lesson
   const [phase, setPhase] = useState<'probe' | 'check' | 'teach'>('probe')
