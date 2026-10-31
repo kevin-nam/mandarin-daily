@@ -1,0 +1,402 @@
+[
+ {
+  "id": "d1",
+  "title": "Meeting someone",
+  "unlockAfter": 30,
+  "lines": [
+   {
+    "s": "A",
+    "zh": "你好！",
+    "py": "Nǐ hǎo!",
+    "en": "Hello!"
+   },
+   {
+    "s": "B",
+    "zh": "你好！你叫什么名字？",
+    "py": "Nǐ hǎo! Nǐ jiào shénme míngzi?",
+    "en": "Hello! What's your name?"
+   },
+   {
+    "s": "A",
+    "zh": "我叫小明。你呢？",
+    "py": "Wǒ jiào Xiǎomíng. Nǐ ne?",
+    "en": "I'm Xiaoming. And you?"
+   },
+   {
+    "s": "B",
+    "zh": "我叫大卫。",
+    "py": "Wǒ jiào Dàwèi.",
+    "en": "I'm David."
+   },
+   {
+    "s": "A",
+    "zh": "认识你很高兴。",
+    "py": "Rènshi nǐ hěn gāoxìng.",
+    "en": "Nice to meet you."
+   },
+   {
+    "s": "B",
+    "zh": "我也很高兴。",
+    "py": "Wǒ yě hěn gāoxìng.",
+    "en": "Nice to meet you too."
+   }
+  ]
+ },
+ {
+  "id": "d2",
+  "title": "Where are you from?",
+  "unlockAfter": 40,
+  "lines": [
+   {
+    "s": "A",
+    "zh": "你是哪国人？",
+    "py": "Nǐ shì nǎ guó rén?",
+    "en": "Which country are you from?"
+   },
+   {
+    "s": "B",
+    "zh": "我是加拿大人。你呢？",
+    "py": "Wǒ shì Jiānádà rén. Nǐ ne?",
+    "en": "I'm Canadian. And you?"
+   },
+   {
+    "s": "A",
+    "zh": "我是中国人。",
+    "py": "Wǒ shì Zhōngguó rén.",
+    "en": "I'm Chinese."
+   },
+   {
+    "s": "B",
+    "zh": "你是老师吗？",
+    "py": "Nǐ shì lǎoshī ma?",
+    "en": "Are you a teacher?"
+   },
+   {
+    "s": "A",
+    "zh": "不是，我是学生。",
+    "py": "Bú shì, wǒ shì xuésheng.",
+    "en": "No, I'm a student."
+   }
+  ]
+ },
+ {
+  "id": "d3",
+  "title": "How much is it?",
+  "unlockAfter": 75,
+  "lines": [
+   {
+    "s": "A",
+    "zh": "请问，这个多少钱？",
+    "py": "Qǐngwèn, zhège duōshao qián?",
+    "en": "Excuse me, how much is this?"
+   },
+   {
+    "s": "B",
+    "zh": "二十块。",
+    "py": "Èrshí kuài.",
+    "en": "Twenty yuan."
+   },
+   {
+    "s": "A",
+    "zh": "太贵了！十块，可以吗？",
+    "py": "Tài guì le! Shí kuài, kěyǐ ma?",
+    "en": "Too expensive! Ten yuan, okay?"
+   },
+   {
+    "s": "B",
+    "zh": "十五块吧。",
+    "py": "Shíwǔ kuài ba.",
+    "en": "Let's say fifteen."
+   },
+   {
+    "s": "A",
+    "zh": "好，我买两个。",
+    "py": "Hǎo, wǒ mǎi liǎng ge.",
+    "en": "Okay, I'll buy two."
+   }
+  ]
+ },
+ {
+  "id": "d4",
+  "title": "My family",
+  "unlockAfter": 100,
+  "lines": [
+   {
+    "s": "A",
+    "zh": "你家有几口人？",
+    "py": "Nǐ jiā yǒu jǐ kǒu rén?",
+    "en": "How many people are in your family?"
+   },
+   {
+    "s": "B",
+    "zh": "我家有四口人。爸爸、妈妈、姐姐和我。",
+    "py": "Wǒ jiā yǒu sì kǒu rén. Bàba, māma, jiějie hé wǒ.",
+    "en": "Four. Dad, mom, my older sister and me."
+   },
+   {
+    "s": "A",
+    "zh": "你姐姐做什么工作？",
+    "py": "Nǐ jiějie zuò shénme gōngzuò?",
+    "en": "What does your sister do?"
+   },
+   {
+    "s": "B",
+    "zh": "她是医生。",
+    "py": "Tā shì yīshēng.",
+    "en": "She's a doctor."
+   },
+   {
+    "s": "A",
+    "zh": "你有狗吗？",
+    "py": "Nǐ yǒu gǒu ma?",
+    "en": "Do you have a dog?"
+   },
+   {
+    "s": "B",
+    "zh": "没有，我有一只猫。",
+    "py": "Méiyǒu, wǒ yǒu yì zhī māo.",
+    "en": "No, I have a cat."
+   }
+  ]
+ },
+ {
+  "id": "d5",
+  "title": "What time is it?",
+  "unlockAfter": 130,
+  "lines": [
+   {
+    "s": "A",
+    "zh": "现在几点？",
+    "py": "Xiànzài jǐ diǎn?",
+    "en": "What time is it?"
+   },
+   {
+    "s": "B",
+    "zh": "八点半。",
+    "py": "Bā diǎn bàn.",
+    "en": "Half past eight."
+   },
+   {
+    "s": "A",
+    "zh": "你明天几点起床？",
+    "py": "Nǐ míngtiān jǐ diǎn qǐchuáng?",
+    "en": "What time are you getting up tomorrow?"
+   },
+   {
+    "s": "B",
+    "zh": "七点。明天上午我很忙。",
+    "py": "Qī diǎn. Míngtiān shàngwǔ wǒ hěn máng.",
+    "en": "Seven. I'm busy tomorrow morning."
+   },
+   {
+    "s": "A",
+    "zh": "下午你有时间吗？",
+    "py": "Xiàwǔ nǐ yǒu shíjiān ma?",
+    "en": "Do you have time in the afternoon?"
+   },
+   {
+    "s": "B",
+    "zh": "有。下午见！",
+    "py": "Yǒu. Xiàwǔ jiàn!",
+    "en": "Yes. See you in the afternoon!"
+   }
+  ]
+ },
+ {
+  "id": "d6",
+  "title": "At a restaurant",
+  "unlockAfter": 155,
+  "lines": [
+   {
+    "s": "A",
+    "zh": "你想吃什么？",
+    "py": "Nǐ xiǎng chī shénme?",
+    "en": "What do you want to eat?"
+   },
+   {
+    "s": "B",
+    "zh": "我想吃饺子。你呢？",
+    "py": "Wǒ xiǎng chī jiǎozi. Nǐ ne?",
+    "en": "I want dumplings. You?"
+   },
+   {
+    "s": "A",
+    "zh": "我要一碗面条儿。",
+    "py": "Wǒ yào yì wǎn miàntiáor.",
+    "en": "I'll have a bowl of noodles."
+   },
+   {
+    "s": "B",
+    "zh": "你喝什么？",
+    "py": "Nǐ hē shénme?",
+    "en": "What will you drink?"
+   },
+   {
+    "s": "A",
+    "zh": "我喝茶。",
+    "py": "Wǒ hē chá.",
+    "en": "I'll have tea."
+   },
+   {
+    "s": "B",
+    "zh": "这个饺子真好吃！",
+    "py": "Zhège jiǎozi zhēn hǎochī!",
+    "en": "These dumplings are really good!"
+   }
+  ]
+ },
+ {
+  "id": "d7",
+  "title": "On the phone",
+  "unlockAfter": 200,
+  "lines": [
+   {
+    "s": "A",
+    "zh": "喂，你在哪儿？",
+    "py": "Wéi, nǐ zài nǎr?",
+    "en": "Hello, where are you?"
+   },
+   {
+    "s": "B",
+    "zh": "我在家。你在做什么？",
+    "py": "Wǒ zài jiā. Nǐ zài zuò shénme?",
+    "en": "I'm home. What are you doing?"
+   },
+   {
+    "s": "A",
+    "zh": "我在超市买东西。你要什么吗？",
+    "py": "Wǒ zài chāoshì mǎi dōngxi. Nǐ yào shénme ma?",
+    "en": "I'm shopping at the supermarket. Do you need anything?"
+   },
+   {
+    "s": "B",
+    "zh": "请给我买一些水果和牛奶。",
+    "py": "Qǐng gěi wǒ mǎi yìxiē shuǐguǒ hé niúnǎi.",
+    "en": "Please buy me some fruit and milk."
+   },
+   {
+    "s": "A",
+    "zh": "好的。我六点回家。",
+    "py": "Hǎo de. Wǒ liù diǎn huí jiā.",
+    "en": "Okay. I'll be home at six."
+   }
+  ]
+ },
+ {
+  "id": "d8",
+  "title": "Asking directions",
+  "unlockAfter": 235,
+  "lines": [
+   {
+    "s": "A",
+    "zh": "请问，医院在哪儿？",
+    "py": "Qǐngwèn, yīyuàn zài nǎr?",
+    "en": "Excuse me, where's the hospital?"
+   },
+   {
+    "s": "B",
+    "zh": "在那边，学校后边。",
+    "py": "Zài nàbiān, xuéxiào hòubian.",
+    "en": "Over there, behind the school."
+   },
+   {
+    "s": "A",
+    "zh": "我能坐出租车去吗？",
+    "py": "Wǒ néng zuò chūzūchē qù ma?",
+    "en": "Can I take a taxi there?"
+   },
+   {
+    "s": "B",
+    "zh": "可以，坐车十分钟。",
+    "py": "Kěyǐ, zuò chē shí fēnzhōng.",
+    "en": "Sure, it's ten minutes by car."
+   },
+   {
+    "s": "A",
+    "zh": "谢谢你！",
+    "py": "Xièxie nǐ!",
+    "en": "Thank you!"
+   },
+   {
+    "s": "B",
+    "zh": "不客气。",
+    "py": "Bú kèqi.",
+    "en": "You're welcome."
+   }
+  ]
+ },
+ {
+  "id": "d9",
+  "title": "The weather",
+  "unlockAfter": 265,
+  "lines": [
+   {
+    "s": "A",
+    "zh": "今天天气怎么样？",
+    "py": "Jīntiān tiānqì zěnmeyàng?",
+    "en": "How's the weather today?"
+   },
+   {
+    "s": "B",
+    "zh": "有点儿冷，外边下雨了。",
+    "py": "Yǒudiǎnr lěng, wàibian xià yǔ le.",
+    "en": "A bit cold, it's raining outside."
+   },
+   {
+    "s": "A",
+    "zh": "明天呢？",
+    "py": "Míngtiān ne?",
+    "en": "And tomorrow?"
+   },
+   {
+    "s": "B",
+    "zh": "明天会下雪。",
+    "py": "Míngtiān huì xià xuě.",
+    "en": "It'll snow tomorrow."
+   },
+   {
+    "s": "A",
+    "zh": "太好了！我喜欢雪。",
+    "py": "Tài hǎo le! Wǒ xǐhuan xuě.",
+    "en": "Great! I love snow."
+   }
+  ]
+ },
+ {
+  "id": "d10",
+  "title": "Weekend plans",
+  "unlockAfter": 294,
+  "lines": [
+   {
+    "s": "A",
+    "zh": "星期天你做什么？",
+    "py": "Xīngqītiān nǐ zuò shénme?",
+    "en": "What are you doing on Sunday?"
+   },
+   {
+    "s": "B",
+    "zh": "我想去看电影。你也去吧？",
+    "py": "Wǒ xiǎng qù kàn diànyǐng. Nǐ yě qù ba?",
+    "en": "I want to see a movie. You'll come too?"
+   },
+   {
+    "s": "A",
+    "zh": "好啊！看完电影我们去吃饭吧。",
+    "py": "Hǎo a! Kàn wán diànyǐng wǒmen qù chī fàn ba.",
+    "en": "Sure! After the movie let's go eat."
+   },
+   {
+    "s": "B",
+    "zh": "没问题。我知道一个很好的饭店。",
+    "py": "Méi wèntí. Wǒ zhīdào yí ge hěn hǎo de fàndiàn.",
+    "en": "No problem. I know a great restaurant."
+   },
+   {
+    "s": "A",
+    "zh": "太好了，星期天见！",
+    "py": "Tài hǎo le, xīngqītiān jiàn!",
+    "en": "Great, see you Sunday!"
+   }
+  ]
+ }
+]
