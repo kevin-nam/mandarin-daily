@@ -165,3 +165,5 @@ h2 { font-size: 20px; }
 .banner.speed p { margin: 0 0 8px; }
 .link.small { font-size: 15px; }
 .lv.locked { opacity: 0.35; }
+.banner.update { margin-bottom: 14px; background: color-mix(in srgb, var(--jade) 18%, var(--card)); border-color: var(--jade); font-weight: 600; }
+.version { text-align: center; color: var(--muted); font-size: 12px; margin: 24px 0 0; }

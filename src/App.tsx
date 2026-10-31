@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Session from './Session'
 import WordBank from './WordBank'
+import { CheckForUpdates, UpdateBanner } from './UpdateUI'
+import { useUpdates, VERSION, type Updates } from './updates'
 import { PHRASES, WORDS } from './data'
 import { hasRecordedAudio, initAudio, setSpeed } from './audio'
 import {
@@ -19,6 +21,7 @@ export default function App() {
   const [state, setState] = useState<AppState>(load)
   const [screen, setScreen] = useState<'home' | 'session' | 'settings' | 'bank'>('home')
   const [audioReady, setAudioReady] = useState(false)
+  const updates = useUpdates()
 
   useEffect(() => {
     initAudio().then(() => setAudioReady(true))
@@ -40,7 +43,7 @@ export default function App() {
   if (screen === 'session') return <Session state={state} commit={commit} onExit={() => setScreen('home')} />
   if (screen === 'bank') return <WordBank state={state} onBack={() => setScreen('home')} />
   if (screen === 'settings')
-    return <Settings state={state} commit={commit} replace={(s) => { save(s); setState(s) }} onBack={() => setScreen('home')} />
+    return <Settings state={state} commit={commit} updates={updates} replace={(s) => { save(s); setState(s) }} onBack={() => setScreen('home')} />
 
   const due = dueKeys(state).length
   const quota = newQuota(state)
@@ -110,6 +113,7 @@ export default function App() {
         </button>
       )}
 
+      <UpdateBanner updates={updates} />
       {needsBackup && (
         <button className="banner" onClick={() => backup(state, commit)}>
           💾 Back up your progress (Save to Files)
@@ -118,11 +122,13 @@ export default function App() {
       {audioReady && !hasRecordedAudio() && (
         <p className="hint center-text">Using your phone’s built-in Chinese voice. Run the audio script for better quality.</p>
       )}
+      <p className="version">Version {VERSION}</p>
     </div>
   )
 }
 
-function Settings({ state, commit, replace, onBack }: {
+function Settings({ state, commit, updates, replace, onBack }: {
+  updates: Updates
   state: AppState
   commit: (fn: (s: AppState) => void) => void
   replace: (s: AppState) => void
@@ -198,6 +204,9 @@ function Settings({ state, commit, replace, onBack }: {
         >
           Reset progress
         </button>
+      </div>
+      <div className="card form">
+        <CheckForUpdates updates={updates} />
       </div>
     </div>
   )
