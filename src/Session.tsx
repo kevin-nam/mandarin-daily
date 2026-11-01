@@ -173,10 +173,10 @@ function Reviews({ state, commit, onDone }: { state: AppState; commit: Commit; o
           <button className="primary wide" onClick={reveal}>Show answer</button>
         ) : (
           <div className="grades">
-            <button className="g again" onClick={() => rate(Rating.Again)}>Again</button>
-            <button className="g hard" onClick={() => rate(Rating.Hard)}>Hard</button>
-            <button className="g good" onClick={() => rate(Rating.Good)}>Good</button>
-            <button className="g easy" onClick={() => rate(Rating.Easy)}>Easy</button>
+            <button className="g again" onClick={() => rate(Rating.Again)}>Again<small>missed it</small></button>
+            <button className="g hard" onClick={() => rate(Rating.Hard)}>Hard<small>got it, slowly</small></button>
+            <button className="g good" onClick={() => rate(Rating.Good)}>Good<small>got it</small></button>
+            <button className="g easy" onClick={() => rate(Rating.Easy)}>Easy<small>instantly</small></button>
           </div>
         )}
       </div>

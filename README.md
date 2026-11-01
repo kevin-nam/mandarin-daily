@@ -24,7 +24,7 @@ So: speaking (productive recall) gets priority; prompts never demand speaking ou
 
 | Step | Time | What you do | Why |
 |---|---|---|---|
-| Review | ≤8 min | Due cards, mixed: **listen** (audio → meaning), **speak** (English → say it), **read** (character → pinyin/meaning), and **sentence** (whole example sentence in characters only; unlocks per word once its read card is Good). Most-at-risk cards first, speak cards prioritised (2 speak : 1 other). Rate Again/Hard/Good/Easy. | Retrieval practice + FSRS spaced repetition; productive recall builds speaking |
+| Review | ≤8 min | Due cards, mixed: **listen** (audio → meaning), **speak** (English → say it), **read** (character → pinyin/meaning), and **sentence** (whole example sentence in characters only; unlocks per word once its read card is Good). Most-at-risk cards first, speak cards prioritised (2 speak : 1 other). Rate Again (missed it, even partly: wrong tone, wrong meaning) / Hard (got it, slowly or with effort) / Good (got it) / Easy (instantly). | Retrieval practice + FSRS spaced repetition; productive recall builds speaking |
 | New words | ~5 min | 5 words (each inside a sentence) + 2 phrases. Hear it first: **I know it** → confirm → skipped ahead (listen card marked Easy, speak/read still tested, doesn't use up the daily quota). **New to me** → shadow ×4 (slow → normal). | Skip what you already understand (heritage learners); pretesting; context + production effect |
 | Speak | ≤6 min | English prompt → 5–12 s (scaled to length) to say it (whisper/mouth is fine) → hear the answer twice. Missed items come back sooner; items retire after 2 hits. | Prompted recall with expanding intervals |
 | Dialogue | ~4 min | Listen with no text → listen while reading → shadow line by line → **role-play**: the app plays the other speaker, you say your line from the English before the model plays (switch sides any time). Early dialogues are built from the phrases you've learned, so there's one from day 1. | Comprehensible input; task-based practice |
@@ -119,6 +119,7 @@ src/App.tsx         home + settings
 
 **1.1.1** (2026-11-01)
 - Fix: graded cards came due again 1–10 min later (FSRS learning steps), so the home screen never said Done and the next day's new words were paused as "behind". Steps are off; affected cards move to the next day on load.
+- Rating buttons say what each means (Again = missed it, Hard = got it slowly). The learner didn't know the difference between Again and Hard until day 2.
 
 **1.1** (2026-10-31)
 - Update button + version display; checks for updates on foreground.
