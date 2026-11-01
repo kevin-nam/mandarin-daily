@@ -181,6 +181,20 @@ export function streak(s: AppState) {
   return n
 }
 
+/** Longest run of consecutive practice days. */
+export function bestStreak(s: AppState) {
+  let best = 0
+  let run = 0
+  let prev: Date | undefined
+  for (const k of Object.keys(s.history).sort()) {
+    const d = new Date(`${k}T12:00:00`)
+    run = prev && Math.round((+d - +prev) / 86400000) === 1 ? run + 1 : 1
+    best = Math.max(best, run)
+    prev = d
+  }
+  return best
+}
+
 /** How well a card is known, from FSRS stability (roughly: days until recall drops to 90%). */
 export const LEVELS = ['Not tested', 'Learning', 'Getting there', 'Good', 'Strong'] as const
 export type Level = 0 | 1 | 2 | 3 | 4

@@ -15,8 +15,8 @@ export default defineConfig({
         name: 'Mandarin Daily',
         short_name: '每天',
         description: 'Daily Mandarin listening & speaking practice (HSK 1)',
-        theme_color: '#c4302b',
-        background_color: '#f7f2ea',
+        theme_color: '#f3f2ee',
+        background_color: '#f3f2ee',
         display: 'standalone',
         icons: [
           { src: 'icon-192.png', sizes: '192x192', type: 'image/png' },
@@ -25,7 +25,7 @@ export default defineConfig({
       },
       workbox: {
         // Precache the app shell + all audio so sessions work offline
-        globPatterns: ['**/*.{js,css,html,png,svg,json,mp3}'],
+        globPatterns: ['**/*.{js,css,html,png,svg,json,mp3,woff2}'],
         maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
       },
     }),

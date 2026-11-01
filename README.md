@@ -2,7 +2,7 @@
 
 A personal, offline-first PWA for daily Mandarin listening and speaking practice, aimed at **new HSK 1 (2026, 294 words)** plus 58 travel and conversation phrases. Built for iPhone: no microphone, no backend, no database, no paid APIs.
 
-**Version 1.2** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
+**Version 1.3** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
 
 ## Who it's for
 
@@ -46,6 +46,19 @@ At 5 new words/day you cover all of HSK 1 in about 9 weeks, faster if you mark w
 ## Research behind it
 
 Retrieval practice and the testing effect (Roediger & Karpicke 2006) · productive vs receptive recall (Webb 2009) · production effect, incl. mouthing (MacLeod et al. 2010) · heritage learners' receptive > productive skills (Montrul 2010; Kagan & Dillon 2001) · pretesting (Richland et al. 2009) · formulaic phrases and fluency (Boers et al. 2006) · task-based practice (Ellis 2003) · multi-talker tone training (Wang et al. 1999, 2003; but a 2021 JSLHR meta-analysis finds mixed multi-talker benefits, and Dong et al. 2019 found none for tones) · repeated retrieval, 5+ retrievals beat 1–3 (Nakata 2017) · heritage learners need to connect oral language with characters (Xiao 2006) · teaching semantic/phonetic components aids character learning (small, mixed studies) · shadowing works better with text (Japanese-context review) · comprehensible input / narrow listening (Krashen 1996) · slower speech for beginners (Griffiths 1992) · spacing (Cepeda et al. 2006) · sleep consolidation (Diekelmann & Born 2010) · habit formation (Lally et al. 2010) · divided attention at encoding (Craik et al. 1996, for the backlog's grind mode).
+
+## Design
+
+Built against two design rule sets (Impeccable's "craft floor" and Operate-mode guidance, and taste-skill's app-screen rules), read as reference. The screens are "Operate" surfaces: a tool used daily, phone in hand, so clarity beats decoration.
+
+- **Ink on paper, one red seal.** Neutral paper ground (`#f3f2ee`), white panels separated by a tone step (no borders or shadows at rest), black ink for text and the primary button. Vermilion (`--seal`) appears only on the wordmark, practised days and the end-of-session stamp.
+- **Hue is data.** Pinyin is coloured by tone, using Pleco's convention: 1 red, 2 orange, 3 green, 4 blue, neutral grey (`src/Pinyin.tsx` splits syllables). The tone drill draws each tone's pitch contour in its colour. Word strength uses an ink ramp (not tested → strong), so it never collides with tone colours. Right/wrong in the tone drill is an ink ring ✓ / a strikethrough, not green/red.
+- **Signature: the week as seals.** Home shows Monday–Sunday as seals marked 一…日 (星期一…星期日); a practised day is stamped red; finishing a session stamps today in (one authored animation). The end screen stamps 好.
+- **Type.** System sans for the interface; Chinese in Noto Serif SC (a Song/Ming print face, the standard reading form), self-hosted as a ~190 KB subset of only the characters the app uses (`public/fonts/hanzi.woff2`, OFL). Tabular figures on all numbers.
+- **One question per screen.** Home answers "what's today?" (headline like "58 reviews and 7 new items", the one primary action, then the week, then progress). Session steps put content in the middle and the actions in a dock at the bottom (thumb reach); rating buttons are neutral, with Again in the danger colour.
+- **Icons** are one hand-drawn SVG set (`src/icons.tsx`), no emoji. Skills in the word bank are marked by their Chinese verbs: 听 listening, 说 speaking, 读 reading, 句 sentences.
+- **Checks.** All text ≥ 4.5:1 in light and dark; touch targets ≥ 44 px; `prefers-reduced-motion` turns motion off; dark mode is a full token set. Screens were verified in WebKit at 390×844 (iPhone) in both themes.
+- **App icon:** 每天 in a seal frame (rendered from the same font).
 
 ## Run it
 
@@ -95,6 +108,7 @@ The version is in `package.json` and shown at the bottom of the home screen and 
 - Dialogues: `content/dialogues.json`. A dialogue unlocks once `unlockAfter` words and `unlockAfterPhrases` phrases are learned; `you` is the speaker you play in role-play (default B). File order = unlock order: the Dialogue step favours the newest unlocked one.
 - Character breakdowns: `npm run chars` (after `npm run data`) rebuilds `src/data/chars.json` from Make Me a Hanzi's dictionary (downloads it, or pass a local path). Unclear radical glosses are overridden in `scripts/build-chars.mjs`.
 - Listening suggestions: `src/listening.ts`.
+- Chinese font subset: after adding content with new characters, run `python3 scripts/build-font.py path/to/NotoSerifSC[wght].ttf` (from google/fonts `ofl/notoserifsc`; needs `pip install fonttools brotli`). Characters missing from the subset fall back to the system font.
 - Tone drill items are chosen by the build: 1–2 syllable words with a mark on every syllable, excluding multi-reading characters (只还都要和) and 3+3 pairs (pronounced 2+3).
 - After editing: `npm run data` (rebuilds `src/data/*.json`), then `npm run audio`. It only generates audio for new or changed text (tracked in `scripts/audio-sources.json`) and deletes audio for removed rows.
 
@@ -109,6 +123,10 @@ src/audio.ts        MP3 playback with device-voice fallback, speed
 src/Session.tsx     the five session steps
 src/WordBank.tsx    word bank
 src/CharParts.tsx   character breakdown (meaning/sound parts)
+src/Pinyin.tsx      tone-coloured pinyin, tone contours
+src/Week.tsx        the week as seals
+src/icons.tsx       SVG icon set
+src/index.css       design tokens (light/dark) and all styles
 src/listening.ts    easy-listening suggestions
 src/updates.ts      service-worker update hook + version; UpdateUI.tsx = banner/button
 src/App.tsx         home + settings
@@ -123,6 +141,9 @@ src/App.tsx         home + settings
 - New features should respect the profile above: whisper-friendly, no mic, no writing practice, offline-first.
 
 ## Changelog
+
+**1.3** (2026-11-01)
+- Redesign: ink-on-paper system with light/dark tokens; tone-coloured pinyin everywhere; tone drill with pitch contours; the week as red seals with a stamp on finishing; Chinese set in a self-hosted Noto Serif SC subset; SVG icons instead of emoji; actions docked at the bottom of every session step; countdown rings; word bank rows that fit phrases, 听说读句 skill marks and strength bars; settings as grouped lists; new 每天 seal app icon.
 
 **1.2** (2026-11-01)
 - Character breakdowns on read/sentence cards, new-word lessons and the word bank, from Make Me a Hanzi.
@@ -145,4 +166,4 @@ src/App.tsx         home + settings
 
 **1.0** — HSK 1 PWA: reviews (FSRS), new words, speak drill, dialogues, tones; neural audio.
 
-Word list source: [complete-hsk-vocabulary](https://github.com/drkameleon/complete-hsk-vocabulary) (MIT), 2026 HSK level 1. Example sentences, phrases, dialogues, pinyin and translations written for this app. Character breakdowns: [Make Me a Hanzi](https://github.com/skishore/makemeahanzi) `dictionary.txt` (LGPL-3.0, from Unihan and CJKlib); see `src/data/chars.LICENSE.txt`.
+Word list source: [complete-hsk-vocabulary](https://github.com/drkameleon/complete-hsk-vocabulary) (MIT), 2026 HSK level 1. Example sentences, phrases, dialogues, pinyin and translations written for this app. Character breakdowns: [Make Me a Hanzi](https://github.com/skishore/makemeahanzi) `dictionary.txt` (LGPL-3.0, from Unihan and CJKlib); see `src/data/chars.LICENSE.txt`. Chinese typeface: [Noto Serif SC](https://github.com/google/fonts/tree/main/ofl/notoserifsc) (SIL OFL 1.1, `public/fonts/OFL.txt`).

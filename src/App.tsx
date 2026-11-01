@@ -1,17 +1,22 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import Session from './Session'
 import WordBank from './WordBank'
-import { CheckForUpdates, UpdateBanner } from './UpdateUI'
-import { useUpdates, VERSION, type Updates } from './updates'
+import { UpdateNotice, UpdateRows } from './UpdateUI'
+import { useUpdates, type Updates } from './updates'
 import { PHRASES, WORDS } from './data'
 import { hasRecordedAudio, initAudio, setSpeed } from './audio'
+import { Icon } from './icons'
 import { LISTEN_MINUTES, listeningToday } from './listening'
+import { Week } from './Week'
 import {
-  dueKeys, exportState, importState, load, logDay, newQuota, phrasesLearned, save, speedSuggestion, streak, today,
-  wordsLearned, type AppState,
+  bestStreak, dueKeys, exportState, importState, load, logDay, newQuota, phrasesLearned, save, speedSuggestion, streak,
+  today, wordsLearned, type AppState,
 } from './store'
+import { VERSION } from './updates'
 
 const inDays = (n: number) => new Date(Date.now() + n * 86400000).toISOString()
+const dateLabel = (d = new Date()) => d.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })
+const plural = (n: number, one: string, many = `${one}s`) => `${n} ${n === 1 ? one : many}`
 
 /** Only count it as backed up once the file was actually saved, not if the share sheet was cancelled. */
 async function backup(state: AppState, commit: (fn: (s: AppState) => void) => void) {
@@ -22,6 +27,8 @@ export default function App() {
   const [state, setState] = useState<AppState>(load)
   const [screen, setScreen] = useState<'home' | 'session' | 'settings' | 'bank'>('home')
   const [audioReady, setAudioReady] = useState(false)
+  // Set when a session just ended, so today's seal stamps in once.
+  const [justFinished, setJustFinished] = useState(false)
   const updates = useUpdates()
 
   useEffect(() => {
@@ -41,7 +48,8 @@ export default function App() {
     })
   }, [])
 
-  if (screen === 'session') return <Session state={state} commit={commit} onExit={() => setScreen('home')} />
+  if (screen === 'session')
+    return <Session state={state} commit={commit} onExit={() => { setJustFinished(true); setScreen('home') }} />
   if (screen === 'bank') return <WordBank state={state} onBack={() => setScreen('home')} />
   if (screen === 'settings')
     return <Settings state={state} commit={commit} updates={updates} replace={(s) => { save(s); setState(s) }} onBack={() => setScreen('home')} />
@@ -56,81 +64,126 @@ export default function App() {
   const listening = listeningToday()
   const days = streak(state)
   const faster = speedSuggestion(state)
-  const pct = Math.round((learned / WORDS.length) * 100)
   const daysSinceBackup = state.lastBackup ? Math.floor((Date.now() - +new Date(state.lastBackup)) / 86400000) : null
   const needsBackup = learned > 0 && (daysSinceBackup === null || daysSinceBackup >= 7)
+  const listenedToday = !!state.history[today()]?.listened
+  const start = () => setScreen('session')
+
+  // The one question this screen answers: what is today's practice?
+  const work = [due > 0 && plural(due, 'review'), newLeft > 0 && plural(newLeft, 'new item')].filter(Boolean).join(' and ')
+  let headline: string
+  let sub: ReactNode
+  if (doneToday) {
+    headline = 'Done for today'
+    sub = 'Next session tomorrow, after a night’s sleep: that’s when today’s words settle in.'
+  } else if (state.introduced.length === 0) {
+    headline = `Your first ${plural(newLeft, 'word')}`
+    sub = 'Hear each one first and skip any you already know.'
+  } else if (startedToday) {
+    headline = 'Pick up where you left off'
+    sub = `${work} left.`
+  } else {
+    headline = `${work.charAt(0).toUpperCase()}${work.slice(1)}`
+    sub = due > 50
+      ? `Reviews stop at 12 minutes, most at risk first; the rest wait for tomorrow.`
+      : `About ${state.settings.sessionMinutes} minutes, plus optional listening.`
+  }
 
   return (
-    <div className="home">
-      <header>
-        <h1>每天 <span>Mandarin Daily</span></h1>
-        <button className="link" onClick={() => setScreen('settings')} aria-label="Settings">⚙︎</button>
+    <div className="screen home">
+      <header className="bar">
+        <div className="wordmark">
+          <span className="seal-mark hz" lang="zh-CN">每天</span>
+          <span>Mandarin Daily</span>
+        </div>
+        <button className="icon-btn" onClick={() => setScreen('settings')} aria-label="Settings"><Icon name="settings" /></button>
       </header>
 
-      <div className="card stats">
-        <div><b>{days > 0 ? `🔥${days}` : 0}</b><span>day streak</span></div>
-        <div><b>{due}</b><span>due</span></div>
-        <div><b>{newLeft}</b><span>new today</span></div>
-      </div>
-
-      <div className="card">
-        <div className="progress-label">HSK 1 · {learned}/{WORDS.length} words</div>
-        <div className="progress"><div style={{ width: `${pct}%` }} /></div>
-        <div className="progress-label gap">Phrases · {phrases}/{PHRASES.length}</div>
-        <div className="progress"><div style={{ width: `${Math.round((phrases / PHRASES.length) * 100)}%` }} /></div>
-        {learned + phrases > 0 && (
-          <button className="secondary wide gap" onClick={() => setScreen('bank')}>📖 Word bank</button>
+      <div className="notices">
+        <UpdateNotice updates={updates} />
+        {needsBackup && (
+          <div className="notice">
+            <Icon name="export" />
+            <p>{daysSinceBackup === null ? 'Back up your progress to Files.' : `Last backup ${plural(daysSinceBackup, 'day')} ago.`}</p>
+            <button className="btn small" onClick={() => backup(state, commit)}>Back up</button>
+          </div>
+        )}
+        {faster && (
+          <div className="notice">
+            <Icon name="headphones" />
+            <p>Listening is going well. Try audio at {Math.round(faster * 100)}%?</p>
+            <div className="notice-actions">
+              <button className="btn small" onClick={() => commit((s) => { s.settings.audioSpeed = faster; s.settings.speedNudgeAfter = inDays(7) })}>
+                Try it
+              </button>
+              <button className="btn small ghost" onClick={() => commit((s) => { s.settings.speedNudgeAfter = inDays(7) })}>Not now</button>
+            </div>
+          </div>
         )}
       </div>
 
-      {faster && (
-        <div className="banner speed">
-          <p>🎧 Your listening is going well. Try audio at {Math.round(faster * 100)}% (now {Math.round(state.settings.audioSpeed * 100)}%)?</p>
-          <div className="row center">
-            <button className="secondary" onClick={() => commit((s) => { s.settings.audioSpeed = faster; s.settings.speedNudgeAfter = inDays(7) })}>
-              Try {Math.round(faster * 100)}%
-            </button>
-            <button className="link small" onClick={() => commit((s) => { s.settings.speedNudgeAfter = inDays(7) })}>Not now</button>
-          </div>
-        </div>
-      )}
-
-      {quota.paused && newLeft === 0 && !doneToday && (
-        <p className="hint center-text">New words paused: catch up on reviews first.</p>
-      )}
-      {quota.paused && newLeft > 0 && <p className="hint center-text">Fewer new words today while you catch up on reviews.</p>}
-
-      {doneToday ? (
-        <>
-          <div className="card center-text">
-            <h2>✓ Done for today</h2>
-            <p className="hint">Come back tomorrow, after a night's sleep.</p>
-            {!state.history[today()]?.listened && (
-              <a className="secondary wide link-button" href={listening.url} target="_blank" rel="noreferrer"
+      <section className="today" aria-labelledby="today-title">
+        <p className="date">{dateLabel()}</p>
+        <h1 id="today-title">{headline}</h1>
+        <p className="today-sub">{sub}</p>
+        {quota.paused && !doneToday && (
+          <p className="today-note">
+            {newLeft === 0 ? 'New words are paused until reviews catch up.' : 'Fewer new words today while reviews catch up.'}
+          </p>
+        )}
+        {doneToday ? (
+          <div className="stack">
+            {!listenedToday && (
+              <a className="btn primary wide" href={listening.url} target="_blank" rel="noreferrer"
                 onClick={() => commit((s) => logDay(s, { listened: LISTEN_MINUTES }))}>
-                🎧 Optional: {LISTEN_MINUTES} min of easy listening ↗
+                <Icon name="headphones" /> {LISTEN_MINUTES} minutes of easy listening <Icon name="external" size={16} />
               </a>
             )}
+            <button className="btn wide" onClick={start}>Practise anyway</button>
           </div>
-          <button className="secondary wide" onClick={() => setScreen('session')}>Practice anyway</button>
-        </>
-      ) : (
-        <button className="primary start" onClick={() => setScreen('session')}>
-          {startedToday ? 'Continue today’s session' : 'Start today’s session'}
-          <small>~{state.settings.sessionMinutes} min</small>
-        </button>
-      )}
+        ) : (
+          <button className="btn primary wide start" onClick={start}>
+            {startedToday ? 'Continue session' : 'Start today’s session'}
+          </button>
+        )}
+      </section>
 
-      <UpdateBanner updates={updates} />
-      {needsBackup && (
-        <button className="banner" onClick={() => backup(state, commit)}>
-          💾 Back up your progress (Save to Files)
-        </button>
-      )}
+      <section className="panel" aria-labelledby="week-title">
+        <div className="panel-head">
+          <h2 id="week-title">{days > 0 ? `${plural(days, 'day')} in a row` : 'This week'}</h2>
+          {bestStreak(state) > days && <span className="muted num">Best {bestStreak(state)}</span>}
+        </div>
+        <Week history={state.history} stamp={justFinished} />
+      </section>
+
+      <section className="panel list" aria-label="Progress">
+        <ProgressRow label="HSK 1 words" n={learned} total={WORDS.length} />
+        <ProgressRow label="Phrases" n={phrases} total={PHRASES.length} />
+        {state.introduced.length > 0 && (
+          <button className="list-row nav" onClick={() => setScreen('bank')}>
+            <span>Word bank</span>
+            <span className="value">{plural(state.introduced.length, 'item')} studied</span>
+            <Icon name="chevron" size={18} />
+          </button>
+        )}
+      </section>
+
       {audioReady && !hasRecordedAudio() && (
-        <p className="hint center-text">Using your phone’s built-in Chinese voice. Run the audio script for better quality.</p>
+        <p className="foot">Using your phone’s built-in Chinese voice. Run the audio script for better quality.</p>
       )}
-      <p className="version">Version {VERSION}</p>
+      <p className="foot num">Version {VERSION}</p>
+    </div>
+  )
+}
+
+function ProgressRow({ label, n, total }: { label: string; n: number; total: number }) {
+  return (
+    <div className="list-row progress-row">
+      <span>{label}</span>
+      <span className="value num">{n} <span className="of">/ {total}</span></span>
+      <div className="meter" role="progressbar" aria-label={label} aria-valuenow={n} aria-valuemax={total}>
+        <div style={{ width: `${(n / total) * 100}%` }} />
+      </div>
     </div>
   )
 }
@@ -148,48 +201,67 @@ function Settings({ state, commit, updates, replace, onBack }: {
       s.settings[k] = v
       if (k === 'audioSpeed') s.settings.speedNudgeAfter = inDays(7) // you chose a speed: don't nudge for a week
     })
+  const weeks = Math.ceil(WORDS.length / state.settings.newPerDay / 7)
 
   return (
-    <div className="home">
-      <header>
-        <button className="link" onClick={onBack}>‹ Back</button>
-        <h1>Settings</h1>
-        <span />
+    <div className="screen settings">
+      <header className="bar">
+        <button className="icon-btn" onClick={onBack} aria-label="Back"><Icon name="back" /></button>
+        <h1 className="bar-title">Settings</h1>
+        <span className="icon-btn" aria-hidden="true" />
       </header>
-      <div className="card form">
-        <label>
-          New words per day
-          <select value={state.settings.newPerDay} onChange={(e) => set('newPerDay', +e.target.value)}>
-            {[3, 4, 5, 6, 7, 8, 10].map((n) => <option key={n}>{n}</option>)}
-          </select>
-        </label>
-        <p className="hint">5/day finishes all {WORDS.length} HSK 1 words in ~9 weeks. Words you mark as already known don't count.</p>
-        <label>
-          New phrases per day
-          <select value={state.settings.phrasesPerDay} onChange={(e) => set('phrasesPerDay', +e.target.value)}>
-            {[0, 1, 2, 3, 4, 5].map((n) => <option key={n}>{n}</option>)}
-          </select>
-        </label>
-        <p className="hint">Travel and conversation phrases ({PHRASES.length} total).</p>
-        <label>
-          Audio speed
-          <select value={state.settings.audioSpeed} onChange={(e) => set('audioSpeed', +e.target.value)}>
-            {[0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1].map((n) => <option key={n} value={n}>{Math.round(n * 100)}%</option>)}
-          </select>
-        </label>
-        <p className="hint">Start slow; move toward 100% as listening gets easier.</p>
-        <label>
-          Session length (min)
-          <select value={state.settings.sessionMinutes} onChange={(e) => set('sessionMinutes', +e.target.value)}>
-            {[15, 20, 25, 30, 35, 40, 45, 60].map((n) => <option key={n}>{n}</option>)}
-          </select>
-        </label>
-      </div>
-      <div className="card form">
-        <button className="secondary wide" onClick={() => backup(state, commit)}>
-          💾 Export backup
-        </button>
-        <button className="secondary wide" onClick={() => fileRef.current?.click()}>📂 Import backup</button>
+
+      <section className="group">
+        <h2>Daily plan</h2>
+        <div className="panel list">
+          <label className="list-row">
+            <span>New words</span>
+            <select value={state.settings.newPerDay} onChange={(e) => set('newPerDay', +e.target.value)}>
+              {[3, 4, 5, 6, 7, 8, 10].map((n) => <option key={n} value={n}>{n} a day</option>)}
+            </select>
+          </label>
+          <label className="list-row">
+            <span>New phrases</span>
+            <select value={state.settings.phrasesPerDay} onChange={(e) => set('phrasesPerDay', +e.target.value)}>
+              {[0, 1, 2, 3, 4, 5].map((n) => <option key={n} value={n}>{n} a day</option>)}
+            </select>
+          </label>
+          <label className="list-row">
+            <span>Session length</span>
+            <select value={state.settings.sessionMinutes} onChange={(e) => set('sessionMinutes', +e.target.value)}>
+              {[15, 20, 25, 30, 35, 40, 45, 60].map((n) => <option key={n} value={n}>{n} min</option>)}
+            </select>
+          </label>
+        </div>
+        <p className="group-note">
+          At {state.settings.newPerDay} a day you cover all {WORDS.length} HSK 1 words in about {weeks} weeks. Words you
+          already know don’t count. More new words means more reviews for weeks after.
+        </p>
+      </section>
+
+      <section className="group">
+        <h2>Audio</h2>
+        <div className="panel list">
+          <label className="list-row">
+            <span>Speed</span>
+            <select value={state.settings.audioSpeed} onChange={(e) => set('audioSpeed', +e.target.value)}>
+              {[0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1].map((n) => <option key={n} value={n}>{Math.round(n * 100)}%</option>)}
+            </select>
+          </label>
+        </div>
+        <p className="group-note">Start slow and move toward 100% as listening gets easier. Slow buttons play at 70% of this.</p>
+      </section>
+
+      <section className="group">
+        <h2>Backup</h2>
+        <div className="panel list">
+          <button className="list-row action" onClick={() => backup(state, commit)}>
+            <Icon name="export" /><span>Export backup</span>
+          </button>
+          <button className="list-row action" onClick={() => fileRef.current?.click()}>
+            <Icon name="import" /><span>Import backup</span>
+          </button>
+        </div>
         <input
           ref={fileRef} type="file" accept="application/json,.json" hidden
           onChange={async (e) => {
@@ -203,19 +275,32 @@ function Settings({ state, commit, updates, replace, onBack }: {
             }
           }}
         />
-        <p className="hint">{state.lastBackup ? `Last backup: ${state.lastBackup.slice(0, 10)}` : 'No backup yet.'}</p>
-      </div>
-      <div className="card form">
-        <button
-          className="danger wide"
-          onClick={() => confirm('Delete ALL progress? This cannot be undone.') && replace({ ...load(), cards: {}, introduced: [], history: {} })}
-        >
-          Reset progress
-        </button>
-      </div>
-      <div className="card form">
-        <CheckForUpdates updates={updates} />
-      </div>
+        <p className="group-note">
+          {state.lastBackup
+            ? `Last backup ${new Date(state.lastBackup).toLocaleDateString(undefined, { month: 'long', day: 'numeric' })}. `
+            : 'No backup yet. '}
+          Progress lives only on this device, so keep a copy in Files.
+        </p>
+      </section>
+
+      <section className="group">
+        <h2>App</h2>
+        <div className="panel list">
+          <UpdateRows updates={updates} />
+        </div>
+      </section>
+
+      <section className="group">
+        <div className="panel list">
+          <button
+            className="list-row action danger"
+            onClick={() => confirm('Delete all progress on this device? This cannot be undone.') && replace({ ...load(), cards: {}, introduced: [], history: {} })}
+          >
+            <span>Reset progress</span>
+          </button>
+        </div>
+        <p className="group-note">Deletes every word, review and streak on this device. Export a backup first.</p>
+      </section>
     </div>
   )
 }

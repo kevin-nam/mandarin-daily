@@ -8,6 +8,8 @@ import {
 } from './store'
 import { CharParts } from './CharParts'
 import { LISTEN_MINUTES, listeningToday } from './listening'
+import { Icon } from './icons'
+import { Pinyin, ToneContour } from './Pinyin'
 import { PlayButton, StepHeader, WordFace, shuffle } from './ui'
 
 type Commit = (fn: (s: AppState) => void) => void
@@ -50,19 +52,27 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
 
   const mm = `${Math.floor(elapsed / 60)}:${String(elapsed % 60).padStart(2, '0')}`
   const over = elapsed > state.settings.sessionMinutes * 60
+  const at = STEPS.findIndex((s) => s.id === step)
 
   return (
     <div className="session">
-      <div className="topbar">
-        <button className="link" onClick={step === 'done' ? finish : () => confirm('End session? Progress so far is saved.') && finish()}>
-          ✕
+      <div className="session-bar">
+        <button
+          className="icon-btn"
+          aria-label={step === 'done' ? 'Finish' : 'End session'}
+          onClick={step === 'done' ? finish : () => confirm('End the session? Progress so far is saved.') && finish()}
+        >
+          <Icon name="close" />
         </button>
-        <div className="steps">
-          {STEPS.map((s) => (
-            <span key={s.id} className={`dot ${s.id === step ? 'on' : ''}`} title={s.label} />
-          ))}
+        <div className="steps" aria-label={at >= 0 ? `Step ${at + 1} of ${STEPS.length}: ${STEPS[at].label}` : 'Done'}>
+          <div className="segments" aria-hidden="true">
+            {STEPS.map((s, i) => (
+              <span key={s.id} className={at < 0 || i < at ? 'past' : i === at ? 'now' : ''} />
+            ))}
+          </div>
+          <span className="step-name num">{at >= 0 ? `${at + 1} of ${STEPS.length}` : 'Done'}</span>
         </div>
-        <span className={`timer ${over ? 'over' : ''}`}>{mm}</span>
+        <span className={`timer num ${over ? 'over' : ''}`} aria-label={`Time ${mm}`}>{mm}</span>
       </div>
 
       {step === 'reviews' && <Reviews state={state} commit={commit} onDone={next} />}
@@ -74,14 +84,21 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
       {step === 'tones' && <Tones onDone={next} />}
       {step === 'listen' && <Listening commit={commit} onDone={next} />}
       {step === 'done' && (
-        <div className="card center-text">
-          <h2>Done for today 🎉</h2>
-          <p className="streak-big">🔥 {streak(state)}-day streak</p>
-          <p>{mm} · {learnedNow.length - knownNow} new{knownNow > 0 && ` · ${knownNow} already known`}</p>
-          <UseToday state={state} learnedNow={learnedNow} />
-          <p className="hint">Next session: tomorrow, after a night's sleep.</p>
-          <button className="primary" onClick={finish}>Finish</button>
-        </div>
+        <>
+          <div className="stage done">
+            <div className="done-seal hz" lang="zh-CN" aria-hidden="true">好</div>
+            <h2>Done for today</h2>
+            <p className="done-stats num">
+              {streak(state)} {streak(state) === 1 ? 'day' : 'days'} in a row · {mm} · {learnedNow.length - knownNow} new
+              {knownNow > 0 && ` · ${knownNow} already known`}
+            </p>
+            <UseToday state={state} learnedNow={learnedNow} />
+            <p className="hint center-text">Next session tomorrow, after a night’s sleep.</p>
+          </div>
+          <div className="dock">
+            <button className="btn primary wide" onClick={finish}>Finish</button>
+          </div>
+        </>
       )}
     </div>
   )
@@ -152,43 +169,45 @@ function Reviews({ state, commit, onDone }: { state: AppState; commit: Commit; o
   }[kind]
 
   return (
-    <div className="card">
-      <StepHeader title="Review" hint={prompt} right={<span className="count">{queue.length} left</span>} />
+    <>
+    <div className="stage">
+      <StepHeader title="Review" hint={prompt} right={<span className="num">{queue.length} left</span>} />
       {!revealed && (
         <div className="front" onClick={kind !== 'listen' ? reveal : undefined}>
           {kind === 'listen' && (
             <div className="center-col">
-              <PlayButton k={t.key} text={t.zh} label="▶ play" autoPlay />
-              <PlayButton k={t.key} text={t.zh} label="🐢 slow" slow />
-              {w.kind === 'word' && <p className="hint">Focus word: listen for it in the sentence.</p>}
+              <PlayButton k={t.key} text={t.zh} size="hero" autoPlay />
+              <PlayButton k={t.key} text={t.zh} slow />
+              {w.kind === 'word' && <p className="hint">Listen for the focus word in the sentence.</p>}
             </div>
           )}
           {kind === 'speak' && (
             <div className="center-col">
-              <div className="meaning big">{t.en}</div>
+              <div className="prompt-en">{t.en}</div>
               {w.kind === 'word' && <p className="hint">Key word: {w.en}</p>}
             </div>
           )}
-          {kind === 'read' && <div className={`hanzi ${w.kind === 'phrase' ? 'phrase' : 'huge'}`}>{w.hanzi}</div>}
-          {kind === 'sentence' && <div className="hanzi phrase">{w.sentence.zh}</div>}
+          {kind === 'read' && <div className={`hz prompt-hanzi ${w.kind}`} lang="zh-CN">{w.hanzi}</div>}
+          {kind === 'sentence' && <div className="hz prompt-hanzi phrase" lang="zh-CN">{w.sentence.zh}</div>}
         </div>
       )}
       {revealed && <WordFace w={w} />}
       {revealed && (kind === 'read' || kind === 'sentence') && <CharParts hanzi={w.hanzi} known={known} />}
-      <div className="actions">
-        {!revealed ? (
-          <button className="primary wide" onClick={reveal}>Show answer</button>
-        ) : (
-          <div className="grades">
-            <button className="g again" onClick={() => rate(Rating.Again)}>Again<small>missed it</small></button>
-            <button className="g hard" onClick={() => rate(Rating.Hard)}>Hard<small>got it, slowly</small></button>
-            <button className="g good" onClick={() => rate(Rating.Good)}>Good<small>got it</small></button>
-            <button className="g easy" onClick={() => rate(Rating.Easy)}>Easy<small>instantly</small></button>
-          </div>
-        )}
-      </div>
-      {count > 0 && timeUp && <p className="hint center-text">{REVIEW_MINUTES} min reached — finishing after this card.</p>}
     </div>
+    <div className="dock">
+      {count > 0 && timeUp && <p className="dock-note">{REVIEW_MINUTES} minutes reached: this is the last card.</p>}
+      {!revealed ? (
+        <button className="btn primary wide" onClick={reveal}>Show answer</button>
+      ) : (
+        <div className="grades" role="group" aria-label="How well did you know it?">
+          <button className="grade again" onClick={() => rate(Rating.Again)}>Again<small>missed it</small></button>
+          <button className="grade" onClick={() => rate(Rating.Hard)}>Hard<small>with effort</small></button>
+          <button className="grade" onClick={() => rate(Rating.Good)}>Good<small>got it</small></button>
+          <button className="grade" onClick={() => rate(Rating.Easy)}>Easy<small>instantly</small></button>
+        </div>
+      )}
+    </div>
+    </>
   )
 }
 
@@ -265,45 +284,49 @@ function NewWords({ state, commit, onDone }: { state: AppState; commit: Commit; 
         check: 'Were you right?',
         teach: 'Hear it, read it, then shadow it (a whisper is fine).',
       }[phase]}
-      right={<span className="count">{i + 1}/{items.length}</span>}
+      right={<span className="num">{i + 1} of {items.length}</span>}
     />
   )
 
   if (phase === 'probe')
     return (
-      <div className="card">
-        {header}
-        <div className="center-col">
-          <PlayButton k={t.key} text={t.zh} label="▶ play" autoPlay />
-          <PlayButton k={t.key} text={t.zh} label="🐢 slow" slow />
+      <>
+        <div className="stage">
+          {header}
+          <div className="center-col fill">
+            <PlayButton k={t.key} text={t.zh} size="hero" autoPlay />
+            <PlayButton k={t.key} text={t.zh} slow />
+          </div>
         </div>
-        <div className="grades two">
-          <button className="g good" onClick={() => setPhase('check')}>I know it</button>
-          <button className="g again" onClick={() => setPhase('teach')}>New to me</button>
+        <div className="dock pair">
+          <button className="btn wide" onClick={() => setPhase('teach')}>New to me</button>
+          <button className="btn primary wide" onClick={() => setPhase('check')}>I know it</button>
         </div>
-      </div>
+      </>
     )
 
   return (
-    <div className="card">
+    <>
+    <div className="stage">
       {header}
-      <div className="unit">{w.unit}</div>
+      <p className="unit">{w.unit}</p>
       <WordFace w={w} />
       {phase === 'teach' && <CharParts hanzi={w.hanzi} known={knownChars(state.introduced)} />}
-      {phase === 'check' ? (
-        <div className="grades two">
-          <button className="g good" onClick={knewIt}>Yes, knew it</button>
-          <button className="g again" onClick={() => setPhase('teach')}>Not quite</button>
-        </div>
-      ) : (
-        <div className="actions">
-          <button className="secondary wide" onClick={shadow} disabled={shadowing}>
-            {shadowing ? 'Repeat after each play…' : '🗣 Shadow ×4 (slow → normal)'}
-          </button>
-          <button className="primary wide" onClick={learned}>Got it →</button>
-        </div>
-      )}
     </div>
+    {phase === 'check' ? (
+      <div className="dock pair">
+        <button className="btn wide" onClick={() => setPhase('teach')}>Not quite</button>
+        <button className="btn primary wide" onClick={knewIt}>Yes, I knew it</button>
+      </div>
+    ) : (
+      <div className="dock">
+        <button className={`btn wide ${shadowing ? 'live' : ''}`} onClick={shadow} disabled={shadowing}>
+          {shadowing ? 'Your turn after each play…' : 'Shadow it 4 times, slow to normal'}
+        </button>
+        <button className="btn primary wide" onClick={learned}>Next</button>
+      </div>
+    )}
+    </>
   )
 }
 
@@ -377,30 +400,33 @@ function Drill({ state, learnedNow, onDone }: { state: AppState; learnedNow: str
   }
 
   return (
-    <div className="card">
-      <StepHeader title="Speak" hint="Say the Mandarin before the answer plays. Whisper or mouth it if you need to." right={<span className="count">{queue.length} left</span>} />
-      <div className="center-col">
-        <div className="meaning big">{t.en}</div>
+    <>
+    <div className="stage">
+      <StepHeader title="Speak" hint="Say it in Mandarin before the answer plays. Whispering or mouthing counts." right={<span className="num">{queue.length} left</span>} />
+      <div className="center-col fill">
+        <div className="prompt-en">{t.en}</div>
         {phase === 'prompt' ? (
-          <>
-            <div className="countdown">{countdown > 0 ? countdown : ''}</div>
-            <button className="link" onClick={() => setCountdown(0)}>Skip wait</button>
-          </>
+          <Countdown value={countdown} total={thinkSeconds(item.w)} />
         ) : (
-          <div className="sentence">
-            <div className="zh">{t.zh}</div>
-            <div className="py">{t.py}</div>
-            <PlayButton k={t.key} text={t.zh} label="▶ again" />
+          <div className="answer">
+            <div className="hz answer-zh" lang="zh-CN">{t.zh}</div>
+            <Pinyin text={t.py} className="answer-py" />
+            <PlayButton k={t.key} text={t.zh} label="Again" />
           </div>
         )}
       </div>
-      {phase === 'answer' && (
-        <div className="grades two">
-          <button className="g again" onClick={() => mark(false)}>Missed</button>
-          <button className="g good" onClick={() => mark(true)}>Said it</button>
-        </div>
+    </div>
+    <div className="dock pair">
+      {phase === 'prompt' ? (
+        <button className="btn wide span" onClick={() => setCountdown(0)}>Show the answer now</button>
+      ) : (
+        <>
+          <button className="btn wide" onClick={() => mark(false)}>Missed it</button>
+          <button className="btn primary wide" onClick={() => mark(true)}>Said it</button>
+        </>
       )}
     </div>
+    </>
   )
 }
 
@@ -482,11 +508,15 @@ function DialogueStep({ state, onDone }: { state: AppState; onDone: () => void }
   const lastLine = line === d.lines.length - 1 && !playing
 
   return (
-    <div className="card">
-      <StepHeader title={d.title} hint={hints[phase]} right={<span className="count">{phase + 1}/4</span>} />
+    <>
+    <div className="stage">
+      <StepHeader title={d.title} hint={hints[phase]} right={<span className="num">{phase + 1} of 4</span>} />
       {phase === 0 ? (
-        <div className="center-col">
-          <button className="play big" onClick={() => playAll()} disabled={playing}>{playing ? '…' : '▶'}</button>
+        <div className="center-col fill">
+          <button className={`play hero round ${playing ? 'busy' : ''}`} onClick={() => playAll()} disabled={playing} aria-label="Play the dialogue">
+            <Icon name="play" size={34} />
+          </button>
+          <p className="hint">{playing ? 'Listening…' : 'No text yet: just listen.'}</p>
         </div>
       ) : phase < 3 ? (
         <div className="dialogue">
@@ -495,17 +525,24 @@ function DialogueStep({ state, onDone }: { state: AppState; onDone: () => void }
               key={i}
               className={`line ${l.s === 'A' ? 'a' : 'b'} ${active === i ? 'active' : ''}`}
               onClick={() => play(lineKey(d.id, i), l.zh, { slow })}
+              role="button"
+              tabIndex={0}
+              aria-label={`Play line ${i + 1}`}
             >
-              <div className="zh">{l.zh}</div>
-              <div className="py">{l.py}</div>
+              <span className="speaker">{l.s}</span>
+              <div className="hz zh" lang="zh-CN">{l.zh}</div>
+              <Pinyin text={l.py} />
               <div className="en">{l.en}</div>
             </div>
           ))}
-          <div className="row center">
-            <button className="secondary" onClick={() => playAll(phase === 2 ? 3000 : 400)} disabled={playing}>
-              {playing ? 'Playing…' : phase === 2 ? '▶ Play with pauses' : '▶ Play all'}
+          <div className="controls">
+            <button className="btn" onClick={() => playAll(phase === 2 ? 3000 : 400)} disabled={playing}>
+              <Icon name="play" size={18} /> {playing ? 'Playing…' : phase === 2 ? 'Play with pauses' : 'Play all'}
             </button>
-            <label className="toggle"><input type="checkbox" checked={slow} onChange={(e) => setSlow(e.target.checked)} /> slow</label>
+            <label className="switch">
+              <input type="checkbox" checked={slow} onChange={(e) => setSlow(e.target.checked)} />
+              <span>Slow</span>
+            </label>
           </div>
         </div>
       ) : (
@@ -514,46 +551,52 @@ function DialogueStep({ state, onDone }: { state: AppState; onDone: () => void }
             const hidden = i === line && l.s === me && !reveal
             return (
               <div key={i} className={`line ${l.s === 'A' ? 'a' : 'b'} ${l.s === me ? 'mine' : ''} ${i === line ? 'active' : ''}`}>
+                <span className="speaker">{l.s === me ? 'You' : l.s}</span>
                 {hidden ? (
                   <>
                     <div className="en big">{l.en}</div>
-                    <div className="countdown">{countdown || ''}</div>
-                    <button className="link" onClick={() => { skip.current = true }}>Skip wait</button>
+                    <div className="your-turn">
+                      <Countdown value={countdown} total={thinkFor(l.zh)} small />
+                      <button className="btn small" onClick={() => { skip.current = true }}>Show it</button>
+                    </div>
                   </>
                 ) : (
                   <>
-                    <div className="zh">{l.zh}</div>
-                    <div className="py">{l.py}</div>
+                    <div className="hz zh" lang="zh-CN">{l.zh}</div>
+                    <Pinyin text={l.py} />
                     <div className="en">{l.en}</div>
                   </>
                 )}
               </div>
             )
           })}
-          <div className="row center">
+          <div className="controls">
             {!playing && (
-              <button className="secondary" onClick={rolePlay}>{line < 0 ? `▶ Start (you're ${me})` : '▶ Again'}</button>
+              <button className="btn" onClick={rolePlay}>
+                <Icon name="play" size={18} /> {line < 0 ? `Start as ${me}` : 'Run it again'}
+              </button>
             )}
             {(line < 0 || lastLine) && (
-              <button className="secondary" onClick={() => { cancelRun(); setLine(-1); setMe(me === 'A' ? 'B' : 'A') }}>
-                ⇄ Be {me === 'A' ? 'B' : 'A'}
+              <button className="btn ghost" onClick={() => { cancelRun(); setLine(-1); setMe(me === 'A' ? 'B' : 'A') }}>
+                <Icon name="swap" size={18} /> Be {me === 'A' ? 'B' : 'A'}
               </button>
             )}
           </div>
         </div>
       )}
-      <div className="actions">
-        <button className="primary wide" onClick={() => { cancelRun(); if (phase < 3) setPhase((phase + 1) as 1 | 2 | 3); else onDone() }}>
-          {phase < 3 ? 'Next →' : 'Done →'}
-        </button>
-      </div>
     </div>
+    <div className="dock">
+      <button className="btn primary wide" onClick={() => { cancelRun(); if (phase < 3) setPhase((phase + 1) as 1 | 2 | 3); else onDone() }}>
+        {phase < 3 ? ['Show the text', 'Shadow it', 'Role-play'][phase] : 'Finish dialogue'}
+      </button>
+    </div>
+    </>
   )
 }
 
 /* ---------------- Tone drill (single syllables, then two-syllable words; several voices) ---------------- */
 
-const TONE_LABELS = ['ˉ 1st', 'ˊ 2nd', 'ˇ 3rd', 'ˋ 4th']
+const TONE_NAMES = ['1st', '2nd', '3rd', '4th']
 const randomVoice = () => Math.floor(Math.random() * TONE_VOICES)
 
 function Tones({ onDone }: { onDone: () => void }) {
@@ -584,37 +627,45 @@ function Tones({ onDone }: { onDone: () => void }) {
   }
 
   return (
-    <div className="card">
+    <>
+    <div className="stage">
       <StepHeader
         title="Tones"
         hint={tones.length === 1 ? 'Which tone do you hear?' : 'Two syllables: pick the tone of each.'}
-        right={<span className="count">{i + 1}/{items.length} · {score}✓</span>}
+        right={<span className="num">{i + 1} of {items.length} · {score} right</span>}
       />
-      <div className="center-col">
-        <PlayButton k={voiceKey(w.id, voice)} text={w.hanzi} label="▶" autoPlay />
-        {done && (
-          <div className="word-face small">
-            <div className="hanzi">{w.hanzi}</div>
-            <div className="pinyin">{w.pinyin}</div>
-            <div className="meaning">{w.en}</div>
+      <div className="center-col tone-stage">
+        {done ? (
+          <div className="tone-answer">
+            <div className="hz" lang="zh-CN">{w.hanzi}</div>
+            <Pinyin text={w.pinyin} />
+            <div className="en">{w.en}</div>
           </div>
+        ) : (
+          <PlayButton k={voiceKey(w.id, voice)} text={w.hanzi} size="hero" autoPlay />
         )}
+        {done && <PlayButton k={voiceKey(w.id, voice)} text={w.hanzi} label="Hear it again" />}
       </div>
       {tones.map((tone, k) => (
-        <div key={`${i}-${k}`}>
-          {tones.length > 1 && <p className="hint">{k === 0 ? '1st syllable' : '2nd syllable'}</p>}
+        <div key={`${i}-${k}`} className="tone-group">
+          {tones.length > 1 && <p className="tone-group-label">{k === 0 ? 'First syllable' : 'Second syllable'}</p>}
           <div className={`tones ${tones.length > 1 ? 'compact' : ''}`}>
-            {TONE_LABELS.map((lbl, idx) => {
+            {TONE_NAMES.map((name, idx) => {
               const t = idx + 1
-              const cls = !done ? (picks[k] === t ? 'picked' : '') : t === tone ? 'right' : t === picks[k] ? 'wrong' : ''
-              return <button key={t} className={`tone ${cls}`} onClick={() => choose(k, t)}>{lbl}</button>
+              const cls = !done ? (picks[k] === t ? 'picked' : '') : t === tone ? 'right' : t === picks[k] ? 'wrong' : 'dim'
+              return (
+                <button key={t} className={`tone ${cls}`} onClick={() => choose(k, t)} aria-label={`${name} tone`} aria-pressed={picks[k] === t}>
+                  <ToneContour tone={t} />
+                  <span>{name}</span>
+                </button>
+              )
             })}
           </div>
         </div>
       ))}
-      {done && <button className="primary wide" onClick={next}>Next →</button>}
-      <p className="hint center-text">Tap ▶ as often as you like. The voice changes between rounds.</p>
     </div>
+    {done && <div className="dock"><button className="btn primary wide" onClick={next}>{i + 1 < items.length ? 'Next' : 'Finish tones'}</button></div>}
+    </>
   )
 }
 
@@ -627,16 +678,24 @@ function Listening({ commit, onDone }: { commit: Commit; onDone: () => void }) {
     onDone()
   }
   return (
-    <div className="card">
-      <StepHeader title="Easy listening" hint={`Optional: about ${LISTEN_MINUTES} minutes. Now, or later today (commute, break).`} />
-      <p>Watch one beginner video in Mandarin. Don't aim to understand everything: following the gist is the point.</p>
-      <a className="primary wide link-button" href={r.url} target="_blank" rel="noreferrer">🎧 {r.name} ↗</a>
-      <p className="hint center-text">{r.note}. Needs internet.</p>
-      <div className="grades two">
-        <button className="g good" onClick={listened}>I listened</button>
-        <button className="g hard" onClick={onDone}>Skip / later</button>
-      </div>
+    <>
+    <div className="stage">
+      <StepHeader title="Easy listening" hint={`Optional, about ${LISTEN_MINUTES} minutes. Now or later today.`} />
+      <p className="body">
+        Watch one beginner video in Mandarin. Don’t try to understand every word: following the gist is the point.
+      </p>
+      <a className="listen-link" href={r.url} target="_blank" rel="noreferrer">
+        <Icon name="headphones" size={26} />
+        <span className="listen-text"><b>{r.name}</b><span>{r.note}</span></span>
+        <Icon name="external" size={18} />
+      </a>
+      <p className="hint">Opens YouTube; needs internet.</p>
     </div>
+    <div className="dock pair">
+      <button className="btn wide" onClick={onDone}>Later</button>
+      <button className="btn primary wide" onClick={listened}>I listened</button>
+    </div>
+    </>
   )
 }
 
@@ -655,12 +714,37 @@ function UseToday({ state, learnedNow }: { state: AppState; learnedNow: string[]
   const p = todayPhrase(state, learnedNow)
   if (!p) return null
   return (
-    <div className="use-today">
-      <p className="hint">Use it today: say it to someone, or to yourself when the moment comes up</p>
-      <div className="zh">{p.hanzi}</div>
-      <div className="py">{p.pinyin}</div>
-      <div className="en">{p.en}</div>
-      <PlayButton k={p.id} text={p.hanzi} label="▶" />
+    <section className="use-today">
+      <h3>Use it today</h3>
+      <div className="use-row">
+        <div>
+          <div className="hz zh" lang="zh-CN">{p.hanzi}</div>
+          <Pinyin text={p.pinyin} />
+          <div className="en">{p.en}</div>
+        </div>
+        <PlayButton k={p.id} text={p.hanzi} />
+      </div>
+      <p className="hint">Say it to someone, or to yourself when the moment comes up.</p>
+    </section>
+  )
+}
+
+/* ---------------- Countdown ring ---------------- */
+
+/** Seconds left to answer, drawn as a ring that empties. */
+function Countdown({ value, total, small }: { value: number; total: number; small?: boolean }) {
+  const r = small ? 15 : 34
+  const size = (r + 4) * 2
+  const c = 2 * Math.PI * r
+  const left = Math.max(0, value) / total
+  return (
+    <div className={`countdown ${small ? 'small' : ''}`} role="timer" aria-label={`${Math.max(0, value)} seconds`}>
+      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} aria-hidden="true">
+        <circle className="track" cx={size / 2} cy={size / 2} r={r} />
+        <circle className="left" cx={size / 2} cy={size / 2} r={r} strokeDasharray={c} strokeDashoffset={c * (1 - left)}
+          transform={`rotate(-90 ${size / 2} ${size / 2})`} />
+      </svg>
+      <span className="num">{value > 0 ? value : ''}</span>
     </div>
   )
 }
