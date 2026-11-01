@@ -1,22 +1,25 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { Grade } from 'ts-fsrs'
-import { DIALOGUES, PAIR_ITEMS, TONE_ITEMS, TONE_VOICES, WORD_BY_ID, target, voiceKey, type Word } from './data'
+import { DIALOGUES, PAIR_ITEMS, PHRASES, TONE_ITEMS, TONE_VOICES, WORD_BY_ID, knownChars, target, voiceKey, type Word } from './data'
 import { epoch, lineKey, play, sleep, stop, wordKey } from './audio'
 import {
   byRisk, dueKeys, grade, introduce, logDay, markKnown, newQuota, nextNewItems, parseKey, phrasesLearned, Rating,
   streak, wordsLearned, type AppState,
 } from './store'
+import { CharParts } from './CharParts'
+import { LISTEN_MINUTES, listeningToday } from './listening'
 import { PlayButton, StepHeader, WordFace, shuffle } from './ui'
 
 type Commit = (fn: (s: AppState) => void) => void
-type StepId = 'reviews' | 'new' | 'drill' | 'dialogue' | 'tones' | 'done'
+type StepId = 'reviews' | 'new' | 'drill' | 'dialogue' | 'tones' | 'listen' | 'done'
 
 const STEPS: { id: StepId; label: string; minutes: number }[] = [
-  { id: 'reviews', label: 'Review', minutes: 8 },
+  { id: 'reviews', label: 'Review', minutes: 12 },
   { id: 'new', label: 'New words', minutes: 5 },
-  { id: 'drill', label: 'Speak', minutes: 6 },
+  { id: 'drill', label: 'Speak', minutes: 8 },
   { id: 'dialogue', label: 'Dialogue', minutes: 4 },
   { id: 'tones', label: 'Tones', minutes: 2 },
+  { id: 'listen', label: 'Listening (optional)', minutes: LISTEN_MINUTES },
 ]
 
 export default function Session({ state, commit, onExit }: { state: AppState; commit: Commit; onExit: () => void }) {
@@ -69,11 +72,13 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
       {step === 'drill' && <Drill state={state} learnedNow={learnedNow} onDone={next} />}
       {step === 'dialogue' && <DialogueStep state={state} onDone={next} />}
       {step === 'tones' && <Tones onDone={next} />}
+      {step === 'listen' && <Listening commit={commit} onDone={next} />}
       {step === 'done' && (
         <div className="card center-text">
           <h2>Done for today 🎉</h2>
           <p className="streak-big">🔥 {streak(state)}-day streak</p>
           <p>{mm} · {learnedNow.length - knownNow} new{knownNow > 0 && ` · ${knownNow} already known`}</p>
+          <UseToday state={state} learnedNow={learnedNow} />
           <p className="hint">Next session: tomorrow, after a night's sleep.</p>
           <button className="primary" onClick={finish}>Finish</button>
         </div>
@@ -84,10 +89,10 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
 
 /* ---------------- Reviews ---------------- */
 
-const REVIEW_MINUTES = 8
+const REVIEW_MINUTES = 12
 
 /**
- * Due cards, most at risk of being forgotten first (only ~40 fit in the time cap), with
+ * Due cards, most at risk of being forgotten first (only ~80 fit in the time cap), with
  * speak cards prioritised (2 speak : 1 other) so the main gap gets the most time, still interleaved.
  */
 function reviewQueue(state: AppState) {
@@ -104,6 +109,7 @@ function Reviews({ state, commit, onDone }: { state: AppState; commit: Commit; o
   const [revealed, setRevealed] = useState(false)
   const [count, setCount] = useState(0)
   const start = useRef(Date.now())
+  const known = useMemo(() => knownChars(state.introduced), [state.introduced])
 
   useEffect(() => {
     if (queue.length === 0) onDone()
@@ -168,6 +174,7 @@ function Reviews({ state, commit, onDone }: { state: AppState; commit: Commit; o
         </div>
       )}
       {revealed && <WordFace w={w} />}
+      {revealed && (kind === 'read' || kind === 'sentence') && <CharParts hanzi={w.hanzi} known={known} />}
       <div className="actions">
         {!revealed ? (
           <button className="primary wide" onClick={reveal}>Show answer</button>
@@ -282,6 +289,7 @@ function NewWords({ state, commit, onDone }: { state: AppState; commit: Commit; 
       {header}
       <div className="unit">{w.unit}</div>
       <WordFace w={w} />
+      {phase === 'teach' && <CharParts hanzi={w.hanzi} known={knownChars(state.introduced)} />}
       {phase === 'check' ? (
         <div className="grades two">
           <button className="g good" onClick={knewIt}>Yes, knew it</button>
@@ -302,6 +310,10 @@ function NewWords({ state, commit, onDone }: { state: AppState; commit: Commit; 
 /* ---------------- Recall drill (prompted recall, expanding intervals) ---------------- */
 
 interface DrillItem { w: Word; hits: number }
+
+const DRILL_MINUTES = 8
+/** More retrievals in the first session improve long-term recall (Nakata 2017: 5+ beat 1-3). */
+const RETIRE_AFTER = 3
 
 /** Time to form the answer: longer sentences need longer. */
 const thinkFor = (zh: string) => Math.min(12, Math.max(5, Math.round(2 + [...zh].length * 0.5)))
@@ -347,12 +359,12 @@ function Drill({ state, learnedNow, onDone }: { state: AppState; learnedNow: str
 
   const mark = (ok: boolean) => {
     stop()
-    const timeUp = Date.now() - start.current > 6 * 60 * 1000
+    const timeUp = Date.now() - start.current > DRILL_MINUTES * 60 * 1000
     const next = (() => {
       const [cur, ...rest] = queue
-      if (timeUp) return [] // 6-minute cap reached
+      if (timeUp) return [] // time cap reached
       const hits = ok ? cur.hits + 1 : 0
-      if (hits >= 2) return rest // retired: recalled twice with growing gaps
+      if (hits >= RETIRE_AFTER) return rest // retired: recalled 3 times with growing gaps
       const gap = ok ? 5 : 2 // expanding interval: short after a miss, longer after a hit
       const copy = [...rest]
       copy.splice(Math.min(gap, copy.length), 0, { ...cur, hits })
@@ -602,6 +614,53 @@ function Tones({ onDone }: { onDone: () => void }) {
       ))}
       {done && <button className="primary wide" onClick={next}>Next →</button>}
       <p className="hint center-text">Tap ▶ as often as you like. The voice changes between rounds.</p>
+    </div>
+  )
+}
+
+/* ---------------- Easy listening (optional, outside the app) ---------------- */
+
+function Listening({ commit, onDone }: { commit: Commit; onDone: () => void }) {
+  const r = listeningToday()
+  const listened = () => {
+    commit((s) => logDay(s, { listened: LISTEN_MINUTES }))
+    onDone()
+  }
+  return (
+    <div className="card">
+      <StepHeader title="Easy listening" hint={`Optional: about ${LISTEN_MINUTES} minutes. Now, or later today (commute, break).`} />
+      <p>Watch one beginner video in Mandarin. Don't aim to understand everything: following the gist is the point.</p>
+      <a className="primary wide link-button" href={r.url} target="_blank" rel="noreferrer">🎧 {r.name} ↗</a>
+      <p className="hint center-text">{r.note}. Needs internet.</p>
+      <div className="grades two">
+        <button className="g good" onClick={listened}>I listened</button>
+        <button className="g hard" onClick={onDone}>Skip / later</button>
+      </div>
+    </div>
+  )
+}
+
+/* ---------------- Use it today ---------------- */
+
+/** One phrase to use for real today: one learned this session if any, else one from before (same all day). */
+function todayPhrase(state: AppState, learnedNow: string[]) {
+  const learned = PHRASES.filter((p) => state.introduced.includes(p.id))
+  const fresh = learned.filter((p) => learnedNow.includes(p.id))
+  const pool = fresh.length ? fresh : learned
+  if (!pool.length) return undefined
+  return pool[new Date().getDate() % pool.length]
+}
+
+function UseToday({ state, learnedNow }: { state: AppState; learnedNow: string[] }) {
+  const p = todayPhrase(state, learnedNow)
+  if (!p) return null
+  return (
+    <div className="use-today">
+      <p className="hint">Use it today: say it to someone, or to yourself when the moment comes up</p>
+      <div className="zh">{p.hanzi}</div>
+      <div className="py">{p.pinyin}</div>
+      <div className="en">{p.en}</div>
+      <PlayButton k={p.id} text={p.hanzi} label="▶" />
     </div>
   )
 }

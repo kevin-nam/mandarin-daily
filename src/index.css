@@ -168,3 +168,25 @@ h2 { font-size: 20px; }
 .lv.locked { opacity: 0.35; }
 .banner.update { margin-bottom: 14px; background: color-mix(in srgb, var(--jade) 18%, var(--card)); border-color: var(--jade); font-weight: 600; }
 .version { text-align: center; color: var(--muted); font-size: 12px; margin: 24px 0 0; }
+
+/* Character parts */
+.char-parts { margin: 14px 0 4px; padding: 10px 12px; border-radius: 12px; background: var(--bg); text-align: left; }
+.char-parts summary { cursor: pointer; color: var(--muted); font-size: 14px; }
+.char-parts-title { margin: 0 0 4px; color: var(--muted); font-size: 13px; }
+.char-row { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; padding: 6px 0; }
+.char-row + .char-row { border-top: 1px solid var(--line); }
+.char-main { font-size: 26px; min-width: 32px; }
+.char-eq { color: var(--muted); }
+.char-plus { display: inline-flex; align-items: center; gap: 6px; }
+.part { display: inline-flex; align-items: baseline; gap: 4px; padding: 2px 8px; border-radius: 8px; background: var(--card); }
+.part-char { font-size: 20px; }
+.part small { color: var(--muted); font-size: 12px; }
+.part.known small { color: var(--jade); }
+.char-hint { flex-basis: 100%; color: var(--muted); font-size: 13px; }
+
+/* Use it today, listening */
+.use-today { margin: 12px 0; padding: 12px; border-radius: 12px; background: var(--bg); }
+.use-today .zh { font-size: 24px; margin-top: 6px; }
+.use-today .py { color: var(--muted); }
+.link-button { display: block; color: inherit; text-align: center; text-decoration: none; box-sizing: border-box; margin-top: 10px; }
+a.primary.link-button { color: var(--red-ink); }

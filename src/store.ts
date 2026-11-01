@@ -23,7 +23,7 @@ export interface AppState {
 }
 
 // `newPhrases` and `known` were added later, so older days don't have them.
-export interface DayLog { reviews: number; newWords: number; newPhrases?: number; known?: number; minutes: number }
+export interface DayLog { reviews: number; newWords: number; newPhrases?: number; known?: number; minutes: number; listened?: number }
 
 const KEY = 'mandarin-daily:v1'
 // No same-day learning steps: the session itself (Speak drill, Again re-queue) covers same-day practice,
@@ -39,7 +39,7 @@ export function startOfDay(d = new Date(), days = 0) {
 }
 
 function emptyState(): AppState {
-  return { version: 1, cards: {}, introduced: [], history: {}, settings: { newPerDay: 5, phrasesPerDay: 2, sessionMinutes: 25, audioSpeed: 0.85 } }
+  return { version: 1, cards: {}, introduced: [], history: {}, settings: { newPerDay: 5, phrasesPerDay: 2, sessionMinutes: 30, audioSpeed: 0.85 } }
 }
 
 function revive(s: AppState): AppState {
@@ -167,6 +167,7 @@ export function logDay(s: AppState, patch: Partial<DayLog>) {
   d.newPhrases = (d.newPhrases ?? 0) + (patch.newPhrases ?? 0)
   d.known = (d.known ?? 0) + (patch.known ?? 0)
   d.minutes += patch.minutes ?? 0
+  if (patch.listened) d.listened = (d.listened ?? 0) + patch.listened
 }
 
 export function streak(s: AppState) {

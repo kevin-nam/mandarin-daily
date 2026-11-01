@@ -5,8 +5,9 @@ import { CheckForUpdates, UpdateBanner } from './UpdateUI'
 import { useUpdates, VERSION, type Updates } from './updates'
 import { PHRASES, WORDS } from './data'
 import { hasRecordedAudio, initAudio, setSpeed } from './audio'
+import { LISTEN_MINUTES, listeningToday } from './listening'
 import {
-  dueKeys, exportState, importState, load, newQuota, phrasesLearned, save, speedSuggestion, streak, today,
+  dueKeys, exportState, importState, load, logDay, newQuota, phrasesLearned, save, speedSuggestion, streak, today,
   wordsLearned, type AppState,
 } from './store'
 
@@ -52,6 +53,7 @@ export default function App() {
   const phrases = phrasesLearned(state)
   const startedToday = !!state.history[today()]
   const doneToday = startedToday && due === 0 && newLeft === 0
+  const listening = listeningToday()
   const days = streak(state)
   const faster = speedSuggestion(state)
   const pct = Math.round((learned / WORDS.length) * 100)
@@ -103,6 +105,12 @@ export default function App() {
           <div className="card center-text">
             <h2>✓ Done for today</h2>
             <p className="hint">Come back tomorrow, after a night's sleep.</p>
+            {!state.history[today()]?.listened && (
+              <a className="secondary wide link-button" href={listening.url} target="_blank" rel="noreferrer"
+                onClick={() => commit((s) => logDay(s, { listened: LISTEN_MINUTES }))}>
+                🎧 Optional: {LISTEN_MINUTES} min of easy listening ↗
+              </a>
+            )}
           </div>
           <button className="secondary wide" onClick={() => setScreen('session')}>Practice anyway</button>
         </>
@@ -173,7 +181,7 @@ function Settings({ state, commit, updates, replace, onBack }: {
         <label>
           Session length (min)
           <select value={state.settings.sessionMinutes} onChange={(e) => set('sessionMinutes', +e.target.value)}>
-            {[15, 20, 25, 30, 45, 60].map((n) => <option key={n}>{n}</option>)}
+            {[15, 20, 25, 30, 35, 40, 45, 60].map((n) => <option key={n}>{n}</option>)}
           </select>
         </label>
       </div>

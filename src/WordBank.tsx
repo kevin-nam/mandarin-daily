@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react'
-import { WORD_BY_ID, type Word } from './data'
+import { CharParts } from './CharParts'
+import { WORD_BY_ID, knownChars, type Word } from './data'
 import { wordKey } from './audio'
 import { cardKey, LEVELS, level, recallChance, type AppState, type CardKind, type Level } from './store'
 import { PlayButton } from './ui'
@@ -136,6 +137,7 @@ function BankRow({ e, state, open, onToggle }: { e: Entry; state: AppState; open
             <div className="py">{w.sentence.py}</div>
             <div className="en">{w.sentence.en}</div>
           </div>
+          <CharParts hanzi={w.hanzi} known={knownChars(state.introduced)} />
           {SKILLS.filter((s) => applies(s.kind, w)).map((s, i) => {
             const c = state.cards[cardKey(w.id, s.kind)]
             const r = recallChance(c)

@@ -1,6 +1,7 @@
 import wordsJson from './data/words.json'
 import phrasesJson from './data/phrases.json'
 import dialoguesJson from './data/dialogues.json'
+import charsJson from './data/chars.json'
 
 /** A study item: an HSK word, or a ready-made phrase for conversation and travel. */
 export interface Word {
@@ -30,8 +31,22 @@ export interface Dialogue {
 export const WORDS = wordsJson as Word[]
 export const PHRASES = phrasesJson as Word[]
 export const DIALOGUES: Dialogue[] = dialoguesJson
+/**
+ * How a character is built (scripts/build-chars.mjs): m meaning, p pinyin, c parts,
+ * s/f the meaning and sound parts of a meaning+sound character, h a hint.
+ */
+export interface CharInfo { m: string; p?: string; c?: string[]; s?: string; f?: string; h?: string }
+export const CHARS: Record<string, CharInfo> = charsJson
+
 /** All items (words and phrases) by id. */
 export const WORD_BY_ID = new Map([...WORDS, ...PHRASES].map((w) => [w.id, w]))
+
+/** Characters in items you've studied, to point out parts you already know. */
+export function knownChars(introduced: string[]) {
+  const out = new Set<string>()
+  for (const id of introduced) for (const c of WORD_BY_ID.get(id)?.hanzi ?? '') out.add(c)
+  return out
+}
 
 /**
  * What to say or hear for an item: a word is practised inside its sentence,

@@ -2,7 +2,7 @@
 
 A personal, offline-first PWA for daily Mandarin listening and speaking practice, aimed at **new HSK 1 (2026, 294 words)** plus 58 travel and conversation phrases. Built for iPhone: no microphone, no backend, no database, no paid APIs.
 
-**Version 1.1.1** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
+**Version 1.2** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
 
 ## Who it's for
 
@@ -16,33 +16,36 @@ One learner, and every design decision follows from this profile:
 | Microphone | **No.** No recording, no speech recognition. |
 | Characters | Wants to **read** properly. Does **not** want handwriting/character-writing practice. |
 | Partner | None: the app is the main practice. |
-| Feedback so far | ~25 min sessions feel right. Day 2 data: no Again ratings; reading (characters) is the weak skill (8 of 15 Hard), speaking mostly Good; ~9 s per review card. Most HSK 1 words are new. Normal-speed audio was too fast (hence 85% default). 4 s to answer was too short (hence 5–12 s scaled to length). |
+| Feedback so far | ~25 min sessions feel right. Day 2 data: no Again ratings; reading (characters) is the weak skill (8 of 15 Hard), speaking mostly Good; ~9 s per review card. Most HSK 1 words are new. Normal-speed audio was too fast (hence 85% default). 4 s to answer was too short (hence 5–12 s scaled to length). Willing to do 30–40 min/day if it's more effective (hence 1.2's ~30 min + optional 8 min listening). |
 
 So: speaking (productive recall) gets priority; prompts never demand speaking out loud; known words can be skipped fast; phrases and dialogues target real situations; role-play stands in for a partner.
 
-## Daily session (~25 min)
+## Daily session (~30 min + optional 8 min listening)
 
 | Step | Time | What you do | Why |
 |---|---|---|---|
-| Review | ≤8 min | Due cards, mixed: **listen** (audio → meaning), **speak** (English → say it), **read** (character → pinyin/meaning), and **sentence** (whole example sentence in characters only; unlocks per word once its read card is Good). Most-at-risk cards first, speak cards prioritised (2 speak : 1 other). Rate Again (missed it, even partly: wrong tone, wrong meaning) / Hard (got it, slowly or with effort) / Good (got it) / Easy (instantly). | Retrieval practice + FSRS spaced repetition; productive recall builds speaking |
-| New words | ~5 min | 5 words (each inside a sentence) + 2 phrases. Hear it first: **I know it** → confirm → skipped ahead (listen card marked Easy, speak/read still tested, doesn't use up the daily quota). **New to me** → shadow ×4 (slow → normal). | Skip what you already understand (heritage learners); pretesting; context + production effect |
-| Speak | ≤6 min | English prompt → 5–12 s (scaled to length) to say it (whisper/mouth is fine) → hear the answer twice. Missed items come back sooner; items retire after 2 hits. | Prompted recall with expanding intervals |
+| Review | ≤12 min | Due cards, mixed: **listen** (audio → meaning), **speak** (English → say it), **read** (character → pinyin/meaning), and **sentence** (whole example sentence in characters only; unlocks per word once its read card is Good). Most-at-risk cards first, speak cards prioritised (2 speak : 1 other). Read and sentence cards show **how each character is built** (meaning part + sound part, or its parts and a hint), marking parts from characters you've studied. Rate Again (missed it, even partly: wrong tone, wrong meaning) / Hard (got it, slowly or with effort) / Good (got it) / Easy (instantly). | Retrieval practice + FSRS spaced repetition; productive recall builds speaking |
+| New words | ~5 min | 5 words (each inside a sentence) + 2 phrases. Hear it first: **I know it** → confirm → skipped ahead (listen card marked Easy, speak/read still tested, doesn't use up the daily quota). **New to me** → shadow ×4 (slow → normal), with the character breakdown. | Skip what you already understand (heritage learners); pretesting; context + production effect |
+| Speak | ≤8 min | English prompt → 5–12 s (scaled to length) to say it (whisper/mouth is fine) → hear the answer twice. Missed items come back sooner; items retire after 3 hits. | Prompted recall with expanding intervals |
 | Dialogue | ~4 min | Listen with no text → listen while reading → shadow line by line → **role-play**: the app plays the other speaker, you say your line from the English before the model plays (switch sides any time). Early dialogues are built from the phrases you've learned, so there's one from day 1. | Comprehensible input; task-based practice |
-| Tones | ~2 min | 6 single syllables, then 9 two-syllable words (pick each syllable's tone), each in a random one of 4 voices. | Multi-talker tone perception training |
+| Tones | ~2 min | 6 single syllables, then 9 two-syllable words (pick each syllable's tone), each in a random one of 4 voices. | Tone perception training (multi-voice benefit is mixed in newer studies, so this step stays short) |
+| Listening | ~8 min, optional | A link to one beginner video in slow Mandarin (Comprehensible Chinese, Mandarin Click, BlaBla Chinese; rotates daily, YouTube searches so links don't rot). Now or later in the day; also on the home screen once done. Needs internet. | Comprehensible input; a second, separate block beats a longer first one |
+
+The end screen suggests one learned phrase to **use today** (on someone, or to yourself when the moment comes up): task-based practice outside the app.
 
 At 5 new words/day you cover all of HSK 1 in about 9 weeks, faster if you mark words you already know. Phrases take about a month at 2/day.
 
 ## How the app paces you
 
 - **Once a day.** New words reset at local midnight. New cards' first review is the *next* day (after sleep). Every grade schedules whole days (FSRS same-day learning steps are off: the session's own repetition covers same-day practice). After a session the home screen says **Done for today**; "Practice anyway" is there but same-day re-practice adds little.
-- **Missing a day** costs only the streak. Reviews wait; the 8-min cap keeps sessions the same length; leftovers roll over (most at risk first). If reviewed cards are carried over from earlier days, new words are halved (>10 behind) or paused (>30 behind) until you catch up.
+- **Missing a day** costs only the streak. Reviews wait; the 12-min cap keeps sessions the same length; leftovers roll over (most at risk first). If reviewed cards are carried over from earlier days, new words are halved (>10 behind) or paused (>30 behind) until you catch up.
 - **Audio speed** starts at 85% (Settings: 70–100%; 🐢 slow = 70% of it). Once ≥20 listen cards are reviewed and 70% are Good or better, the home screen suggests the next 5% step; "Not now" or changing it yourself pauses that for a week.
 - **Word bank** (home screen): every studied item with a strength per skill — 👂 listening, 🗣 speaking, 字 reading, 句 sentences — from FSRS stability: Not tested · Learning (<2 d or relearning) · Getting there (<7 d) · Good (<30 d) · Strong. Search by 字, English, or pinyin without tone marks.
 - **Streak** (🔥) on the home screen and at the end of a session.
 
 ## Research behind it
 
-Retrieval practice and the testing effect (Roediger & Karpicke 2006) · productive vs receptive recall (Webb 2009) · production effect, incl. mouthing (MacLeod et al. 2010) · heritage learners' receptive > productive skills (Montrul 2010; Kagan & Dillon 2001) · pretesting (Richland et al. 2009) · formulaic phrases and fluency (Boers et al. 2006) · task-based practice (Ellis 2003) · multi-talker tone training (Wang et al. 1999, 2003) · comprehensible input / narrow listening (Krashen 1996) · slower speech for beginners (Griffiths 1992) · spacing (Cepeda et al. 2006) · sleep consolidation (Diekelmann & Born 2010) · habit formation (Lally et al. 2010) · divided attention at encoding (Craik et al. 1996, for the backlog's grind mode).
+Retrieval practice and the testing effect (Roediger & Karpicke 2006) · productive vs receptive recall (Webb 2009) · production effect, incl. mouthing (MacLeod et al. 2010) · heritage learners' receptive > productive skills (Montrul 2010; Kagan & Dillon 2001) · pretesting (Richland et al. 2009) · formulaic phrases and fluency (Boers et al. 2006) · task-based practice (Ellis 2003) · multi-talker tone training (Wang et al. 1999, 2003; but a 2021 JSLHR meta-analysis finds mixed multi-talker benefits, and Dong et al. 2019 found none for tones) · repeated retrieval, 5+ retrievals beat 1–3 (Nakata 2017) · heritage learners need to connect oral language with characters (Xiao 2006) · teaching semantic/phonetic components aids character learning (small, mixed studies) · shadowing works better with text (Japanese-context review) · comprehensible input / narrow listening (Krashen 1996) · slower speech for beginners (Griffiths 1992) · spacing (Cepeda et al. 2006) · sleep consolidation (Diekelmann & Born 2010) · habit formation (Lally et al. 2010) · divided attention at encoding (Craik et al. 1996, for the backlog's grind mode).
 
 ## Run it
 
@@ -90,6 +93,8 @@ The version is in `package.json` and shown at the bottom of the home screen and 
 - Phrases: `content/phrases.tsv` — `id|phrase|pinyin|english|example|example pinyin|example english`. The example is the phrase in use, often with the reply you'll hear.
 - **Ids are permanent** — progress and audio files are keyed by them. Add new rows anywhere *without* an id; `npm run data` assigns the next free one and writes it into the file. Never change or reuse an existing id. Each word needs its own example sentence (the build checks). Simplified characters, mainland pinyin with 一/不 tone changes marked (yí ge, bú shì).
 - Dialogues: `content/dialogues.json`. A dialogue unlocks once `unlockAfter` words and `unlockAfterPhrases` phrases are learned; `you` is the speaker you play in role-play (default B). File order = unlock order: the Dialogue step favours the newest unlocked one.
+- Character breakdowns: `npm run chars` (after `npm run data`) rebuilds `src/data/chars.json` from Make Me a Hanzi's dictionary (downloads it, or pass a local path). Unclear radical glosses are overridden in `scripts/build-chars.mjs`.
+- Listening suggestions: `src/listening.ts`.
 - Tone drill items are chosen by the build: 1–2 syllable words with a mark on every syllable, excluding multi-reading characters (只还都要和) and 3+3 pairs (pronounced 2+3).
 - After editing: `npm run data` (rebuilds `src/data/*.json`), then `npm run audio`. It only generates audio for new or changed text (tracked in `scripts/audio-sources.json`) and deletes audio for removed rows.
 
@@ -103,6 +108,8 @@ src/store.ts        state, FSRS scheduling (ts-fsrs), quotas, strength levels, b
 src/audio.ts        MP3 playback with device-voice fallback, speed
 src/Session.tsx     the five session steps
 src/WordBank.tsx    word bank
+src/CharParts.tsx   character breakdown (meaning/sound parts)
+src/listening.ts    easy-listening suggestions
 src/updates.ts      service-worker update hook + version; UpdateUI.tsx = banner/button
 src/App.tsx         home + settings
 ```
@@ -116,6 +123,11 @@ src/App.tsx         home + settings
 - New features should respect the profile above: whisper-friendly, no mic, no writing practice, offline-first.
 
 ## Changelog
+
+**1.2** (2026-11-01)
+- Character breakdowns on read/sentence cards, new-word lessons and the word bank, from Make Me a Hanzi.
+- Review cap 8 → 12 min (simulation showed reviews passing 8 min by week 3–4); Speak drill retires at 3 hits (cap 8 min).
+- Optional easy-listening step; "use it today" phrase on the end screen. Default session length 30 min.
 
 **1.1.1** (2026-11-01)
 - Fix: graded cards came due again 1–10 min later (FSRS learning steps), so the home screen never said Done and the next day's new words were paused as "behind". Steps are off; affected cards move to the next day on load.
@@ -133,4 +145,4 @@ src/App.tsx         home + settings
 
 **1.0** — HSK 1 PWA: reviews (FSRS), new words, speak drill, dialogues, tones; neural audio.
 
-Word list source: [complete-hsk-vocabulary](https://github.com/drkameleon/complete-hsk-vocabulary) (MIT), 2026 HSK level 1. Example sentences, phrases, dialogues, pinyin and translations written for this app.
+Word list source: [complete-hsk-vocabulary](https://github.com/drkameleon/complete-hsk-vocabulary) (MIT), 2026 HSK level 1. Example sentences, phrases, dialogues, pinyin and translations written for this app. Character breakdowns: [Make Me a Hanzi](https://github.com/skishore/makemeahanzi) `dictionary.txt` (LGPL-3.0, from Unihan and CJKlib); see `src/data/chars.LICENSE.txt`.
