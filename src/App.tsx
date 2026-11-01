@@ -8,6 +8,7 @@ import { PHRASES, WORDS } from './data'
 import { hasRecordedAudio, initAudio, setSpeed } from './audio'
 import { Icon } from './icons'
 import { LISTEN_MINUTES, listeningToday } from './listening'
+import { applyTheme, type Theme } from './theme'
 import { Week } from './Week'
 import {
   bestStreak, dueKeys, introducedToday, exportState, importState, load, logDay, newQuota, phrasesLearned, save, speedSuggestion, streak,
@@ -41,6 +42,7 @@ export default function App() {
   }, [])
 
   useEffect(() => setSpeed(state.settings.audioSpeed), [state.settings.audioSpeed])
+  useEffect(() => applyTheme(state.settings.theme), [state.settings.theme])
 
   const commit = useCallback((fn: (s: AppState) => void) => {
     setState((prev) => {
@@ -300,6 +302,24 @@ function Settings({ state, commit, updates, replace, onBack }: {
           </label>
         </div>
         <p className="group-note">Start slow and move toward 100% as listening gets easier. Slow buttons play at 70% of this.</p>
+      </section>
+
+      <section className="group">
+        <h2>Appearance</h2>
+        <div className="panel list">
+          <div className="list-row">
+            <span>Theme</span>
+            <div className="seg-control" role="group" aria-label="Theme">
+              {(['system', 'light', 'dark'] as Theme[]).map((t) => (
+                <button key={t} className={(state.settings.theme ?? 'system') === t ? 'on' : ''} aria-pressed={(state.settings.theme ?? 'system') === t}
+                  onClick={() => commit((s) => { s.settings.theme = t })}>
+                  {{ system: 'System', light: 'Light', dark: 'Dark' }[t]}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+        <p className="group-note">System follows your iPhone’s light or dark setting.</p>
       </section>
 
       <section className="group">

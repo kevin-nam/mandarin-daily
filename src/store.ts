@@ -1,5 +1,6 @@
 import { createEmptyCard, fsrs, Rating, State, type Card, type Grade } from 'ts-fsrs'
 import { PHRASES, WORD_BY_ID, WORDS } from './data'
+import type { Theme } from './theme'
 
 /** `sentence` (read the example sentence, characters only) unlocks once a word's `read` card is Good. */
 export type CardKind = 'listen' | 'speak' | 'read' | 'sentence'
@@ -16,6 +17,8 @@ export interface AppState {
     phrasesPerDay: number
     sessionMinutes: number
     audioSpeed: number
+    /** Light, dark, or follow the phone (default). */
+    theme?: Theme
     /** ISO date: don't suggest a faster audio speed before this. */
     speedNudgeAfter?: string
   }

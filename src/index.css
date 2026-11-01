@@ -75,6 +75,31 @@
     color-scheme: dark;
   }
 }
+/* Chosen in Settings, regardless of the phone */
+:root[data-theme='dark'] {
+  --ground: #121110;
+  --surface: #1d1c1a;
+  --sunken: #292724;
+  --pressed: #34322e;
+  --rule: #2c2a27;
+  --ink: #f1efe9;
+  --muted: #b0aca4;
+  --faint: #9a958d;
+  --on-ink: #151413;
+  --seal: #ea6450;
+  --on-seal: #1a0a07;
+  --danger: #ff8a7a;
+  --t1: #ff7f72;
+  --t2: #f0a650;
+  --t3: #74c98a;
+  --t4: #8fb1f5;
+  --t0: #9a958d;
+  --lv1: #2e2c29;
+  --lv2: #4a4741;
+  --lv3: #9c978e;
+  --lv4: #f1efe9;
+  color-scheme: dark;
+}
 
 * { box-sizing: border-box; }
 html, body { margin: 0; background: var(--ground); color: var(--ink); }

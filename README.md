@@ -2,7 +2,7 @@
 
 A personal, offline-first PWA for daily Mandarin listening and speaking practice, aimed at **new HSK 1 (2026, 294 words)** plus 58 travel and conversation phrases. Built for iPhone: no microphone, no backend, no database, no paid APIs.
 
-**Version 1.4.1** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
+**Version 1.5** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
 
 ## Who it's for
 
@@ -61,6 +61,7 @@ Built against two design rule sets (Impeccable's "craft floor" and Operate-mode 
 - **Type.** System sans for the interface; Chinese in Noto Serif SC (a Song/Ming print face, the standard reading form), self-hosted as a ~190 KB subset of only the characters the app uses (`public/fonts/hanzi.woff2`, OFL). Tabular figures on all numbers.
 - **One question per screen.** Home answers "what's today?" (headline like "58 reviews and 7 new items", the one primary action, then the week, then progress). Session steps put content in the middle and the actions in a dock at the bottom (thumb reach); rating buttons are neutral, with Again in the danger colour.
 - **Icons** are one hand-drawn SVG set (`src/icons.tsx`), no emoji. Skills in the word bank are marked by their Chinese verbs: 听 listening, 说 speaking, 读 reading, 句 sentences.
+- **Theme:** Settings → Appearance: System (follows the iPhone), Light or Dark. `src/theme.ts` sets `data-theme` on `<html>` before the first paint (no flash) and updates the status-bar colour; `index.css` has the dark tokens under both the system media query and `[data-theme='dark']`.
 - **Checks.** All text ≥ 4.5:1 in light and dark; touch targets ≥ 44 px; `prefers-reduced-motion` turns motion off; dark mode is a full token set. Screens were verified in WebKit at 390×844 (iPhone) in both themes.
 - **App icon:** 每天 in a seal frame (rendered from the same font).
 
@@ -131,6 +132,7 @@ src/Pinyin.tsx      tone-coloured pinyin, tone contours
 src/Week.tsx        the week as seals
 src/Recall.tsx      quick recall (ungraded, flags misses)
 src/icons.tsx       SVG icon set
+src/theme.ts        light/dark/system theme
 src/index.css       design tokens (light/dark) and all styles
 src/listening.ts    easy-listening suggestions
 src/updates.ts      service-worker update hook + version; UpdateUI.tsx = banner/button
@@ -146,6 +148,9 @@ src/App.tsx         home + settings
 - New features should respect the profile above: whisper-friendly, no mic, no writing practice, offline-first.
 
 ## Changelog
+
+**1.5** (2026-11-01)
+- Light / dark / system theme choice in Settings → Appearance.
 
 **1.4.1** (2026-11-01)
 - Speaking prompts (Speak review cards, Speak drill, quick recall) say "Say this sentence" or "Say this phrase" and name the word a sentence is built around; the answer underlines that word. The learner couldn't tell whether to recall the word or the sentence.
