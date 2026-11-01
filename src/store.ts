@@ -26,7 +26,9 @@ export interface AppState {
 export interface DayLog { reviews: number; newWords: number; newPhrases?: number; known?: number; minutes: number }
 
 const KEY = 'mandarin-daily:v1'
-const scheduler = fsrs({ enable_fuzz: true, request_retention: 0.9 })
+// No same-day learning steps: the session itself (Speak drill, Again re-queue) covers same-day practice,
+// so every grade schedules whole days. With steps on, graded cards came due again minutes later.
+const scheduler = fsrs({ enable_fuzz: true, request_retention: 0.9, enable_short_term: false })
 
 export const today = (d = new Date()) =>
   `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
@@ -45,6 +47,8 @@ function revive(s: AppState): AppState {
   for (const c of Object.values(s.cards)) {
     c.due = new Date(c.due)
     if (c.last_review) c.last_review = new Date(c.last_review)
+    // Cards graded before learning steps were turned off (1.1): move "due in minutes" to the next day.
+    if (c.last_review && c.due < startOfDay(c.last_review, 1)) c.due = startOfDay(c.last_review, 1)
   }
   return s
 }

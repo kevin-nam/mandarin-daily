@@ -2,7 +2,7 @@
 
 A personal, offline-first PWA for daily Mandarin listening and speaking practice, aimed at **new HSK 1 (2026, 294 words)** plus 58 travel and conversation phrases. Built for iPhone: no microphone, no backend, no database, no paid APIs.
 
-**Version 1.1** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
+**Version 1.1.1** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
 
 ## Who it's for
 
@@ -16,7 +16,7 @@ One learner, and every design decision follows from this profile:
 | Microphone | **No.** No recording, no speech recognition. |
 | Characters | Wants to **read** properly. Does **not** want handwriting/character-writing practice. |
 | Partner | None: the app is the main practice. |
-| Feedback so far | ~25 min sessions feel right. Most HSK 1 words are new. Normal-speed audio was too fast (hence 85% default). 4 s to answer was too short (hence 5–12 s scaled to length). |
+| Feedback so far | ~25 min sessions feel right. Day 2 data: no Again ratings; reading (characters) is the weak skill (8 of 15 Hard), speaking mostly Good; ~9 s per review card. Most HSK 1 words are new. Normal-speed audio was too fast (hence 85% default). 4 s to answer was too short (hence 5–12 s scaled to length). |
 
 So: speaking (productive recall) gets priority; prompts never demand speaking out loud; known words can be skipped fast; phrases and dialogues target real situations; role-play stands in for a partner.
 
@@ -34,7 +34,7 @@ At 5 new words/day you cover all of HSK 1 in about 9 weeks, faster if you mark w
 
 ## How the app paces you
 
-- **Once a day.** New words reset at local midnight. New cards' first review is the *next* day (after sleep). After a session the home screen says **Done for today**; "Practice anyway" is there but same-day re-practice adds little.
+- **Once a day.** New words reset at local midnight. New cards' first review is the *next* day (after sleep). Every grade schedules whole days (FSRS same-day learning steps are off: the session's own repetition covers same-day practice). After a session the home screen says **Done for today**; "Practice anyway" is there but same-day re-practice adds little.
 - **Missing a day** costs only the streak. Reviews wait; the 8-min cap keeps sessions the same length; leftovers roll over (most at risk first). If reviewed cards are carried over from earlier days, new words are halved (>10 behind) or paused (>30 behind) until you catch up.
 - **Audio speed** starts at 85% (Settings: 70–100%; 🐢 slow = 70% of it). Once ≥20 listen cards are reviewed and 70% are Good or better, the home screen suggests the next 5% step; "Not now" or changing it yourself pauses that for a week.
 - **Word bank** (home screen): every studied item with a strength per skill — 👂 listening, 🗣 speaking, 字 reading, 句 sentences — from FSRS stability: Not tested · Learning (<2 d or relearning) · Getting there (<7 d) · Good (<30 d) · Strong. Search by 字, English, or pinyin without tone marks.
@@ -116,6 +116,9 @@ src/App.tsx         home + settings
 - New features should respect the profile above: whisper-friendly, no mic, no writing practice, offline-first.
 
 ## Changelog
+
+**1.1.1** (2026-11-01)
+- Fix: graded cards came due again 1–10 min later (FSRS learning steps), so the home screen never said Done and the next day's new words were paused as "behind". Steps are off; affected cards move to the next day on load.
 
 **1.1** (2026-10-31)
 - Update button + version display; checks for updates on foreground.
