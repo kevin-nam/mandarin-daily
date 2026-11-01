@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { Grade } from 'ts-fsrs'
-import { DIALOGUES, PAIR_ITEMS, PHRASES, TONE_ITEMS, TONE_VOICES, WORD_BY_ID, knownChars, target, voiceKey, type Word } from './data'
+import { DIALOGUES, PAIR_ITEMS, PHRASES, TONE_ITEMS, TONE_VOICES, WORD_BY_ID, knownChars, target, thinkFor, voiceKey, type Word } from './data'
 import { epoch, lineKey, play, sleep, stop, wordKey } from './audio'
 import {
   byRisk, dueKeys, grade, introduce, logDay, markKnown, newQuota, nextNewItems, parseKey, phrasesLearned, Rating,
@@ -10,7 +10,7 @@ import { CharParts } from './CharParts'
 import { LISTEN_MINUTES, listeningToday } from './listening'
 import { Icon } from './icons'
 import { Pinyin, ToneContour } from './Pinyin'
-import { PlayButton, StepHeader, WordFace, shuffle } from './ui'
+import { Countdown, PlayButton, StepHeader, WordFace, shuffle } from './ui'
 
 type Commit = (fn: (s: AppState) => void) => void
 type StepId = 'reviews' | 'new' | 'drill' | 'dialogue' | 'tones' | 'listen' | 'done'
@@ -46,7 +46,7 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
   }
 
   const finish = () => {
-    commit((s) => logDay(s, { minutes: Math.round(elapsed / 60) }))
+    commit((s) => logDay(s, { minutes: Math.round(elapsed / 60), ...(step === 'done' && { finishedAt: new Date().toISOString() }) }))
     onExit()
   }
 
@@ -113,7 +113,10 @@ const REVIEW_MINUTES = 12
  * speak cards prioritised (2 speak : 1 other) so the main gap gets the most time, still interleaved.
  */
 function reviewQueue(state: AppState) {
-  const due = byRisk(state, dueKeys(state)).slice(0, 80)
+  // Items missed in a quick recall go first; then most at risk.
+  const flagged = (k: string) => parseKey(k).kind === 'speak' && !!state.flagged?.[parseKey(k).wordId]
+  const ranked = byRisk(state, dueKeys(state))
+  const due = [...ranked.filter(flagged), ...ranked.filter((k) => !flagged(k))].slice(0, 80)
   const speak = due.filter((k) => parseKey(k).kind === 'speak')
   const other = due.filter((k) => parseKey(k).kind !== 'speak')
   const out: string[] = []
@@ -338,8 +341,6 @@ const DRILL_MINUTES = 8
 /** More retrievals in the first session improve long-term recall (Nakata 2017: 5+ beat 1-3). */
 const RETIRE_AFTER = 3
 
-/** Time to form the answer: longer sentences need longer. */
-const thinkFor = (zh: string) => Math.min(12, Math.max(5, Math.round(2 + [...zh].length * 0.5)))
 const thinkSeconds = (w: Word) => thinkFor(target(w).zh)
 
 function Drill({ state, learnedNow, onDone }: { state: AppState; learnedNow: string[]; onDone: () => void }) {
@@ -726,25 +727,5 @@ function UseToday({ state, learnedNow }: { state: AppState; learnedNow: string[]
       </div>
       <p className="hint">Say it to someone, or to yourself when the moment comes up.</p>
     </section>
-  )
-}
-
-/* ---------------- Countdown ring ---------------- */
-
-/** Seconds left to answer, drawn as a ring that empties. */
-function Countdown({ value, total, small }: { value: number; total: number; small?: boolean }) {
-  const r = small ? 15 : 34
-  const size = (r + 4) * 2
-  const c = 2 * Math.PI * r
-  const left = Math.max(0, value) / total
-  return (
-    <div className={`countdown ${small ? 'small' : ''}`} role="timer" aria-label={`${Math.max(0, value)} seconds`}>
-      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} aria-hidden="true">
-        <circle className="track" cx={size / 2} cy={size / 2} r={r} />
-        <circle className="left" cx={size / 2} cy={size / 2} r={r} strokeDasharray={c} strokeDashoffset={c * (1 - left)}
-          transform={`rotate(-90 ${size / 2} ${size / 2})`} />
-      </svg>
-      <span className="num">{value > 0 ? value : ''}</span>
-    </div>
   )
 }

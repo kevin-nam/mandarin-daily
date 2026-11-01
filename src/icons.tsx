@@ -12,6 +12,8 @@ const PATHS = {
   refresh: <path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3M19.5 4.5v4h-4" />,
   external: <path d="M13.5 5H19v5.5M19 5l-8 8M17 14.5V18a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h3.5" />,
   swap: <path d="M5 8.5h13M14.5 5 18 8.5 14.5 12M19 15.5H6M9.5 12 6 15.5 9.5 19" />,
+  moon: <path d="M19.5 14.6A7.8 7.8 0 0 1 9.4 4.5a7.8 7.8 0 1 0 10.1 10.1Z" />,
+  practice: <path d="M12 4a3 3 0 0 0-3 3v4a3 3 0 0 0 6 0V7a3 3 0 0 0-3-3ZM6 11a6 6 0 0 0 12 0M12 17v3" />,
   search: <path d="M10.5 17a6.5 6.5 0 1 0 0-13 6.5 6.5 0 0 0 0 13ZM15.5 15.5 20 20" />,
   // A snail: shell with a spiral, body along the ground, two feelers.
   slow: <path d="M3 19h13.5a3.5 3.5 0 0 0 3.5-3.5V12M20 12l-1.6-4M20 12l2-3.6M10 19a6 6 0 1 1 6-6M10 13a2 2 0 1 1 2 2" />,

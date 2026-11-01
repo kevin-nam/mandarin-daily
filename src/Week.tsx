@@ -16,15 +16,16 @@ function thisWeek(now = new Date()) {
 export function Week({ history, stamp }: { history: Record<string, unknown>; stamp: boolean }) {
   const days = thisWeek()
   const todayKey = today()
+  const first = Object.keys(history).sort()[0] ?? todayKey // days before you started aren't missed
   return (
     <ol className="week" aria-label="This week">
       {WEEKDAY.map((zh, i) => {
         const d = days[i]
         const key = today(d)
         const done = !!history[key]
-        const state = done ? 'done' : key === todayKey ? 'today' : key < todayKey ? 'missed' : 'future'
+        const state = done ? 'done' : key === todayKey ? 'today' : key < todayKey ? (key > first ? 'missed' : 'before') : 'future'
         const cls = `day is-${state} ${stamp && key === todayKey && done ? 'stamp' : ''}`
-        const label = `${EN[i]} ${d.getDate()}: ${{ done: 'practised', today: 'today, not yet', missed: 'missed', future: 'coming up' }[state]}`
+        const label = `${EN[i]} ${d.getDate()}: ${{ done: 'practised', today: 'today, not yet', missed: 'missed', before: 'before you started', future: 'coming up' }[state]}`
         return (
           <li key={key} className={cls} aria-label={label}>
             <span className="seal hz" aria-hidden="true">{zh}</span>

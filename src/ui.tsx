@@ -68,6 +68,24 @@ export function StepHeader({ title, hint, right }: { title: string; hint?: strin
   )
 }
 
+/** Seconds left to answer, drawn as a ring that empties. */
+export function Countdown({ value, total, small }: { value: number; total: number; small?: boolean }) {
+  const r = small ? 15 : 34
+  const size = (r + 4) * 2
+  const c = 2 * Math.PI * r
+  const left = Math.max(0, value) / total
+  return (
+    <div className={`countdown ${small ? 'small' : ''}`} role="timer" aria-label={`${Math.max(0, value)} seconds`}>
+      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} aria-hidden="true">
+        <circle className="track" cx={size / 2} cy={size / 2} r={r} />
+        <circle className="left" cx={size / 2} cy={size / 2} r={r} strokeDasharray={c} strokeDashoffset={c * (1 - left)}
+          transform={`rotate(-90 ${size / 2} ${size / 2})`} />
+      </svg>
+      <span className="num">{value > 0 ? value : ''}</span>
+    </div>
+  )
+}
+
 export function shuffle<T>(arr: T[]): T[] {
   const a = [...arr]
   for (let i = a.length - 1; i > 0; i--) {

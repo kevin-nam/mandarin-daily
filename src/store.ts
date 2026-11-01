@@ -20,10 +20,16 @@ export interface AppState {
     speedNudgeAfter?: string
   }
   lastBackup?: string
+  /** Items missed in a quick recall: their speak card comes first in the next review. */
+  flagged?: Record<string, true>
 }
 
 // `newPhrases` and `known` were added later, so older days don't have them.
-export interface DayLog { reviews: number; newWords: number; newPhrases?: number; known?: number; minutes: number; listened?: number }
+export interface DayLog {
+  reviews: number; newWords: number; newPhrases?: number; known?: number; minutes: number; listened?: number
+  /** When the session was finished (ISO), and how many items the quick recall covered. */
+  finishedAt?: string; recalled?: number
+}
 
 const KEY = 'mandarin-daily:v1'
 // No same-day learning steps: the session itself (Speak drill, Again re-queue) covers same-day practice,
@@ -92,6 +98,7 @@ export function introduce(s: AppState, wordId: string, now = new Date()) {
 
 export function grade(s: AppState, key: string, rating: Grade, now = new Date()) {
   s.cards[key] = scheduler.next(s.cards[key], now, rating).card
+  if (key.endsWith(':speak') && s.flagged) delete s.flagged[parseKey(key).wordId]
   // Reading a word on its own reliably unlocks reading its whole sentence, characters only.
   const { wordId, kind } = parseKey(key)
   const sentence = cardKey(wordId, 'sentence')
@@ -168,6 +175,38 @@ export function logDay(s: AppState, patch: Partial<DayLog>) {
   d.known = (d.known ?? 0) + (patch.known ?? 0)
   d.minutes += patch.minutes ?? 0
   if (patch.listened) d.listened = (d.listened ?? 0) + patch.listened
+  if (patch.recalled) d.recalled = (d.recalled ?? 0) + patch.recalled
+  if (patch.finishedAt && !d.finishedAt) d.finishedAt = patch.finishedAt // the first finish; extra practice doesn't move it
+}
+
+/** Items introduced today: their cards are new, first due tomorrow, not yet reviewed. */
+export function introducedToday(s: AppState, now = new Date()) {
+  const tomorrow = +startOfDay(now, 1)
+  return s.introduced.filter((id) => {
+    const c = s.cards[cardKey(id, 'speak')]
+    return c && c.reps === 0 && +c.due === tomorrow && WORD_BY_ID.has(id)
+  })
+}
+
+/** Older items with the weakest speaking memory (lowest stability, under a week). */
+export function weakestItems(s: AppState, n: number, exclude: string[] = []) {
+  return s.introduced
+    .filter((id) => !exclude.includes(id) && WORD_BY_ID.has(id))
+    .map((id) => ({ id, c: s.cards[cardKey(id, 'speak')] }))
+    .filter(({ c }) => c && c.reps > 0 && c.stability < 7)
+    .sort((a, b) => a.c.stability - b.c.stability)
+    .slice(0, n)
+    .map(({ id }) => id)
+}
+
+/**
+ * A miss in the quick recall: the item's speak card comes first in the next review, and no later
+ * than tomorrow. The recall itself is never graded, so it can't inflate the schedule.
+ */
+export function flagMissed(s: AppState, id: string, now = new Date()) {
+  ;(s.flagged ??= {})[id] = true
+  const c = s.cards[cardKey(id, 'speak')]
+  if (c && +c.due > +startOfDay(now, 1)) c.due = startOfDay(now, 1)
 }
 
 export function streak(s: AppState) {

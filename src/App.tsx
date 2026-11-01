@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
+import Recall from './Recall'
 import Session from './Session'
 import WordBank from './WordBank'
 import { UpdateNotice, UpdateRows } from './UpdateUI'
@@ -9,11 +10,13 @@ import { Icon } from './icons'
 import { LISTEN_MINUTES, listeningToday } from './listening'
 import { Week } from './Week'
 import {
-  bestStreak, dueKeys, exportState, importState, load, logDay, newQuota, phrasesLearned, save, speedSuggestion, streak,
+  bestStreak, dueKeys, introducedToday, exportState, importState, load, logDay, newQuota, phrasesLearned, save, speedSuggestion, streak,
   today, wordsLearned, type AppState,
 } from './store'
 import { VERSION } from './updates'
 
+const RECALL_AFTER_HOURS = 3
+const isPast = (d: Date) => +d <= Date.now()
 const inDays = (n: number) => new Date(Date.now() + n * 86400000).toISOString()
 const dateLabel = (d = new Date()) => d.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })
 const plural = (n: number, one: string, many = `${one}s`) => `${n} ${n === 1 ? one : many}`
@@ -25,7 +28,7 @@ async function backup(state: AppState, commit: (fn: (s: AppState) => void) => vo
 
 export default function App() {
   const [state, setState] = useState<AppState>(load)
-  const [screen, setScreen] = useState<'home' | 'session' | 'settings' | 'bank'>('home')
+  const [screen, setScreen] = useState<'home' | 'session' | 'settings' | 'bank' | 'recall'>('home')
   const [audioReady, setAudioReady] = useState(false)
   // Set when a session just ended, so today's seal stamps in once.
   const [justFinished, setJustFinished] = useState(false)
@@ -50,6 +53,7 @@ export default function App() {
 
   if (screen === 'session')
     return <Session state={state} commit={commit} onExit={() => { setJustFinished(true); setScreen('home') }} />
+  if (screen === 'recall') return <Recall state={state} commit={commit} onExit={() => setScreen('home')} />
   if (screen === 'bank') return <WordBank state={state} onBack={() => setScreen('home')} />
   if (screen === 'settings')
     return <Settings state={state} commit={commit} updates={updates} replace={(s) => { save(s); setState(s) }} onBack={() => setScreen('home')} />
@@ -67,6 +71,12 @@ export default function App() {
   const daysSinceBackup = state.lastBackup ? Math.floor((Date.now() - +new Date(state.lastBackup)) / 86400000) : null
   const needsBackup = learned > 0 && (daysSinceBackup === null || daysSinceBackup >= 7)
   const listenedToday = !!state.history[today()]?.listened
+  // Quick recall works best a few hours after the session, ideally before bed.
+  const finishedAt = state.history[today()]?.finishedAt
+  const recallFrom = finishedAt ? new Date(+new Date(finishedAt) + RECALL_AFTER_HOURS * 3600000) : undefined
+  const recallReady = !recallFrom || isPast(recallFrom)
+  const recalled = !!state.history[today()]?.recalled
+  const freshCount = introducedToday(state).length
   const start = () => setScreen('session')
 
   // The one question this screen answers: what is today's practice?
@@ -132,21 +142,61 @@ export default function App() {
           </p>
         )}
         {doneToday ? (
-          <div className="stack">
-            {!listenedToday && (
-              <a className="btn primary wide" href={listening.url} target="_blank" rel="noreferrer"
-                onClick={() => commit((s) => logDay(s, { listened: LISTEN_MINUTES }))}>
-                <Icon name="headphones" /> {LISTEN_MINUTES} minutes of easy listening <Icon name="external" size={16} />
-              </a>
-            )}
-            <button className="btn wide" onClick={start}>Practise anyway</button>
-          </div>
+          freshCount > 0 && recallReady && !recalled && (
+            <button className="btn primary wide start" onClick={() => setScreen('recall')}>
+              <Icon name="moon" /> Quick recall · 5 min
+            </button>
+          )
         ) : (
           <button className="btn primary wide start" onClick={start}>
             {startedToday ? 'Continue session' : 'Start today’s session'}
           </button>
         )}
       </section>
+
+      {doneToday && (
+        <section className="group more" aria-labelledby="more-title">
+          <h2 id="more-title">More for today, all optional</h2>
+          <div className="panel list">
+            {/* Shown as the main button above while it's ready and not done */}
+            {freshCount > 0 && !(recallReady && !recalled) && (
+              <button className="list-row option" onClick={() => setScreen('recall')} disabled={recalled}>
+                <Icon name="moon" />
+                <span className="option-text">
+                  <b>Quick recall · 5 min</b>
+                  <small>
+                    {recalled
+                      ? 'Done today.'
+                      : recallReady
+                      ? `Say today’s ${plural(freshCount, 'new item')} from memory, plus a few weak ones. Best before bed.`
+                      : `Say today’s ${plural(freshCount, 'new item')} from memory. Best after ${recallFrom!.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' })}, ideally before bed.`}
+                  </small>
+                </span>
+                {recalled ? <Icon name="check" size={18} /> : <Icon name="chevron" size={18} />}
+              </button>
+            )}
+            {!listenedToday && (
+              <a className="list-row option" href={listening.url} target="_blank" rel="noreferrer"
+                onClick={() => commit((s) => logDay(s, { listened: LISTEN_MINUTES }))}>
+                <Icon name="headphones" />
+                <span className="option-text">
+                  <b>Easy listening · {LISTEN_MINUTES} min</b>
+                  <small>{listening.name}: {listening.note.toLowerCase()}. Opens YouTube.</small>
+                </span>
+                <Icon name="external" size={18} />
+              </a>
+            )}
+            <button className="list-row option" onClick={start}>
+              <Icon name="practice" />
+              <span className="option-text">
+                <b>Extra practice · about 10 min</b>
+                <small>Speak drill with your recent words, a dialogue and the tone drill. Doesn’t change your review schedule.</small>
+              </span>
+              <Icon name="chevron" size={18} />
+            </button>
+          </div>
+        </section>
+      )}
 
       <section className="panel" aria-labelledby="week-title">
         <div className="panel-head">

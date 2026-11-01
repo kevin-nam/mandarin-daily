@@ -2,7 +2,7 @@
 
 A personal, offline-first PWA for daily Mandarin listening and speaking practice, aimed at **new HSK 1 (2026, 294 words)** plus 58 travel and conversation phrases. Built for iPhone: no microphone, no backend, no database, no paid APIs.
 
-**Version 1.3** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
+**Version 1.4** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
 
 ## Who it's for
 
@@ -41,7 +41,11 @@ At 5 new words/day you cover all of HSK 1 in about 9 weeks, faster if you mark w
 - **Missing a day** costs only the streak. Reviews wait; the 12-min cap keeps sessions the same length; leftovers roll over (most at risk first). If reviewed cards are carried over from earlier days, new words are halved (>10 behind) or paused (>30 behind) until you catch up.
 - **Audio speed** starts at 85% (Settings: 70–100%; 🐢 slow = 70% of it). Once ≥20 listen cards are reviewed and 70% are Good or better, the home screen suggests the next 5% step; "Not now" or changing it yourself pauses that for a week.
 - **Word bank** (home screen): every studied item with a strength per skill — 👂 listening, 🗣 speaking, 字 reading, 句 sentences — from FSRS stability: Not tested · Learning (<2 d or relearning) · Getting there (<7 d) · Good (<30 d) · Strong. Search by 字, English, or pinyin without tone marks.
-- **Streak** (🔥) on the home screen and at the end of a session.
+- **Streak**: the week as seals on the home screen, and at the end of a session.
+- **After the session** the home screen offers three optional extras, each saying what it does:
+  - **Quick recall · 5 min**, from 3 hours after the session (ideally before bed): today's new items, then the 4 weakest older ones (lowest speaking stability, under a week), speaking first. Never graded, so it can't inflate the schedule. A miss is flagged: its speak card is due no later than tomorrow and comes first in the next review (the flag clears when that card is graded). Older items aren't re-reviewed early because FSRS already times them; an early easy review teaches little. Research: a spaced same-day retrieval beats immediate re-practice, and retrieval before sleep followed by relearning after it helps most (Mazza et al. 2016).
+  - **Easy listening · 8 min** (link out).
+  - **Extra practice · about 10 min**: Speak drill on recent words, a dialogue and the tone drill. Doesn't change the review schedule (what "Practice anyway" used to be; the user wanted it kept and its purpose stated).
 
 ## Research behind it
 
@@ -125,6 +129,7 @@ src/WordBank.tsx    word bank
 src/CharParts.tsx   character breakdown (meaning/sound parts)
 src/Pinyin.tsx      tone-coloured pinyin, tone contours
 src/Week.tsx        the week as seals
+src/Recall.tsx      quick recall (ungraded, flags misses)
 src/icons.tsx       SVG icon set
 src/index.css       design tokens (light/dark) and all styles
 src/listening.ts    easy-listening suggestions
@@ -141,6 +146,11 @@ src/App.tsx         home + settings
 - New features should respect the profile above: whisper-friendly, no mic, no writing practice, offline-first.
 
 ## Changelog
+
+**1.4** (2026-11-01)
+- Quick recall: an optional 5-minute, ungraded speaking recall of today's new items plus the weakest older ones, best a few hours after the session; misses come first in the next review.
+- "Practise anyway" is now "Extra practice", with a description of what it runs and that it doesn't change the schedule. Home groups the optional extras after the session.
+- Week seals don't mark days before you started as missed.
 
 **1.3** (2026-11-01)
 - Redesign: ink-on-paper system with light/dark tokens; tone-coloured pinyin everywhere; tone drill with pitch contours; the week as red seals with a stamp on finishing; Chinese set in a self-hosted Noto Serif SC subset; SVG icons instead of emoji; actions docked at the bottom of every session step; countdown rings; word bank rows that fit phrases, 听说读句 skill marks and strength bars; settings as grouped lists; new 每天 seal app icon.

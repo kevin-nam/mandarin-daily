@@ -194,6 +194,21 @@ a { color: inherit; }
 .group .panel { margin-bottom: 0; }
 .group-note { font-size: 14px; color: var(--muted); margin: 8px 18px 0; }
 
+/* Optional extras, once today's session is done */
+.list-row.option { align-items: center; text-decoration: none; color: var(--ink); }
+.list-row.option > .icon:first-child { color: var(--muted); align-self: flex-start; margin-top: 2px; }
+.list-row.option > .icon:last-child { color: var(--faint); }
+.list-row.option:active:not(:disabled) { background: linear-gradient(var(--sunken), var(--sunken)) no-repeat -18px 0 / calc(100% + 18px) 100%; }
+.list-row.option:disabled { opacity: 0.6; }
+.option-text { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+.option-text b { font-weight: 600; font-size: 17px; }
+.option-text small { color: var(--muted); font-size: 14px; line-height: 1.35; text-wrap: pretty; }
+.group.more { margin: 0 0 24px; }
+.group.more h2 { margin-left: 2px; }
+.missed-list { width: 100%; text-align: left; margin-top: 4px; }
+.missed-list .hz { font-size: 22px; flex: 0 0 auto; }
+.missed-list .value { flex: 1; text-align: right; }
+
 /* Notices */
 .notices:empty { display: none; }
 .notices { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }

@@ -58,6 +58,9 @@ export function target(w: Word) {
     : { key: `${w.id}s`, zh: w.sentence.zh, py: w.sentence.py, en: w.sentence.en }
 }
 
+/** Seconds to form an answer before it plays: longer sentences need longer (5-12 s). */
+export const thinkFor = (zh: string) => Math.min(12, Math.max(5, Math.round(2 + [...zh].length * 0.5)))
+
 /** Tone-drill items: single syllables and two-syllable words with clear tones. */
 export const TONE_ITEMS = WORDS.filter((w) => w.tones?.length === 1)
 export const PAIR_ITEMS = WORDS.filter((w) => w.tones?.length === 2)
