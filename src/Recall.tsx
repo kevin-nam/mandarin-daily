@@ -4,7 +4,7 @@ import { epoch, play, sleep, stop } from './audio'
 import { Icon } from './icons'
 import { Pinyin } from './Pinyin'
 import { flagMissed, introducedToday, logDay, weakestItems, type AppState } from './store'
-import { Countdown, PlayButton, StepHeader, shuffle } from './ui'
+import { Countdown, PlayButton, SpeakPrompt, SpokenAnswer, StepHeader, shuffle } from './ui'
 
 type Commit = (fn: (s: AppState) => void) => void
 
@@ -140,16 +140,16 @@ export default function Recall({ state, commit, onExit }: { state: AppState; com
       {bar}
       <div className="stage">
         <StepHeader
-          title={item.retry ? 'Once more' : 'Say it in Mandarin'}
-          hint="Before the answer plays. Whispering counts. Nothing here changes your schedule."
+          title={item.retry ? 'Once more' : 'From memory'}
+          hint="Say it in Mandarin before the answer plays. Whispering counts. Nothing here changes your schedule."
         />
         <div className="center-col fill">
-          <div className="prompt-en">{t.en}</div>
+          <SpeakPrompt w={item.w} />
           {phase === 'prompt' ? (
             <Countdown value={countdown} total={thinkFor(t.zh)} />
           ) : (
             <div className="answer">
-              <div className="hz answer-zh" lang="zh-CN">{t.zh}</div>
+              <SpokenAnswer w={item.w} />
               <Pinyin text={t.py} className="answer-py" />
               <PlayButton k={t.key} text={t.zh} label="Again" />
             </div>

@@ -2,7 +2,7 @@
 
 A personal, offline-first PWA for daily Mandarin listening and speaking practice, aimed at **new HSK 1 (2026, 294 words)** plus 58 travel and conversation phrases. Built for iPhone: no microphone, no backend, no database, no paid APIs.
 
-**Version 1.4** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
+**Version 1.4.1** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
 
 ## Who it's for
 
@@ -146,6 +146,9 @@ src/App.tsx         home + settings
 - New features should respect the profile above: whisper-friendly, no mic, no writing practice, offline-first.
 
 ## Changelog
+
+**1.4.1** (2026-11-01)
+- Speaking prompts (Speak review cards, Speak drill, quick recall) say "Say this sentence" or "Say this phrase" and name the word a sentence is built around; the answer underlines that word. The learner couldn't tell whether to recall the word or the sentence.
 
 **1.4** (2026-11-01)
 - Quick recall: an optional 5-minute, ungraded speaking recall of today's new items plus the weakest older ones, best a few hours after the session; misses come first in the next review.

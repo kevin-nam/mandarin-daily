@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from 'react'
 import { play } from './audio'
-import type { Word } from './data'
+import { target, type Word } from './data'
 import { Icon } from './icons'
 import { Pinyin } from './Pinyin'
 
@@ -51,6 +51,33 @@ export function WordFace({ w, showSentence = true }: { w: Word; showSentence?: b
             <PlayButton k={`${w.id}s`} text={w.sentence.zh} slow />
           </div>
         </div>
+      )}
+    </div>
+  )
+}
+
+/**
+ * What to say from memory. A word is practised inside its example sentence, so the prompt says
+ * so and names the word the sentence is built around.
+ */
+export function SpeakPrompt({ w }: { w: Word }) {
+  return (
+    <div className="speak-prompt">
+      <p className="prompt-kind">{w.kind === 'word' ? 'Say this sentence' : 'Say this phrase'}</p>
+      <div className="prompt-en">{target(w).en}</div>
+      {w.kind === 'word' && <p className="prompt-key">Use the word for <b>{w.en}</b></p>}
+    </div>
+  )
+}
+
+/** The Chinese answer, with the practised word underlined inside its sentence. */
+export function SpokenAnswer({ w }: { w: Word }) {
+  const t = target(w)
+  const at = w.kind === 'word' ? t.zh.indexOf(w.hanzi) : -1
+  return (
+    <div className="hz answer-zh" lang="zh-CN">
+      {at < 0 ? t.zh : (
+        <>{t.zh.slice(0, at)}<mark className="key">{w.hanzi}</mark>{t.zh.slice(at + w.hanzi.length)}</>
       )}
     </div>
   )

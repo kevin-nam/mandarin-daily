@@ -10,7 +10,7 @@ import { CharParts } from './CharParts'
 import { LISTEN_MINUTES, listeningToday } from './listening'
 import { Icon } from './icons'
 import { Pinyin, ToneContour } from './Pinyin'
-import { Countdown, PlayButton, StepHeader, WordFace, shuffle } from './ui'
+import { Countdown, PlayButton, SpeakPrompt, SpokenAnswer, StepHeader, WordFace, shuffle } from './ui'
 
 type Commit = (fn: (s: AppState) => void) => void
 type StepId = 'reviews' | 'new' | 'drill' | 'dialogue' | 'tones' | 'listen' | 'done'
@@ -186,8 +186,7 @@ function Reviews({ state, commit, onDone }: { state: AppState; commit: Commit; o
           )}
           {kind === 'speak' && (
             <div className="center-col">
-              <div className="prompt-en">{t.en}</div>
-              {w.kind === 'word' && <p className="hint">Key word: {w.en}</p>}
+              <SpeakPrompt w={w} />
             </div>
           )}
           {kind === 'read' && <div className={`hz prompt-hanzi ${w.kind}`} lang="zh-CN">{w.hanzi}</div>}
@@ -405,12 +404,12 @@ function Drill({ state, learnedNow, onDone }: { state: AppState; learnedNow: str
     <div className="stage">
       <StepHeader title="Speak" hint="Say it in Mandarin before the answer plays. Whispering or mouthing counts." right={<span className="num">{queue.length} left</span>} />
       <div className="center-col fill">
-        <div className="prompt-en">{t.en}</div>
+        <SpeakPrompt w={item.w} />
         {phase === 'prompt' ? (
           <Countdown value={countdown} total={thinkSeconds(item.w)} />
         ) : (
           <div className="answer">
-            <div className="hz answer-zh" lang="zh-CN">{t.zh}</div>
+            <SpokenAnswer w={item.w} />
             <Pinyin text={t.py} className="answer-py" />
             <PlayButton k={t.key} text={t.zh} label="Again" />
           </div>
