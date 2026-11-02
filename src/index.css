@@ -429,6 +429,8 @@ details.char-parts:not([open]) { padding-bottom: 10px; }
 .tone-answer .py { font-size: 22px; font-weight: 500; }
 .tone-answer .en { color: var(--muted); }
 .tone-group { margin-top: 10px; }
+.tone-focus { font-size: 15px; color: var(--muted); margin: -8px 0 8px; text-wrap: pretty; }
+.tone-focus b { color: var(--ink); font-weight: 600; }
 .tone-group-label { font-size: 14px; color: var(--muted); margin-bottom: 6px; }
 .tones { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .tones.compact { grid-template-columns: repeat(4, 1fr); gap: 6px; }

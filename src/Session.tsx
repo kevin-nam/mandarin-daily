@@ -4,7 +4,7 @@ import { DIALOGUES, PAIR_ITEMS, PHRASES, TONE_ITEMS, TONE_VOICES, WORD_BY_ID, kn
 import { epoch, lineKey, play, sleep, stop, wordKey } from './audio'
 import {
   byRisk, dueKeys, grade, introduce, logDay, markKnown, newQuota, nextNewItems, parseKey, phrasesLearned, Rating,
-  streak, wordsLearned, type AppState,
+  recordTones, streak, toneErrors, toneFocus, wordsLearned, type AppState,
 } from './store'
 import { CharParts } from './CharParts'
 import { LISTEN_MINUTES, listeningToday } from './listening'
@@ -96,7 +96,7 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
       )}
       {step === 'drill' && <Drill state={state} learnedNow={learnedNow} missedReads={missedReads} onDone={next} />}
       {step === 'dialogue' && <DialogueStep state={state} onDone={next} />}
-      {step === 'tones' && <Tones onDone={next} />}
+      {step === 'tones' && <Tones state={state} commit={commit} onDone={next} />}
       {step === 'listen' && <Listening commit={commit} onDone={next} />}
       {step === 'done' && (
         <>
@@ -665,13 +665,29 @@ function DialogueStep({ state, onDone }: { state: AppState; onDone: () => void }
 const TONE_NAMES = ['1st', '2nd', '3rd', '4th']
 const randomVoice = () => Math.floor(Math.random() * TONE_VOICES)
 
-function Tones({ onDone }: { onDone: () => void }) {
+/**
+ * Draw n items, each weighted by its hardest tone, so the tones you miss come up more often
+ * while every tone still appears (an easy tone keeps a base weight).
+ */
+function weightedPick(items: Word[], n: number, err: number[]) {
+  const pool = items.map((w) => ({ w, weight: 0.1 + Math.max(...w.tones!.map((t) => err[t])) }))
+  const out: Word[] = []
+  while (out.length < n && pool.length) {
+    let r = Math.random() * pool.reduce((a, p) => a + p.weight, 0)
+    const i = pool.findIndex((p) => (r -= p.weight) <= 0)
+    out.push(pool.splice(i < 0 ? pool.length - 1 : i, 1)[0].w)
+  }
+  return out
+}
+
+function Tones({ state, commit, onDone }: { state: AppState; commit: Commit; onDone: () => void }) {
   // Each round in a random voice: hearing many speakers makes tone perception carry over.
-  const items = useMemo(
-    () => [...shuffle(TONE_ITEMS).slice(0, 6), ...shuffle(PAIR_ITEMS).slice(0, 9)]
-      .map((w) => ({ w, voice: randomVoice() })),
-    [],
-  )
+  const [items] = useState(() => {
+    const err = toneErrors(state)
+    return [...weightedPick(TONE_ITEMS, 6, err), ...weightedPick(PAIR_ITEMS, 9, err)]
+      .map((w) => ({ w, voice: randomVoice() }))
+  })
+  const [focus] = useState(() => toneFocus(state))
   const [i, setI] = useState(0)
   const [picks, setPicks] = useState<(number | undefined)[]>([])
   const [score, setScore] = useState(0)
@@ -684,6 +700,8 @@ function Tones({ onDone }: { onDone: () => void }) {
     const p = [...picks]
     p[syllable] = t
     setPicks(p)
+    if (tones.some((_, k) => p[k] === undefined)) return
+    commit((s) => recordTones(s, tones, p as number[]))
     if (tones.every((x, k) => p[k] === x)) setScore((s) => s + 1)
   }
   const next = () => {
@@ -700,6 +718,11 @@ function Tones({ onDone }: { onDone: () => void }) {
         hint={tones.length === 1 ? 'Which tone do you hear?' : 'Two syllables: pick the tone of each.'}
         right={<span className="num">{i + 1} of {items.length} · {score} right</span>}
       />
+      {focus && i === 0 && (
+        <p className="tone-focus">
+          More of the <b>{TONE_NAMES[focus.tone - 1]} tone</b> today: it’s the one you miss most, usually hearing it as the {TONE_NAMES[focus.as - 1]}.
+        </p>
+      )}
       <div className="center-col tone-stage">
         {done ? (
           <div className="tone-answer">

@@ -25,6 +25,8 @@ export interface AppState {
   lastBackup?: string
   /** Items missed in a quick recall: their speak card comes first in the next review. */
   flagged?: Record<string, true>
+  /** Tone drill answers per syllable: how often each tone was played, and what you picked when wrong ('3>2'). */
+  tones?: { seen: Record<string, number>; missed: Record<string, number> }
 }
 
 // `newPhrases` and `known` were added later, so older days don't have them.
@@ -189,6 +191,44 @@ export function introducedToday(s: AppState, now = new Date()) {
     const c = s.cards[cardKey(id, 'speak')]
     return c && c.reps === 0 && +c.due === tomorrow && WORD_BY_ID.has(id)
   })
+}
+
+/** Old answers fade: past this many per tone, all counts are halved so recent sessions weigh most. */
+const TONE_WINDOW = 60
+
+export function recordTones(s: AppState, heard: number[], picked: number[]) {
+  const t = (s.tones ??= { seen: {}, missed: {} })
+  heard.forEach((h, i) => {
+    t.seen[h] = (t.seen[h] ?? 0) + 1
+    if (picked[i] !== h) t.missed[`${h}>${picked[i]}`] = (t.missed[`${h}>${picked[i]}`] ?? 0) + 1
+    if (t.seen[h] > TONE_WINDOW) {
+      for (const k in t.seen) t.seen[k] /= 2
+      for (const k in t.missed) t.missed[k] /= 2
+    }
+  })
+}
+
+/** Error rate per tone (index 1-4), starting from an even 25% guess until there are answers. */
+export function toneErrors(s: AppState) {
+  const err = [0, 0, 0, 0, 0]
+  for (let h = 1; h <= 4; h++) {
+    let miss = 0
+    for (let p = 1; p <= 4; p++) miss += s.tones?.missed[`${h}>${p}`] ?? 0
+    err[h] = (miss + 1) / ((s.tones?.seen[h] ?? 0) + 4)
+  }
+  return err
+}
+
+/** The tone you miss most and what you most often hear it as, once there's enough to say. */
+export function toneFocus(s: AppState): { tone: number; as: number } | undefined {
+  const seen = Object.values(s.tones?.seen ?? {}).reduce((a, b) => a + b, 0)
+  if (seen < 20) return undefined
+  const err = toneErrors(s)
+  const tone = [1, 2, 3, 4].reduce((a, b) => (err[b] > err[a] ? b : a))
+  if (err[tone] < 0.15) return undefined
+  const as = [1, 2, 3, 4].filter((p) => p !== tone)
+    .reduce((a, b) => ((s.tones!.missed[`${tone}>${b}`] ?? 0) > (s.tones!.missed[`${tone}>${a}`] ?? 0) ? b : a))
+  return { tone, as }
 }
 
 /** Older items with the weakest speaking memory (lowest stability, under a week). */
