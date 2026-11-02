@@ -3,6 +3,7 @@ import { play } from './audio'
 import { target, type Word } from './data'
 import { Icon } from './icons'
 import { Pinyin } from './Pinyin'
+import type { PauseReason } from './pause'
 
 /** Play a clip. With a label it's a pill ("Word", "Sentence"); `slow` plays at 70% with the slow icon. */
 export function PlayButton({ k, text, label, slow, autoPlay, size }: {
@@ -109,6 +110,31 @@ export function Countdown({ value, total, small }: { value: number; total: numbe
           transform={`rotate(-90 ${size / 2} ${size / 2})`} />
       </svg>
       <span className="num">{value > 0 ? value : ''}</span>
+    </div>
+  )
+}
+
+/** Covers the screen while paused; what's underneath stays where you left it. */
+export function PauseScreen({ why, time, onResume, onEnd, endLabel }: {
+  why: PauseReason; time?: string; onResume: () => void; onEnd: () => void; endLabel: string
+}) {
+  const note = {
+    tap: 'Take your time. Everything stays where you left it.',
+    away: 'No taps for a couple of minutes, so it paused. The time you were away doesn’t count.',
+    left: 'You left the app, so it paused.',
+  }[why]
+  return (
+    <div className="paused" role="dialog" aria-modal="true" aria-labelledby="paused-title">
+      <div className="paused-body">
+        <div className="paused-mark" aria-hidden="true"><Icon name="pause" size={30} /></div>
+        <h2 id="paused-title">Paused</h2>
+        <p className="body">{note}</p>
+        {time && <p className="paused-time num">{time}</p>}
+      </div>
+      <div className="dock">
+        <button className="btn primary wide" onClick={onResume} autoFocus>Resume</button>
+        <button className="btn ghost wide" onClick={onEnd}>{endLabel}</button>
+      </div>
     </div>
   )
 }

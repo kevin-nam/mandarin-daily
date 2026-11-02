@@ -11,6 +11,9 @@ let speed = 1
 /** Playback speed for "normal" audio (1 = as recorded); slow is 70% of this. */
 export const setSpeed = (x: number) => { speed = x }
 let ep = 0
+let heard = 0
+/** When audio last started or finished: playing counts as being here. */
+export const lastSound = () => heard
 /** Changes every time playback is stopped — loops use it to bail out. */
 export const epoch = () => ep
 
@@ -43,6 +46,11 @@ export function stop() {
 /** key: audio file name (without .mp3); text: Chinese text for the TTS fallback. */
 export function play(key: string, text: string, opts: { slow?: boolean } = {}): Promise<void> {
   stop()
+  heard = Date.now()
+  return playing(key, text, opts).finally(() => { heard = Date.now() })
+}
+
+function playing(key: string, text: string, opts: { slow?: boolean }): Promise<void> {
   const rate = speed * (opts.slow ? 0.7 : 1)
   if (manifest?.has(key)) {
     return new Promise((resolve) => {

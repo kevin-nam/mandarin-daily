@@ -4,7 +4,8 @@ import { epoch, play, sleep, stop } from './audio'
 import { Icon } from './icons'
 import { Pinyin } from './Pinyin'
 import { flagMissed, introducedToday, logDay, weakestItems, type AppState } from './store'
-import { Countdown, PlayButton, SpeakPrompt, SpokenAnswer, StepHeader, shuffle } from './ui'
+import { usePauseClock } from './pause'
+import { Countdown, PauseScreen, PlayButton, SpeakPrompt, SpokenAnswer, StepHeader, shuffle } from './ui'
 
 type Commit = (fn: (s: AppState) => void) => void
 
@@ -28,9 +29,9 @@ export default function Recall({ state, commit, onExit }: { state: AppState; com
   const [countdown, setCountdown] = useState(() => (queue[0] ? thinkFor(target(queue[0].w).zh) : 0))
   const [got, setGot] = useState(0)
   const [missed, setMissed] = useState<Word[]>([])
-  const start = useRef(0)
   const left = useRef(countdown)
   const item = queue[0]
+  const clock = usePauseClock(!!item)
 
   /** Show the answer and play it twice. */
   const reveal = (w: Word) => {
@@ -47,7 +48,7 @@ export default function Recall({ state, commit, onExit }: { state: AppState; com
 
   // The countdown drives the reveal from its own timer.
   useEffect(() => {
-    if (phase !== 'prompt' || !item) return
+    if (phase !== 'prompt' || !item || clock.paused) return
     const t = setInterval(() => {
       left.current -= 1
       setCountdown(left.current)
@@ -57,12 +58,9 @@ export default function Recall({ state, commit, onExit }: { state: AppState; com
       }
     }, 1000)
     return () => clearInterval(t)
-  }, [phase, item])
+  }, [phase, item, clock.paused])
 
-  useEffect(() => {
-    start.current = Date.now()
-    return () => stop()
-  }, [])
+  useEffect(() => () => stop(), [])
 
   const finish = () => {
     commit((s) => logDay(s, { recalled: total }))
@@ -75,7 +73,9 @@ export default function Recall({ state, commit, onExit }: { state: AppState; com
         <Icon name="close" />
       </button>
       <h1 className="bar-title">Quick recall</h1>
-      <span className="icon-btn bar-count num">{queue.length > 0 ? queue.length : ''}</span>
+      {item ? (
+        <button className="icon-btn" onClick={() => clock.pause()} aria-label="Pause"><Icon name="pause" /></button>
+      ) : <span className="icon-btn" />}
     </header>
   )
 
@@ -122,7 +122,7 @@ export default function Recall({ state, commit, onExit }: { state: AppState; com
   const mark = (ok: boolean) => {
     stop()
     const [cur, ...rest] = queue
-    const timeUp = Date.now() - start.current > RECALL_MINUTES * 60 * 1000
+    const timeUp = clock.active() > RECALL_MINUTES * 60 * 1000
     if (ok) setGot((g) => g + (cur.retry ? 0 : 1))
     else if (!cur.retry) {
       commit((s) => flagMissed(s, cur.w.id))
@@ -142,6 +142,7 @@ export default function Recall({ state, commit, onExit }: { state: AppState; com
         <StepHeader
           title={item.retry ? 'Once more' : 'From memory'}
           hint="Say it in Mandarin before the answer plays. Whispering counts. Nothing here changes your schedule."
+          right={<span className="num">{queue.length} left</span>}
         />
         <div className="center-col fill">
           <SpeakPrompt w={item.w} />
@@ -166,6 +167,9 @@ export default function Recall({ state, commit, onExit }: { state: AppState; com
           </>
         )}
       </div>
+      {clock.paused && (
+        <PauseScreen why={clock.paused} onResume={clock.resume} endLabel="Stop the quick recall" onEnd={finish} />
+      )}
     </div>
   )
 }

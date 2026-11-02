@@ -279,7 +279,7 @@ a { color: inherit; }
 .session { min-height: 100dvh; display: flex; flex-direction: column; }
 .session-bar {
   position: sticky; top: 0; z-index: 2; background: var(--ground);
-  display: grid; grid-template-columns: 44px 1fr 56px; align-items: center; gap: 10px;
+  display: grid; grid-template-columns: 76px 1fr 76px; align-items: center; gap: 6px;
   min-height: 56px; margin: 0 -6px;
 }
 .steps { display: flex; flex-direction: column; align-items: center; gap: 5px; }
@@ -288,8 +288,31 @@ a { color: inherit; }
 .segments .past { background: color-mix(in srgb, var(--ink) 35%, var(--rule)); }
 .segments .now { background: var(--ink); }
 .step-name { font-size: 13px; color: var(--muted); font-weight: 500; }
-.timer { text-align: right; padding-right: 6px; color: var(--muted); font-size: 15px; }
+.timer {
+  justify-self: end; display: inline-flex; align-items: center; gap: 4px; min-height: 44px;
+  padding: 0 10px 0 8px; border-radius: 999px; color: var(--muted); font-size: 15px;
+  transition: background-color 150ms var(--ease);
+}
+.timer:active { background: var(--sunken); }
+.timer .icon { color: var(--ink); }
 .timer.over { color: var(--ink); font-weight: 600; }
+
+/* Paused: covers the session; the step underneath stays mounted. */
+.paused {
+  position: fixed; inset: 0; z-index: 10; background: var(--ground);
+  display: flex; flex-direction: column;
+  max-width: 560px; margin: 0 auto;
+  padding: env(safe-area-inset-top) var(--gutter) 0;
+  animation: enter 200ms var(--ease) both;
+}
+.paused-body { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 10px; }
+.paused-body .body { max-width: 30ch; color: var(--muted); margin: 0; }
+.paused-body h2 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; }
+.paused-mark {
+  width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--surface); color: var(--ink); margin-bottom: 8px;
+}
+.paused-time { font-size: 15px; color: var(--muted); }
 
 .stage { flex: 1; display: flex; flex-direction: column; padding: 8px 2px 20px; }
 .fill { flex: 1; justify-content: center; }

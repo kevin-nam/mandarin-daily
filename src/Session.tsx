@@ -10,7 +10,8 @@ import { CharParts } from './CharParts'
 import { LISTEN_MINUTES, listeningToday } from './listening'
 import { Icon } from './icons'
 import { Pinyin, ToneContour } from './Pinyin'
-import { Countdown, PlayButton, SpeakPrompt, SpokenAnswer, StepHeader, WordFace, shuffle } from './ui'
+import { PauseContext, usePause, usePauseClock } from './pause'
+import { Countdown, PauseScreen, PlayButton, SpeakPrompt, SpokenAnswer, StepHeader, WordFace, shuffle } from './ui'
 
 type Commit = (fn: (s: AppState) => void) => void
 type StepId = 'reviews' | 'new' | 'drill' | 'dialogue' | 'tones' | 'listen' | 'done'
@@ -28,16 +29,18 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
   const [step, setStep] = useState<StepId>('reviews')
   const [learnedNow, setLearnedNow] = useState<string[]>([])
   const [knownNow, setKnownNow] = useState(0)
-  const startRef = useRef(Date.now())
+  // Outside the app on purpose for listening, so only the other steps pause by themselves.
+  const clock = usePauseClock(step !== 'listen' && step !== 'done')
+  const { active } = clock
   const [elapsed, setElapsed] = useState(0)
 
   useEffect(() => {
-    const t = setInterval(() => setElapsed(Math.floor((Date.now() - startRef.current) / 1000)), 1000)
+    const t = setInterval(() => setElapsed(Math.floor(active() / 1000)), 1000)
     return () => {
       clearInterval(t)
       stop()
     }
-  }, [])
+  }, [active])
 
   const next = () => {
     stop()
@@ -46,15 +49,18 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
   }
 
   const finish = () => {
-    commit((s) => logDay(s, { minutes: Math.round(elapsed / 60), ...(step === 'done' && { finishedAt: new Date().toISOString() }) }))
+    commit((s) => logDay(s, { minutes: Math.round(clock.active() / 60000), ...(step === 'done' && { finishedAt: new Date().toISOString() }) }))
     onExit()
   }
 
-  const mm = `${Math.floor(elapsed / 60)}:${String(elapsed % 60).padStart(2, '0')}`
-  const over = elapsed > state.settings.sessionMinutes * 60
+  // Read the clock again on pause, so an away pause shows the time it was taken back to.
+  const secs = clock.paused ? Math.floor(clock.active() / 1000) : elapsed
+  const mm = `${Math.floor(secs / 60)}:${String(secs % 60).padStart(2, '0')}`
+  const over = secs > state.settings.sessionMinutes * 60
   const at = STEPS.findIndex((s) => s.id === step)
 
   return (
+    <PauseContext.Provider value={clock}>
     <div className="session">
       <div className="session-bar">
         <button
@@ -72,7 +78,13 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
           </div>
           <span className="step-name num">{at >= 0 ? `${at + 1} of ${STEPS.length}` : 'Done'}</span>
         </div>
-        <span className={`timer num ${over ? 'over' : ''}`} aria-label={`Time ${mm}`}>{mm}</span>
+        {step === 'done' ? (
+          <span className="timer num" aria-label={`Time ${mm}`}>{mm}</span>
+        ) : (
+          <button className={`timer num ${over ? 'over' : ''}`} onClick={() => clock.pause()} aria-label={`Pause. Time ${mm}`}>
+            <Icon name="pause" size={18} />{mm}
+          </button>
+        )}
       </div>
 
       {step === 'reviews' && <Reviews state={state} commit={commit} onDone={next} />}
@@ -100,7 +112,12 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
           </div>
         </>
       )}
+      {clock.paused && (
+        <PauseScreen why={clock.paused} time={`${mm} so far`} onResume={clock.resume} endLabel="End session"
+          onEnd={() => confirm('End the session? Progress so far is saved.') && finish()} />
+      )}
     </div>
+    </PauseContext.Provider>
   )
 }
 
@@ -128,7 +145,8 @@ function Reviews({ state, commit, onDone }: { state: AppState; commit: Commit; o
   const [queue, setQueue] = useState(() => reviewQueue(state))
   const [revealed, setRevealed] = useState(false)
   const [count, setCount] = useState(0)
-  const start = useRef(Date.now())
+  const clock = usePause()
+  const [start] = useState(clock.active)
   const known = useMemo(() => knownChars(state.introduced), [state.introduced])
 
   useEffect(() => {
@@ -140,7 +158,7 @@ function Reviews({ state, commit, onDone }: { state: AppState; commit: Commit; o
   const { wordId, kind } = parseKey(key)
   const w = WORD_BY_ID.get(wordId)!
   const t = target(w)
-  const timeUp = Date.now() - start.current > REVIEW_MINUTES * 60 * 1000
+  const timeUp = clock.active() - start > REVIEW_MINUTES * 60 * 1000
 
   const rate = (r: Grade) => {
     commit((s) => {
@@ -350,17 +368,18 @@ function Drill({ state, learnedNow, onDone }: { state: AppState; learnedNow: str
   })
   const [phase, setPhase] = useState<'prompt' | 'answer'>('prompt')
   const [countdown, setCountdown] = useState(() => (queue[0] ? thinkSeconds(queue[0].w) : 0))
-  const start = useRef(Date.now())
+  const clock = usePause()
+  const [start] = useState(clock.active)
 
   useEffect(() => {
     if (queue.length === 0) onDone()
   }, [queue.length, onDone])
 
   useEffect(() => {
-    if (phase !== 'prompt' || queue.length === 0) return
+    if (phase !== 'prompt' || queue.length === 0 || clock.paused) return
     const t = setInterval(() => setCountdown((c) => c - 1), 1000)
     return () => clearInterval(t)
-  }, [phase, queue])
+  }, [phase, queue, clock.paused])
 
   const item = queue[0]
   useEffect(() => {
@@ -382,7 +401,7 @@ function Drill({ state, learnedNow, onDone }: { state: AppState; learnedNow: str
 
   const mark = (ok: boolean) => {
     stop()
-    const timeUp = Date.now() - start.current > DRILL_MINUTES * 60 * 1000
+    const timeUp = clock.active() - start > DRILL_MINUTES * 60 * 1000
     const next = (() => {
       const [cur, ...rest] = queue
       if (timeUp) return [] // time cap reached
@@ -471,6 +490,7 @@ function DialogueStep({ state, onDone }: { state: AppState; onDone: () => void }
   const [countdown, setCountdown] = useState(0)
   const run = useRef(0) // bumped to cancel a running role-play
   const skip = useRef(false)
+  const clock = usePause()
   useEffect(() => () => { run.current++ }, [])
 
   const rolePlay = async () => {
@@ -486,13 +506,22 @@ function DialogueStep({ state, onDone }: { state: AppState; onDone: () => void }
         for (let s = thinkFor(l.zh); s > 0 && !skip.current && live(); s--) {
           setCountdown(s)
           await sleep(1000)
+          await clock.running()
         }
         setCountdown(0)
         if (!live()) break
       }
       setReveal(true)
-      await play(lineKey(d.id, i), l.zh, { slow })
+      // A pause stops the audio mid-line; hear that line again on resume.
+      let cut = true
+      while (cut && live()) {
+        await clock.running()
+        const e = epoch()
+        await play(lineKey(d.id, i), l.zh, { slow })
+        cut = epoch() !== e + 1
+      }
       await sleep(l.s === me ? 1200 : 500)
+      await clock.running()
     }
     if (live()) setPlaying(false)
   }

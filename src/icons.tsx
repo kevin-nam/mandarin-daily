@@ -1,6 +1,7 @@
 /** One stroke icon set (24px grid, 1.75 stroke), drawn for this app. */
 const PATHS = {
   play: <path d="M8 5.8v12.4a.8.8 0 0 0 1.2.7l10-6.2a.8.8 0 0 0 0-1.4l-10-6.2A.8.8 0 0 0 8 5.8Z" fill="currentColor" stroke="none" />,
+  pause: <path d="M9 6v12M15 6v12" />,
   close: <path d="M6 6l12 12M18 6 6 18" />,
   back: <path d="M15 5l-7 7 7 7" />,
   chevron: <path d="M9.5 5.5 16 12l-6.5 6.5" />,
