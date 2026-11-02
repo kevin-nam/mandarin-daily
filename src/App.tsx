@@ -192,7 +192,7 @@ export default function App() {
               <Icon name="practice" />
               <span className="option-text">
                 <b>Extra practice · about 10 min</b>
-                <small>Speak drill with your recent words, a dialogue and the tone drill. Doesn’t change your review schedule.</small>
+                <small>Any reviews still due, then the Speak drill with your recent words, a dialogue and the tone drill.</small>
               </span>
               <Icon name="chevron" size={18} />
             </button>

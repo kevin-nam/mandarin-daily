@@ -2,7 +2,7 @@
 
 A personal, offline-first PWA for daily Mandarin listening and speaking practice, aimed at **new HSK 1 (2026, 294 words)** plus 58 travel and conversation phrases. Built for iPhone: no microphone, no backend, no database, no paid APIs.
 
-**Version 1.6** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
+**Version 1.7** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
 
 ## Who it's for
 
@@ -41,12 +41,13 @@ At 5 new words/day you cover all of HSK 1 in about 9 weeks, faster if you mark w
 - **Missing a day** costs only the streak. Reviews wait; the 12-min cap keeps sessions the same length; leftovers roll over (most at risk first). If reviewed cards are carried over from earlier days, new words are halved (>10 behind) or paused (>30 behind) until you catch up.
 - **Audio speed** starts at 85% (Settings: 70–100%; 🐢 slow = 70% of it). Once ≥20 listen cards are reviewed and 70% are Good or better, the home screen suggests the next 5% step; "Not now" or changing it yourself pauses that for a week.
 - **Word bank** (home screen): every studied item with a strength per skill — 👂 listening, 🗣 speaking, 字 reading, 句 sentences — from FSRS stability: Not tested · Learning (<2 d or relearning) · Getting there (<7 d) · Good (<30 d) · Strong. Search by 字, English, or pinyin without tone marks.
+- **Reading is the gap** (day 3: 10 of 23 read cards failed vs 0 speak and 0 listen; basic characters like 好 是 很 吗 呢 也). The learner doesn't recognise the characters, and finds tones very hard. So read cards ask for the meaning only (tones don't count), and words failed on a read card come back in the Speak drill as **Read** items (every third item, up to 6): 字 → 4-second try → pinyin, meaning, audio and the character breakdown; 3 hits to retire, ungraded like the rest of the drill.
 - **Pause**: tap the timer (session) or the pause icon (quick recall). Countdowns, the role-play and the step time caps all stop; the step stays where you left it. It also pauses by itself when you leave the app, or after **2 minutes with no taps and no audio** (you're assumed away, and that quiet stretch is taken off the timer, so logged minutes and the 12-/8-min caps stay honest). The listening step doesn't auto-pause, since leaving the app is the point there. The learner asked for this: sessions sometimes get interrupted.
 - **Streak**: the week as seals on the home screen, and at the end of a session.
 - **After the session** the home screen offers three optional extras, each saying what it does:
   - **Quick recall · 5 min**, from 3 hours after the session (ideally before bed): today's new items, then the 4 weakest older ones (lowest speaking stability, under a week), speaking first. Never graded, so it can't inflate the schedule. A miss is flagged: its speak card is due no later than tomorrow and comes first in the next review (the flag clears when that card is graded). Older items aren't re-reviewed early because FSRS already times them; an early easy review teaches little. Research: a spaced same-day retrieval beats immediate re-practice, and retrieval before sleep followed by relearning after it helps most (Mazza et al. 2016).
   - **Easy listening · 8 min** (link out).
-  - **Extra practice · about 10 min**: Speak drill on recent words, a dialogue and the tone drill. Doesn't change the review schedule (what "Practice anyway" used to be; the user wanted it kept and its purpose stated).
+  - **Extra practice · about 10 min**: the session again, so any reviews still due (left over from the 12-min cap) are done and graded, then the Speak drill on recent words, a dialogue and the tone drill. New words are already used up. (What "Practice anyway" used to be; the user wanted it kept and its purpose stated. Day 3 showed it grading leftover reviews, so the wording now says so; the user chose fixing the wording over skipping reviews.)
 
 ## Research behind it
 
@@ -150,6 +151,10 @@ src/App.tsx         home + settings
 - New features should respect the profile above: whisper-friendly, no mic, no writing practice, offline-first.
 
 ## Changelog
+
+**1.7** (2026-11-02)
+- Words missed on a read card come back in the Speak drill as quick reading items, with the character breakdown. Read cards ask for meaning only; tones don't count.
+- Extra practice says it does any reviews still due.
 
 **1.6** (2026-11-02)
 - Pause mid-session or mid-recall: tap the timer. Auto-pauses on leaving the app or after 2 minutes with no taps or audio, and away time isn't counted. Step time caps now use active time.
