@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
+import { Growth } from './Growth'
 import Recall from './Recall'
 import Session from './Session'
 import WordBank from './WordBank'
@@ -207,6 +208,8 @@ export default function App() {
         </div>
         <Week history={state.history} stamp={justFinished} />
       </section>
+
+      <Growth state={state} />
 
       <section className="panel list" aria-label="Progress">
         <ProgressRow label="HSK 1 words" n={learned} total={WORDS.length} />
