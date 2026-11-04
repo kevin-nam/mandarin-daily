@@ -1,8 +1,9 @@
-import { useEffect, useState, type ReactNode } from 'react'
+import { useEffect, useState, type CSSProperties, type ReactNode } from 'react'
 import { play } from './audio'
 import { target, type Word } from './data'
 import { Icon } from './icons'
 import { Pinyin } from './Pinyin'
+import type { BurstState } from './burst'
 import type { PauseReason } from './pause'
 
 /** Play a clip. With a label it's a pill ("Word", "Sentence"); `slow` plays at 70% with the slow icon. */
@@ -96,20 +97,49 @@ export function StepHeader({ title, hint, right }: { title: string; hint?: strin
   )
 }
 
-/** Seconds left to answer, drawn as a ring that empties. */
-export function Countdown({ value, total, small }: { value: number; total: number; small?: boolean }) {
+/**
+ * Seconds left to answer, drawn as a ring that drains smoothly (one CSS animation over the
+ * whole countdown, frozen while paused). Give it a fresh `key` for each new countdown.
+ */
+export function Countdown({ value, total, small, paused }: { value: number; total: number; small?: boolean; paused?: boolean }) {
   const r = small ? 15 : 34
   const size = (r + 4) * 2
-  const c = 2 * Math.PI * r
-  const left = Math.max(0, value) / total
+  // Where the ring starts, fixed at mount: the animation carries it from there to empty.
+  const [start] = useState(() => ({ from: 1 - Math.max(0, value) / total, secs: Math.max(0, value) }))
   return (
-    <div className={`countdown ${small ? 'small' : ''}`} role="timer" aria-label={`${Math.max(0, value)} seconds`}>
+    <div className={`countdown ${small ? 'small' : ''} ${value > 0 && value <= 3 ? 'last' : ''}`} role="timer" aria-label={`${Math.max(0, value)} seconds`}>
       <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} aria-hidden="true">
         <circle className="track" cx={size / 2} cy={size / 2} r={r} />
-        <circle className="left" cx={size / 2} cy={size / 2} r={r} strokeDasharray={c} strokeDashoffset={c * (1 - left)}
-          transform={`rotate(-90 ${size / 2} ${size / 2})`} />
+        <circle className="left" cx={size / 2} cy={size / 2} r={r} pathLength={1} strokeDasharray={1}
+          transform={`rotate(-90 ${size / 2} ${size / 2})`}
+          style={{ '--from': start.from, '--secs': `${start.secs}s`, animationPlayState: paused ? 'paused' : 'running' } as CSSProperties} />
       </svg>
-      <span className="num">{value > 0 ? value : ''}</span>
+      <span key={value} className="num">{value > 0 ? value : ''}</span>
+    </div>
+  )
+}
+
+/**
+ * Feedback that rises from the buttons: a check drawn in an ink dot with a ring of ink spreading
+ * out (right), a quiet "back soon" (missed), or the dot with a label (a streak, an item done).
+ */
+export function Burst({ n, kind, label }: BurstState) {
+  if (n === 0) return null
+  return (
+    <div key={n} className={`burst ${kind}`} aria-hidden="true">
+      {kind === 'again' ? (
+        <span className="burst-note"><Icon name="refresh" size={16} />Back in a moment</span>
+      ) : (
+        <>
+          <span className="burst-ring" />
+          <span className="burst-dot">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+              <path pathLength={1} d="M5 12.5l4.5 4.5L19 7" />
+            </svg>
+          </span>
+          {label && <span className="burst-label">{label}</span>}
+        </>
+      )}
     </div>
   )
 }

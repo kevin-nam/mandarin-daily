@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import type { Grade } from 'ts-fsrs'
 import { DIALOGUES, PAIR_ITEMS, PHRASES, TONE_ITEMS, TONE_VOICES, WORD_BY_ID, knownChars, target, thinkFor, voiceKey, type Word } from './data'
 import { epoch, lineKey, play, sleep, stop, wordKey } from './audio'
@@ -10,8 +10,9 @@ import { CharParts } from './CharParts'
 import { LISTEN_MINUTES, listeningToday } from './listening'
 import { Icon } from './icons'
 import { Pinyin, ToneContour } from './Pinyin'
+import { BurstContext, STREAK_EVERY, useBurst, useBurstState } from './burst'
 import { PauseContext, usePause, usePauseClock } from './pause'
-import { Countdown, PauseScreen, PlayButton, SpeakPrompt, SpokenAnswer, StepHeader, WordFace, shuffle } from './ui'
+import { Burst, Countdown, PauseScreen, PlayButton, SpeakPrompt, SpokenAnswer, StepHeader, WordFace, shuffle } from './ui'
 
 type Commit = (fn: (s: AppState) => void) => void
 type StepId = 'reviews' | 'new' | 'drill' | 'dialogue' | 'tones' | 'listen' | 'done'
@@ -34,6 +35,7 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
   // Outside the app on purpose for listening, so only the other steps pause by themselves.
   const clock = usePauseClock(step !== 'listen' && step !== 'done')
   const { active } = clock
+  const [burst, fire] = useBurstState()
   const [elapsed, setElapsed] = useState(0)
 
   useEffect(() => {
@@ -63,6 +65,7 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
 
   return (
     <PauseContext.Provider value={clock}>
+    <BurstContext.Provider value={fire}>
     <div className="session">
       <div className="session-bar">
         <button
@@ -101,7 +104,10 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
       {step === 'done' && (
         <>
           <div className="stage done">
-            <div className="done-seal hz" lang="zh-CN" aria-hidden="true">好</div>
+            <div className="done-mark" aria-hidden="true">
+              <div className="done-seal hz" lang="zh-CN">好</div>
+              <span className="splash">{Array.from({ length: 10 }, (_, i) => <i key={i} style={{ '--a': `${i * 36 + 8}deg`, '--d': `${54 + (i % 3) * 12}px` } as CSSProperties} />)}</span>
+            </div>
             <h2>Done for today</h2>
             <p className="done-stats num">
               {streak(state)} {streak(state) === 1 ? 'day' : 'days'} in a row · {mm} · {learnedNow.length - knownNow} new
@@ -115,11 +121,13 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
           </div>
         </>
       )}
+      <Burst {...burst} />
       {clock.paused && (
         <PauseScreen why={clock.paused} time={`${mm} so far`} onResume={clock.resume} endLabel="End session"
           onEnd={() => confirm('End the session? Progress so far is saved.') && finish()} />
       )}
     </div>
+    </BurstContext.Provider>
     </PauseContext.Provider>
   )
 }
@@ -151,6 +159,8 @@ function Reviews({ state, commit, onDone, onMissRead }: {
   const [revealed, setRevealed] = useState(false)
   const [count, setCount] = useState(0)
   const clock = usePause()
+  const fire = useBurst()
+  const run = useRef(0)
   const [start] = useState(clock.active)
   const known = useMemo(() => knownChars(state.introduced), [state.introduced])
 
@@ -171,6 +181,13 @@ function Reviews({ state, commit, onDone, onMissRead }: {
       logDay(s, { reviews: 1 })
     })
     if (r === Rating.Again && kind === 'read') onMissRead(wordId)
+    if (r === Rating.Again) {
+      run.current = 0
+      fire('again')
+    } else {
+      run.current++
+      fire(run.current % STREAK_EVERY === 0 ? 'streak' : 'good', run.current % STREAK_EVERY === 0 ? `${run.current} in a row` : undefined)
+    }
     setCount((c) => c + 1)
     setRevealed(false)
     setQueue((q) => {
@@ -197,7 +214,7 @@ function Reviews({ state, commit, onDone, onMissRead }: {
 
   return (
     <>
-    <div className="stage">
+    <div className="stage turn" key={count}>
       <StepHeader title="Review" hint={prompt} right={<span className="num">{queue.length} left</span>} />
       {!revealed && (
         <div className="front" onClick={kind !== 'listen' ? reveal : undefined}>
@@ -279,7 +296,9 @@ function NewWords({ state, commit, onDone }: { state: AppState; commit: Commit; 
     else onDone(list.map((x) => x.id), knownCount)
   }
 
+  const fire = useBurst()
   const knewIt = () => {
+    fire('good')
     commit((s) => {
       markKnown(s, w.id)
       logDay(s, { known: 1 })
@@ -388,6 +407,8 @@ function Drill({ state, learnedNow, missedReads, onDone }: {
   const [countdown, setCountdown] = useState(() => (queue[0] ? thinkSeconds(queue[0]) : 0))
   const clock = usePause()
   const [start] = useState(clock.active)
+  const fire = useBurst()
+  const [turn, setTurn] = useState(0)
 
   useEffect(() => {
     if (queue.length === 0) onDone()
@@ -434,15 +455,20 @@ function Drill({ state, learnedNow, missedReads, onDone }: {
       copy.splice(Math.min(gap, copy.length), 0, { ...cur, hits })
       return copy
     })()
+    const hits = ok ? item.hits + 1 : 0
+    if (!ok) fire('again')
+    else if (hits >= RETIRE_AFTER) fire('retire', `${RETIRE_AFTER} of ${RETIRE_AFTER}`)
+    else fire('good')
     setQueue(next)
     // Reset together with the phase so the answer effect never sees a stale 0.
     if (next[0]) setCountdown(thinkSeconds(next[0]))
     setPhase('prompt')
+    setTurn((n) => n + 1)
   }
 
   return (
     <>
-    <div className="stage">
+    <div className="stage turn" key={turn}>
       {item.read ? (
         <StepHeader title="Read" hint="You missed reading this earlier. What does it mean? Tones don’t count." right={<span className="num">{queue.length} left</span>} />
       ) : (
@@ -454,8 +480,9 @@ function Drill({ state, learnedNow, missedReads, onDone }: {
         ) : (
           <SpeakPrompt w={item.w} />
         )}
+        <Pips hits={item.hits} />
         {phase === 'prompt' ? (
-          <Countdown value={countdown} total={thinkSeconds(item)} />
+          <Countdown key={turn} value={countdown} total={thinkSeconds(item)} paused={!!clock.paused} />
         ) : item.read ? (
           <div className="answer">
             <Pinyin text={item.w.pinyin} className="answer-py" />
@@ -483,6 +510,15 @@ function Drill({ state, learnedNow, missedReads, onDone }: {
       )}
     </div>
     </>
+  )
+}
+
+/** Recalls so far out of the three that retire an item. */
+function Pips({ hits }: { hits: number }) {
+  return (
+    <span className="pips" role="img" aria-label={`${hits} of ${RETIRE_AFTER} recalls`}>
+      {Array.from({ length: RETIRE_AFTER }, (_, i) => <i key={i} className={i < hits ? 'on' : ''} />)}
+    </span>
   )
 }
 
@@ -530,7 +566,9 @@ function DialogueStep({ state, onDone }: { state: AppState; onDone: () => void }
   const clock = usePause()
   useEffect(() => () => { run.current++ }, [])
 
+  const [runs, setRuns] = useState(0)
   const rolePlay = async () => {
+    setRuns((r) => r + 1)
     const id = ++run.current
     const live = () => run.current === id
     setPlaying(true)
@@ -622,7 +660,7 @@ function DialogueStep({ state, onDone }: { state: AppState; onDone: () => void }
                   <>
                     <div className="en big">{l.en}</div>
                     <div className="your-turn">
-                      <Countdown value={countdown} total={thinkFor(l.zh)} small />
+                      <Countdown key={`${runs}-${line}`} value={countdown} total={thinkFor(l.zh)} small paused={!!clock.paused} />
                       <button className="btn small" onClick={() => { skip.current = true }}>Show it</button>
                     </div>
                   </>
@@ -691,6 +729,8 @@ function Tones({ state, commit, onDone }: { state: AppState; commit: Commit; onD
   const [i, setI] = useState(0)
   const [picks, setPicks] = useState<(number | undefined)[]>([])
   const [score, setScore] = useState(0)
+  const fire = useBurst()
+  const streakRun = useRef(0)
   const { w, voice } = items[i]
   const tones = w.tones!
   const done = tones.every((_, k) => picks[k] !== undefined)
@@ -702,7 +742,11 @@ function Tones({ state, commit, onDone }: { state: AppState; commit: Commit; onD
     setPicks(p)
     if (tones.some((_, k) => p[k] === undefined)) return
     commit((s) => recordTones(s, tones, p as number[]))
-    if (tones.every((x, k) => p[k] === x)) setScore((s) => s + 1)
+    if (tones.every((x, k) => p[k] === x)) {
+      setScore((s) => s + 1)
+      const n = ++streakRun.current
+      fire(n % STREAK_EVERY === 0 ? 'streak' : 'good', n % STREAK_EVERY === 0 ? `${n} in a row` : undefined)
+    } else streakRun.current = 0
   }
   const next = () => {
     setPicks([])
@@ -716,7 +760,7 @@ function Tones({ state, commit, onDone }: { state: AppState; commit: Commit; onD
       <StepHeader
         title="Tones"
         hint={tones.length === 1 ? 'Which tone do you hear?' : 'Two syllables: pick the tone of each.'}
-        right={<span className="num">{i + 1} of {items.length} · {score} right</span>}
+        right={<span className="num">{i + 1} of {items.length} · <span key={score} className="tick">{score}</span> right</span>}
       />
       {focus && i === 0 && (
         <p className="tone-focus">

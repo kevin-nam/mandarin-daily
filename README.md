@@ -2,7 +2,7 @@
 
 A personal, offline-first PWA for daily Mandarin listening and speaking practice, aimed at **new HSK 1 (2026, 294 words)** plus 58 travel and conversation phrases. Built for iPhone: no microphone, no backend, no database, no paid APIs.
 
-**Version 1.9** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
+**Version 1.10** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
 
 ## Who it's for
 
@@ -68,6 +68,18 @@ Built against two design rule sets (Impeccable's "craft floor" and Operate-mode 
 - **Theme:** Settings → Appearance: System (follows the iPhone), Light or Dark. `src/theme.ts` sets `data-theme` on `<html>` before the first paint (no flash) and updates the status-bar colour; `index.css` has the dark tokens under both the system media query and `[data-theme='dark']`.
 - **Checks.** All text ≥ 4.5:1 in light and dark; touch targets ≥ 44 px; `prefers-reduced-motion` turns motion off; dark mode is a full token set. Screens were verified in WebKit at 390×844 (iPhone) in both themes.
 - **App icon:** 每天 in a seal frame (rendered from the same font).
+
+### Motion
+
+One vocabulary, from the ink-on-paper idea: things are **stamped**, **drawn** (stroke draws), and ink **spreads**. Two curves: `--ease` (fast out, soft landing) for everything, `--spring` (slight overshoot) only for getting something right.
+- **Right** (review Good/Hard/Easy, Speak drill "Said it", recall "Got it", "Yes, I knew it", a right tone): an ink dot pops up just above the buttons with the check drawn in and a ring spreading out, then lifts away (`Burst`, ~0.9 s). Every 5 in a row adds a "5 in a row" label; retiring a drill item says "3 of 3".
+- **Missed**: a quiet "Back in a moment" pill with a rewinding arrow. Never red, never a shake: missing is part of the method.
+- **Tones**: the right answer pops and its ring draws in, ✓ springs in; a wrong pick shakes once; the score ticks.
+- **Cards** slide in from the right with their parts a beat apart; **answers** bleed in from a blur; the practised word's underline is drawn in after.
+- **Countdowns** drain smoothly (one CSS animation, frozen while paused); the number ticks each second.
+- **Session bar** segments fill with a stroke from the left; the **done** seal stamps down, a ring of ink spreads and flecks fly out, then the stats follow in turn.
+- **Home** panels arrive top to bottom; progress meters draw out; growth squares settle; the week's seal stamps.
+- **Reduced motion**: all of it off, except the countdown still drains (it's information) and feedback simply fades.
 
 ## Run it
 
@@ -136,6 +148,7 @@ src/CharParts.tsx   character breakdown (meaning/sound parts)
 src/Pinyin.tsx      tone-coloured pinyin, tone contours
 src/store.ts         also tone-drill stats (recordTones, toneErrors, toneFocus)
 src/Growth.tsx      home growth chart (ink squares per day)
+src/burst.ts        feedback burst state (Burst component in ui.tsx)
 src/Week.tsx        the week as seals
 src/Recall.tsx      quick recall (ungraded, flags misses)
 src/icons.tsx       SVG icon set
@@ -155,6 +168,9 @@ src/App.tsx         home + settings
 - New features should respect the profile above: whisper-friendly, no mic, no writing practice, offline-first.
 
 ## Changelog
+
+**1.10** (2026-11-04)
+- Motion: feedback bursts for right answers (with streaks), a gentle note for misses, smooth countdowns, card and answer transitions, tone pop/shake, the done seal's stamp and ink splash, home entrance.
 
 **1.9** (2026-11-04)
 - Growth chart on the home screen: one ink square per item on the day you learned it, darkening as it sticks; switch between Say, Hear and Read; tap a day to see its words.

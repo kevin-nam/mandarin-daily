@@ -41,6 +41,8 @@
   --r-panel: 20px;
   --r-control: 14px;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  /* Overshoots a touch, then settles: only for moments of getting something right. */
+  --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --gutter: 16px;
 
   color-scheme: light;
@@ -284,9 +286,14 @@ a { color: inherit; }
 }
 .steps { display: flex; flex-direction: column; align-items: center; gap: 5px; }
 .segments { display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; width: 100%; max-width: 240px; }
-.segments span { height: 4px; border-radius: 4px; background: var(--rule); transition: background-color 250ms var(--ease); }
-.segments .past { background: color-mix(in srgb, var(--ink) 35%, var(--rule)); }
-.segments .now { background: var(--ink); }
+.segments span { position: relative; height: 4px; border-radius: 4px; background: var(--rule); overflow: hidden; }
+/* Each segment fills with a stroke from the left as you reach it. */
+.segments span::after {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; background: var(--ink);
+  transform: scaleX(0); transform-origin: left; transition: transform 560ms var(--ease), background-color 300ms var(--ease);
+}
+.segments .past::after { transform: scaleX(1); background: color-mix(in srgb, var(--ink) 35%, var(--rule)); }
+.segments .now::after { transform: scaleX(1); }
 .step-name { font-size: 13px; color: var(--muted); font-weight: 500; }
 .timer {
   justify-self: end; display: inline-flex; align-items: center; gap: 4px; min-height: 44px;
@@ -341,7 +348,12 @@ a { color: inherit; }
 .prompt-kind { font-size: 14px; font-weight: 600; color: var(--muted); }
 .prompt-key { font-size: 15px; color: var(--muted); }
 .prompt-key b { color: var(--ink); font-weight: 600; }
-mark.key { background: none; color: inherit; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 6px; text-decoration-color: var(--seal); }
+/* The practised word, underlined with a brushstroke drawn in after the answer appears. */
+mark.key {
+  background: linear-gradient(var(--seal), var(--seal)) no-repeat left bottom / 0% 2px; color: inherit;
+  padding-bottom: 5px; animation: underline 420ms 260ms var(--ease) forwards;
+}
+@keyframes underline { to { background-size: 100% 2px; } }
 .prompt-hanzi { font-size: 112px; line-height: 1.1; }
 .prompt-hanzi.phrase { font-size: 40px; line-height: 1.35; text-wrap: balance; }
 .unit { font-size: 14px; color: var(--muted); margin-bottom: 6px; text-align: center; }
@@ -373,8 +385,13 @@ mark.key { background: none; color: inherit; text-decoration: underline; text-de
 .countdown { position: relative; display: grid; place-items: center; }
 .countdown svg { display: block; }
 .countdown .track { fill: none; stroke: var(--rule); stroke-width: 4; }
-.countdown .left { fill: none; stroke: var(--ink); stroke-width: 4; stroke-linecap: round; transition: stroke-dashoffset 1s linear; }
-.countdown span { position: absolute; font-size: 28px; font-weight: 600; }
+.countdown .left {
+  fill: none; stroke: var(--ink); stroke-width: 4; stroke-linecap: round; stroke-dashoffset: var(--from);
+  animation: drain var(--secs) linear forwards;
+}
+@keyframes drain { from { stroke-dashoffset: var(--from); } to { stroke-dashoffset: 1; } }
+.countdown span { position: absolute; font-size: 28px; font-weight: 600; animation: tick 320ms var(--spring) both; }
+.countdown.last span { animation-name: tick-last; }
 .countdown.small span { font-size: 14px; }
 .countdown.small .track, .countdown.small .left { stroke-width: 3; }
 .answer { text-align: center; display: flex; flex-direction: column; align-items: center; gap: 4px; }
@@ -443,9 +460,14 @@ details.char-parts:not([open]) { padding-bottom: 10px; }
 .tones.compact .tone { min-height: 64px; font-size: 13px; }
 .tone .contour { display: block; }
 .tone.picked { box-shadow: inset 0 0 0 2px var(--ink); }
-.tone.right { box-shadow: inset 0 0 0 2.5px var(--ink); }
-.tone.right span::after { content: ' ✓'; }
-.tone.wrong { box-shadow: inset 0 0 0 1.5px var(--faint); color: var(--muted); }
+.tone.right { box-shadow: inset 0 0 0 2.5px var(--ink); animation: pop 460ms var(--spring), ring-in 320ms var(--ease) both; }
+.tone.right span::after { content: '✓'; display: inline-block; margin-left: 4px; animation: check-in 380ms 140ms var(--spring) both; }
+.tone.wrong { box-shadow: inset 0 0 0 1.5px var(--faint); color: var(--muted); animation: shake 380ms var(--ease); }
+@keyframes ring-in { from { box-shadow: inset 0 0 0 0 var(--ink); } }
+@keyframes check-in { from { transform: scale(0); opacity: 0; } }
+@keyframes shake { 20% { transform: translateX(-5px); } 45% { transform: translateX(4px); } 70% { transform: translateX(-2px); } }
+.tone-answer { animation: ink-in 420ms var(--ease) both; }
+.tick { display: inline-block; animation: tick 380ms var(--spring) both; }
 .tone.wrong span { text-decoration: line-through; }
 .tone.dim { opacity: 0.38; }
 
@@ -462,11 +484,35 @@ details.char-parts:not([open]) { padding-bottom: 10px; }
 .listen-link > .icon:last-child { color: var(--faint); }
 
 .stage.done { display: flex; flex-direction: column; align-items: center; text-align: center; padding-top: 28px; }
+/* The seal stamps down, its ink spreads in a ring and flecks out. */
+.done-mark { position: relative; display: grid; place-items: center; margin-bottom: 26px; }
+.stage > .done-mark { animation: none; }
 .done-seal {
   width: 104px; height: 104px; border-radius: 18px; display: grid; place-items: center;
   background: var(--seal); color: var(--on-seal); font-size: 64px; font-weight: 700; line-height: 1;
-  margin-bottom: 22px; animation: stamp 620ms var(--ease) both !important;
+  animation: stamp 620ms var(--ease) both;
 }
+.done-mark::after {
+  content: ''; position: absolute; width: 104px; height: 104px; border-radius: 22px; box-shadow: 0 0 0 2px var(--seal);
+  transform: rotate(-3deg); animation: ripple 900ms 340ms var(--ease) both; pointer-events: none;
+}
+@keyframes ripple { 0% { opacity: 0; } 1% { opacity: 0.55; transform: rotate(-3deg) scale(1); } 100% { opacity: 0; transform: rotate(-3deg) scale(1.75); } }
+.splash { position: absolute; inset: 0; pointer-events: none; }
+.splash i {
+  position: absolute; left: 50%; top: 50%; width: 7px; height: 7px; margin: -3.5px; border-radius: 50%;
+  background: var(--seal); animation: fleck 760ms 330ms var(--ease) both;
+}
+.splash i:nth-child(odd) { width: 4px; height: 4px; margin: -2px; }
+@keyframes fleck {
+  0% { opacity: 0; transform: rotate(var(--a)) translateY(-30px) scale(0.4); }
+  12% { opacity: 1; }
+  100% { opacity: 0; transform: rotate(var(--a)) translateY(calc(-1 * var(--d) - 20px)) scale(1); }
+}
+.stage.done > * { animation-duration: 460ms; }
+.stage.done > :nth-child(2) { animation-delay: 360ms; }
+.stage.done > :nth-child(3) { animation-delay: 440ms; }
+.stage.done > :nth-child(4) { animation-delay: 520ms; }
+.stage.done > :nth-child(5) { animation-delay: 600ms; }
 .stage.done h2 { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; }
 .done-stats { color: var(--muted); margin: 6px 0 22px; }
 .use-today { width: 100%; text-align: left; background: var(--surface); border-radius: var(--r-panel); padding: 16px; margin-bottom: 16px; }
@@ -542,10 +588,95 @@ details.char-parts:not([open]) { padding-bottom: 10px; }
 .panel.empty p, .empty-line { color: var(--muted); padding: 8px 0; }
 .empty-line { padding: 20px 16px; text-align: center; }
 
-/* Motion off when asked */
+/* ---------- Motion ---------- */
+/* Each new card slides in from the right, its parts a beat apart; answers bleed in like ink. */
+.stage.turn > * { animation-name: turn-in; animation-duration: 300ms; }
+.stage > :nth-child(2) { animation-delay: 40ms; }
+.stage > :nth-child(3) { animation-delay: 80ms; }
+.stage > :nth-child(4) { animation-delay: 120ms; }
+@keyframes turn-in { from { opacity: 0; transform: translateX(18px); } }
+.stage > .word-face, .answer { animation: ink-in 440ms var(--ease) both; }
+.word-face > * { animation: ink-in 440ms var(--ease) both; }
+.word-face > :nth-child(2) { animation-delay: 60ms; }
+.word-face > :nth-child(3) { animation-delay: 110ms; }
+.word-face > :nth-child(4) { animation-delay: 150ms; }
+.word-face > :nth-child(5) { animation-delay: 220ms; }
+@keyframes ink-in { from { opacity: 0; filter: blur(6px); transform: scale(0.985); } }
+@keyframes pop { 40% { transform: scale(1.06); } }
+@keyframes tick { from { opacity: 0; transform: translateY(-35%) scale(1.25); } }
+@keyframes tick-last { 0% { opacity: 0; transform: scale(1.5); } 60% { opacity: 1; } }
+
+/* Home: panels arrive top to bottom; progress meters draw out to their value. */
+.screen.home > * { animation: enter 420ms var(--ease) both; }
+.screen.home > :nth-child(2) { animation-delay: 40ms; }
+.screen.home > :nth-child(3) { animation-delay: 90ms; }
+.screen.home > :nth-child(4) { animation-delay: 140ms; }
+.screen.home > :nth-child(5) { animation-delay: 190ms; }
+.screen.home > :nth-child(6) { animation-delay: 240ms; }
+.screen.home > :nth-child(n + 7) { animation-delay: 290ms; }
+.meter div { transform-origin: left; animation: draw-out 900ms 300ms var(--ease) both; }
+@keyframes draw-out { from { transform: scaleX(0); } }
+
+/* Speak drill: three recalls retire an item. */
+.pips { display: flex; gap: 6px; }
+.pips i { width: 7px; height: 7px; border-radius: 50%; background: var(--rule); }
+.pips i.on { background: var(--ink); }
+
+/* Feedback burst: rises from where your thumb is, then lifts away. */
+.burst {
+  position: fixed; left: 50%; bottom: calc(env(safe-area-inset-bottom) + 104px); z-index: 5;
+  display: grid; justify-items: center; transform: translateX(-50%); pointer-events: none;
+}
+.burst-ring, .burst-dot { grid-area: 1 / 1; }
+.burst-dot {
+  width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--ink); color: var(--on-ink); box-shadow: 0 6px 20px rgb(0 0 0 / 0.16);
+  animation: burst-dot 940ms both;
+}
+.burst-dot path { stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 320ms 110ms var(--ease) forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes burst-dot {
+  0% { opacity: 0; transform: scale(0.4); animation-timing-function: var(--spring); }
+  22% { opacity: 1; transform: scale(1); }
+  70% { opacity: 1; transform: translateY(0); animation-timing-function: cubic-bezier(0.55, 0, 1, 0.45); }
+  100% { opacity: 0; transform: translateY(-22px) scale(0.92); }
+}
+.burst-ring {
+  width: 52px; height: 52px; border-radius: 50%; box-shadow: 0 0 0 2px var(--ink);
+  animation: burst-ring 760ms 60ms var(--ease) both;
+}
+@keyframes burst-ring { from { opacity: 0.45; transform: scale(0.8); } to { opacity: 0; transform: scale(2.1); } }
+.burst.streak .burst-dot, .burst.retire .burst-dot { animation-duration: 1250ms; }
+.burst.streak .burst-ring { animation-duration: 1000ms; box-shadow: 0 0 0 3px var(--ink); }
+.burst-label {
+  margin-top: 10px; padding: 5px 12px; border-radius: 999px; background: var(--ink); color: var(--on-ink);
+  font-size: 14px; font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums;
+  animation: burst-label 1250ms 80ms both;
+}
+@keyframes burst-label {
+  0% { opacity: 0; transform: translateY(8px) scale(0.9); animation-timing-function: var(--spring); }
+  20% { opacity: 1; transform: none; }
+  75% { opacity: 1; transform: none; animation-timing-function: ease-in; }
+  100% { opacity: 0; transform: translateY(-16px); }
+}
+.burst-note {
+  display: inline-flex; align-items: center; gap: 6px; padding: 8px 14px; border-radius: 999px;
+  background: var(--surface); color: var(--muted); font-size: 14px; font-weight: 500; white-space: nowrap;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 0.1); animation: burst-label 1150ms both;
+}
+.burst-note .icon { animation: rewind 620ms var(--ease) both; }
+@keyframes rewind { from { transform: rotate(160deg); } }
+
+/* Motion off when asked; the countdown still drains (it's information), and feedback only fades. */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
+  .countdown .left { animation: drain var(--secs) linear forwards !important; }
+  .burst { animation: fade-away 1100ms forwards !important; }
+  .burst-dot path { stroke-dashoffset: 0; }
+  .burst-ring { display: none; }
+  mark.key { background-size: 100% 2px; }
 }
+@keyframes fade-away { 0%, 70% { opacity: 1; } 100% { opacity: 0; } }
 
 /* ---------- Growth: one square of ink per item, on the day it was learned ---------- */
 .growth-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
