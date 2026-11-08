@@ -7,9 +7,11 @@ import {
 import { epoch, lineKey, play, sleep, stop, wordKey } from './audio'
 import {
   byRisk, dueKeys, grade, introduce, logDay, markKnown, newQuota, nextNewItems, parseKey, phrasesLearned, Rating,
-  recordTones, speakStage, streak, toneErrors, toneFocus, untaughtIn, wordsLearned, type AppState,
+  LADDER_PASS, LADDER_WINDOW, TONE_LEVELS, ladderStep, recordLadder, recordTones, speakStage, toneLevel, streak, toneErrors, toneFocus, trickyReads, untaughtIn, wordsLearned, type AppState,
 } from './store'
 import { CharParts } from './CharParts'
+import { LookAlikes } from './LookAlikes'
+import { lookalikes, shortMeaning } from './lookalike'
 import { LISTEN_MINUTES, listeningToday } from './listening'
 import { Icon } from './icons'
 import { Pinyin, ToneContour } from './Pinyin'
@@ -25,7 +27,7 @@ const STEPS: { id: StepId; label: string; minutes: number }[] = [
   { id: 'new', label: 'New words', minutes: 5 },
   { id: 'drill', label: 'Speak', minutes: 8 },
   { id: 'dialogue', label: 'Dialogue', minutes: 4 },
-  { id: 'tones', label: 'Tones', minutes: 2 },
+  { id: 'tones', label: 'Tones', minutes: 4 },
   { id: 'listen', label: 'Listening (optional)', minutes: LISTEN_MINUTES },
 ]
 
@@ -102,7 +104,9 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
       )}
       {step === 'drill' && <Drill state={state} learnedNow={learnedNow} missedReads={missedReads} onDone={next} />}
       {step === 'dialogue' && <DialogueStep state={state} onDone={next} />}
-      {step === 'tones' && <Tones state={state} commit={commit} onDone={next} />}
+      {step === 'tones' && (toneLevel(state) < TONE_LEVELS.length
+        ? <ToneLadder state={state} commit={commit} onDone={next} />
+        : <Tones state={state} commit={commit} onDone={next} />)}
       {step === 'listen' && <Listening commit={commit} onDone={next} />}
       {step === 'done' && (
         <>
@@ -241,6 +245,7 @@ function Reviews({ state, commit, onDone, onMissRead }: {
         </div>
       )}
       {revealed && <WordFace w={w} fresh={untaughtIn(state, w)} />}
+      {revealed && kind === 'read' && <LookAlikes w={w} studied={state.introduced} />}
       {revealed && (kind === 'read' || kind === 'sentence') && <CharParts hanzi={w.hanzi} known={known} />}
     </div>
     <div className="dock">
@@ -390,10 +395,12 @@ function NewWords({ state, commit, onDone }: { state: AppState; commit: Commit; 
 /* ---------------- Recall drill (prompted recall, expanding intervals) ---------------- */
 
 /**
- * `read`: a character missed on a read card today, shown as 字 → meaning instead of spoken.
+ * `read`: a character to read (字 → meaning) instead of speak: missed on a read card today, or
+ * missed often before (store.trickyReads). With `options` (it and its look-alikes) you pick its
+ * meaning from theirs, so the read is also practice telling them apart.
  * `stage`: say the word alone, or its sentence (store.speakStage); today's new words are always words.
  */
-interface DrillItem { w: Word; hits: number; stage: Stage; read?: boolean }
+interface DrillItem { w: Word; hits: number; stage: Stage; read?: boolean; tricky?: boolean; options?: Word[] }
 
 const DRILL_MINUTES = 8
 /** More retrievals in the first session improve long-term recall (Nakata 2017: 5+ beat 1-3). */
@@ -412,7 +419,13 @@ function Drill({ state, learnedNow, missedReads, onDone }: {
     const recent = state.introduced.slice(-30).filter((id) => !learnedNow.includes(id) && WORD_BY_ID.has(id))
     const ids = [...learnedNow.slice(0, 12), ...shuffle(recent).slice(0, Math.max(3, 8 - learnedNow.length))]
     const speak: DrillItem[] = ids.map((id) => ({ w: WORD_BY_ID.get(id)!, hits: 0, stage: speakStage(state, id) }))
-    const reads: DrillItem[] = missedReads.slice(0, MAX_READS).map((id) => ({ w: WORD_BY_ID.get(id)!, hits: 0, stage: 'word', read: true }))
+    const tricky = trickyReads(state)
+    const readIds = [...new Set([...missedReads, ...tricky])].slice(0, MAX_READS)
+    const reads: DrillItem[] = readIds.map((id) => {
+      const w = WORD_BY_ID.get(id)!
+      const like = lookalikes(w, state.introduced).map((x) => x.w)
+      return { w, hits: 0, stage: 'word', read: true, tricky: tricky.includes(id), options: like.length ? shuffle([w, ...like]) : undefined }
+    })
     // Every third item is a character to read, so both get spaced retrievals.
     const out: DrillItem[] = []
     while (speak.length || reads.length) out.push(...speak.splice(0, 2), ...reads.splice(0, 1))
@@ -426,13 +439,16 @@ function Drill({ state, learnedNow, missedReads, onDone }: {
   const [turn, setTurn] = useState(0)
   // Seconds added with "More time" on the current item (the ring restarts over the longer total).
   const [extra, setExtra] = useState(0)
+  // The meaning picked on a look-alike choice.
+  const [chosen, setChosen] = useState<string>()
 
   useEffect(() => {
     if (queue.length === 0) onDone()
   }, [queue.length, onDone])
 
   useEffect(() => {
-    if (phase !== 'prompt' || queue.length === 0 || clock.paused) return
+    // A choice is its own attempt: no countdown.
+    if (phase !== 'prompt' || queue.length === 0 || clock.paused || queue[0].options) return
     const t = setInterval(() => setCountdown((c) => c - 1), 1000)
     return () => clearInterval(t)
   }, [phase, queue, clock.paused])
@@ -469,7 +485,8 @@ function Drill({ state, learnedNow, missedReads, onDone }: {
       if (hits >= RETIRE_AFTER) return rest // retired: recalled 3 times with growing gaps
       const gap = ok ? 5 : 2 // expanding interval: short after a miss, longer after a hit
       const copy = [...rest]
-      copy.splice(Math.min(gap, copy.length), 0, { ...cur, hits })
+      // Choices are reshuffled each time, so the answer's place can't be learned instead of the character.
+      copy.splice(Math.min(gap, copy.length), 0, { ...cur, hits, options: cur.options && shuffle(cur.options) })
       return copy
     })()
     const hits = ok ? item.hits + 1 : 0
@@ -480,15 +497,26 @@ function Drill({ state, learnedNow, missedReads, onDone }: {
     // Reset together with the phase so the answer effect never sees a stale 0.
     if (next[0]) setCountdown(thinkSeconds(next[0]))
     setExtra(0)
+    setChosen(undefined)
     setPhase('prompt')
     setTurn((n) => n + 1)
+  }
+
+  const choose = (id: string) => {
+    setChosen(id)
+    setPhase('answer')
+    play(wordKey(item.w.id), item.w.hanzi)
   }
 
   return (
     <>
     <div className="stage turn" key={turn}>
       {item.read ? (
-        <StepHeader title="Read" hint="You missed reading this earlier. What does it mean? Tones don’t count." right={<span className="num">{queue.length} left</span>} />
+        <StepHeader
+          title="Read"
+          hint={`${item.tricky ? 'One you’ve missed often.' : 'You missed reading this earlier.'} ${item.options ? 'What does it mean? It has look-alikes, so look closely.' : 'What does it mean? Tones don’t count.'}`}
+          right={<span className="num">{queue.length} left</span>}
+        />
       ) : (
         <StepHeader title="Speak" hint="Say it in Mandarin before the answer plays. Whispering or mouthing counts. Need longer? Tap More time." right={<span className="num">{queue.length} left</span>} />
       )}
@@ -499,13 +527,27 @@ function Drill({ state, learnedNow, missedReads, onDone }: {
           <SpeakPrompt w={item.w} stage={item.stage} />
         )}
         <Pips hits={item.hits} />
-        {phase === 'prompt' ? (
+        {item.options && (
+          <div className="choices" role="group" aria-label="Which meaning?">
+            {item.options.map((o) => {
+              const cls = phase === 'prompt' ? '' : o.id === item.w.id ? 'right' : o.id === chosen ? 'wrong' : 'dim'
+              return (
+                <button key={o.id} className={`choice ${cls}`} disabled={phase !== 'prompt'} onClick={() => choose(o.id)}>
+                  <span className="choice-text">{shortMeaning(o)}</span>
+                  {phase !== 'prompt' && o.id !== item.w.id && <span className="hz choice-hz" lang="zh-CN">{o.hanzi}</span>}
+                </button>
+              )
+            })}
+          </div>
+        )}
+        {item.options && phase === 'prompt' ? null : phase === 'prompt' ? (
           <Countdown key={`${turn}-${extra}`} value={countdown} total={thinkSeconds(item) + extra} paused={!!clock.paused} />
         ) : item.read ? (
           <div className="answer">
             <Pinyin text={item.w.pinyin} className="answer-py" />
             <div className="prompt-en">{item.w.en}</div>
             <PlayButton k={wordKey(item.w.id)} text={item.w.hanzi} label="Again" />
+            <LookAlikes w={item.w} studied={state.introduced} />
             <CharParts hanzi={item.w.hanzi} known={known} />
           </div>
         ) : (
@@ -518,11 +560,15 @@ function Drill({ state, learnedNow, missedReads, onDone }: {
       </div>
     </div>
     <div className="dock pair">
-      {phase === 'prompt' ? (
+      {phase === 'prompt' && item.options ? null : phase === 'prompt' ? (
         <>
           <button className="btn wide" onClick={() => { setExtra((x) => x + MORE_TIME); setCountdown((c) => c + MORE_TIME) }}>More time</button>
           <button className="btn wide" onClick={() => setCountdown(0)}>Show answer</button>
         </>
+      ) : item.options ? (
+        <button className="btn primary wide span" onClick={() => mark(chosen === item.w.id)}>
+          {chosen === item.w.id ? 'Next' : 'Next (it comes back soon)'}
+        </button>
       ) : (
         <>
           {!item.read && !t.word && item.w.kind === 'word' && <p className="dock-note span">Counts if you said {item.w.hanzi}, even if the rest of the sentence slipped.</p>}
@@ -820,6 +866,184 @@ function Tones({ state, commit, onDone }: { state: AppState; commit: Commit; onD
       ))}
     </div>
     {done && <div className="dock"><button className="btn primary wide" onClick={next}>{i + 1 < items.length ? 'Next' : 'Finish tones'}</button></div>}
+    </>
+  )
+}
+
+/* ---------------- Tone ladder (two tones at a time, then all four) ---------------- */
+
+const LADDER_TRIALS = 30
+const LADDER_MINUTES = 4
+const toneless = (py: string) => py.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+const pairName = (level: number) =>
+  TONE_LEVELS[level].length > 2 ? 'all four tones' : TONE_LEVELS[level].map((t) => TONE_NAMES[t - 1]).join(' vs ')
+
+/** Trials for a level: single syllables with those tones, the tones taking turns at random, each in a random voice. */
+function ladderTrials(level: number, n: number) {
+  const tones = TONE_LEVELS[level]
+  const by = tones.map((t) => TONE_ITEMS.filter((w) => w.tones![0] === t))
+  return Array.from({ length: n }, () => {
+    const pool = by[Math.floor(Math.random() * by.length)]
+    return { w: pool[Math.floor(Math.random() * pool.length)], voice: randomVoice() }
+  })
+}
+
+/** An example of `tone` to set beside what you heard: the same syllable if there is one (买 mǎi / 卖 mài). */
+function contrastItem(heard: Word, tone: number) {
+  const same = TONE_ITEMS.filter((w) => w.tones![0] === tone && toneless(w.pinyin) === toneless(heard.pinyin))
+  const pool = same.length ? same : TONE_ITEMS.filter((w) => w.tones![0] === tone)
+  return pool[Math.floor(Math.random() * pool.length)]
+}
+
+function ToneLadder({ state, commit, onDone }: { state: AppState; commit: Commit; onDone: () => void }) {
+  const [level, setLevel] = useState(() => toneLevel(state))
+  const [trials, setTrials] = useState(() => ladderTrials(level, LADDER_TRIALS))
+  const [i, setI] = useState(0)
+  const [pick, setPick] = useState<number>()
+  const [contrast, setContrast] = useState<Word>()
+  const [levelUp, setLevelUp] = useState(false)
+  const clock = usePause()
+  const [start] = useState(clock.active)
+  const fire = useBurst()
+  const run = useRef(0)
+  const advance = useRef<ReturnType<typeof setTimeout>>(undefined)
+  useEffect(() => () => clearTimeout(advance.current), [])
+
+  const { w, voice } = trials[i]
+  const heard = w.tones![0]
+  const recent = state.toneLadder?.level === level ? state.toneLadder.recent : []
+  const right = recent.reduce((a, b) => a + b, 0)
+  const choices = TONE_LEVELS[Math.min(level, TONE_LEVELS.length - 1)]
+
+  const next = () => {
+    clearTimeout(advance.current)
+    stop()
+    setPick(undefined)
+    setContrast(undefined)
+    const timeUp = clock.active() - start > LADDER_MINUTES * 60 * 1000
+    if (i + 1 >= trials.length || timeUp) onDone()
+    else setI(i + 1)
+  }
+
+  const choose = (t: number) => {
+    if (pick !== undefined) return
+    setPick(t)
+    const ok = t === heard
+    // Worked out here as well as in the commit, which React may run later.
+    const { up } = ladderStep(state.toneLadder, ok)
+    commit((s) => {
+      recordTones(s, [heard], [t])
+      recordLadder(s, ok)
+    })
+    if (ok) {
+      const n = ++run.current
+      fire(n % STREAK_EVERY === 0 ? 'streak' : 'good', n % STREAK_EVERY === 0 ? `${n} in a row` : undefined)
+    } else {
+      run.current = 0
+      // Hear the two side by side: what was played, then the tone you picked.
+      const c = contrastItem(w, t)
+      setContrast(c)
+      ;(async () => {
+        await sleep(300)
+        const p = play(voiceKey(w.id, voice), w.hanzi)
+        const e = epoch()
+        await p
+        await sleep(600)
+        if (e === epoch()) play(voiceKey(c.id, voice), c.hanzi)
+      })()
+    }
+    if (up) {
+      const nl = level + 1
+      setLevelUp(true)
+      setLevel(nl)
+      // The rest of today's trials move to the new level (or end, past the last pair).
+      if (nl < TONE_LEVELS.length) setTrials((tr) => [...tr.slice(0, i + 1), ...ladderTrials(nl, tr.length - i - 1)])
+      return
+    }
+    if (ok) advance.current = setTimeout(next, 750)
+  }
+
+  if (levelUp) {
+    const finished = level >= TONE_LEVELS.length
+    return (
+      <>
+        <div className="stage done">
+          <div className="done-mark" aria-hidden="true"><div className="done-seal hz" lang="zh-CN">好</div></div>
+          <h2>{finished ? 'All four tones' : 'Next level'}</h2>
+          <p className="done-stats">
+            {finished
+              ? 'You can tell all four apart. From tomorrow the drill adds two-syllable words.'
+              : `${Math.round(LADDER_PASS * 100)}% right over your last ${LADDER_WINDOW}. Now: ${pairName(level)}.`}
+          </p>
+        </div>
+        <div className="dock">
+          <button className="btn primary wide" onClick={() => { setLevelUp(false); if (finished) onDone(); else next() }}>
+            {finished ? 'Finish tones' : 'Continue'}
+          </button>
+        </div>
+      </>
+    )
+  }
+
+  return (
+    <>
+    <div className="stage">
+      <StepHeader
+        title="Tones"
+        hint={choices.length === 2 ? `Two tones at a time: ${pairName(level)}. Which one do you hear?` : 'All four tones. Which one do you hear?'}
+        right={<span className="num">{i + 1} of {trials.length}</span>}
+      />
+      <div className="ladder-meter" aria-label={`Level ${level + 1} of ${TONE_LEVELS.length + 1}. ${right} of the last ${recent.length} right; ${Math.round(LADDER_PASS * LADDER_WINDOW)} of ${LADDER_WINDOW} moves you on.`}>
+        <span className="ladder-steps" aria-hidden="true">
+          {Array.from({ length: TONE_LEVELS.length + 1 }, (_, k) => <i key={k} className={k < level ? 'past' : k === level ? 'now' : ''} />)}
+        </span>
+        <span className="num">Last {LADDER_WINDOW}: {right} right · {Math.round(LADDER_PASS * LADDER_WINDOW)} moves you on</span>
+      </div>
+      <div className="center-col tone-stage">
+        {pick === undefined ? (
+          <PlayButton key={i} k={voiceKey(w.id, voice)} text={w.hanzi} size="hero" autoPlay />
+        ) : (
+          <div className="tone-answer">
+            <div className="hz" lang="zh-CN">{w.hanzi}</div>
+            <Pinyin text={w.pinyin} />
+            <div className="en">{w.en}</div>
+          </div>
+        )}
+      </div>
+      <div className={`tones ${choices.length === 2 ? 'two' : ''}`}>
+        {choices.map((t) => {
+          const cls = pick === undefined ? '' : t === heard ? 'right' : t === pick ? 'wrong' : 'dim'
+          return (
+            <button key={t} className={`tone ${cls}`} onClick={() => choose(t)} aria-label={`${TONE_NAMES[t - 1]} tone`}>
+              <ToneContour tone={t} />
+              <span>{TONE_NAMES[t - 1]}</span>
+            </button>
+          )
+        })}
+      </div>
+      {contrast && pick !== undefined && (
+        <div className="tone-contrast">
+          <p className="hint">Hear them side by side:</p>
+          <div className="contrast-row">
+            <div className="contrast-item">
+              <small>You heard · {TONE_NAMES[heard - 1]}</small>
+              <span className="hz" lang="zh-CN">{w.hanzi}</span>
+              <Pinyin text={w.pinyin} />
+              <ToneContour tone={heard} />
+              <PlayButton k={voiceKey(w.id, voice)} text={w.hanzi} />
+            </div>
+            <div className="contrast-item">
+              <small>You picked · {TONE_NAMES[pick - 1]}</small>
+              <span className="hz" lang="zh-CN">{contrast.hanzi}</span>
+              <Pinyin text={contrast.pinyin} />
+              <ToneContour tone={pick} />
+              <PlayButton k={voiceKey(contrast.id, voice)} text={contrast.hanzi} />
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+    {contrast && pick !== undefined && <div className="dock"><button className="btn primary wide" onClick={next}>Next</button></div>}
     </>
   )
 }

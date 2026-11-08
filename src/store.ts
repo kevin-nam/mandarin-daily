@@ -1,5 +1,6 @@
 import { createEmptyCard, fsrs, Rating, State, type Card, type Grade } from 'ts-fsrs'
 import { PHRASES, WORD_BY_ID, WORDS, type Stage, type Word } from './data'
+import { looksLike } from './lookalike'
 import type { Theme } from './theme'
 
 /** `sentence` (read the example sentence, characters only) unlocks once a word's `read` card is Good. */
@@ -27,6 +28,8 @@ export interface AppState {
   flagged?: Record<string, true>
   /** Tone drill answers per syllable: how often each tone was played, and what you picked when wrong ('3>2'). */
   tones?: { seen: Record<string, number>; missed: Record<string, number> }
+  /** Tone ladder: the current level (TONE_LEVELS index) and the last answers at it (1 right, 0 wrong). */
+  toneLadder?: { level: number; recent: number[] }
 }
 
 // `newPhrases` and `known` were added later, so older days don't have them.
@@ -133,13 +136,14 @@ const PICK_WINDOW = 8
  * Next unseen words and phrases, skipping ids in `exclude`. Words follow the teaching order, but
  * each pick is the earliest of the next few whose sentence has the fewest words you haven't learned
  * (counting today's earlier picks as learned), so a new word arrives in a sentence you can follow,
- * whatever you've marked as known along the way.
+ * whatever you've marked as known along the way. A word that looks like one already picked today
+ * (他 and 也) counts as one more unknown, so look-alikes land on different days.
  */
 export function nextNewItems(s: AppState, words: number, phrases: number, exclude: string[] = []) {
   const known = new Set([...s.introduced, ...exclude])
   const pool = WORDS.filter((w) => !known.has(w.id))
-  const unknown = (w: Word) => w.parts.filter((p) => !known.has(p)).length
   const picked: Word[] = []
+  const unknown = (w: Word) => w.parts.filter((p) => !known.has(p)).length + (picked.some((x) => looksLike(x, w)) ? 1 : 0)
   while (picked.length < words && pool.length) {
     let best = 0
     for (let i = 1; i < Math.min(PICK_WINDOW, pool.length) && unknown(pool[best]) > 0; i++) {
@@ -261,6 +265,43 @@ export function toneFocus(s: AppState): { tone: number; as: number } | undefined
   const as = [1, 2, 3, 4].filter((p) => p !== tone)
     .reduce((a, b) => ((s.tones!.missed[`${tone}>${b}`] ?? 0) > (s.tones!.missed[`${tone}>${a}`] ?? 0) ? b : a))
   return { tone, as }
+}
+
+/**
+ * Tone ladder. Picking 1 of 4 tones stayed near chance (39% right after 8 days; 25% is guessing),
+ * so tones are learned two at a time, most distinct pairs first, then all four, then two-syllable
+ * words (level TONE_LEVELS.length: the mixed drill). Identification with feedback and many trials
+ * is how tone perception training works.
+ */
+export const TONE_LEVELS = [[1, 3], [2, 4], [1, 4], [2, 3], [1, 2], [3, 4], [1, 2, 3, 4]]
+/** Move up after this share right over the last LADDER_WINDOW answers at a level. */
+export const LADDER_WINDOW = 20
+export const LADDER_PASS = 0.8
+
+export function toneLevel(s: AppState) {
+  return Math.min(s.toneLadder?.level ?? 0, TONE_LEVELS.length)
+}
+
+/** The ladder after one answer, and whether it moved you up a level. */
+export function ladderStep(ladder: AppState['toneLadder'], ok: boolean) {
+  const l = ladder ?? { level: 0, recent: [] }
+  if (l.level >= TONE_LEVELS.length) return { ladder: l, up: false }
+  const recent = [...l.recent, ok ? 1 : 0].slice(-LADDER_WINDOW)
+  const up = recent.length >= LADDER_WINDOW && recent.reduce((a, b) => a + b, 0) / LADDER_WINDOW >= LADDER_PASS
+  return { ladder: up ? { level: l.level + 1, recent: [] } : { level: l.level, recent }, up }
+}
+
+export function recordLadder(s: AppState, ok: boolean) {
+  s.toneLadder = ladderStep(s.toneLadder, ok).ladder
+}
+
+/** Read cards missed this often that still aren't Good: they come back in every Speak drill. */
+const TRICKY_LAPSES = 4
+export function trickyReads(s: AppState) {
+  return s.introduced.filter((id) => {
+    const c = s.cards[cardKey(id, 'read')]
+    return c && c.lapses >= TRICKY_LAPSES && level(c) < 3 && WORD_BY_ID.has(id)
+  })
 }
 
 /** Older items with the weakest speaking memory (lowest stability, under a week). */

@@ -2,6 +2,21 @@
 
 Ideas not built yet.
 
+## From the day-8 backup analysis (2026-11-08)
+Data: 8 days, 53 words + 16 phrases, ~400 graded reviews. Listening 0% Again (88 reviews), speaking 4% (only long phrases), reading 29%, tones 39% right. Items 1–2 of that analysis (tone ladder, look-alikes) shipped in 1.13.
+
+### Less time on listening, which is mastered
+Listen cards are 22% of reviews and none has been missed; every one is rated low difficulty. Options: a lower target retention for listen cards only (0.85 instead of 0.9: ts-fsrs takes `request_retention` per scheduler, so keep a second scheduler for `:listen` keys), or make them harder (normal speed; the learner postponed the speed nudge at 85%). Frees ~5 min a day for reading.
+
+### Lighter phrases
+All speaking misses and 6 reading misses were phrases (这是什么意思？ 这个用中文怎么说？ 能帮我一下吗？ 你说得太快了。).
+- 1 new phrase a day instead of 2 (setting default `phrasesPerDay: 1`).
+- A phrase's read card only once the words inside it are learned (phrases already get `parts`; gate `introduce` for the `read` kind, create it in `grade` like the sentence card).
+- Long phrases built up in steps when spoken: 什么意思 → 这是什么意思？ (backward build-up / chunking).
+
+### Pace new words by reading health
+~21 new cards a day (7 items × 3) while reviews already reach 60–84 a day. If more than ~25% of the last ~40 read reviews were Again, cut new words to 3 until it recovers (alongside the existing behind-on-reviews cut). Needs a short log of recent read grades in state (like `toneLadder.recent`).
+
 ## Grind mode (audio-only practice while gaming)
 Practise hands-free while playing something that doesn't need full attention. Home-screen button opens a screen with three loops over **already-studied** items (new material learns poorly under divided attention, Craik et al. 1996):
 
