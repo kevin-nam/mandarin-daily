@@ -5,17 +5,18 @@ Ideas not built yet.
 ## From the day-8 backup analysis (2026-11-08)
 Data: 8 days, 53 words + 16 phrases, ~400 graded reviews. Listening 0% Again (88 reviews), speaking 4% (only long phrases), reading 29%, tones 39% right. Items 1–2 of that analysis (tone ladder, look-alikes) shipped in 1.13.
 
-### Less time on listening, which is mastered
-Listen cards are 22% of reviews and none has been missed; every one is rated low difficulty. Options: a lower target retention for listen cards only (0.85 instead of 0.9: ts-fsrs takes `request_retention` per scheduler, so keep a second scheduler for `:listen` keys), or make them harder (normal speed; the learner postponed the speed nudge at 85%). Frees ~5 min a day for reading.
+### Re-evaluated after 1.11–1.16 (same day)
+Upcoming reviews from the backup: listen cards ~30% of what's due in the next 30 days; median stability listen 7.3 d, speak 7.3 d, read 2.3 d. Word read lapses: 46, of which 27 (59%) are five characters (也 7, 们 6, 呢 5, 喂 5, 很 4); 39 of 53 words never lapsed. Speak lapses: 4 of 5 on phrases.
 
-### Lighter phrases
-All speaking misses and 6 reading misses were phrases (这是什么意思？ 这个用中文怎么说？ 能帮我一下吗？ 你说得太快了。).
-- 1 new phrase a day instead of 2 (setting default `phrasesPerDay: 1`).
-- A phrase's read card only once the words inside it are learned (phrases already get `parts`; gate `introduce` for the `read` kind, create it in `grade` like the sentence card).
-- Long phrases built up in steps when spoken: 什么意思 → 这是什么意思？ (backward build-up / chunking).
+**1. Less time on listening: build (small).** ~8 listen reviews a day now at ~8 s, so ~1 min/day saved now, 1–2 later (not the ~5 first estimated). Target retention 0.85 for `:listen` only (a second ts-fsrs scheduler; intervals ~1.6× longer, ~35% fewer reviews). Justified beyond time: 0 lapses against the 10% the default model expects means it underestimates this learner's listening (a crude stand-in for per-user parameter fitting). "Make it harder" is already the speed nudge.
 
-### Pace new words by reading health
-~21 new cards a day (7 items × 3) while reviews already reach 60–84 a day. If more than ~25% of the last ~40 read reviews were Again, cut new words to 3 until it recovers (alongside the existing behind-on-reviews cut). Needs a short log of recent read grades in state (like `toneLadder.recent`).
+**2a. Phrase read card only once its HSK 1 words are learned: build.** Phrase read cards test characters never taught (懂 慢 意思 帮); 6 read lapses. Matches the 1.11 rule (read only what you know). New phrases only; existing cards stay.
+
+**2b. Backward build-up for long phrases (什么意思 → 这是什么意思？): later.** Less urgent since 1.11's longer think time and More time; review cards are untimed. If built: lesson shadowing for phrases of 7+ characters, chunks from segmentation, extra TTS clips for the partials.
+
+**2c. 1 new phrase a day: dropped.** Phrases serve the conversation/travel goal, 4 lapses isn't alarming, and Settings → New phrases already does it.
+
+**3. Pace new words by reading health: dropped for now.** The read Again rate is concentrated in five look-alike characters, which 1.13–1.15 target directly; a global slowdown would delay HSK 1 for everyone else. The existing behind-on-reviews cut covers overload. Re-check with a backup around 2026-11-15: if the tricky characters haven't moved, revisit (perhaps keyed to the number of tricky characters, not the overall rate).
 
 ## Grind mode (audio-only practice while gaming)
 Practise hands-free while playing something that doesn't need full attention. Home-screen button opens a screen with three loops over **already-studied** items (new material learns poorly under divided attention, Craik et al. 1996):
