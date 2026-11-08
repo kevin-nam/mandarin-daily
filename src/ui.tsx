@@ -1,6 +1,6 @@
 import { useEffect, useState, type CSSProperties, type ReactNode } from 'react'
 import { play } from './audio'
-import { glossClash, target, type Stage, type Word } from './data'
+import { glossClash, shortGloss, target, type Stage, type Word } from './data'
 import { Icon } from './icons'
 import { Pinyin } from './Pinyin'
 import { Structure } from './Structure'
@@ -34,23 +34,27 @@ export function PlayButton({ k, text, label, slow, autoPlay, size }: {
   )
 }
 
-// Whether the sentence breakdown is shown on answers (per device; shown until you hide it).
+// Whether the sentence structure is open on answers where it matters (per device; open until you close it).
 const STRUCTURE_KEY = 'mandarin-daily:structure'
-function structureShown() {
+function structurePref() {
   try { return localStorage.getItem(STRUCTURE_KEY) !== '0' } catch { return true }
 }
 
 /**
+ * A word or phrase, answered: the word, then `aids` (what helps with this card: look-alikes, how the
+ * characters are built), then its sentence.
  * `fresh`: words in the sentence you haven't learned yet, glossed under it.
- * `structure`: 'open' always shows the colour-coded breakdown (new-word lessons); 'toggle' lets you hide it.
+ * `structure`: the colour-coded sentence breakdown. 'open': always, with the word-order line
+ * (lessons). 'toggle': open unless you've closed it, remembered (cards that test the sentence).
+ * 'closed': starts closed (cards where the sentence is only context).
  */
-export function WordFace({ w, showSentence = true, fresh = [], structure = 'toggle' }: {
-  w: Word; showSentence?: boolean; fresh?: Word[]; structure?: 'open' | 'toggle'
+export function WordFace({ w, showSentence = true, fresh = [], structure = 'toggle', aids }: {
+  w: Word; showSentence?: boolean; fresh?: Word[]; structure?: 'open' | 'toggle' | 'closed'; aids?: ReactNode
 }) {
-  const [shown, setShown] = useState(structureShown)
+  const [shown, setShown] = useState(() => structure === 'toggle' && structurePref())
   const toggle = () => {
     setShown(!shown)
-    try { localStorage.setItem(STRUCTURE_KEY, shown ? '0' : '1') } catch { /* storage unavailable */ }
+    if (structure === 'toggle') try { localStorage.setItem(STRUCTURE_KEY, shown ? '0' : '1') } catch { /* storage unavailable */ }
   }
   const open = structure === 'open' || shown
   return (
@@ -62,6 +66,7 @@ export function WordFace({ w, showSentence = true, fresh = [], structure = 'togg
         <PlayButton k={w.id} text={w.hanzi} label={w.kind === 'word' ? 'Word' : 'Phrase'} />
         <PlayButton k={w.id} text={w.hanzi} slow />
       </div>
+      {aids}
       {showSentence && (
         <div className="sentence-panel">
           <div className="hz sentence-zh" lang="zh-CN">{w.sentence.zh}</div>
@@ -71,13 +76,13 @@ export function WordFace({ w, showSentence = true, fresh = [], structure = 'togg
           <div className="play-row">
             <PlayButton k={`${w.id}s`} text={w.sentence.zh} label={w.kind === 'word' ? 'Sentence' : 'Example'} />
             <PlayButton k={`${w.id}s`} text={w.sentence.zh} slow />
-            {w.structure && structure === 'toggle' && (
-              <button className="play" onClick={toggle} aria-expanded={shown}>
-                <span>{shown ? 'Hide parts' : 'Parts'}</span>
-              </button>
-            )}
           </div>
-          {w.structure && open && <Structure w={w} />}
+          {w.structure && structure !== 'open' && (
+            <button className={`disclosure ${shown ? 'open' : ''}`} onClick={toggle} aria-expanded={shown}>
+              Sentence structure <Icon name="chevron" size={16} />
+            </button>
+          )}
+          {w.structure && open && <Structure w={w} order={structure === 'open'} />}
         </div>
       )}
     </div>
@@ -88,10 +93,10 @@ export function WordFace({ w, showSentence = true, fresh = [], structure = 'togg
 export function FreshWords({ words }: { words: Word[] }) {
   return (
     <p className="fresh">
-      <span className="fresh-label">Not learned yet:</span>
+      <span className="fresh-label">Not learned yet</span>
       {words.map((x) => (
         <span key={x.id} className="fresh-word">
-          <span className="hz" lang="zh-CN">{x.hanzi}</span> <Pinyin text={x.pinyin} /> {x.en.split(';')[0]}
+          <span className="hz" lang="zh-CN">{x.hanzi}</span> <Pinyin text={x.pinyin} /> {shortGloss(x)}
         </span>
       ))}
     </p>

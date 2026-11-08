@@ -1,18 +1,14 @@
-import { WORD_BY_ID, type Word } from './data'
+import { WORD_BY_ID, shortGloss, type Word } from './data'
 
-/** Short gloss under each word; grammar words get what they do rather than "(particle)". */
-const GRAMMAR: Record<string, string> = {
-  的: '’s', 们: 'plural', 个: 'measure', 本: 'measure', 件: 'measure', 只: 'measure', 口: 'measure', 第: '-th',
-  了: '', 吗: '', 呢: '', 吧: '',
-}
-const gloss = (w: Word) => GRAMMAR[w.hanzi] ?? w.en.split(';')[0].replace(/\s*\(.*?\)\s*/g, ' ').trim()
+/** Particles get no gloss: their block's label already says what they do. */
+const gloss = (w: Word) => ('了吗呢吧'.includes(w.hanzi) ? '' : shortGloss(w))
 
 /**
  * A sentence split into its parts, in the basic order Subject → When → Where → How → Verb → Object.
  * Only the skeleton (subject, verb, object) is coloured, in hues kept apart from the tone colours;
  * the rest are labelled neutral blocks, so colour never has to be decoded on its own.
  */
-export function Structure({ w }: { w: Word }) {
+export function Structure({ w, order }: { w: Word; order?: boolean }) {
   if (!w.structure) return null
   return (
     <div className="structure" aria-label="Sentence structure">
@@ -36,7 +32,7 @@ export function Structure({ w }: { w: Word }) {
           ))}
         </div>
       ))}
-      <p className="structure-order">Order: Subject → When → Where → How → Verb → Object</p>
+      {order && <p className="structure-order">Chinese word order: Subject → When → Where → How → Verb → Object</p>}
     </div>
   )
 }

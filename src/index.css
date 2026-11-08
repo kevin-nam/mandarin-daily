@@ -381,8 +381,14 @@ mark.key {
 .sentence-zh { font-size: 26px; line-height: 1.4; }
 .sentence-py { display: block; font-size: 16px; margin-top: 2px; }
 .sentence-en { color: var(--muted); font-size: 15px; margin: 4px 0 12px; }
+.disclosure {
+  display: flex; align-items: center; justify-content: center; gap: 4px; width: 100%; min-height: 44px; margin-top: 6px;
+  font-size: 14px; font-weight: 600; color: var(--muted); background: none;
+}
+.disclosure .icon { transform: rotate(90deg); transition: transform 200ms var(--ease); }
+.disclosure.open .icon { transform: rotate(-90deg); }
 /* Sentence parts: labelled blocks; subject, verb and object carry a colour, the rest stay neutral. */
-.structure { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--rule); }
+.structure { margin-top: 6px; padding-top: 14px; border-top: 1px solid var(--rule); }
 .clause { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
 .clause + .clause { margin-top: 6px; }
 .chunk {
@@ -409,7 +415,7 @@ mark.key {
 
 /* Words in the sentence not learned yet: a quiet gloss so nothing in it is a mystery. */
 .fresh { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 12px; font-size: 14px; color: var(--muted); margin: -4px 0 12px; }
-.fresh-label { flex-basis: 100%; font-weight: 600; }
+.fresh-label { flex-basis: 100%; font-weight: 600; font-size: 13px; }
 .fresh-word .hz { color: var(--ink); font-size: 17px; }
 
 /* Grades */
@@ -516,11 +522,14 @@ details.char-parts:not([open]) { padding-bottom: 10px; }
 
 /* Tone ladder: two big choices, a level meter, and a side-by-side replay after a miss */
 .tones.two .tone { min-height: 110px; font-size: 17px; }
-.ladder-meter { display: flex; flex-direction: column; gap: 6px; font-size: 13px; color: var(--muted); margin: -6px 0 8px; }
-.ladder-steps { display: flex; gap: 4px; }
-.ladder-steps i { flex: 1; height: 4px; border-radius: 4px; background: var(--rule); }
-.ladder-steps i.past { background: var(--faint); }
-.ladder-steps i.now { background: var(--ink); }
+.ladder-meter { display: flex; flex-direction: column; gap: 6px; margin: -4px 0 6px; font-size: 13px; color: var(--muted); }
+.ladder-head { display: flex; justify-content: space-between; gap: 12px; }
+.ladder-head b { color: var(--ink); font-weight: 600; }
+/* Your last 20 answers: ink for right, an outline for wrong, blank for not yet. */
+.tally { display: grid; grid-template-columns: repeat(20, 1fr); gap: 3px; }
+.tally i { height: 8px; border-radius: 4px; background: var(--rule); transition: background-color 200ms var(--ease); }
+.tally i.hit { background: var(--ink); }
+.tally i.miss { background: transparent; box-shadow: inset 0 0 0 1.5px var(--faint); }
 .tone-contrast { margin-top: 14px; animation: ink-in 420ms var(--ease) both; }
 .contrast-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px; }
 .contrast-item {
@@ -530,20 +539,7 @@ details.char-parts:not([open]) { padding-bottom: 10px; }
 .contrast-item small { font-size: 13px; color: var(--muted); font-weight: 600; }
 .contrast-item .hz { font-size: 34px; line-height: 1.2; }
 
-/* Look-alike characters: pick the meaning, then see them side by side */
-.choices { display: grid; gap: 8px; width: 100%; }
-.choice {
-  display: flex; align-items: center; justify-content: space-between; gap: 10px;
-  min-height: 52px; padding: 0 16px; border-radius: var(--r-control); background: var(--surface);
-  font-size: 17px; font-weight: 600; color: var(--ink); text-align: left;
-}
-.choice:disabled { cursor: default; }
-.choice.right { box-shadow: inset 0 0 0 2.5px var(--ink); animation: pop 460ms var(--spring); }
-.choice.right::after { content: '✓'; }
-.choice.wrong { box-shadow: inset 0 0 0 1.5px var(--faint); color: var(--muted); animation: shake 380ms var(--ease); }
-.choice.wrong .choice-text { text-decoration: line-through; }
-.choice.dim { opacity: 0.5; }
-.choice-hz { font-size: 22px; }
+/* Look-alike characters, side by side with what tells them apart */
 .lookalikes { margin-top: 16px; background: var(--surface); border-radius: var(--r-panel); padding: 14px 16px 8px; text-align: left; width: 100%; }
 .lookalikes ul { list-style: none; margin: 0; padding: 0; }
 .lookalikes h3 { font-size: 14px; font-weight: 600; color: var(--muted); margin-bottom: 6px; }
@@ -553,7 +549,7 @@ details.char-parts:not([open]) { padding-bottom: 10px; }
 .lookalikes li.this .lk-char { text-decoration: underline 2px var(--seal); text-underline-offset: 6px; }
 .lk-text { display: flex; flex-direction: column; gap: 2px; font-size: 15px; }
 .lk-text small { font-size: 13px; color: var(--muted); text-wrap: pretty; }
-@media (prefers-reduced-motion: reduce) { .tone-contrast, .choice.right, .choice.wrong { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .tone-contrast { animation: none; } }
 
 /* Listening, done */
 .body { font-size: 17px; margin-bottom: 18px; text-wrap: pretty; }

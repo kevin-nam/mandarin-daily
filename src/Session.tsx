@@ -11,7 +11,7 @@ import {
 } from './store'
 import { CharParts } from './CharParts'
 import { LookAlikes } from './LookAlikes'
-import { lookalikes, shortMeaning } from './lookalike'
+import { lookalikes } from './lookalike'
 import { LISTEN_MINUTES, listeningToday } from './listening'
 import { Icon } from './icons'
 import { Pinyin, ToneContour } from './Pinyin'
@@ -232,7 +232,7 @@ function Reviews({ state, commit, onDone, onMissRead }: {
             <div className="center-col">
               <PlayButton k={t.key} text={t.zh} size="hero" autoPlay />
               <PlayButton k={t.key} text={t.zh} slow />
-              {w.kind === 'word' && <p className="hint">Listen for the focus word in the sentence.</p>}
+              {w.kind === 'word' && <p className="hint">Get the gist. You’ll grade the word it’s built around.</p>}
             </div>
           )}
           {kind === 'speak' && (
@@ -244,9 +244,18 @@ function Reviews({ state, commit, onDone, onMissRead }: {
           {kind === 'sentence' && <div className="hz prompt-hanzi phrase" lang="zh-CN">{w.sentence.zh}</div>}
         </div>
       )}
-      {revealed && <WordFace w={w} fresh={untaughtIn(state, w)} />}
-      {revealed && kind === 'read' && <LookAlikes w={w} studied={state.introduced} />}
-      {revealed && (kind === 'read' || kind === 'sentence') && <CharParts hanzi={w.hanzi} known={known} />}
+      {revealed && (
+        <WordFace
+          w={w}
+          // Phrase examples are context, not taught word by word: no glossary under them.
+          fresh={w.kind === 'word' ? untaughtIn(state, w) : []}
+          // The breakdown opens where the sentence is what was tested; elsewhere it's one tap away.
+          structure={kind === 'listen' || kind === 'sentence' || (kind === 'speak' && !t.word) ? 'toggle' : 'closed'}
+          // A read card's own help goes right under the character, above the sentence.
+          aids={kind === 'read' ? <><LookAlikes w={w} studied={state.introduced} /><CharParts hanzi={w.hanzi} known={known} /></> : undefined}
+        />
+      )}
+      {revealed && kind === 'sentence' && <CharParts hanzi={w.hanzi} known={known} />}
     </div>
     <div className="dock">
       {count > 0 && timeUp && <p className="dock-note">{REVIEW_MINUTES} minutes reached: this is the last card.</p>}
@@ -372,8 +381,13 @@ function NewWords({ state, commit, onDone }: { state: AppState; commit: Commit; 
     <div className="stage">
       {header}
       <p className="unit">{w.unit}</p>
-      <WordFace w={w} fresh={untaughtIn(state, w)} structure={phase === 'teach' ? 'open' : 'toggle'} />
-      {phase === 'teach' && <CharParts hanzi={w.hanzi} known={knownChars(state.introduced)} />}
+      <WordFace
+        w={w}
+        fresh={untaughtIn(state, w)}
+        structure={phase === 'teach' ? 'open' : 'closed'}
+        // Reading is the weak skill: how the characters are built comes right after the word.
+        aids={phase === 'teach' ? <CharParts hanzi={w.hanzi} known={knownChars(state.introduced)} /> : undefined}
+      />
     </div>
     {phase === 'check' ? (
       <div className="dock pair">
@@ -395,20 +409,24 @@ function NewWords({ state, commit, onDone }: { state: AppState; commit: Commit; 
 /* ---------------- Recall drill (prompted recall, expanding intervals) ---------------- */
 
 /**
- * `read`: a character to read (字 → meaning) instead of speak: missed on a read card today, or
- * missed often before (store.trickyReads). With `options` (it and its look-alikes) you pick its
- * meaning from theirs, so the read is also practice telling them apart.
+ * `read`: a character to read (字 → meaning) instead of speak: one missed on a read card today, or
+ * one missed often before (store.trickyReads). Each comes with its closest look-alike as a read item
+ * of its own (`like`: the character it gets mixed up with), a couple of items apart, so the two are
+ * told apart by recalling each, not by picking from a list (recall builds stronger memories).
  * `stage`: say the word alone, or its sentence (store.speakStage); today's new words are always words.
+ * `retire`: recalls in a row that retire it.
  */
-interface DrillItem { w: Word; hits: number; stage: Stage; read?: boolean; tricky?: boolean; options?: Word[] }
+interface DrillItem { w: Word; hits: number; stage: Stage; retire: number; read?: 'missed' | 'tricky' | 'like'; like?: string }
 
 const DRILL_MINUTES = 8
 /** More retrievals in the first session improve long-term recall (Nakata 2017: 5+ beat 1-3). */
 const RETIRE_AFTER = 3
+/** A look-alike added for contrast is usually known already: two recalls are enough. */
+const RETIRE_LIKE = 2
 
 /** Recognising a character is quick; a short wait still makes you try before it's shown. */
 const READ_SECONDS = 4
-const MAX_READS = 6
+const MAX_READS = 8
 const thinkSeconds = (it: DrillItem) => (it.read ? READ_SECONDS : thinkFor(target(it.w, it.stage).zh))
 
 function Drill({ state, learnedNow, missedReads, onDone }: {
@@ -418,14 +436,20 @@ function Drill({ state, learnedNow, missedReads, onDone }: {
   const [queue, setQueue] = useState<DrillItem[]>(() => {
     const recent = state.introduced.slice(-30).filter((id) => !learnedNow.includes(id) && WORD_BY_ID.has(id))
     const ids = [...learnedNow.slice(0, 12), ...shuffle(recent).slice(0, Math.max(3, 8 - learnedNow.length))]
-    const speak: DrillItem[] = ids.map((id) => ({ w: WORD_BY_ID.get(id)!, hits: 0, stage: speakStage(state, id) }))
-    const tricky = trickyReads(state)
-    const readIds = [...new Set([...missedReads, ...tricky])].slice(0, MAX_READS)
-    const reads: DrillItem[] = readIds.map((id) => {
+    const speak: DrillItem[] = ids.map((id) => ({ w: WORD_BY_ID.get(id)!, hits: 0, stage: speakStage(state, id), retire: RETIRE_AFTER }))
+    const reads: DrillItem[] = []
+    const taken = new Set<string>()
+    for (const id of [...missedReads, ...trickyReads(state)]) {
+      if (taken.has(id) || reads.length >= MAX_READS) continue
       const w = WORD_BY_ID.get(id)!
-      const like = lookalikes(w, state.introduced).map((x) => x.w)
-      return { w, hits: 0, stage: 'word', read: true, tricky: tricky.includes(id), options: like.length ? shuffle([w, ...like]) : undefined }
-    })
+      taken.add(id)
+      reads.push({ w, hits: 0, stage: 'word', retire: RETIRE_AFTER, read: missedReads.includes(id) ? 'missed' : 'tricky' })
+      const twin = lookalikes(w, state.introduced).map((x) => x.w).find((x) => !taken.has(x.id))
+      if (twin && reads.length < MAX_READS) {
+        taken.add(twin.id)
+        reads.push({ w: twin, hits: 0, stage: 'word', retire: RETIRE_LIKE, read: 'like', like: w.hanzi })
+      }
+    }
     // Every third item is a character to read, so both get spaced retrievals.
     const out: DrillItem[] = []
     while (speak.length || reads.length) out.push(...speak.splice(0, 2), ...reads.splice(0, 1))
@@ -439,16 +463,13 @@ function Drill({ state, learnedNow, missedReads, onDone }: {
   const [turn, setTurn] = useState(0)
   // Seconds added with "More time" on the current item (the ring restarts over the longer total).
   const [extra, setExtra] = useState(0)
-  // The meaning picked on a look-alike choice.
-  const [chosen, setChosen] = useState<string>()
 
   useEffect(() => {
     if (queue.length === 0) onDone()
   }, [queue.length, onDone])
 
   useEffect(() => {
-    // A choice is its own attempt: no countdown.
-    if (phase !== 'prompt' || queue.length === 0 || clock.paused || queue[0].options) return
+    if (phase !== 'prompt' || queue.length === 0 || clock.paused) return
     const t = setInterval(() => setCountdown((c) => c - 1), 1000)
     return () => clearInterval(t)
   }, [phase, queue, clock.paused])
@@ -482,30 +503,22 @@ function Drill({ state, learnedNow, missedReads, onDone }: {
       const [cur, ...rest] = queue
       if (timeUp) return [] // time cap reached
       const hits = ok ? cur.hits + 1 : 0
-      if (hits >= RETIRE_AFTER) return rest // retired: recalled 3 times with growing gaps
+      if (hits >= cur.retire) return rest // retired: recalled 3 times with growing gaps
       const gap = ok ? 5 : 2 // expanding interval: short after a miss, longer after a hit
       const copy = [...rest]
-      // Choices are reshuffled each time, so the answer's place can't be learned instead of the character.
-      copy.splice(Math.min(gap, copy.length), 0, { ...cur, hits, options: cur.options && shuffle(cur.options) })
+      copy.splice(Math.min(gap, copy.length), 0, { ...cur, hits })
       return copy
     })()
     const hits = ok ? item.hits + 1 : 0
     if (!ok) fire('again')
-    else if (hits >= RETIRE_AFTER) fire('retire', `${RETIRE_AFTER} of ${RETIRE_AFTER}`)
+    else if (hits >= item.retire) fire('retire', `${item.retire} of ${item.retire}`)
     else fire('good')
     setQueue(next)
     // Reset together with the phase so the answer effect never sees a stale 0.
     if (next[0]) setCountdown(thinkSeconds(next[0]))
     setExtra(0)
-    setChosen(undefined)
     setPhase('prompt')
     setTurn((n) => n + 1)
-  }
-
-  const choose = (id: string) => {
-    setChosen(id)
-    setPhase('answer')
-    play(wordKey(item.w.id), item.w.hanzi)
   }
 
   return (
@@ -514,11 +527,15 @@ function Drill({ state, learnedNow, missedReads, onDone }: {
       {item.read ? (
         <StepHeader
           title="Read"
-          hint={`${item.tricky ? 'One you’ve missed often.' : 'You missed reading this earlier.'} ${item.options ? 'What does it mean? It has look-alikes, so look closely.' : 'What does it mean? Tones don’t count.'}`}
+          hint={{
+            missed: 'You missed this one earlier. What does it mean?',
+            tricky: 'One you’ve often mixed up. What does it mean?',
+            like: `Looks like ${item.like}. What does this one mean?`,
+          }[item.read]}
           right={<span className="num">{queue.length} left</span>}
         />
       ) : (
-        <StepHeader title="Speak" hint="Say it in Mandarin before the answer plays. Whispering or mouthing counts. Need longer? Tap More time." right={<span className="num">{queue.length} left</span>} />
+        <StepHeader title="Speak" hint="Say it in Mandarin before the answer plays. Whispering or mouthing counts." right={<span className="num">{queue.length} left</span>} />
       )}
       <div className="center-col fill">
         {item.read ? (
@@ -526,21 +543,8 @@ function Drill({ state, learnedNow, missedReads, onDone }: {
         ) : (
           <SpeakPrompt w={item.w} stage={item.stage} />
         )}
-        <Pips hits={item.hits} />
-        {item.options && (
-          <div className="choices" role="group" aria-label="Which meaning?">
-            {item.options.map((o) => {
-              const cls = phase === 'prompt' ? '' : o.id === item.w.id ? 'right' : o.id === chosen ? 'wrong' : 'dim'
-              return (
-                <button key={o.id} className={`choice ${cls}`} disabled={phase !== 'prompt'} onClick={() => choose(o.id)}>
-                  <span className="choice-text">{shortMeaning(o)}</span>
-                  {phase !== 'prompt' && o.id !== item.w.id && <span className="hz choice-hz" lang="zh-CN">{o.hanzi}</span>}
-                </button>
-              )
-            })}
-          </div>
-        )}
-        {item.options && phase === 'prompt' ? null : phase === 'prompt' ? (
+        <Pips hits={item.hits} of={item.retire} />
+        {phase === 'prompt' ? (
           <Countdown key={`${turn}-${extra}`} value={countdown} total={thinkSeconds(item) + extra} paused={!!clock.paused} />
         ) : item.read ? (
           <div className="answer">
@@ -560,15 +564,11 @@ function Drill({ state, learnedNow, missedReads, onDone }: {
       </div>
     </div>
     <div className="dock pair">
-      {phase === 'prompt' && item.options ? null : phase === 'prompt' ? (
+      {phase === 'prompt' ? (
         <>
           <button className="btn wide" onClick={() => { setExtra((x) => x + MORE_TIME); setCountdown((c) => c + MORE_TIME) }}>More time</button>
           <button className="btn wide" onClick={() => setCountdown(0)}>Show answer</button>
         </>
-      ) : item.options ? (
-        <button className="btn primary wide span" onClick={() => mark(chosen === item.w.id)}>
-          {chosen === item.w.id ? 'Next' : 'Next (it comes back soon)'}
-        </button>
       ) : (
         <>
           {!item.read && !t.word && item.w.kind === 'word' && <p className="dock-note span">Counts if you said {item.w.hanzi}, even if the rest of the sentence slipped.</p>}
@@ -582,10 +582,10 @@ function Drill({ state, learnedNow, missedReads, onDone }: {
 }
 
 /** Recalls so far out of the three that retire an item. */
-function Pips({ hits }: { hits: number }) {
+function Pips({ hits, of }: { hits: number; of: number }) {
   return (
-    <span className="pips" role="img" aria-label={`${hits} of ${RETIRE_AFTER} recalls`}>
-      {Array.from({ length: RETIRE_AFTER }, (_, i) => <i key={i} className={i < hits ? 'on' : ''} />)}
+    <span className="pips" role="img" aria-label={`${hits} of ${of} recalls`}>
+      {Array.from({ length: of }, (_, i) => <i key={i} className={i < hits ? 'on' : ''} />)}
     </span>
   )
 }
@@ -914,6 +914,8 @@ function ToneLadder({ state, commit, onDone }: { state: AppState; commit: Commit
   const recent = state.toneLadder?.level === level ? state.toneLadder.recent : []
   const right = recent.reduce((a, b) => a + b, 0)
   const choices = TONE_LEVELS[Math.min(level, TONE_LEVELS.length - 1)]
+  const need = Math.round(LADDER_PASS * LADDER_WINDOW)
+  const nextName = level + 1 < TONE_LEVELS.length ? pairName(level + 1) : 'two-syllable words'
 
   const next = () => {
     clearTimeout(advance.current)
@@ -993,11 +995,21 @@ function ToneLadder({ state, commit, onDone }: { state: AppState; commit: Commit
         hint={choices.length === 2 ? `Two tones at a time: ${pairName(level)}. Which one do you hear?` : 'All four tones. Which one do you hear?'}
         right={<span className="num">{i + 1} of {trials.length}</span>}
       />
-      <div className="ladder-meter" aria-label={`Level ${level + 1} of ${TONE_LEVELS.length + 1}. ${right} of the last ${recent.length} right; ${Math.round(LADDER_PASS * LADDER_WINDOW)} of ${LADDER_WINDOW} moves you on.`}>
-        <span className="ladder-steps" aria-hidden="true">
-          {Array.from({ length: TONE_LEVELS.length + 1 }, (_, k) => <i key={k} className={k < level ? 'past' : k === level ? 'now' : ''} />)}
-        </span>
-        <span className="num">Last {LADDER_WINDOW}: {right} right · {Math.round(LADDER_PASS * LADDER_WINDOW)} moves you on</span>
+      <div
+        className="ladder-meter"
+        role="img"
+        aria-label={`Step ${level + 1} of ${TONE_LEVELS.length}. ${right} of your last ${recent.length} answers right. ${need} of ${LADDER_WINDOW} unlocks ${nextName}.`}
+      >
+        <div className="ladder-head">
+          <b>Step {level + 1} of {TONE_LEVELS.length}</b>
+          <span>Next: {nextName}</span>
+        </div>
+        <div className="tally" aria-hidden="true">
+          {Array.from({ length: LADDER_WINDOW }, (_, k) => (
+            <i key={k} className={recent[k] === undefined ? '' : recent[k] ? 'hit' : 'miss'} />
+          ))}
+        </div>
+        <p>{need} right out of your last {LADDER_WINDOW} unlocks the next step.</p>
       </div>
       <div className="center-col tone-stage">
         {pick === undefined ? (

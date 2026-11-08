@@ -1,4 +1,4 @@
-import type { Word } from './data'
+import { shortGloss, type Word } from './data'
 import { lookalikes } from './lookalike'
 import { Pinyin } from './Pinyin'
 
@@ -14,7 +14,7 @@ export function LookAlikes({ w, studied }: { w: Word; studied: string[] }) {
           <li key={x.w.id} className={x.w.id === w.id ? 'this' : ''}>
             <span className="hz lk-char" lang="zh-CN">{x.w.hanzi}</span>
             <span className="lk-text">
-              <span><Pinyin text={x.w.pinyin} /> · {x.w.en.split(';')[0]}</span>
+              <span><Pinyin text={x.w.pinyin} /> · {shortGloss(x.w)}</span>
               {x.why && <small>{x.why}</small>}
             </span>
           </li>

@@ -83,6 +83,14 @@ export const thinkFor = (zh: string) =>
 /** "More time" on a countdown adds this much. */
 export const MORE_TIME = 5
 
+/** What grammar words do, in a few words (their entries are notes like "(general measure word)"). */
+const GRAMMAR: Record<string, string> = {
+  的: '’s', 们: 'plural', 个: 'measure word', 本: 'measure word', 件: 'measure word', 只: 'measure word; only',
+  口: 'mouth; measure word', 第: '-th', 了: 'done / change', 吗: 'yes/no question', 呢: 'and…?', 吧: 'suggestion',
+}
+/** A short gloss: the first meaning, or what a grammar word does. */
+export const shortGloss = (w: Word) => GRAMMAR[w.hanzi] ?? w.en.split(';')[0].replace(/\s*\(.*?\)\s*/g, ' ').trim()
+
 /** Words whose first English gloss another word shares (想 / 要 "to want"): the prompt adds context. */
 const firstGloss = (w: Word) => w.en.split(';')[0].replace(/\(.*?\)/g, '').trim()
 const GLOSS_COUNT = new Map<string, number>()
@@ -94,11 +102,11 @@ export const glossClash = (w: Word) => w.kind === 'word' && (GLOSS_COUNT.get(fir
  * counts. A sentence card tests reading the whole sentence.
  */
 export function gradeNote(w: Word, kind: 'listen' | 'speak' | 'read' | 'sentence', stage: Stage) {
-  if (w.kind === 'phrase') return kind === 'speak' ? 'Grade the whole phrase. A tone slightly off is Hard, not Again.' : undefined
-  if (kind === 'sentence') return 'Grade the whole sentence: could you read it?'
+  if (w.kind === 'phrase') return kind === 'speak' ? 'Grade the whole phrase. Tone a bit off: Hard, not Again.' : undefined
+  if (kind === 'sentence') return 'Grade the whole sentence.'
   if (kind === 'listen') return `Grade ${w.hanzi} only: did you catch what it means?`
-  if (kind === 'speak' && !target(w, stage).word) return `Grade ${w.hanzi} only. Other words in the sentence don’t count. A tone slightly off is Hard.`
-  if (kind === 'speak') return 'A tone slightly off is Hard, not Again.'
+  if (kind === 'speak' && !target(w, stage).word) return `Grade ${w.hanzi} only, not the rest. Tone a bit off: Hard.`
+  if (kind === 'speak') return 'Tone a bit off: Hard, not Again.'
   return undefined
 }
 

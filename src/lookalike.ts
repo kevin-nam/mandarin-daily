@@ -51,6 +51,3 @@ export function lookalikes(w: Word, studied: string[], n = 3) {
 export function looksLike(a: Word, b: Word) {
   return [...a.hanzi].some((x) => [...b.hanzi].some((y) => (likeness(x, y)?.score ?? 0) >= 2))
 }
-
-/** A short meaning for a choice button: the first gloss, grammar notes without brackets. */
-export const shortMeaning = (w: Word) => w.en.split(';')[0].replace(/[()]/g, '').trim()

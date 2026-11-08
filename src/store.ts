@@ -298,10 +298,10 @@ export function recordLadder(s: AppState, ok: boolean) {
 /** Read cards missed this often that still aren't Good: they come back in every Speak drill. */
 const TRICKY_LAPSES = 4
 export function trickyReads(s: AppState) {
-  return s.introduced.filter((id) => {
-    const c = s.cards[cardKey(id, 'read')]
-    return c && c.lapses >= TRICKY_LAPSES && level(c) < 3 && WORD_BY_ID.has(id)
-  })
+  const lapses = (id: string) => s.cards[cardKey(id, 'read')]?.lapses ?? 0
+  return s.introduced
+    .filter((id) => lapses(id) >= TRICKY_LAPSES && level(s.cards[cardKey(id, 'read')]) < 3 && WORD_BY_ID.has(id))
+    .sort((a, b) => lapses(b) - lapses(a)) // most missed first
 }
 
 /** Older items with the weakest speaking memory (lowest stability, under a week). */
