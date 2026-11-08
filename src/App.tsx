@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
+import { Focus } from './Focus'
 import { Growth } from './Growth'
 import Recall from './Recall'
 import Session from './Session'
@@ -193,7 +194,7 @@ export default function App() {
               <Icon name="practice" />
               <span className="option-text">
                 <b>Extra practice · about 10 min</b>
-                <small>Any reviews still due, then the Speak drill with your recent words, a dialogue and the tone drill.</small>
+                <small>Any reviews still due, then speaking and reading practice with recent words, the tone ladder and a dialogue.</small>
               </span>
               <Icon name="chevron" size={18} />
             </button>
@@ -208,6 +209,8 @@ export default function App() {
         </div>
         <Week history={state.history} stamp={justFinished} />
       </section>
+
+      <Focus state={state} />
 
       <Growth state={state} />
 

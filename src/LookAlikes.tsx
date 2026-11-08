@@ -1,10 +1,11 @@
 import { shortGloss, type Word } from './data'
 import { lookalikes } from './lookalike'
+import { readLapses, type AppState } from './store'
 import { Pinyin } from './Pinyin'
 
 /** Studied characters that look like this one, side by side, with what tells them apart. */
-export function LookAlikes({ w, studied }: { w: Word; studied: string[] }) {
-  const like = lookalikes(w, studied)
+export function LookAlikes({ w, state }: { w: Word; state: AppState }) {
+  const like = lookalikes(w, state.introduced, (id) => readLapses(state, id))
   if (like.length === 0) return null
   return (
     <section className="lookalikes">

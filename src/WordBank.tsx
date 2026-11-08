@@ -1,5 +1,7 @@
 import { useMemo, useState } from 'react'
 import { CharParts } from './CharParts'
+import { LookAlikes } from './LookAlikes'
+import { Structure } from './Structure'
 import { WORD_BY_ID, knownChars, type Word } from './data'
 import { wordKey } from './audio'
 import { Icon } from './icons'
@@ -167,8 +169,10 @@ function BankRow({ e, state, known, open, onToggle }: {
             <div className="hz zh" lang="zh-CN">{w.sentence.zh}</div>
             <Pinyin text={w.sentence.py} />
             <div className="en">{w.sentence.en}</div>
+            <Structure w={w} />
           </div>
           <CharParts hanzi={w.hanzi} known={known} />
+          <LookAlikes w={w} state={state} />
           <dl className="skill-stats">
             {SKILLS.map((s, i) => {
               if (!applies(s.kind, w)) return null

@@ -1,7 +1,7 @@
 import { WORD_BY_ID, shortGloss, type Word } from './data'
 
 /** Particles get no gloss: their block's label already says what they do. */
-const gloss = (w: Word) => ('了吗呢吧'.includes(w.hanzi) ? '' : shortGloss(w))
+const gloss = (w: Word) => ('了吗呢吧'.includes(w.hanzi) ? '' : shortGloss(w).replace('measure word', 'measure'))
 
 /**
  * A sentence split into its parts, in the basic order Subject → When → Where → How → Verb → Object.

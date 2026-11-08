@@ -140,6 +140,15 @@ export function SpokenAnswer({ w, stage }: { w: Word; stage: Stage }) {
   )
 }
 
+/** Recent answers as a row of marks: ink for right, an outline for wrong, blank for not yet. */
+export function Tally({ recent, of }: { recent: number[]; of: number }) {
+  return (
+    <div className="tally" aria-hidden="true">
+      {Array.from({ length: of }, (_, k) => <i key={k} className={recent[k] === undefined ? '' : recent[k] ? 'hit' : 'miss'} />)}
+    </div>
+  )
+}
+
 export function StepHeader({ title, hint, right }: { title: string; hint?: string; right?: ReactNode }) {
   return (
     <div className="step-header">

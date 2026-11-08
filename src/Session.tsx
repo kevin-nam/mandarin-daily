@@ -7,7 +7,7 @@ import {
 import { epoch, lineKey, play, sleep, stop, wordKey } from './audio'
 import {
   byRisk, dueKeys, grade, introduce, logDay, markKnown, newQuota, nextNewItems, parseKey, phrasesLearned, Rating,
-  LADDER_PASS, LADDER_WINDOW, TONE_LEVELS, ladderStep, recordLadder, recordTones, speakStage, toneLevel, streak, toneErrors, toneFocus, trickyReads, untaughtIn, wordsLearned, type AppState,
+  LADDER_PASS, LADDER_WINDOW, TONE_LEVELS, TONE_NAMES, ladderName, ladderRecent, ladderStep, readLapses, recordLadder, recordTones, speakStage, toneLevel, streak, toneErrors, toneFocus, trickyReads, untaughtIn, wordsLearned, type AppState,
 } from './store'
 import { CharParts } from './CharParts'
 import { LookAlikes } from './LookAlikes'
@@ -17,7 +17,7 @@ import { Icon } from './icons'
 import { Pinyin, ToneContour } from './Pinyin'
 import { BurstContext, STREAK_EVERY, useBurst, useBurstState } from './burst'
 import { PauseContext, usePause, usePauseClock } from './pause'
-import { Burst, Countdown, PauseScreen, PlayButton, SpeakPrompt, SpokenAnswer, StepHeader, WordFace, shuffle } from './ui'
+import { Burst, Countdown, PauseScreen, PlayButton, SpeakPrompt, SpokenAnswer, StepHeader, Tally, WordFace, shuffle } from './ui'
 
 type Commit = (fn: (s: AppState) => void) => void
 type StepId = 'reviews' | 'new' | 'drill' | 'dialogue' | 'tones' | 'listen' | 'done'
@@ -26,8 +26,9 @@ const STEPS: { id: StepId; label: string; minutes: number }[] = [
   { id: 'reviews', label: 'Review', minutes: 12 },
   { id: 'new', label: 'New words', minutes: 5 },
   { id: 'drill', label: 'Speak', minutes: 8 },
-  { id: 'dialogue', label: 'Dialogue', minutes: 4 },
+  // Tones before the dialogue: the weakest skill goes before the step a short session can do without.
   { id: 'tones', label: 'Tones', minutes: 4 },
+  { id: 'dialogue', label: 'Dialogue', minutes: 4 },
   { id: 'listen', label: 'Listening (optional)', minutes: LISTEN_MINUTES },
 ]
 
@@ -37,6 +38,9 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
   // Characters failed on a read card this session, read again in the drill.
   const [missedReads, setMissedReads] = useState<string[]>([])
   const [knownNow, setKnownNow] = useState(0)
+  // For the end screen: how the reviews went, and where the tone ladder started today.
+  const [reviewed, setReviewed] = useState({ n: 0, missed: 0 })
+  const [toneStart] = useState(() => toneLevel(state))
   // Outside the app on purpose for listening, so only the other steps pause by themselves.
   const clock = usePauseClock(step !== 'listen' && step !== 'done')
   const { active } = clock
@@ -98,6 +102,7 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
       </div>
 
       {step === 'reviews' && <Reviews state={state} commit={commit} onDone={next}
+        onGraded={(missed) => setReviewed((r) => ({ n: r.n + 1, missed: r.missed + (missed ? 1 : 0) }))}
         onMissRead={(id) => setMissedReads((m) => (m.includes(id) ? m : [...m, id]))} />}
       {step === 'new' && (
         <NewWords state={state} commit={commit} onDone={(ids, known) => { setLearnedNow(ids); setKnownNow(known); next() }} />
@@ -120,6 +125,7 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
               {streak(state)} {streak(state) === 1 ? 'day' : 'days'} in a row · {mm} · {learnedNow.length - knownNow} new
               {knownNow > 0 && ` · ${knownNow} already known`}
             </p>
+            <TodaySummary state={state} reviewed={reviewed} toneStart={toneStart} missedReads={missedReads} />
             <UseToday state={state} learnedNow={learnedNow} />
             <p className="hint center-text">Next session tomorrow, after a night’s sleep.</p>
           </div>
@@ -159,8 +165,8 @@ function reviewQueue(state: AppState) {
   return out
 }
 
-function Reviews({ state, commit, onDone, onMissRead }: {
-  state: AppState; commit: Commit; onDone: () => void; onMissRead: (id: string) => void
+function Reviews({ state, commit, onDone, onGraded, onMissRead }: {
+  state: AppState; commit: Commit; onDone: () => void; onGraded: (missed: boolean) => void; onMissRead: (id: string) => void
 }) {
   const [queue, setQueue] = useState(() => reviewQueue(state))
   const [revealed, setRevealed] = useState(false)
@@ -190,6 +196,7 @@ function Reviews({ state, commit, onDone, onMissRead }: {
       grade(s, key, r)
       logDay(s, { reviews: 1 })
     })
+    onGraded(r === Rating.Again)
     if (r === Rating.Again && kind === 'read') onMissRead(wordId)
     if (r === Rating.Again) {
       run.current = 0
@@ -252,7 +259,7 @@ function Reviews({ state, commit, onDone, onMissRead }: {
           // The breakdown opens where the sentence is what was tested; elsewhere it's one tap away.
           structure={kind === 'listen' || kind === 'sentence' || (kind === 'speak' && !t.word) ? 'toggle' : 'closed'}
           // A read card's own help goes right under the character, above the sentence.
-          aids={kind === 'read' ? <><LookAlikes w={w} studied={state.introduced} /><CharParts hanzi={w.hanzi} known={known} /></> : undefined}
+          aids={kind === 'read' ? <><LookAlikes w={w} state={state} /><CharParts hanzi={w.hanzi} known={known} /></> : undefined}
         />
       )}
       {revealed && kind === 'sentence' && <CharParts hanzi={w.hanzi} known={known} />}
@@ -444,7 +451,7 @@ function Drill({ state, learnedNow, missedReads, onDone }: {
       const w = WORD_BY_ID.get(id)!
       taken.add(id)
       reads.push({ w, hits: 0, stage: 'word', retire: RETIRE_AFTER, read: missedReads.includes(id) ? 'missed' : 'tricky' })
-      const twin = lookalikes(w, state.introduced).map((x) => x.w).find((x) => !taken.has(x.id))
+      const twin = lookalikes(w, state.introduced, (x) => readLapses(state, x)).map((x) => x.w).find((x) => !taken.has(x.id))
       if (twin && reads.length < MAX_READS) {
         taken.add(twin.id)
         reads.push({ w: twin, hits: 0, stage: 'word', retire: RETIRE_LIKE, read: 'like', like: w.hanzi })
@@ -551,7 +558,7 @@ function Drill({ state, learnedNow, missedReads, onDone }: {
             <Pinyin text={item.w.pinyin} className="answer-py" />
             <div className="prompt-en">{item.w.en}</div>
             <PlayButton k={wordKey(item.w.id)} text={item.w.hanzi} label="Again" />
-            <LookAlikes w={item.w} studied={state.introduced} />
+            <LookAlikes w={item.w} state={state} />
             <CharParts hanzi={item.w.hanzi} known={known} />
           </div>
         ) : (
@@ -609,6 +616,8 @@ function DialogueStep({ state, onDone }: { state: AppState; onDone: () => void }
   const [active, setActive] = useState(-1)
   const [slow, setSlow] = useState(false)
   const [playing, setPlaying] = useState(false)
+  // Reading along in Chinese only: with the English beside it, the eye goes to the English.
+  const [english, setEnglish] = useState(false)
 
   const playAll = async (pause = 400) => {
     setPlaying(true)
@@ -673,7 +682,7 @@ function DialogueStep({ state, onDone }: { state: AppState; onDone: () => void }
 
   const hints = [
     'Listen with no text. How much do you catch?',
-    'Listen again while reading.',
+    'Listen again while reading the Chinese. English is a tap away if you need it.',
     'Shadow: repeat each line after it plays, whispering is fine (tap a line to replay).',
     `Role-play: you're ${me}. Say your line from the English before the answer plays.`,
   ]
@@ -704,7 +713,7 @@ function DialogueStep({ state, onDone }: { state: AppState; onDone: () => void }
               <span className="speaker">{l.s}</span>
               <div className="hz zh" lang="zh-CN">{l.zh}</div>
               <Pinyin text={l.py} />
-              <div className="en">{l.en}</div>
+              {(phase !== 1 || english) && <div className="en">{l.en}</div>}
             </div>
           ))}
           <div className="controls">
@@ -715,6 +724,12 @@ function DialogueStep({ state, onDone }: { state: AppState; onDone: () => void }
               <input type="checkbox" checked={slow} onChange={(e) => setSlow(e.target.checked)} />
               <span>Slow</span>
             </label>
+            {phase === 1 && (
+              <label className="switch">
+                <input type="checkbox" checked={english} onChange={(e) => setEnglish(e.target.checked)} />
+                <span>English</span>
+              </label>
+            )}
           </div>
         </div>
       ) : (
@@ -768,7 +783,6 @@ function DialogueStep({ state, onDone }: { state: AppState; onDone: () => void }
 
 /* ---------------- Tone drill (single syllables, then two-syllable words; several voices) ---------------- */
 
-const TONE_NAMES = ['1st', '2nd', '3rd', '4th']
 const randomVoice = () => Math.floor(Math.random() * TONE_VOICES)
 
 /**
@@ -875,8 +889,6 @@ function Tones({ state, commit, onDone }: { state: AppState; commit: Commit; onD
 const LADDER_TRIALS = 30
 const LADDER_MINUTES = 4
 const toneless = (py: string) => py.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
-const pairName = (level: number) =>
-  TONE_LEVELS[level].length > 2 ? 'all four tones' : TONE_LEVELS[level].map((t) => TONE_NAMES[t - 1]).join(' vs ')
 
 /** Trials for a level: single syllables with those tones, the tones taking turns at random, each in a random voice. */
 function ladderTrials(level: number, n: number) {
@@ -915,7 +927,7 @@ function ToneLadder({ state, commit, onDone }: { state: AppState; commit: Commit
   const right = recent.reduce((a, b) => a + b, 0)
   const choices = TONE_LEVELS[Math.min(level, TONE_LEVELS.length - 1)]
   const need = Math.round(LADDER_PASS * LADDER_WINDOW)
-  const nextName = level + 1 < TONE_LEVELS.length ? pairName(level + 1) : 'two-syllable words'
+  const nextName = ladderName(level + 1)
 
   const next = () => {
     clearTimeout(advance.current)
@@ -975,7 +987,7 @@ function ToneLadder({ state, commit, onDone }: { state: AppState; commit: Commit
           <p className="done-stats">
             {finished
               ? 'You can tell all four apart. From tomorrow the drill adds two-syllable words.'
-              : `${Math.round(LADDER_PASS * 100)}% right over your last ${LADDER_WINDOW}. Now: ${pairName(level)}.`}
+              : `${Math.round(LADDER_PASS * 100)}% right over your last ${LADDER_WINDOW}. Now: ${ladderName(level)}.`}
           </p>
         </div>
         <div className="dock">
@@ -992,7 +1004,7 @@ function ToneLadder({ state, commit, onDone }: { state: AppState; commit: Commit
     <div className="stage">
       <StepHeader
         title="Tones"
-        hint={choices.length === 2 ? `Two tones at a time: ${pairName(level)}. Which one do you hear?` : 'All four tones. Which one do you hear?'}
+        hint={choices.length === 2 ? `Two tones at a time: ${ladderName(level)}. Which one do you hear?` : 'All four tones. Which one do you hear?'}
         right={<span className="num">{i + 1} of {trials.length}</span>}
       />
       <div
@@ -1004,11 +1016,7 @@ function ToneLadder({ state, commit, onDone }: { state: AppState; commit: Commit
           <b>Step {level + 1} of {TONE_LEVELS.length}</b>
           <span>Next: {nextName}</span>
         </div>
-        <div className="tally" aria-hidden="true">
-          {Array.from({ length: LADDER_WINDOW }, (_, k) => (
-            <i key={k} className={recent[k] === undefined ? '' : recent[k] ? 'hit' : 'miss'} />
-          ))}
-        </div>
+        <Tally recent={recent} of={LADDER_WINDOW} />
         <p>{need} right out of your last {LADDER_WINDOW} unlocks the next step.</p>
       </div>
       <div className="center-col tone-stage">
@@ -1088,6 +1096,43 @@ function Listening({ commit, onDone }: { commit: Commit; onDone: () => void }) {
     </div>
     </>
   )
+}
+
+/* ---------------- Today, at the end ---------------- */
+
+/** How the session went, in three lines: reviews, the tone ladder, characters to watch. */
+function TodaySummary({ state, reviewed, toneStart, missedReads }: {
+  state: AppState; reviewed: { n: number; missed: number }; toneStart: number; missedReads: string[]
+}) {
+  const level = toneLevel(state)
+  const recent = ladderRecent(state)
+  const right = recent.reduce((a, b) => a + b, 0)
+  const rows = [
+    reviewed.n > 0 && (
+      <div key="r" className="list-row">
+        <span>Reviews</span>
+        <span className="value num">{reviewed.n} · {reviewed.missed === 0 ? 'none missed' : `${reviewed.missed} missed`}</span>
+      </div>
+    ),
+    toneStart < TONE_LEVELS.length && (
+      <div key="t" className="list-row">
+        <span>Tones</span>
+        <span className="value num">
+          {level > toneStart ? `Up to ${ladderName(level)}` : `${right} of last ${recent.length} right`}
+        </span>
+      </div>
+    ),
+    missedReads.length > 0 && (
+      <div key="m" className="list-row watch">
+        <span>Back tomorrow</span>
+        <span className="value">
+          {missedReads.map((id) => <span key={id} className="hz" lang="zh-CN">{WORD_BY_ID.get(id)?.hanzi}</span>)}
+        </span>
+      </div>
+    ),
+  ].filter(Boolean)
+  if (rows.length === 0) return null
+  return <section className="panel list today-summary" aria-label="Today">{rows}</section>
 }
 
 /* ---------------- Use it today ---------------- */

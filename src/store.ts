@@ -278,6 +278,17 @@ export const TONE_LEVELS = [[1, 3], [2, 4], [1, 4], [2, 3], [1, 2], [3, 4], [1, 
 export const LADDER_WINDOW = 20
 export const LADDER_PASS = 0.8
 
+export const TONE_NAMES = ['1st', '2nd', '3rd', '4th']
+/** What a ladder level drills: "1st vs 3rd", "all four tones", or past the ladder, two-syllable words. */
+export function ladderName(level: number) {
+  if (level >= TONE_LEVELS.length) return 'two-syllable words'
+  return TONE_LEVELS[level].length > 2 ? 'all four tones' : TONE_LEVELS[level].map((t) => TONE_NAMES[t - 1]).join(' vs ')
+}
+/** Answers at the current level (the last LADDER_WINDOW), 1 right, 0 wrong. */
+export function ladderRecent(s: AppState) {
+  return s.toneLadder?.level === toneLevel(s) ? s.toneLadder.recent : []
+}
+
 export function toneLevel(s: AppState) {
   return Math.min(s.toneLadder?.level ?? 0, TONE_LEVELS.length)
 }
@@ -294,6 +305,9 @@ export function ladderStep(ladder: AppState['toneLadder'], ok: boolean) {
 export function recordLadder(s: AppState, ok: boolean) {
   s.toneLadder = ladderStep(s.toneLadder, ok).ladder
 }
+
+/** How often you've missed reading an item. */
+export const readLapses = (s: AppState, id: string) => s.cards[cardKey(id, 'read')]?.lapses ?? 0
 
 /** Read cards missed this often that still aren't Good: they come back in every Speak drill. */
 const TRICKY_LAPSES = 4

@@ -201,6 +201,19 @@ a { color: inherit; }
 .foot { text-align: center; color: var(--faint); font-size: 13px; margin-top: 20px; }
 .foot + .foot { margin-top: 4px; }
 
+/* Working on: the tone step and characters you mix up */
+.focus-item + .focus-item { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--rule); }
+.focus-title { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 15px; margin-bottom: 8px; }
+.focus-title b { font-weight: 600; }
+.focus-title span { color: var(--muted); font-size: 14px; }
+.focus-item .growth-chips { margin-top: 0; }
+.focus-note { margin-top: 8px; font-size: 14px; color: var(--muted); text-wrap: pretty; }
+
+/* The end screen's summary of the session */
+.today-summary { width: 100%; text-align: left; margin: 18px 0 12px; }
+.today-summary .value { text-align: right; }
+.today-summary .watch .value { display: flex; gap: 8px; color: var(--ink); font-size: 20px; }
+
 /* Lists (settings, progress) */
 .panel.list { padding: 0 0 0 18px; }
 .list-row {
@@ -657,6 +670,7 @@ details.char-parts:not([open]) { padding-bottom: 10px; }
 .mark.locked { background: none; color: var(--lv2); box-shadow: none; }
 .bank-detail { padding: 2px 16px 18px; display: flex; flex-direction: column; gap: 14px; }
 .bank-detail .char-parts { margin-top: 0; background: var(--ground); }
+.bank-detail .lookalikes { margin-top: 0; background: var(--ground); }
 .bank-sentence .zh { font-size: 22px; line-height: 1.4; }
 .bank-sentence .py { display: block; font-size: 15px; }
 .bank-sentence .en { color: var(--muted); font-size: 14px; }
