@@ -27,12 +27,11 @@ export interface DialogueLine { s: string; zh: string; py: string; en: string }
 export interface Dialogue {
   id: string
   title: string
-  /** Unlocks once this many words and phrases are learned. */
-  unlockAfter: number
-  unlockAfterPhrases?: number
   /** The speaker you play in role-play (default B). */
   you?: string
   lines: DialogueLine[]
+  /** Per character of the dialogue: the words and phrases that cover it (scripts/build-data.mjs). */
+  cover: string[][]
 }
 
 export const WORDS = wordsJson as unknown as Word[]

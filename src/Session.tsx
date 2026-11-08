@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import type { Grade } from 'ts-fsrs'
 import {
-  DIALOGUES, MORE_TIME, PAIR_ITEMS, PHRASES, TONE_ITEMS, TONE_VOICES, WORD_BY_ID, gradeNote, knownChars, target, thinkFor, voiceKey,
+  MORE_TIME, PAIR_ITEMS, PHRASES, TONE_ITEMS, TONE_VOICES, WORD_BY_ID, gradeNote, knownChars, target, thinkFor, voiceKey,
   type Stage, type Word,
 } from './data'
 import { epoch, lineKey, play, sleep, stop, wordKey } from './audio'
 import {
-  byRisk, dueKeys, grade, introduce, logDay, markKnown, newQuota, nextNewItems, parseKey, phrasesLearned, Rating,
-  LADDER_PASS, LADDER_WINDOW, TONE_LEVELS, TONE_NAMES, ladderName, ladderRecent, ladderStep, readLapses, recordLadder, recordTones, speakStage, toneLevel, streak, toneErrors, toneFocus, trickyReads, untaughtIn, wordsLearned, type AppState,
+  byRisk, dueKeys, grade, introduce, logDay, markKnown, newQuota, nextNewItems, parseKey, pickDialogue, recordDialogue, Rating,
+  LADDER_PASS, LADDER_WINDOW, TONE_LEVELS, TONE_NAMES, ladderName, ladderRecent, ladderStep, readLapses, recordLadder, recordTones, speakStage, toneLevel, streak, toneErrors, toneFocus, trickyReads, untaughtIn, type AppState,
 } from './store'
 import { CharParts } from './CharParts'
 import { LookAlikes } from './LookAlikes'
@@ -108,7 +108,7 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
         <NewWords state={state} commit={commit} onDone={(ids, known) => { setLearnedNow(ids); setKnownNow(known); next() }} />
       )}
       {step === 'drill' && <Drill state={state} learnedNow={learnedNow} missedReads={missedReads} onDone={next} />}
-      {step === 'dialogue' && <DialogueStep state={state} onDone={next} />}
+      {step === 'dialogue' && <DialogueStep state={state} commit={commit} onDone={next} />}
       {step === 'tones' && (toneLevel(state) < TONE_LEVELS.length
         ? <ToneLadder state={state} commit={commit} onDone={next} />
         : <Tones state={state} commit={commit} onDone={next} />)}
@@ -599,19 +599,14 @@ function Pips({ hits, of }: { hits: number; of: number }) {
 
 /* ---------------- Dialogue: listen → read → shadow ---------------- */
 
-function pickDialogue(state: AppState) {
-  const words = wordsLearned(state)
-  const phrases = phrasesLearned(state)
-  const unlocked = DIALOGUES.filter((d) => d.unlockAfter <= words && (d.unlockAfterPhrases ?? 0) <= phrases)
-  if (unlocked.length === 0) return DIALOGUES[0]
-  // Mostly the newest unlocked one; sometimes revisit an older one.
-  return Math.random() < 0.6 ? unlocked[unlocked.length - 1] : unlocked[Math.floor(Math.random() * unlocked.length)]
-}
-
-function DialogueStep({ state, onDone }: { state: AppState; onDone: () => void }) {
-  const learned = wordsLearned(state)
-  const phrases = phrasesLearned(state)
-  const d = useMemo(() => pickDialogue(state), [learned, phrases]) // eslint-disable-line react-hooks/exhaustive-deps
+function DialogueStep({ state, commit, onDone }: { state: AppState; commit: Commit; onDone: () => void }) {
+  // Fixed for the step: finishing it records it, which would otherwise pick the next one mid-step.
+  const [d] = useState(() => pickDialogue(state))
+  const [last] = useState(() => state.dialogues?.[d.id])
+  const finishDialogue = () => {
+    commit((s) => recordDialogue(s, d.id))
+    onDone()
+  }
   const [phase, setPhase] = useState<0 | 1 | 2 | 3>(0)
   const [active, setActive] = useState(-1)
   const [slow, setSlow] = useState(false)
@@ -691,6 +686,9 @@ function DialogueStep({ state, onDone }: { state: AppState; onDone: () => void }
   return (
     <>
     <div className="stage">
+      <p className="dialogue-tag">
+        {!last ? 'New dialogue' : last === '2000-01-01' ? 'Seen before' : `Last time ${new Date(`${last}T12:00:00`).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}`}
+      </p>
       <StepHeader title={d.title} hint={hints[phase]} right={<span className="num">{phase + 1} of 4</span>} />
       {phase === 0 ? (
         <div className="center-col fill">
@@ -773,7 +771,7 @@ function DialogueStep({ state, onDone }: { state: AppState; onDone: () => void }
       )}
     </div>
     <div className="dock">
-      <button className="btn primary wide" onClick={() => { cancelRun(); if (phase < 3) setPhase((phase + 1) as 1 | 2 | 3); else onDone() }}>
+      <button className="btn primary wide" onClick={() => { cancelRun(); if (phase < 3) setPhase((phase + 1) as 1 | 2 | 3); else finishDialogue() }}>
         {phase < 3 ? ['Show the text', 'Shadow it', 'Role-play'][phase] : 'Finish dialogue'}
       </button>
     </div>

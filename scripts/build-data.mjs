@@ -173,6 +173,36 @@ if (process.argv.includes('--order')) {
   order.forEach((w, i) => console.log(i + 1, w.id, w.hanzi, w.sentence.zh, w.parts.filter((p) => order.findIndex((x) => x.id === p) > i).length ? '(+1)' : ''))
 }
 
+/**
+ * Dialogue coverage: for each character in a dialogue, the words and phrases that cover it, so the app
+ * can open a dialogue once you know most of it (whatever order you learned things in).
+ */
+const HAN = /\p{Script=Han}/u
+for (const d of dialogues) {
+  d.cover = []
+  const oov = new Set()
+  for (const l of d.lines) {
+    const chars = [...l.zh].filter((c) => HAN.test(c))
+    const cover = chars.map(() => [])
+    let i = 0
+    for (const t of segment(l.zh)) {
+      const n = t.startsWith('?') ? 1 : [...words.find((w) => w.id === t).hanzi].length
+      for (let k = 0; k < n; k++) if (!t.startsWith('?')) cover[i + k].push(t)
+      if (t.startsWith('?')) oov.add(t.slice(1))
+      i += n
+    }
+    const flat = chars.join('')
+    for (const ph of phrases) {
+      const pz = [...ph.hanzi].filter((c) => HAN.test(c)).join('')
+      for (let at = flat.indexOf(pz); pz && at >= 0; at = flat.indexOf(pz, at + 1)) {
+        for (let k = 0; k < [...pz].length; k++) cover[at + k].push(ph.id)
+      }
+    }
+    d.cover.push(...cover)
+  }
+  if (process.argv.includes('--dialogues')) console.log(d.id, d.title, oov.size ? `not HSK 1: ${[...oov].join('')}` : '')
+}
+
 mkdirSync('src/data', { recursive: true })
 writeFileSync('src/data/words.json', JSON.stringify(words, null, 1))
 writeFileSync('src/data/phrases.json', JSON.stringify(phrases, null, 1))

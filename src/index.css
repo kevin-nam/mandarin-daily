@@ -533,6 +533,8 @@ details.char-parts:not([open]) { padding-bottom: 10px; }
 .tone.wrong span { text-decoration: line-through; }
 .tone.dim { opacity: 0.38; }
 
+.dialogue-tag { font-size: 13px; font-weight: 600; color: var(--muted); margin-bottom: 4px; }
+
 /* Tone ladder: two big choices, a level meter, and a side-by-side replay after a miss */
 .tones.two .tone { min-height: 110px; font-size: 17px; }
 .ladder-meter { display: flex; flex-direction: column; gap: 6px; margin: -4px 0 6px; font-size: 13px; color: var(--muted); }

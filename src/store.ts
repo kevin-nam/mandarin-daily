@@ -1,5 +1,5 @@
 import { createEmptyCard, fsrs, Rating, State, type Card, type Grade } from 'ts-fsrs'
-import { PHRASES, WORD_BY_ID, WORDS, type Stage, type Word } from './data'
+import { DIALOGUES, PHRASES, WORD_BY_ID, WORDS, type Dialogue, type Stage, type Word } from './data'
 import { looksLike } from './lookalike'
 import type { Theme } from './theme'
 
@@ -28,6 +28,8 @@ export interface AppState {
   flagged?: Record<string, true>
   /** Tone drill answers per syllable: how often each tone was played, and what you picked when wrong ('3>2'). */
   tones?: { seen: Record<string, number>; missed: Record<string, number> }
+  /** Dialogues you've finished: id → the day you last did it (YYYY-MM-DD). */
+  dialogues?: Record<string, string>
   /** Tone ladder: the current level (TONE_LEVELS index) and the last answers at it (1 right, 0 wrong). */
   toneLadder?: { level: number; recent: number[] }
 }
@@ -56,8 +58,21 @@ function emptyState(): AppState {
   return { version: 1, cards: {}, introduced: [], history: {}, settings: { newPerDay: 5, phrasesPerDay: 2, sessionMinutes: 30, audioSpeed: 0.85 } }
 }
 
+/**
+ * Dialogues the old fixed unlock counts (words, phrases) had opened. Finished dialogues weren't recorded
+ * before 1.16, so for someone already practising, these count as seen long ago: new ones come first.
+ */
+const OLD_UNLOCK: Record<string, [number, number]> = { d11: [0, 2], d12: [0, 5], d13: [0, 7], d1: [30, 0], d14: [0, 13], d2: [40, 0], d15: [0, 19], d16: [0, 23], d17: [0, 27], d3: [75, 0], d4: [100, 0] }
+
 function revive(s: AppState): AppState {
   s.settings = { ...emptyState().settings, ...s.settings }
+  if (!s.dialogues && Object.keys(s.history).length) {
+    const words = s.introduced.filter((id) => id.startsWith('w')).length
+    const phrases = s.introduced.filter((id) => id.startsWith('p')).length
+    s.dialogues = Object.fromEntries(
+      Object.entries(OLD_UNLOCK).filter(([, [w, p]]) => words >= w && phrases >= p).map(([id]) => [id, '2000-01-01']),
+    )
+  }
   for (const c of Object.values(s.cards)) {
     c.due = new Date(c.due)
     if (c.last_review) c.last_review = new Date(c.last_review)
@@ -265,6 +280,37 @@ export function toneFocus(s: AppState): { tone: number; as: number } | undefined
   const as = [1, 2, 3, 4].filter((p) => p !== tone)
     .reduce((a, b) => ((s.tones!.missed[`${tone}>${b}`] ?? 0) > (s.tones!.missed[`${tone}>${a}`] ?? 0) ? b : a))
   return { tone, as }
+}
+
+/** How much of a dialogue you know: the share of its characters covered by words and phrases you've learned. */
+export function dialogueCoverage(d: Dialogue, known: Set<string>) {
+  return d.cover.filter((ids) => ids.some((id) => known.has(id))).length / d.cover.length
+}
+
+/**
+ * A dialogue opens once you know this much of it. Lower than for reading on your own: you hear it
+ * first, and the English is there (behind a toggle while reading along, under each line after).
+ */
+export const DIALOGUE_OPEN = 0.7
+
+/**
+ * Today's dialogue: one you haven't done yet if any is open (the one you know most of first), else
+ * the one you did longest ago, so none comes back until the others have had their turn. With none open
+ * yet (day 1), the one you know most of.
+ */
+export function pickDialogue(s: AppState) {
+  const known = new Set(s.introduced)
+  const scored = DIALOGUES.map((d) => ({ d, c: dialogueCoverage(d, known) })).sort((a, b) => b.c - a.c)
+  const open = scored.filter((x) => x.c >= DIALOGUE_OPEN)
+  if (open.length === 0) return scored[0].d
+  const done = s.dialogues ?? {}
+  const fresh = open.find((x) => !done[x.d.id])
+  if (fresh) return fresh.d
+  return open.reduce((a, b) => (done[b.d.id] < done[a.d.id] ? b : a)).d
+}
+
+export function recordDialogue(s: AppState, id: string) {
+  ;(s.dialogues ??= {})[id] = today()
 }
 
 /**
