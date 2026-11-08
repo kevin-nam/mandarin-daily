@@ -94,6 +94,64 @@ for (const w of words) {
   bySentence.set(w.sentence.zh, w.hanzi)
 }
 
+/* ---------- Sentence parts and teaching order ---------- */
+
+// Split a sentence into known words, longest match first. Characters no word covers come back as '?字'.
+const byHanzi = new Map(words.map((w) => [w.hanzi, w]))
+const longest = Math.max(...words.map((w) => [...w.hanzi].length))
+const PUNCT = /[，。！？、：；“”‘’（）—…\s,.!?:;()'"-]/u
+function segment(text) {
+  const chars = [...text].filter((c) => !PUNCT.test(c))
+  const out = []
+  for (let i = 0; i < chars.length;) {
+    let hit
+    for (let n = Math.min(longest, chars.length - i); n >= 1 && !hit; n--) hit = byHanzi.get(chars.slice(i, i + n).join(''))
+    if (hit) { out.push(hit.id); i += [...hit.hanzi].length } else { out.push(`?${chars[i]}`); i++ }
+  }
+  return out
+}
+
+// `parts`: the other words a sentence uses, so the app can gloss the ones you haven't learned yet.
+const problems = []
+for (const it of [...words, ...phrases]) {
+  const segs = segment(it.sentence.zh)
+  const oov = segs.filter((s) => s.startsWith('?'))
+  if (it.kind === 'word' && oov.length) {
+    problems.push(`${it.id} ${it.hanzi}: "${it.sentence.zh}" uses ${oov.map((s) => s.slice(1)).join('')}, which no HSK 1 word covers`)
+  }
+  it.parts = [...new Set(segs.filter((s) => !s.startsWith('?') && s !== it.id))]
+}
+
+/**
+ * Teaching order: file order, except a word can wait a few places for the words its sentence uses,
+ * so a new word's sentence is made of words you already know. Of the next WINDOW words in file order,
+ * the earliest with the fewest untaught words goes next. More than one untaught word fails the build:
+ * simplify that sentence, or move the row after the words it needs.
+ */
+const MAX_UNTAUGHT = 1
+const WINDOW = 8
+const taught = new Set()
+const order = []
+const left = [...words]
+while (left.length) {
+  const untaught = (w) => w.parts.filter((p) => !taught.has(p)).length
+  let best = 0
+  for (let i = 1; i < Math.min(WINDOW, left.length) && untaught(left[best]) > 0; i++) if (untaught(left[i]) < untaught(left[best])) best = i
+  const [w] = left.splice(best, 1)
+  const n = untaught(w)
+  if (n > MAX_UNTAUGHT) {
+    const which = w.parts.filter((p) => !taught.has(p)).map((p) => words.find((x) => x.id === p).hanzi)
+    problems.push(`${w.id} ${w.hanzi}: "${w.sentence.zh}" needs ${which.join(' ')}, not taught yet`)
+  }
+  taught.add(w.id)
+  order.push(w)
+}
+if (problems.length) throw new Error(`Simplify these sentences (a new word's sentence may use at most ${MAX_UNTAUGHT} word not taught yet):\n${problems.join('\n')}`)
+words.splice(0, words.length, ...order)
+if (process.argv.includes('--order')) {
+  order.forEach((w, i) => console.log(i + 1, w.id, w.hanzi, w.sentence.zh, w.parts.filter((p) => order.findIndex((x) => x.id === p) > i).length ? '(+1)' : ''))
+}
+
 mkdirSync('src/data', { recursive: true })
 writeFileSync('src/data/words.json', JSON.stringify(words, null, 1))
 writeFileSync('src/data/phrases.json', JSON.stringify(phrases, null, 1))

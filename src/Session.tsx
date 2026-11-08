@@ -1,10 +1,13 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import type { Grade } from 'ts-fsrs'
-import { DIALOGUES, PAIR_ITEMS, PHRASES, TONE_ITEMS, TONE_VOICES, WORD_BY_ID, knownChars, target, thinkFor, voiceKey, type Word } from './data'
+import {
+  DIALOGUES, MORE_TIME, PAIR_ITEMS, PHRASES, TONE_ITEMS, TONE_VOICES, WORD_BY_ID, gradeNote, knownChars, target, thinkFor, voiceKey,
+  type Stage, type Word,
+} from './data'
 import { epoch, lineKey, play, sleep, stop, wordKey } from './audio'
 import {
   byRisk, dueKeys, grade, introduce, logDay, markKnown, newQuota, nextNewItems, parseKey, phrasesLearned, Rating,
-  recordTones, streak, toneErrors, toneFocus, wordsLearned, type AppState,
+  recordTones, speakStage, streak, toneErrors, toneFocus, untaughtIn, wordsLearned, type AppState,
 } from './store'
 import { CharParts } from './CharParts'
 import { LISTEN_MINUTES, listeningToday } from './listening'
@@ -172,7 +175,10 @@ function Reviews({ state, commit, onDone, onMissRead }: {
   const key = queue[0]
   const { wordId, kind } = parseKey(key)
   const w = WORD_BY_ID.get(wordId)!
-  const t = target(w)
+  // Fixed per card (the grade changes the stage), so the answer matches what was asked.
+  const stage: Stage = kind === 'speak' ? speakStage(state, wordId) : 'sentence'
+  const t = target(w, stage)
+  const note = gradeNote(w, kind, stage)
   const timeUp = clock.active() - start > REVIEW_MINUTES * 60 * 1000
 
   const rate = (r: Grade) => {
@@ -207,7 +213,7 @@ function Reviews({ state, commit, onDone, onMissRead }: {
 
   const prompt = {
     listen: 'Listen. What does it mean?',
-    speak: 'Say it in Mandarin. Whispering or mouthing it counts.',
+    speak: t.word ? 'Say the word in Mandarin. Whispering or mouthing it counts.' : 'Say it in Mandarin. Whispering or mouthing it counts.',
     read: 'Read it. What does it mean? Tones don’t count here.',
     sentence: 'Read the sentence. What does it say?',
   }[kind]
@@ -227,18 +233,19 @@ function Reviews({ state, commit, onDone, onMissRead }: {
           )}
           {kind === 'speak' && (
             <div className="center-col">
-              <SpeakPrompt w={w} />
+              <SpeakPrompt w={w} stage={stage} />
             </div>
           )}
           {kind === 'read' && <div className={`hz prompt-hanzi ${w.kind}`} lang="zh-CN">{w.hanzi}</div>}
           {kind === 'sentence' && <div className="hz prompt-hanzi phrase" lang="zh-CN">{w.sentence.zh}</div>}
         </div>
       )}
-      {revealed && <WordFace w={w} />}
+      {revealed && <WordFace w={w} fresh={untaughtIn(state, w)} />}
       {revealed && (kind === 'read' || kind === 'sentence') && <CharParts hanzi={w.hanzi} known={known} />}
     </div>
     <div className="dock">
       {count > 0 && timeUp && <p className="dock-note">{REVIEW_MINUTES} minutes reached: this is the last card.</p>}
+      {revealed && note && <p className="dock-note">{note}</p>}
       {!revealed ? (
         <button className="btn primary wide" onClick={reveal}>Show answer</button>
       ) : (
@@ -269,6 +276,7 @@ function NewWords({ state, commit, onDone }: { state: AppState; commit: Commit; 
   const [phase, setPhase] = useState<'probe' | 'check' | 'teach'>('probe')
   const [shadowing, setShadowing] = useState(false)
   const [known, setKnown] = useState(0)
+  const fire = useBurst()
 
   useEffect(() => {
     if (items.length === 0) onDone([], 0)
@@ -277,10 +285,15 @@ function NewWords({ state, commit, onDone }: { state: AppState; commit: Commit; 
   const w = items[i]
   const t = target(w)
 
+  // A word: the word twice, then its sentence twice (slow, then normal). A phrase: itself four times.
   const shadow = async () => {
     setShadowing(true)
-    for (const slow of [true, true, false, false]) {
-      const p = play(t.key, t.zh, { slow })
+    const word = target(w, 'word')
+    const steps = word.word
+      ? [{ c: word, slow: true }, { c: word, slow: false }, { c: t, slow: true }, { c: t, slow: false }]
+      : [true, true, false, false].map((slow) => ({ c: t, slow }))
+    for (const { c, slow } of steps) {
+      const p = play(c.key, c.zh, { slow })
       const e = epoch() // play() bumps the epoch; any later stop() changes it again
       await p
       await sleep(2500) // your turn: repeat it
@@ -296,7 +309,6 @@ function NewWords({ state, commit, onDone }: { state: AppState; commit: Commit; 
     else onDone(list.map((x) => x.id), knownCount)
   }
 
-  const fire = useBurst()
   const knewIt = () => {
     fire('good')
     commit((s) => {
@@ -355,7 +367,7 @@ function NewWords({ state, commit, onDone }: { state: AppState; commit: Commit; 
     <div className="stage">
       {header}
       <p className="unit">{w.unit}</p>
-      <WordFace w={w} />
+      <WordFace w={w} fresh={untaughtIn(state, w)} />
       {phase === 'teach' && <CharParts hanzi={w.hanzi} known={knownChars(state.introduced)} />}
     </div>
     {phase === 'check' ? (
@@ -366,7 +378,7 @@ function NewWords({ state, commit, onDone }: { state: AppState; commit: Commit; 
     ) : (
       <div className="dock">
         <button className={`btn wide ${shadowing ? 'live' : ''}`} onClick={shadow} disabled={shadowing}>
-          {shadowing ? 'Your turn after each play…' : 'Shadow it 4 times, slow to normal'}
+          {shadowing ? 'Your turn after each play…' : target(w, 'word').word ? 'Shadow: word ×2, then sentence ×2' : 'Shadow it 4 times, slow to normal'}
         </button>
         <button className="btn primary wide" onClick={learned}>Next</button>
       </div>
@@ -377,8 +389,11 @@ function NewWords({ state, commit, onDone }: { state: AppState; commit: Commit; 
 
 /* ---------------- Recall drill (prompted recall, expanding intervals) ---------------- */
 
-/** `read`: a character missed on a read card today, shown as 字 → meaning instead of spoken. */
-interface DrillItem { w: Word; hits: number; read?: boolean }
+/**
+ * `read`: a character missed on a read card today, shown as 字 → meaning instead of spoken.
+ * `stage`: say the word alone, or its sentence (store.speakStage); today's new words are always words.
+ */
+interface DrillItem { w: Word; hits: number; stage: Stage; read?: boolean }
 
 const DRILL_MINUTES = 8
 /** More retrievals in the first session improve long-term recall (Nakata 2017: 5+ beat 1-3). */
@@ -387,7 +402,7 @@ const RETIRE_AFTER = 3
 /** Recognising a character is quick; a short wait still makes you try before it's shown. */
 const READ_SECONDS = 4
 const MAX_READS = 6
-const thinkSeconds = (it: DrillItem) => (it.read ? READ_SECONDS : thinkFor(target(it.w).zh))
+const thinkSeconds = (it: DrillItem) => (it.read ? READ_SECONDS : thinkFor(target(it.w, it.stage).zh))
 
 function Drill({ state, learnedNow, missedReads, onDone }: {
   state: AppState; learnedNow: string[]; missedReads: string[]; onDone: () => void
@@ -396,8 +411,8 @@ function Drill({ state, learnedNow, missedReads, onDone }: {
   const [queue, setQueue] = useState<DrillItem[]>(() => {
     const recent = state.introduced.slice(-30).filter((id) => !learnedNow.includes(id) && WORD_BY_ID.has(id))
     const ids = [...learnedNow.slice(0, 12), ...shuffle(recent).slice(0, Math.max(3, 8 - learnedNow.length))]
-    const speak: DrillItem[] = ids.map((id) => ({ w: WORD_BY_ID.get(id)!, hits: 0 }))
-    const reads: DrillItem[] = missedReads.slice(0, MAX_READS).map((id) => ({ w: WORD_BY_ID.get(id)!, hits: 0, read: true }))
+    const speak: DrillItem[] = ids.map((id) => ({ w: WORD_BY_ID.get(id)!, hits: 0, stage: speakStage(state, id) }))
+    const reads: DrillItem[] = missedReads.slice(0, MAX_READS).map((id) => ({ w: WORD_BY_ID.get(id)!, hits: 0, stage: 'word', read: true }))
     // Every third item is a character to read, so both get spaced retrievals.
     const out: DrillItem[] = []
     while (speak.length || reads.length) out.push(...speak.splice(0, 2), ...reads.splice(0, 1))
@@ -409,6 +424,8 @@ function Drill({ state, learnedNow, missedReads, onDone }: {
   const [start] = useState(clock.active)
   const fire = useBurst()
   const [turn, setTurn] = useState(0)
+  // Seconds added with "More time" on the current item (the ring restarts over the longer total).
+  const [extra, setExtra] = useState(0)
 
   useEffect(() => {
     if (queue.length === 0) onDone()
@@ -429,7 +446,7 @@ function Drill({ state, learnedNow, missedReads, onDone }: {
         return
       }
       ;(async () => {
-        const t = target(item.w)
+        const t = target(item.w, item.stage)
         const p = play(t.key, t.zh)
         const e = epoch()
         await p
@@ -440,7 +457,7 @@ function Drill({ state, learnedNow, missedReads, onDone }: {
   }, [countdown, phase, item])
 
   if (!item) return null
-  const t = target(item.w)
+  const t = target(item.w, item.stage)
 
   const mark = (ok: boolean) => {
     stop()
@@ -462,6 +479,7 @@ function Drill({ state, learnedNow, missedReads, onDone }: {
     setQueue(next)
     // Reset together with the phase so the answer effect never sees a stale 0.
     if (next[0]) setCountdown(thinkSeconds(next[0]))
+    setExtra(0)
     setPhase('prompt')
     setTurn((n) => n + 1)
   }
@@ -472,17 +490,17 @@ function Drill({ state, learnedNow, missedReads, onDone }: {
       {item.read ? (
         <StepHeader title="Read" hint="You missed reading this earlier. What does it mean? Tones don’t count." right={<span className="num">{queue.length} left</span>} />
       ) : (
-        <StepHeader title="Speak" hint="Say it in Mandarin before the answer plays. Whispering or mouthing counts." right={<span className="num">{queue.length} left</span>} />
+        <StepHeader title="Speak" hint="Say it in Mandarin before the answer plays. Whispering or mouthing counts. Need longer? Tap More time." right={<span className="num">{queue.length} left</span>} />
       )}
       <div className="center-col fill">
         {item.read ? (
           <div className={`hz prompt-hanzi ${item.w.kind}`} lang="zh-CN">{item.w.hanzi}</div>
         ) : (
-          <SpeakPrompt w={item.w} />
+          <SpeakPrompt w={item.w} stage={item.stage} />
         )}
         <Pips hits={item.hits} />
         {phase === 'prompt' ? (
-          <Countdown key={turn} value={countdown} total={thinkSeconds(item)} paused={!!clock.paused} />
+          <Countdown key={`${turn}-${extra}`} value={countdown} total={thinkSeconds(item) + extra} paused={!!clock.paused} />
         ) : item.read ? (
           <div className="answer">
             <Pinyin text={item.w.pinyin} className="answer-py" />
@@ -492,7 +510,7 @@ function Drill({ state, learnedNow, missedReads, onDone }: {
           </div>
         ) : (
           <div className="answer">
-            <SpokenAnswer w={item.w} />
+            <SpokenAnswer w={item.w} stage={item.stage} />
             <Pinyin text={t.py} className="answer-py" />
             <PlayButton k={t.key} text={t.zh} label="Again" />
           </div>
@@ -501,9 +519,13 @@ function Drill({ state, learnedNow, missedReads, onDone }: {
     </div>
     <div className="dock pair">
       {phase === 'prompt' ? (
-        <button className="btn wide span" onClick={() => setCountdown(0)}>Show the answer now</button>
+        <>
+          <button className="btn wide" onClick={() => { setExtra((x) => x + MORE_TIME); setCountdown((c) => c + MORE_TIME) }}>More time</button>
+          <button className="btn wide" onClick={() => setCountdown(0)}>Show answer</button>
+        </>
       ) : (
         <>
+          {!item.read && !t.word && item.w.kind === 'word' && <p className="dock-note span">Counts if you said {item.w.hanzi}, even if the rest of the sentence slipped.</p>}
           <button className="btn wide" onClick={() => mark(false)}>Missed it</button>
           <button className="btn primary wide" onClick={() => mark(true)}>{item.read ? 'Knew it' : 'Said it'}</button>
         </>

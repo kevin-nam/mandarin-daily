@@ -1,5 +1,5 @@
 import { createEmptyCard, fsrs, Rating, State, type Card, type Grade } from 'ts-fsrs'
-import { PHRASES, WORD_BY_ID, WORDS } from './data'
+import { PHRASES, WORD_BY_ID, WORDS, type Stage, type Word } from './data'
 import type { Theme } from './theme'
 
 /** `sentence` (read the example sentence, characters only) unlocks once a word's `read` card is Good. */
@@ -126,11 +126,43 @@ export function markKnown(s: AppState, wordId: string, now = new Date()) {
   grade(s, cardKey(wordId, 'listen'), Rating.Easy, now)
 }
 
-/** Next unseen words and phrases, in teaching order, skipping ids in `exclude`. */
+/** Of the next unseen words in teaching order, how far ahead the picker may look. */
+const PICK_WINDOW = 8
+
+/**
+ * Next unseen words and phrases, skipping ids in `exclude`. Words follow the teaching order, but
+ * each pick is the earliest of the next few whose sentence has the fewest words you haven't learned
+ * (counting today's earlier picks as learned), so a new word arrives in a sentence you can follow,
+ * whatever you've marked as known along the way.
+ */
 export function nextNewItems(s: AppState, words: number, phrases: number, exclude: string[] = []) {
-  const skip = new Set([...s.introduced, ...exclude])
-  const fresh = (list: typeof WORDS, n: number) => list.filter((w) => !skip.has(w.id)).slice(0, n)
-  return [...fresh(WORDS, words), ...fresh(PHRASES, phrases)]
+  const known = new Set([...s.introduced, ...exclude])
+  const pool = WORDS.filter((w) => !known.has(w.id))
+  const unknown = (w: Word) => w.parts.filter((p) => !known.has(p)).length
+  const picked: Word[] = []
+  while (picked.length < words && pool.length) {
+    let best = 0
+    for (let i = 1; i < Math.min(PICK_WINDOW, pool.length) && unknown(pool[best]) > 0; i++) {
+      if (unknown(pool[i]) < unknown(pool[best])) best = i
+    }
+    const [w] = pool.splice(best, 1)
+    picked.push(w)
+    known.add(w.id)
+  }
+  return [...picked, ...PHRASES.filter((p) => !known.has(p.id)).slice(0, phrases)]
+}
+
+/** Words in an item's sentence you haven't learned yet (the lesson glosses them). */
+export function untaughtIn(s: AppState, w: Word) {
+  return w.parts.filter((p) => !s.introduced.includes(p)).map((p) => WORD_BY_ID.get(p)).filter((x): x is Word => !!x)
+}
+
+/**
+ * Say the word on its own until its speak card is Good (a week's stability), then its sentence.
+ * Learning a word and building a sentence around it are two jobs; doing both at once was too much.
+ */
+export function speakStage(s: AppState, wordId: string): Stage {
+  return level(s.cards[cardKey(wordId, 'speak')]) >= 3 ? 'sentence' : 'word'
 }
 
 /** Lowest chance of recall first: never-reviewed cards, then the ones you're most likely to have forgotten. */

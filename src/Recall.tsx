@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
-import { WORD_BY_ID, target, thinkFor, type Word } from './data'
+import { MORE_TIME, WORD_BY_ID, target, thinkFor, type Stage, type Word } from './data'
 import { epoch, play, sleep, stop } from './audio'
 import { Icon } from './icons'
 import { Pinyin } from './Pinyin'
-import { flagMissed, introducedToday, logDay, weakestItems, type AppState } from './store'
+import { flagMissed, introducedToday, logDay, speakStage, weakestItems, type AppState } from './store'
 import { useBurstState } from './burst'
 import { usePauseClock } from './pause'
 import { Burst, Countdown, PauseScreen, PlayButton, SpeakPrompt, SpokenAnswer, StepHeader, shuffle } from './ui'
@@ -23,11 +23,11 @@ export default function Recall({ state, commit, onExit }: { state: AppState; com
   const [queue, setQueue] = useState(() => {
     const fresh = introducedToday(state)
     const ids = [...shuffle(fresh), ...weakestItems(state, WEAK, fresh)]
-    return ids.map((id) => ({ w: WORD_BY_ID.get(id)!, retry: false }))
+    return ids.map((id) => ({ w: WORD_BY_ID.get(id)!, stage: speakStage(state, id), retry: false }))
   })
   const [total] = useState(queue.length)
   const [phase, setPhase] = useState<'prompt' | 'answer'>('prompt')
-  const [countdown, setCountdown] = useState(() => (queue[0] ? thinkFor(target(queue[0].w).zh) : 0))
+  const [countdown, setCountdown] = useState(() => (queue[0] ? thinkFor(target(queue[0].w, queue[0].stage).zh) : 0))
   const [got, setGot] = useState(0)
   const [missed, setMissed] = useState<Word[]>([])
   const left = useRef(countdown)
@@ -35,11 +35,13 @@ export default function Recall({ state, commit, onExit }: { state: AppState; com
   const clock = usePauseClock(!!item)
   const [burst, fire] = useBurstState()
   const [turn, setTurn] = useState(0)
+  // Seconds added with "More time" on the current item.
+  const [extra, setExtra] = useState(0)
 
   /** Show the answer and play it twice. */
-  const reveal = (w: Word) => {
+  const reveal = (w: Word, stage: Stage) => {
     setPhase('answer')
-    const t = target(w)
+    const t = target(w, stage)
     ;(async () => {
       const p = play(t.key, t.zh)
       const e = epoch()
@@ -57,7 +59,7 @@ export default function Recall({ state, commit, onExit }: { state: AppState; com
       setCountdown(left.current)
       if (left.current <= 0) {
         clearInterval(t)
-        reveal(item.w)
+        reveal(item.w, item.stage)
       }
     }, 1000)
     return () => clearInterval(t)
@@ -122,7 +124,7 @@ export default function Recall({ state, commit, onExit }: { state: AppState; com
     )
   }
 
-  const t = target(item.w)
+  const t = target(item.w, item.stage)
   const mark = (ok: boolean) => {
     stop()
     const [cur, ...rest] = queue
@@ -137,7 +139,8 @@ export default function Recall({ state, commit, onExit }: { state: AppState; com
     // A miss comes back once at the end; time's up ends the round.
     const next = timeUp ? [] : !ok && !cur.retry ? [...rest, { ...cur, retry: true }] : rest
     setQueue(next)
-    if (next[0]) setCountdown((left.current = thinkFor(target(next[0].w).zh)))
+    if (next[0]) setCountdown((left.current = thinkFor(target(next[0].w, next[0].stage).zh)))
+    setExtra(0)
     setPhase('prompt')
   }
 
@@ -151,12 +154,12 @@ export default function Recall({ state, commit, onExit }: { state: AppState; com
           right={<span className="num">{queue.length} left</span>}
         />
         <div className="center-col fill">
-          <SpeakPrompt w={item.w} />
+          <SpeakPrompt w={item.w} stage={item.stage} />
           {phase === 'prompt' ? (
-            <Countdown key={turn} value={countdown} total={thinkFor(t.zh)} paused={!!clock.paused} />
+            <Countdown key={`${turn}-${extra}`} value={countdown} total={thinkFor(t.zh) + extra} paused={!!clock.paused} />
           ) : (
             <div className="answer">
-              <SpokenAnswer w={item.w} />
+              <SpokenAnswer w={item.w} stage={item.stage} />
               <Pinyin text={t.py} className="answer-py" />
               <PlayButton k={t.key} text={t.zh} label="Again" />
             </div>
@@ -165,9 +168,13 @@ export default function Recall({ state, commit, onExit }: { state: AppState; com
       </div>
       <div className="dock pair">
         {phase === 'prompt' ? (
-          <button className="btn wide span" onClick={() => { left.current = 0; setCountdown(0); reveal(item.w) }}>Show the answer now</button>
+          <>
+            <button className="btn wide" onClick={() => { setExtra((x) => x + MORE_TIME); setCountdown((left.current += MORE_TIME)) }}>More time</button>
+            <button className="btn wide" onClick={() => { left.current = 0; setCountdown(0); reveal(item.w, item.stage) }}>Show answer</button>
+          </>
         ) : (
           <>
+            {!t.word && item.w.kind === 'word' && <p className="dock-note">Counts if you said {item.w.hanzi}, even if the rest of the sentence slipped.</p>}
             <button className="btn wide" onClick={() => mark(false)}>Missed it</button>
             <button className="btn primary wide" onClick={() => mark(true)}>Got it</button>
           </>

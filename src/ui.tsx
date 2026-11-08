@@ -1,6 +1,6 @@
 import { useEffect, useState, type CSSProperties, type ReactNode } from 'react'
 import { play } from './audio'
-import { target, type Word } from './data'
+import { glossClash, target, type Stage, type Word } from './data'
 import { Icon } from './icons'
 import { Pinyin } from './Pinyin'
 import type { BurstState } from './burst'
@@ -33,7 +33,8 @@ export function PlayButton({ k, text, label, slow, autoPlay, size }: {
   )
 }
 
-export function WordFace({ w, showSentence = true }: { w: Word; showSentence?: boolean }) {
+/** `fresh`: words in the sentence you haven't learned yet, glossed under it. */
+export function WordFace({ w, showSentence = true, fresh = [] }: { w: Word; showSentence?: boolean; fresh?: Word[] }) {
   return (
     <div className={`word-face ${w.kind}`}>
       <div className="hz face-hanzi" lang="zh-CN">{w.hanzi}</div>
@@ -48,6 +49,7 @@ export function WordFace({ w, showSentence = true }: { w: Word; showSentence?: b
           <div className="hz sentence-zh" lang="zh-CN">{w.sentence.zh}</div>
           <Pinyin text={w.sentence.py} className="sentence-py" />
           <div className="sentence-en">{w.sentence.en}</div>
+          {fresh.length > 0 && <FreshWords words={fresh} />}
           <div className="play-row">
             <PlayButton k={`${w.id}s`} text={w.sentence.zh} label={w.kind === 'word' ? 'Sentence' : 'Example'} />
             <PlayButton k={`${w.id}s`} text={w.sentence.zh} slow />
@@ -58,24 +60,48 @@ export function WordFace({ w, showSentence = true }: { w: Word; showSentence?: b
   )
 }
 
+/** Words in a sentence you haven't learned yet: shown so nothing in it is a mystery, not to learn now. */
+export function FreshWords({ words }: { words: Word[] }) {
+  return (
+    <p className="fresh">
+      <span className="fresh-label">Not learned yet:</span>
+      {words.map((x) => (
+        <span key={x.id} className="fresh-word">
+          <span className="hz" lang="zh-CN">{x.hanzi}</span> <Pinyin text={x.pinyin} /> {x.en.split(';')[0]}
+        </span>
+      ))}
+    </p>
+  )
+}
+
 /**
- * What to say from memory. A word is practised inside its example sentence, so the prompt says
- * so and names the word the sentence is built around.
+ * What to say from memory. At the word stage it's the word alone (with the sentence's English as
+ * context when another word means the same); at the sentence stage, the sentence built around it.
  */
-export function SpeakPrompt({ w }: { w: Word }) {
+export function SpeakPrompt({ w, stage }: { w: Word; stage: Stage }) {
+  const t = target(w, stage)
+  if (t.word) {
+    return (
+      <div className="speak-prompt">
+        <p className="prompt-kind">Say the word</p>
+        <div className="prompt-en">{w.en}</div>
+        {glossClash(w) && <p className="prompt-key">as in “{w.sentence.en}”</p>}
+      </div>
+    )
+  }
   return (
     <div className="speak-prompt">
       <p className="prompt-kind">{w.kind === 'word' ? 'Say this sentence' : 'Say this phrase'}</p>
-      <div className="prompt-en">{target(w).en}</div>
+      <div className="prompt-en">{t.en}</div>
       {w.kind === 'word' && <p className="prompt-key">Use the word for <b>{w.en}</b></p>}
     </div>
   )
 }
 
 /** The Chinese answer, with the practised word underlined inside its sentence. */
-export function SpokenAnswer({ w }: { w: Word }) {
-  const t = target(w)
-  const at = w.kind === 'word' ? t.zh.indexOf(w.hanzi) : -1
+export function SpokenAnswer({ w, stage }: { w: Word; stage: Stage }) {
+  const t = target(w, stage)
+  const at = w.kind === 'word' && !t.word ? t.zh.indexOf(w.hanzi) : -1
   return (
     <div className="hz answer-zh" lang="zh-CN">
       {at < 0 ? t.zh : (

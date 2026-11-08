@@ -336,9 +336,11 @@ a { color: inherit; }
   padding: 12px 0 calc(env(safe-area-inset-bottom) + 14px);
   background: linear-gradient(to bottom, color-mix(in srgb, var(--ground) 0%, transparent), var(--ground) 14px);
 }
-.dock.pair { flex-direction: row; }
+.dock.pair { flex-direction: row; flex-wrap: wrap; }
+.dock.pair > .btn { flex: 1 1 0; min-width: 0; }
 .dock.pair .span { flex: 1; }
-.dock-note { font-size: 14px; color: var(--muted); text-align: center; }
+.dock.pair > .dock-note { flex-basis: 100%; }
+.dock-note { font-size: 14px; color: var(--muted); text-align: center; text-wrap: balance; }
 
 .center-col { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 12px 0; }
 .front { flex: 1; min-height: 260px; display: flex; align-items: center; justify-content: center; text-align: center; }
@@ -368,6 +370,10 @@ mark.key {
 .sentence-zh { font-size: 26px; line-height: 1.4; }
 .sentence-py { display: block; font-size: 16px; margin-top: 2px; }
 .sentence-en { color: var(--muted); font-size: 15px; margin: 4px 0 12px; }
+/* Words in the sentence not learned yet: a quiet gloss so nothing in it is a mystery. */
+.fresh { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 12px; font-size: 14px; color: var(--muted); margin: -4px 0 12px; }
+.fresh-label { flex-basis: 100%; font-weight: 600; }
+.fresh-word .hz { color: var(--ink); font-size: 17px; }
 
 /* Grades */
 .grades { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }

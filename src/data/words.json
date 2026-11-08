@@ -5,7 +5,7 @@
   "hanzi": "你",
   "pinyin": "nǐ",
   "en": "you",
-  "unit": "Unit 1 — Greetings & pronouns",
+  "unit": "Unit 1 — First words",
   "sentence": {
    "zh": "你好！",
    "py": "Nǐ hǎo!",
@@ -13,6 +13,9 @@
   },
   "tones": [
    3
+  ],
+  "parts": [
+   "w002"
   ]
  },
  {
@@ -21,46 +24,17 @@
   "hanzi": "好",
   "pinyin": "hǎo",
   "en": "good; well",
-  "unit": "Unit 1 — Greetings & pronouns",
+  "unit": "Unit 1 — First words",
   "sentence": {
-   "zh": "我很好。",
-   "py": "Wǒ hěn hǎo.",
-   "en": "I'm very well."
+   "zh": "很好！",
+   "py": "Hěn hǎo!",
+   "en": "Very good!"
   },
   "tones": [
    3
-  ]
- },
- {
-  "id": "w003",
-  "kind": "word",
-  "hanzi": "我",
-  "pinyin": "wǒ",
-  "en": "I; me",
-  "unit": "Unit 1 — Greetings & pronouns",
-  "sentence": {
-   "zh": "我今天很忙。",
-   "py": "Wǒ jīntiān hěn máng.",
-   "en": "I am busy today."
-  },
-  "tones": [
-   3
-  ]
- },
- {
-  "id": "w004",
-  "kind": "word",
-  "hanzi": "是",
-  "pinyin": "shì",
-  "en": "to be",
-  "unit": "Unit 1 — Greetings & pronouns",
-  "sentence": {
-   "zh": "他是老师。",
-   "py": "Tā shì lǎoshī.",
-   "en": "He is a teacher."
-  },
-  "tones": [
-   4
+  ],
+  "parts": [
+   "w005"
   ]
  },
  {
@@ -69,14 +43,38 @@
   "hanzi": "很",
   "pinyin": "hěn",
   "en": "very",
-  "unit": "Unit 1 — Greetings & pronouns",
+  "unit": "Unit 1 — First words",
   "sentence": {
-   "zh": "他很高兴。",
-   "py": "Tā hěn gāoxìng.",
-   "en": "He is very happy."
+   "zh": "你很好。",
+   "py": "Nǐ hěn hǎo.",
+   "en": "You're very kind."
   },
   "tones": [
    3
+  ],
+  "parts": [
+   "w001",
+   "w002"
+  ]
+ },
+ {
+  "id": "w003",
+  "kind": "word",
+  "hanzi": "我",
+  "pinyin": "wǒ",
+  "en": "I; me",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "我很好。",
+   "py": "Wǒ hěn hǎo.",
+   "en": "I'm very well."
+  },
+  "tones": [
+   3
+  ],
+  "parts": [
+   "w005",
+   "w002"
   ]
  },
  {
@@ -85,12 +83,16 @@
   "hanzi": "吗",
   "pinyin": "ma",
   "en": "(question particle)",
-  "unit": "Unit 1 — Greetings & pronouns",
+  "unit": "Unit 1 — First words",
   "sentence": {
    "zh": "你好吗？",
    "py": "Nǐ hǎo ma?",
    "en": "How are you?"
-  }
+  },
+  "parts": [
+   "w001",
+   "w002"
+  ]
  },
  {
   "id": "w007",
@@ -98,27 +100,17 @@
   "hanzi": "呢",
   "pinyin": "ne",
   "en": "(follow-up question particle)",
-  "unit": "Unit 1 — Greetings & pronouns",
+  "unit": "Unit 1 — First words",
   "sentence": {
    "zh": "我很好，你呢？",
    "py": "Wǒ hěn hǎo, nǐ ne?",
    "en": "I'm well, and you?"
-  }
- },
- {
-  "id": "w008",
-  "kind": "word",
-  "hanzi": "不",
-  "pinyin": "bù",
-  "en": "not; no",
-  "unit": "Unit 1 — Greetings & pronouns",
-  "sentence": {
-   "zh": "我不是老师。",
-   "py": "Wǒ bú shì lǎoshī.",
-   "en": "I'm not a teacher."
   },
-  "tones": [
-   4
+  "parts": [
+   "w003",
+   "w005",
+   "w002",
+   "w001"
   ]
  },
  {
@@ -127,173 +119,58 @@
   "hanzi": "也",
   "pinyin": "yě",
   "en": "also; too",
-  "unit": "Unit 1 — Greetings & pronouns",
+  "unit": "Unit 1 — First words",
   "sentence": {
-   "zh": "我也是学生。",
-   "py": "Wǒ yě shì xuésheng.",
-   "en": "I'm a student too."
+   "zh": "我也很好。",
+   "py": "Wǒ yě hěn hǎo.",
+   "en": "I'm well too."
   },
   "tones": [
    3
+  ],
+  "parts": [
+   "w003",
+   "w005",
+   "w002"
   ]
  },
  {
-  "id": "w010",
+  "id": "w004",
   "kind": "word",
-  "hanzi": "您",
-  "pinyin": "nín",
-  "en": "you (polite)",
-  "unit": "Unit 1 — Greetings & pronouns",
+  "hanzi": "是",
+  "pinyin": "shì",
+  "en": "to be",
+  "unit": "Unit 1 — First words",
   "sentence": {
-   "zh": "您好！",
-   "py": "Nín hǎo!",
-   "en": "Hello! (polite)"
+   "zh": "是我。",
+   "py": "Shì wǒ.",
+   "en": "It's me."
   },
   "tones": [
-   2
+   4
+  ],
+  "parts": [
+   "w003"
   ]
  },
  {
-  "id": "w011",
+  "id": "w008",
   "kind": "word",
-  "hanzi": "他",
-  "pinyin": "tā",
-  "en": "he; him",
-  "unit": "Unit 1 — Greetings & pronouns",
+  "hanzi": "不",
+  "pinyin": "bù",
+  "en": "not; no",
+  "unit": "Unit 1 — First words",
   "sentence": {
-   "zh": "他是我朋友。",
-   "py": "Tā shì wǒ péngyou.",
-   "en": "He is my friend."
+   "zh": "不是我。",
+   "py": "Bú shì wǒ.",
+   "en": "It wasn't me."
   },
   "tones": [
-   1
-  ]
- },
- {
-  "id": "w012",
-  "kind": "word",
-  "hanzi": "她",
-  "pinyin": "tā",
-  "en": "she; her",
-  "unit": "Unit 1 — Greetings & pronouns",
-  "sentence": {
-   "zh": "她是我妈妈。",
-   "py": "Tā shì wǒ māma.",
-   "en": "She is my mom."
-  },
-  "tones": [
-   1
-  ]
- },
- {
-  "id": "w013",
-  "kind": "word",
-  "hanzi": "它",
-  "pinyin": "tā",
-  "en": "it",
-  "unit": "Unit 1 — Greetings & pronouns",
-  "sentence": {
-   "zh": "它是我的猫。",
-   "py": "Tā shì wǒ de māo.",
-   "en": "It's my cat."
-  },
-  "tones": [
-   1
-  ]
- },
- {
-  "id": "w014",
-  "kind": "word",
-  "hanzi": "们",
-  "pinyin": "men",
-  "en": "(plural suffix)",
-  "unit": "Unit 1 — Greetings & pronouns",
-  "sentence": {
-   "zh": "老师们好！",
-   "py": "Lǎoshīmen hǎo!",
-   "en": "Hello, teachers!"
-  }
- },
- {
-  "id": "w015",
-  "kind": "word",
-  "hanzi": "我们",
-  "pinyin": "wǒmen",
-  "en": "we; us",
-  "unit": "Unit 1 — Greetings & pronouns",
-  "sentence": {
-   "zh": "我们是同学。",
-   "py": "Wǒmen shì tóngxué.",
-   "en": "We are classmates."
-  }
- },
- {
-  "id": "w016",
-  "kind": "word",
-  "hanzi": "你们",
-  "pinyin": "nǐmen",
-  "en": "you (plural)",
-  "unit": "Unit 1 — Greetings & pronouns",
-  "sentence": {
-   "zh": "你们好！",
-   "py": "Nǐmen hǎo!",
-   "en": "Hello, everyone!"
-  }
- },
- {
-  "id": "w017",
-  "kind": "word",
-  "hanzi": "他们",
-  "pinyin": "tāmen",
-  "en": "they (male/mixed)",
-  "unit": "Unit 1 — Greetings & pronouns",
-  "sentence": {
-   "zh": "他们是中国人。",
-   "py": "Tāmen shì Zhōngguó rén.",
-   "en": "They are Chinese."
-  }
- },
- {
-  "id": "w018",
-  "kind": "word",
-  "hanzi": "她们",
-  "pinyin": "tāmen",
-  "en": "they (female)",
-  "unit": "Unit 1 — Greetings & pronouns",
-  "sentence": {
-   "zh": "她们是姐姐和妹妹。",
-   "py": "Tāmen shì jiějie hé mèimei.",
-   "en": "They are older and younger sisters."
-  }
- },
- {
-  "id": "w019",
-  "kind": "word",
-  "hanzi": "它们",
-  "pinyin": "tāmen",
-  "en": "they (things/animals)",
-  "unit": "Unit 1 — Greetings & pronouns",
-  "sentence": {
-   "zh": "它们是我的狗。",
-   "py": "Tāmen shì wǒ de gǒu.",
-   "en": "They are my dogs."
-  }
- },
- {
-  "id": "w020",
-  "kind": "word",
-  "hanzi": "大家",
-  "pinyin": "dàjiā",
-  "en": "everyone",
-  "unit": "Unit 1 — Greetings & pronouns",
-  "sentence": {
-   "zh": "大家好！",
-   "py": "Dàjiā hǎo!",
-   "en": "Hello, everyone!"
-  },
-  "tones": [
-   4,
-   1
+   4
+  ],
+  "parts": [
+   "w004",
+   "w003"
   ]
  },
  {
@@ -302,12 +179,15 @@
   "hanzi": "谢谢",
   "pinyin": "xièxie",
   "en": "thank you",
-  "unit": "Unit 1 — Greetings & pronouns",
+  "unit": "Unit 1 — First words",
   "sentence": {
    "zh": "谢谢你！",
    "py": "Xièxie nǐ!",
    "en": "Thank you!"
-  }
+  },
+  "parts": [
+   "w001"
+  ]
  },
  {
   "id": "w022",
@@ -315,133 +195,113 @@
   "hanzi": "不客气",
   "pinyin": "bú kèqi",
   "en": "you're welcome",
-  "unit": "Unit 1 — Greetings & pronouns",
+  "unit": "Unit 1 — First words",
   "sentence": {
    "zh": "不客气。",
    "py": "Bú kèqi.",
    "en": "You're welcome."
-  }
- },
- {
-  "id": "w023",
-  "kind": "word",
-  "hanzi": "对不起",
-  "pinyin": "duìbuqǐ",
-  "en": "sorry",
-  "unit": "Unit 1 — Greetings & pronouns",
-  "sentence": {
-   "zh": "对不起，我来晚了。",
-   "py": "Duìbuqǐ, wǒ lái wǎn le.",
-   "en": "Sorry, I'm late."
-  }
- },
- {
-  "id": "w024",
-  "kind": "word",
-  "hanzi": "没关系",
-  "pinyin": "méi guānxi",
-  "en": "it doesn't matter",
-  "unit": "Unit 1 — Greetings & pronouns",
-  "sentence": {
-   "zh": "没关系。",
-   "py": "Méi guānxi.",
-   "en": "No problem."
-  }
- },
- {
-  "id": "w025",
-  "kind": "word",
-  "hanzi": "再见",
-  "pinyin": "zàijiàn",
-  "en": "goodbye",
-  "unit": "Unit 1 — Greetings & pronouns",
-  "sentence": {
-   "zh": "明天见！再见！",
-   "py": "Míngtiān jiàn! Zàijiàn!",
-   "en": "See you tomorrow! Bye!"
   },
-  "tones": [
-   4,
-   4
-  ]
+  "parts": []
  },
  {
-  "id": "w026",
+  "id": "w010",
   "kind": "word",
-  "hanzi": "请",
-  "pinyin": "qǐng",
-  "en": "please; to invite",
-  "unit": "Unit 1 — Greetings & pronouns",
+  "hanzi": "您",
+  "pinyin": "nín",
+  "en": "you (polite)",
+  "unit": "Unit 1 — First words",
   "sentence": {
-   "zh": "请坐。",
-   "py": "Qǐng zuò.",
-   "en": "Please sit."
-  },
-  "tones": [
-   3
-  ]
- },
- {
-  "id": "w027",
-  "kind": "word",
-  "hanzi": "请问",
-  "pinyin": "qǐngwèn",
-  "en": "excuse me, may I ask",
-  "unit": "Unit 1 — Greetings & pronouns",
-  "sentence": {
-   "zh": "请问，你叫什么名字？",
-   "py": "Qǐngwèn, nǐ jiào shénme míngzi?",
-   "en": "Excuse me, what's your name?"
-  },
-  "tones": [
-   3,
-   4
-  ]
- },
- {
-  "id": "w028",
-  "kind": "word",
-  "hanzi": "喂",
-  "pinyin": "wéi",
-  "en": "hello (on the phone)",
-  "unit": "Unit 1 — Greetings & pronouns",
-  "sentence": {
-   "zh": "喂，你好！",
-   "py": "Wéi, nǐ hǎo!",
-   "en": "Hello? (phone)"
+   "zh": "您好！",
+   "py": "Nín hǎo!",
+   "en": "Hello! (polite)"
   },
   "tones": [
    2
+  ],
+  "parts": [
+   "w002"
   ]
  },
  {
-  "id": "w029",
+  "id": "w011",
   "kind": "word",
-  "hanzi": "叫",
-  "pinyin": "jiào",
-  "en": "to be called; to call",
-  "unit": "Unit 1 — Greetings & pronouns",
+  "hanzi": "他",
+  "pinyin": "tā",
+  "en": "he; him",
+  "unit": "Unit 1 — First words",
   "sentence": {
-   "zh": "我叫王小明。",
-   "py": "Wǒ jiào Wáng Xiǎomíng.",
-   "en": "My name is Wang Xiaoming."
+   "zh": "他很好。",
+   "py": "Tā hěn hǎo.",
+   "en": "He's very nice."
+  },
+  "tones": [
+   1
+  ],
+  "parts": [
+   "w005",
+   "w002"
+  ]
+ },
+ {
+  "id": "w012",
+  "kind": "word",
+  "hanzi": "她",
+  "pinyin": "tā",
+  "en": "she; her",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "她也很好。",
+   "py": "Tā yě hěn hǎo.",
+   "en": "She's nice too."
+  },
+  "tones": [
+   1
+  ],
+  "parts": [
+   "w009",
+   "w005",
+   "w002"
+  ]
+ },
+ {
+  "id": "w225",
+  "kind": "word",
+  "hanzi": "谁",
+  "pinyin": "shéi",
+  "en": "who",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "他是谁？",
+   "py": "Tā shì shéi?",
+   "en": "Who is he?"
+  },
+  "tones": [
+   2
+  ],
+  "parts": [
+   "w011",
+   "w004"
+  ]
+ },
+ {
+  "id": "w210",
+  "kind": "word",
+  "hanzi": "这",
+  "pinyin": "zhè",
+  "en": "this",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "这是谁？",
+   "py": "Zhè shì shéi?",
+   "en": "Who is this?"
   },
   "tones": [
    4
+  ],
+  "parts": [
+   "w004",
+   "w225"
   ]
- },
- {
-  "id": "w030",
-  "kind": "word",
-  "hanzi": "名字",
-  "pinyin": "míngzi",
-  "en": "name",
-  "unit": "Unit 1 — Greetings & pronouns",
-  "sentence": {
-   "zh": "你叫什么名字？",
-   "py": "Nǐ jiào shénme míngzi?",
-   "en": "What's your name?"
-  }
  },
  {
   "id": "w031",
@@ -449,41 +309,35 @@
   "hanzi": "什么",
   "pinyin": "shénme",
   "en": "what",
-  "unit": "Unit 1 — Greetings & pronouns",
+  "unit": "Unit 1 — First words",
   "sentence": {
    "zh": "这是什么？",
    "py": "Zhè shì shénme?",
    "en": "What is this?"
-  }
+  },
+  "parts": [
+   "w210",
+   "w004"
+  ]
  },
  {
-  "id": "w032",
+  "id": "w211",
   "kind": "word",
-  "hanzi": "认识",
-  "pinyin": "rènshi",
-  "en": "to know (a person)",
-  "unit": "Unit 1 — Greetings & pronouns",
+  "hanzi": "那",
+  "pinyin": "nà",
+  "en": "that",
+  "unit": "Unit 1 — First words",
   "sentence": {
-   "zh": "认识你很高兴。",
-   "py": "Rènshi nǐ hěn gāoxìng.",
-   "en": "Nice to meet you."
-  }
- },
- {
-  "id": "w033",
-  "kind": "word",
-  "hanzi": "高兴",
-  "pinyin": "gāoxìng",
-  "en": "happy; glad",
-  "unit": "Unit 1 — Greetings & pronouns",
-  "sentence": {
-   "zh": "我今天很高兴。",
-   "py": "Wǒ jīntiān hěn gāoxìng.",
-   "en": "I'm very happy today."
+   "zh": "那是什么？",
+   "py": "Nà shì shénme?",
+   "en": "What is that?"
   },
   "tones": [
-   1,
    4
+  ],
+  "parts": [
+   "w004",
+   "w031"
   ]
  },
  {
@@ -492,60 +346,16 @@
   "hanzi": "的",
   "pinyin": "de",
   "en": "(possessive particle)",
-  "unit": "Unit 1 — Greetings & pronouns",
+  "unit": "Unit 1 — First words",
   "sentence": {
-   "zh": "这是我的书。",
-   "py": "Zhè shì wǒ de shū.",
-   "en": "This is my book."
-  }
- },
- {
-  "id": "w035",
-  "kind": "word",
-  "hanzi": "人",
-  "pinyin": "rén",
-  "en": "person",
-  "unit": "Unit 1 — Greetings & pronouns",
-  "sentence": {
-   "zh": "他是中国人。",
-   "py": "Tā shì Zhōngguó rén.",
-   "en": "He is Chinese."
+   "zh": "这是我的。",
+   "py": "Zhè shì wǒ de.",
+   "en": "This is mine."
   },
-  "tones": [
-   2
-  ]
- },
- {
-  "id": "w036",
-  "kind": "word",
-  "hanzi": "中国",
-  "pinyin": "Zhōngguó",
-  "en": "China",
-  "unit": "Unit 1 — Greetings & pronouns",
-  "sentence": {
-   "zh": "我想去中国。",
-   "py": "Wǒ xiǎng qù Zhōngguó.",
-   "en": "I want to go to China."
-  },
-  "tones": [
-   1,
-   2
-  ]
- },
- {
-  "id": "w037",
-  "kind": "word",
-  "hanzi": "国",
-  "pinyin": "guó",
-  "en": "country",
-  "unit": "Unit 1 — Greetings & pronouns",
-  "sentence": {
-   "zh": "你是哪国人？",
-   "py": "Nǐ shì nǎ guó rén?",
-   "en": "Which country are you from?"
-  },
-  "tones": [
-   2
+  "parts": [
+   "w210",
+   "w004",
+   "w003"
   ]
  },
  {
@@ -554,41 +364,324 @@
   "hanzi": "朋友",
   "pinyin": "péngyou",
   "en": "friend",
-  "unit": "Unit 1 — Greetings & pronouns",
+  "unit": "Unit 1 — First words",
   "sentence": {
    "zh": "他是我的好朋友。",
    "py": "Tā shì wǒ de hǎo péngyou.",
    "en": "He is my good friend."
-  }
+  },
+  "parts": [
+   "w011",
+   "w004",
+   "w003",
+   "w034",
+   "w002"
+  ]
  },
  {
-  "id": "w039",
+  "id": "w015",
   "kind": "word",
-  "hanzi": "先生",
-  "pinyin": "xiānsheng",
-  "en": "Mr.; sir; husband",
-  "unit": "Unit 1 — Greetings & pronouns",
+  "hanzi": "我们",
+  "pinyin": "wǒmen",
+  "en": "we; us",
+  "unit": "Unit 1 — First words",
   "sentence": {
-   "zh": "王先生在家吗？",
-   "py": "Wáng xiānsheng zài jiā ma?",
-   "en": "Is Mr. Wang home?"
-  }
+   "zh": "我们是朋友。",
+   "py": "Wǒmen shì péngyou.",
+   "en": "We're friends."
+  },
+  "parts": [
+   "w004",
+   "w038"
+  ]
  },
  {
-  "id": "w040",
+  "id": "w016",
   "kind": "word",
-  "hanzi": "女士",
-  "pinyin": "nǚshì",
-  "en": "Ms.; lady",
-  "unit": "Unit 1 — Greetings & pronouns",
+  "hanzi": "你们",
+  "pinyin": "nǐmen",
+  "en": "you (plural)",
+  "unit": "Unit 1 — First words",
   "sentence": {
-   "zh": "李女士是老师。",
-   "py": "Lǐ nǚshì shì lǎoshī.",
-   "en": "Ms. Li is a teacher."
+   "zh": "你们好！",
+   "py": "Nǐmen hǎo!",
+   "en": "Hello, everyone!"
+  },
+  "parts": [
+   "w002"
+  ]
+ },
+ {
+  "id": "w017",
+  "kind": "word",
+  "hanzi": "他们",
+  "pinyin": "tāmen",
+  "en": "they (male/mixed)",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "他们是我的朋友。",
+   "py": "Tāmen shì wǒ de péngyou.",
+   "en": "They're my friends."
+  },
+  "parts": [
+   "w004",
+   "w003",
+   "w034",
+   "w038"
+  ]
+ },
+ {
+  "id": "w020",
+  "kind": "word",
+  "hanzi": "大家",
+  "pinyin": "dàjiā",
+  "en": "everyone",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "大家好！",
+   "py": "Dàjiā hǎo!",
+   "en": "Hello, everyone!"
   },
   "tones": [
-   3,
+   4,
+   1
+  ],
+  "parts": [
+   "w002"
+  ]
+ },
+ {
+  "id": "w284",
+  "kind": "word",
+  "hanzi": "都",
+  "pinyin": "dōu",
+  "en": "all; both",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "我们都很好。",
+   "py": "Wǒmen dōu hěn hǎo.",
+   "en": "We're all well."
+  },
+  "parts": [
+   "w015",
+   "w005",
+   "w002"
+  ]
+ },
+ {
+  "id": "w178",
+  "kind": "word",
+  "hanzi": "知道",
+  "pinyin": "zhīdào",
+  "en": "to know (a fact)",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "我不知道。",
+   "py": "Wǒ bù zhīdào.",
+   "en": "I don't know."
+  },
+  "tones": [
+   1,
    4
+  ],
+  "parts": [
+   "w003",
+   "w008"
+  ]
+ },
+ {
+  "id": "w023",
+  "kind": "word",
+  "hanzi": "对不起",
+  "pinyin": "duìbuqǐ",
+  "en": "sorry",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "对不起，我不知道。",
+   "py": "Duìbuqǐ, wǒ bù zhīdào.",
+   "en": "Sorry, I don't know."
+  },
+  "parts": [
+   "w003",
+   "w008",
+   "w178"
+  ]
+ },
+ {
+  "id": "w024",
+  "kind": "word",
+  "hanzi": "没关系",
+  "pinyin": "méi guānxi",
+  "en": "it doesn't matter",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "没关系。",
+   "py": "Méi guānxi.",
+   "en": "No problem."
+  },
+  "parts": []
+ },
+ {
+  "id": "w025",
+  "kind": "word",
+  "hanzi": "再见",
+  "pinyin": "zàijiàn",
+  "en": "goodbye",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "谢谢，再见！",
+   "py": "Xièxie, zàijiàn!",
+   "en": "Thanks, bye!"
+  },
+  "tones": [
+   4,
+   4
+  ],
+  "parts": [
+   "w021"
+  ]
+ },
+ {
+  "id": "w033",
+  "kind": "word",
+  "hanzi": "高兴",
+  "pinyin": "gāoxìng",
+  "en": "happy; glad",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "我很高兴。",
+   "py": "Wǒ hěn gāoxìng.",
+   "en": "I'm very happy."
+  },
+  "tones": [
+   1,
+   4
+  ],
+  "parts": [
+   "w003",
+   "w005"
+  ]
+ },
+ {
+  "id": "w032",
+  "kind": "word",
+  "hanzi": "认识",
+  "pinyin": "rènshi",
+  "en": "to know (a person)",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "认识你很高兴。",
+   "py": "Rènshi nǐ hěn gāoxìng.",
+   "en": "Nice to meet you."
+  },
+  "parts": [
+   "w001",
+   "w005",
+   "w033"
+  ]
+ },
+ {
+  "id": "w036",
+  "kind": "word",
+  "hanzi": "中国",
+  "pinyin": "Zhōngguó",
+  "en": "China",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "这是中国。",
+   "py": "Zhè shì Zhōngguó.",
+   "en": "This is China."
+  },
+  "tones": [
+   1,
+   2
+  ],
+  "parts": [
+   "w210",
+   "w004"
+  ]
+ },
+ {
+  "id": "w035",
+  "kind": "word",
+  "hanzi": "人",
+  "pinyin": "rén",
+  "en": "person",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "他是中国人。",
+   "py": "Tā shì Zhōngguó rén.",
+   "en": "He is Chinese."
+  },
+  "tones": [
+   2
+  ],
+  "parts": [
+   "w011",
+   "w004",
+   "w036"
+  ]
+ },
+ {
+  "id": "w155",
+  "kind": "word",
+  "hanzi": "有",
+  "pinyin": "yǒu",
+  "en": "to have; there is",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "我有朋友。",
+   "py": "Wǒ yǒu péngyou.",
+   "en": "I have friends."
+  },
+  "tones": [
+   3
+  ],
+  "parts": [
+   "w003",
+   "w038"
+  ]
+ },
+ {
+  "id": "w156",
+  "kind": "word",
+  "hanzi": "没有",
+  "pinyin": "méiyǒu",
+  "en": "not have; there isn't",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "我没有。",
+   "py": "Wǒ méiyǒu.",
+   "en": "I don't have any."
+  },
+  "tones": [
+   2,
+   3
+  ],
+  "parts": [
+   "w003"
+  ]
+ },
+ {
+  "id": "w062",
+  "kind": "word",
+  "hanzi": "个",
+  "pinyin": "gè",
+  "en": "(general measure word)",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "这个是我的。",
+   "py": "Zhège shì wǒ de.",
+   "en": "This one is mine."
+  },
+  "tones": [
+   4
+  ],
+  "parts": [
+   "w210",
+   "w004",
+   "w003",
+   "w034"
   ]
  },
  {
@@ -597,46 +690,658 @@
   "hanzi": "一",
   "pinyin": "yī",
   "en": "one",
-  "unit": "Unit 2 — Numbers & quantity",
+  "unit": "Unit 1 — First words",
   "sentence": {
-   "zh": "我有一个哥哥。",
-   "py": "Wǒ yǒu yí ge gēge.",
-   "en": "I have one older brother."
+   "zh": "我有一个朋友。",
+   "py": "Wǒ yǒu yí ge péngyou.",
+   "en": "I have a friend."
   },
   "tones": [
    1
+  ],
+  "parts": [
+   "w003",
+   "w155",
+   "w062",
+   "w038"
   ]
  },
  {
-  "id": "w042",
+  "id": "w058",
   "kind": "word",
-  "hanzi": "二",
-  "pinyin": "èr",
-  "en": "two",
-  "unit": "Unit 2 — Numbers & quantity",
+  "hanzi": "几",
+  "pinyin": "jǐ",
+  "en": "how many; a few",
+  "unit": "Unit 1 — First words",
   "sentence": {
-   "zh": "今天是二号。",
-   "py": "Jīntiān shì èr hào.",
-   "en": "Today is the 2nd."
+   "zh": "你有几个朋友？",
+   "py": "Nǐ yǒu jǐ ge péngyou?",
+   "en": "How many friends do you have?"
+  },
+  "tones": [
+   3
+  ],
+  "parts": [
+   "w001",
+   "w155",
+   "w062",
+   "w038"
+  ]
+ },
+ {
+  "id": "w054",
+  "kind": "word",
+  "hanzi": "两",
+  "pinyin": "liǎng",
+  "en": "two (with measure words)",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "我有两个朋友。",
+   "py": "Wǒ yǒu liǎng ge péngyou.",
+   "en": "I have two friends."
+  },
+  "tones": [
+   3
+  ],
+  "parts": [
+   "w003",
+   "w155",
+   "w062",
+   "w038"
+  ]
+ },
+ {
+  "id": "w170",
+  "kind": "word",
+  "hanzi": "想",
+  "pinyin": "xiǎng",
+  "en": "to want; to think; to miss",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "我想你。",
+   "py": "Wǒ xiǎng nǐ.",
+   "en": "I miss you."
+  },
+  "tones": [
+   3
+  ],
+  "parts": [
+   "w003",
+   "w001"
+  ]
+ },
+ {
+  "id": "w171",
+  "kind": "word",
+  "hanzi": "要",
+  "pinyin": "yào",
+  "en": "to want; will; need",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "我要这个。",
+   "py": "Wǒ yào zhège.",
+   "en": "I want this one."
+  },
+  "parts": [
+   "w003",
+   "w210",
+   "w062"
+  ]
+ },
+ {
+  "id": "w158",
+  "kind": "word",
+  "hanzi": "去",
+  "pinyin": "qù",
+  "en": "to go",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "你想去吗？",
+   "py": "Nǐ xiǎng qù ma?",
+   "en": "Do you want to go?"
   },
   "tones": [
    4
+  ],
+  "parts": [
+   "w001",
+   "w170",
+   "w006"
   ]
  },
  {
-  "id": "w043",
+  "id": "w133",
   "kind": "word",
-  "hanzi": "三",
-  "pinyin": "sān",
-  "en": "three",
-  "unit": "Unit 2 — Numbers & quantity",
+  "hanzi": "吃",
+  "pinyin": "chī",
+  "en": "to eat",
+  "unit": "Unit 1 — First words",
   "sentence": {
-   "zh": "我有三本书。",
-   "py": "Wǒ yǒu sān běn shū.",
-   "en": "I have three books."
+   "zh": "你想吃什么？",
+   "py": "Nǐ xiǎng chī shénme?",
+   "en": "What do you want to eat?"
   },
   "tones": [
    1
+  ],
+  "parts": [
+   "w001",
+   "w170",
+   "w031"
+  ]
+ },
+ {
+  "id": "w134",
+  "kind": "word",
+  "hanzi": "喝",
+  "pinyin": "hē",
+  "en": "to drink",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "你想喝什么？",
+   "py": "Nǐ xiǎng hē shénme?",
+   "en": "What would you like to drink?"
+  },
+  "tones": [
+   1
+  ],
+  "parts": [
+   "w001",
+   "w170",
+   "w031"
+  ]
+ },
+ {
+  "id": "w293",
+  "kind": "word",
+  "hanzi": "了",
+  "pinyin": "le",
+  "en": "(change / completed action)",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "我吃了。",
+   "py": "Wǒ chī le.",
+   "en": "I've eaten."
+  },
+  "parts": [
+   "w003",
+   "w133"
+  ]
+ },
+ {
+  "id": "w159",
+  "kind": "word",
+  "hanzi": "来",
+  "pinyin": "lái",
+  "en": "to come",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "你来了！",
+   "py": "Nǐ lái le!",
+   "en": "You're here!"
+  },
+  "tones": [
+   2
+  ],
+  "parts": [
+   "w001",
+   "w293"
+  ]
+ },
+ {
+  "id": "w157",
+  "kind": "word",
+  "hanzi": "在",
+  "pinyin": "zài",
+  "en": "at; in; to be at",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "他在吗？",
+   "py": "Tā zài ma?",
+   "en": "Is he in?"
+  },
+  "tones": [
+   4
+  ],
+  "parts": [
+   "w011",
+   "w006"
+  ]
+ },
+ {
+  "id": "w076",
+  "kind": "word",
+  "hanzi": "家",
+  "pinyin": "jiā",
+  "en": "home; family",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "我在家。",
+   "py": "Wǒ zài jiā.",
+   "en": "I'm at home."
+  },
+  "tones": [
+   1
+  ],
+  "parts": [
+   "w003",
+   "w157"
+  ]
+ },
+ {
+  "id": "w218",
+  "kind": "word",
+  "hanzi": "哪儿",
+  "pinyin": "nǎr",
+  "en": "where",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "你在哪儿？",
+   "py": "Nǐ zài nǎr?",
+   "en": "Where are you?"
+  },
+  "parts": [
+   "w001",
+   "w157"
+  ]
+ },
+ {
+  "id": "w102",
+  "kind": "word",
+  "hanzi": "今天",
+  "pinyin": "jīntiān",
+  "en": "today",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "我今天很高兴。",
+   "py": "Wǒ jīntiān hěn gāoxìng.",
+   "en": "I'm very happy today."
+  },
+  "tones": [
+   1,
+   1
+  ],
+  "parts": [
+   "w003",
+   "w005",
+   "w033"
+  ]
+ },
+ {
+  "id": "w103",
+  "kind": "word",
+  "hanzi": "明天",
+  "pinyin": "míngtiān",
+  "en": "tomorrow",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "我明天去。",
+   "py": "Wǒ míngtiān qù.",
+   "en": "I'll go tomorrow."
+  },
+  "tones": [
+   2,
+   1
+  ],
+  "parts": [
+   "w003",
+   "w158"
+  ]
+ },
+ {
+  "id": "w168",
+  "kind": "word",
+  "hanzi": "见",
+  "pinyin": "jiàn",
+  "en": "to see; to meet",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "明天见！",
+   "py": "Míngtiān jiàn!",
+   "en": "See you tomorrow!"
+  },
+  "tones": [
+   4
+  ],
+  "parts": [
+   "w103"
+  ]
+ },
+ {
+  "id": "w173",
+  "kind": "word",
+  "hanzi": "喜欢",
+  "pinyin": "xǐhuan",
+  "en": "to like",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "我喜欢这个。",
+   "py": "Wǒ xǐhuan zhège.",
+   "en": "I like this one."
+  },
+  "parts": [
+   "w003",
+   "w210",
+   "w062"
+  ]
+ },
+ {
+  "id": "w162",
+  "kind": "word",
+  "hanzi": "看",
+  "pinyin": "kàn",
+  "en": "to look; to watch; to read",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "我想看。",
+   "py": "Wǒ xiǎng kàn.",
+   "en": "I want to see."
+  },
+  "tones": [
+   4
+  ],
+  "parts": [
+   "w003",
+   "w170"
+  ]
+ },
+ {
+  "id": "w166",
+  "kind": "word",
+  "hanzi": "说",
+  "pinyin": "shuō",
+  "en": "to speak; to say",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "你说什么？",
+   "py": "Nǐ shuō shénme?",
+   "en": "What did you say?"
+  },
+  "tones": [
+   1
+  ],
+  "parts": [
+   "w001",
+   "w031"
+  ]
+ },
+ {
+  "id": "w292",
+  "kind": "word",
+  "hanzi": "和",
+  "pinyin": "hé",
+  "en": "and; with",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "我和他是朋友。",
+   "py": "Wǒ hé tā shì péngyou.",
+   "en": "He and I are friends."
+  },
+  "parts": [
+   "w003",
+   "w011",
+   "w004",
+   "w038"
+  ]
+ },
+ {
+  "id": "w274",
+  "kind": "word",
+  "hanzi": "忙",
+  "pinyin": "máng",
+  "en": "busy",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "你忙吗？",
+   "py": "Nǐ máng ma?",
+   "en": "Are you busy?"
+  },
+  "tones": [
+   2
+  ],
+  "parts": [
+   "w001",
+   "w006"
+  ]
+ },
+ {
+  "id": "w294",
+  "kind": "word",
+  "hanzi": "吧",
+  "pinyin": "ba",
+  "en": "(suggestion particle)",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "我们去吧。",
+   "py": "Wǒmen qù ba.",
+   "en": "Let's go."
+  },
+  "parts": [
+   "w015",
+   "w158"
+  ]
+ },
+ {
+  "id": "w285",
+  "kind": "word",
+  "hanzi": "太",
+  "pinyin": "tài",
+  "en": "too; extremely",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "太好了！",
+   "py": "Tài hǎo le!",
+   "en": "Great!"
+  },
+  "tones": [
+   4
+  ],
+  "parts": [
+   "w002",
+   "w293"
+  ]
+ },
+ {
+  "id": "w180",
+  "kind": "word",
+  "hanzi": "买",
+  "pinyin": "mǎi",
+  "en": "to buy",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "我想买这个。",
+   "py": "Wǒ xiǎng mǎi zhège.",
+   "en": "I want to buy this."
+  },
+  "tones": [
+   3
+  ],
+  "parts": [
+   "w003",
+   "w170",
+   "w210",
+   "w062"
+  ]
+ },
+ {
+  "id": "w246",
+  "kind": "word",
+  "hanzi": "书",
+  "pinyin": "shū",
+  "en": "book",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "这是我的书。",
+   "py": "Zhè shì wǒ de shū.",
+   "en": "This is my book."
+  },
+  "tones": [
+   1
+  ],
+  "parts": [
+   "w210",
+   "w004",
+   "w003",
+   "w034"
+  ]
+ },
+ {
+  "id": "w072",
+  "kind": "word",
+  "hanzi": "岁",
+  "pinyin": "suì",
+  "en": "years old",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "你几岁？",
+   "py": "Nǐ jǐ suì?",
+   "en": "How old are you?"
+  },
+  "tones": [
+   4
+  ],
+  "parts": [
+   "w001",
+   "w058"
+  ]
+ },
+ {
+  "id": "w018",
+  "kind": "word",
+  "hanzi": "她们",
+  "pinyin": "tāmen",
+  "en": "they (female)",
+  "unit": "Unit 1b — Greetings & people",
+  "sentence": {
+   "zh": "她们都很好。",
+   "py": "Tāmen dōu hěn hǎo.",
+   "en": "They're all well."
+  },
+  "parts": [
+   "w284",
+   "w005",
+   "w002"
+  ]
+ },
+ {
+  "id": "w028",
+  "kind": "word",
+  "hanzi": "喂",
+  "pinyin": "wéi",
+  "en": "hello (on the phone)",
+  "unit": "Unit 1b — Greetings & people",
+  "sentence": {
+   "zh": "喂，你好！",
+   "py": "Wéi, nǐ hǎo!",
+   "en": "Hello? (phone)"
+  },
+  "tones": [
+   2
+  ],
+  "parts": [
+   "w001",
+   "w002"
+  ]
+ },
+ {
+  "id": "w029",
+  "kind": "word",
+  "hanzi": "叫",
+  "pinyin": "jiào",
+  "en": "to be called; to call",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "他叫什么名字？",
+   "py": "Tā jiào shénme míngzi?",
+   "en": "What's his name?"
+  },
+  "tones": [
+   4
+  ],
+  "parts": [
+   "w011",
+   "w031",
+   "w030"
+  ]
+ },
+ {
+  "id": "w030",
+  "kind": "word",
+  "hanzi": "名字",
+  "pinyin": "míngzi",
+  "en": "name",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "你叫什么名字？",
+   "py": "Nǐ jiào shénme míngzi?",
+   "en": "What's your name?"
+  },
+  "parts": [
+   "w001",
+   "w029",
+   "w031"
+  ]
+ },
+ {
+  "id": "w027",
+  "kind": "word",
+  "hanzi": "请问",
+  "pinyin": "qǐngwèn",
+  "en": "excuse me, may I ask",
+  "unit": "Unit 1 — First words",
+  "sentence": {
+   "zh": "请问，你叫什么名字？",
+   "py": "Qǐngwèn, nǐ jiào shénme míngzi?",
+   "en": "Excuse me, what's your name?"
+  },
+  "tones": [
+   3,
+   4
+  ],
+  "parts": [
+   "w001",
+   "w029",
+   "w031",
+   "w030"
+  ]
+ },
+ {
+  "id": "w039",
+  "kind": "word",
+  "hanzi": "先生",
+  "pinyin": "xiānsheng",
+  "en": "Mr.; sir; husband",
+  "unit": "Unit 1b — Greetings & people",
+  "sentence": {
+   "zh": "先生，您好！",
+   "py": "Xiānsheng, nín hǎo!",
+   "en": "Hello, sir!"
+  },
+  "parts": [
+   "w010",
+   "w002"
+  ]
+ },
+ {
+  "id": "w013",
+  "kind": "word",
+  "hanzi": "它",
+  "pinyin": "tā",
+  "en": "it",
+  "unit": "Unit 1b — Greetings & people",
+  "sentence": {
+   "zh": "它是我的猫。",
+   "py": "Tā shì wǒ de māo.",
+   "en": "It's my cat."
+  },
+  "tones": [
+   1
+  ],
+  "parts": [
+   "w004",
+   "w003",
+   "w034",
+   "w100"
   ]
  },
  {
@@ -653,22 +1358,50 @@
   },
   "tones": [
    4
+  ],
+  "parts": [
+   "w011",
+   "w072"
   ]
  },
  {
-  "id": "w045",
+  "id": "w014",
   "kind": "word",
-  "hanzi": "五",
-  "pinyin": "wǔ",
-  "en": "five",
-  "unit": "Unit 2 — Numbers & quantity",
+  "hanzi": "们",
+  "pinyin": "men",
+  "en": "(plural suffix)",
+  "unit": "Unit 1b — Greetings & people",
   "sentence": {
-   "zh": "我们五点见。",
-   "py": "Wǒmen wǔ diǎn jiàn.",
-   "en": "See you at five."
+   "zh": "老师们好！",
+   "py": "Lǎoshīmen hǎo!",
+   "en": "Hello, teachers!"
+  },
+  "parts": [
+   "w092",
+   "w002"
+  ]
+ },
+ {
+  "id": "w040",
+  "kind": "word",
+  "hanzi": "女士",
+  "pinyin": "nǚshì",
+  "en": "Ms.; lady",
+  "unit": "Unit 1b — Greetings & people",
+  "sentence": {
+   "zh": "女士们，先生们，大家好！",
+   "py": "Nǚshìmen, xiānshengmen, dàjiā hǎo!",
+   "en": "Ladies and gentlemen, hello everyone!"
   },
   "tones": [
-   3
+   3,
+   4
+  ],
+  "parts": [
+   "w014",
+   "w039",
+   "w020",
+   "w002"
   ]
  },
  {
@@ -685,22 +1418,13 @@
   },
   "tones": [
    4
-  ]
- },
- {
-  "id": "w047",
-  "kind": "word",
-  "hanzi": "七",
-  "pinyin": "qī",
-  "en": "seven",
-  "unit": "Unit 2 — Numbers & quantity",
-  "sentence": {
-   "zh": "一个星期有七天。",
-   "py": "Yí ge xīngqī yǒu qī tiān.",
-   "en": "A week has seven days."
-  },
-  "tones": [
-   1
+  ],
+  "parts": [
+   "w003",
+   "w076",
+   "w155",
+   "w062",
+   "w035"
   ]
  },
  {
@@ -711,12 +1435,16 @@
   "en": "eight",
   "unit": "Unit 2 — Numbers & quantity",
   "sentence": {
-   "zh": "我八点起床。",
-   "py": "Wǒ bā diǎn qǐchuáng.",
-   "en": "I get up at eight."
+   "zh": "我八岁。",
+   "py": "Wǒ bā suì.",
+   "en": "I'm eight."
   },
   "tones": [
    1
+  ],
+  "parts": [
+   "w003",
+   "w072"
   ]
  },
  {
@@ -727,12 +1455,18 @@
   "en": "nine",
   "unit": "Unit 2 — Numbers & quantity",
   "sentence": {
-   "zh": "现在九点。",
-   "py": "Xiànzài jiǔ diǎn.",
-   "en": "It's nine o'clock now."
+   "zh": "我们有九个人。",
+   "py": "Wǒmen yǒu jiǔ ge rén.",
+   "en": "There are nine of us."
   },
   "tones": [
    3
+  ],
+  "parts": [
+   "w015",
+   "w155",
+   "w062",
+   "w035"
   ]
  },
  {
@@ -743,92 +1477,58 @@
   "en": "ten",
   "unit": "Unit 2 — Numbers & quantity",
   "sentence": {
-   "zh": "这个十块钱。",
-   "py": "Zhège shí kuài qián.",
-   "en": "This is ten yuan."
+   "zh": "我十岁。",
+   "py": "Wǒ shí suì.",
+   "en": "I'm ten."
   },
   "tones": [
    2
+  ],
+  "parts": [
+   "w003",
+   "w072"
   ]
  },
  {
-  "id": "w051",
+  "id": "w042",
   "kind": "word",
-  "hanzi": "零",
-  "pinyin": "líng",
-  "en": "zero",
+  "hanzi": "二",
+  "pinyin": "èr",
+  "en": "two",
   "unit": "Unit 2 — Numbers & quantity",
   "sentence": {
-   "zh": "我的电话号是零六八。",
-   "py": "Wǒ de diànhuà hào shì líng liù bā.",
-   "en": "My phone number is zero six eight."
-  },
-  "tones": [
-   2
-  ]
- },
- {
-  "id": "w052",
-  "kind": "word",
-  "hanzi": "百",
-  "pinyin": "bǎi",
-  "en": "hundred",
-  "unit": "Unit 2 — Numbers & quantity",
-  "sentence": {
-   "zh": "这件衣服一百块。",
-   "py": "Zhè jiàn yīfu yìbǎi kuài.",
-   "en": "This piece of clothing is 100 yuan."
-  },
-  "tones": [
-   3
-  ]
- },
- {
-  "id": "w053",
-  "kind": "word",
-  "hanzi": "千",
-  "pinyin": "qiān",
-  "en": "thousand",
-  "unit": "Unit 2 — Numbers & quantity",
-  "sentence": {
-   "zh": "这个手机三千块。",
-   "py": "Zhège shǒujī sānqiān kuài.",
-   "en": "This phone is 3,000 yuan."
-  },
-  "tones": [
-   1
-  ]
- },
- {
-  "id": "w054",
-  "kind": "word",
-  "hanzi": "两",
-  "pinyin": "liǎng",
-  "en": "two (with measure words)",
-  "unit": "Unit 2 — Numbers & quantity",
-  "sentence": {
-   "zh": "我有两个妹妹。",
-   "py": "Wǒ yǒu liǎng ge mèimei.",
-   "en": "I have two younger sisters."
-  },
-  "tones": [
-   3
-  ]
- },
- {
-  "id": "w055",
-  "kind": "word",
-  "hanzi": "半",
-  "pinyin": "bàn",
-  "en": "half",
-  "unit": "Unit 2 — Numbers & quantity",
-  "sentence": {
-   "zh": "现在八点半。",
-   "py": "Xiànzài bā diǎn bàn.",
-   "en": "It's 8:30 now."
+   "zh": "我二十岁。",
+   "py": "Wǒ èrshí suì.",
+   "en": "I'm twenty."
   },
   "tones": [
    4
+  ],
+  "parts": [
+   "w003",
+   "w050",
+   "w072"
+  ]
+ },
+ {
+  "id": "w043",
+  "kind": "word",
+  "hanzi": "三",
+  "pinyin": "sān",
+  "en": "three",
+  "unit": "Unit 2 — Numbers & quantity",
+  "sentence": {
+   "zh": "他三十岁。",
+   "py": "Tā sānshí suì.",
+   "en": "He's thirty."
+  },
+  "tones": [
+   1
+  ],
+  "parts": [
+   "w011",
+   "w050",
+   "w072"
   ]
  },
  {
@@ -846,6 +1546,11 @@
   "tones": [
    2,
    4
+  ],
+  "parts": [
+   "w003",
+   "w133",
+   "w293"
   ]
  },
  {
@@ -856,57 +1561,18 @@
   "en": "(ordinal prefix)",
   "unit": "Unit 2 — Numbers & quantity",
   "sentence": {
-   "zh": "这是我第一次来中国。",
-   "py": "Zhè shì wǒ dì yī cì lái Zhōngguó.",
-   "en": "This is my first time in China."
+   "zh": "我是第一个。",
+   "py": "Wǒ shì dì yī ge.",
+   "en": "I'm the first one."
   },
   "tones": [
    4
-  ]
- },
- {
-  "id": "w058",
-  "kind": "word",
-  "hanzi": "几",
-  "pinyin": "jǐ",
-  "en": "how many; a few",
-  "unit": "Unit 2 — Numbers & quantity",
-  "sentence": {
-   "zh": "你家有几个人？",
-   "py": "Nǐ jiā yǒu jǐ ge rén?",
-   "en": "How many people are in your family?"
-  },
-  "tones": [
-   3
-  ]
- },
- {
-  "id": "w059",
-  "kind": "word",
-  "hanzi": "多少",
-  "pinyin": "duōshao",
-  "en": "how many; how much",
-  "unit": "Unit 2 — Numbers & quantity",
-  "sentence": {
-   "zh": "这个多少钱？",
-   "py": "Zhège duōshao qián?",
-   "en": "How much is this?"
-  }
- },
- {
-  "id": "w060",
-  "kind": "word",
-  "hanzi": "多",
-  "pinyin": "duō",
-  "en": "many; much",
-  "unit": "Unit 2 — Numbers & quantity",
-  "sentence": {
-   "zh": "这里人很多。",
-   "py": "Zhèlǐ rén hěn duō.",
-   "en": "There are many people here."
-  },
-  "tones": [
-   1
+  ],
+  "parts": [
+   "w003",
+   "w004",
+   "w041",
+   "w062"
   ]
  },
  {
@@ -923,54 +1589,11 @@
   },
   "tones": [
    3
-  ]
- },
- {
-  "id": "w062",
-  "kind": "word",
-  "hanzi": "个",
-  "pinyin": "gè",
-  "en": "(general measure word)",
-  "unit": "Unit 2 — Numbers & quantity",
-  "sentence": {
-   "zh": "我想买一个苹果。",
-   "py": "Wǒ xiǎng mǎi yí ge píngguǒ.",
-   "en": "I want to buy an apple."
-  },
-  "tones": [
-   4
-  ]
- },
- {
-  "id": "w063",
-  "kind": "word",
-  "hanzi": "本",
-  "pinyin": "běn",
-  "en": "(measure word for books)",
-  "unit": "Unit 2 — Numbers & quantity",
-  "sentence": {
-   "zh": "我买了两本书。",
-   "py": "Wǒ mǎi le liǎng běn shū.",
-   "en": "I bought two books."
-  },
-  "tones": [
-   3
-  ]
- },
- {
-  "id": "w064",
-  "kind": "word",
-  "hanzi": "件",
-  "pinyin": "jiàn",
-  "en": "(measure word for clothes, matters)",
-  "unit": "Unit 2 — Numbers & quantity",
-  "sentence": {
-   "zh": "这件衣服很漂亮。",
-   "py": "Zhè jiàn yīfu hěn piàoliang.",
-   "en": "This piece of clothing is very pretty."
-  },
-  "tones": [
-   4
+  ],
+  "parts": [
+   "w102",
+   "w035",
+   "w005"
   ]
  },
  {
@@ -987,6 +1610,174 @@
   },
   "tones": [
    3
+  ],
+  "parts": [
+   "w003",
+   "w076",
+   "w155",
+   "w043",
+   "w035"
+  ]
+ },
+ {
+  "id": "w019",
+  "kind": "word",
+  "hanzi": "它们",
+  "pinyin": "tāmen",
+  "en": "they (things/animals)",
+  "unit": "Unit 1b — Greetings & people",
+  "sentence": {
+   "zh": "它们是我的狗。",
+   "py": "Tāmen shì wǒ de gǒu.",
+   "en": "They are my dogs."
+  },
+  "parts": [
+   "w004",
+   "w003",
+   "w034",
+   "w099"
+  ]
+ },
+ {
+  "id": "w026",
+  "kind": "word",
+  "hanzi": "请",
+  "pinyin": "qǐng",
+  "en": "please; to invite",
+  "unit": "Unit 1b — Greetings & people",
+  "sentence": {
+   "zh": "请坐。",
+   "py": "Qǐng zuò.",
+   "en": "Please sit."
+  },
+  "tones": [
+   3
+  ],
+  "parts": [
+   "w187"
+  ]
+ },
+ {
+  "id": "w037",
+  "kind": "word",
+  "hanzi": "国",
+  "pinyin": "guó",
+  "en": "country",
+  "unit": "Unit 1b — Greetings & people",
+  "sentence": {
+   "zh": "你是哪国人？",
+   "py": "Nǐ shì nǎ guó rén?",
+   "en": "Which country are you from?"
+  },
+  "tones": [
+   2
+  ],
+  "parts": [
+   "w001",
+   "w004",
+   "w212",
+   "w035"
+  ]
+ },
+ {
+  "id": "w045",
+  "kind": "word",
+  "hanzi": "五",
+  "pinyin": "wǔ",
+  "en": "five",
+  "unit": "Unit 2 — Numbers & quantity",
+  "sentence": {
+   "zh": "我们五点见。",
+   "py": "Wǒmen wǔ diǎn jiàn.",
+   "en": "See you at five."
+  },
+  "tones": [
+   3
+  ],
+  "parts": [
+   "w015",
+   "w117",
+   "w168"
+  ]
+ },
+ {
+  "id": "w047",
+  "kind": "word",
+  "hanzi": "七",
+  "pinyin": "qī",
+  "en": "seven",
+  "unit": "Unit 2 — Numbers & quantity",
+  "sentence": {
+   "zh": "我七点来。",
+   "py": "Wǒ qī diǎn lái.",
+   "en": "I'll come at seven."
+  },
+  "tones": [
+   1
+  ],
+  "parts": [
+   "w003",
+   "w117",
+   "w159"
+  ]
+ },
+ {
+  "id": "w059",
+  "kind": "word",
+  "hanzi": "多少",
+  "pinyin": "duōshao",
+  "en": "how many; how much",
+  "unit": "Unit 2 — Numbers & quantity",
+  "sentence": {
+   "zh": "这个多少钱？",
+   "py": "Zhège duōshao qián?",
+   "en": "How much is this?"
+  },
+  "parts": [
+   "w210",
+   "w062",
+   "w073"
+  ]
+ },
+ {
+  "id": "w073",
+  "kind": "word",
+  "hanzi": "钱",
+  "pinyin": "qián",
+  "en": "money",
+  "unit": "Unit 2 — Numbers & quantity",
+  "sentence": {
+   "zh": "我没有钱。",
+   "py": "Wǒ méiyǒu qián.",
+   "en": "I don't have money."
+  },
+  "tones": [
+   2
+  ],
+  "parts": [
+   "w003",
+   "w156"
+  ]
+ },
+ {
+  "id": "w060",
+  "kind": "word",
+  "hanzi": "多",
+  "pinyin": "duō",
+  "en": "many; much",
+  "unit": "Unit 2 — Numbers & quantity",
+  "sentence": {
+   "zh": "这里人很多。",
+   "py": "Zhèlǐ rén hěn duō.",
+   "en": "There are many people here."
+  },
+  "tones": [
+   1
+  ],
+  "parts": [
+   "w219",
+   "w035",
+   "w005"
   ]
  },
  {
@@ -1003,6 +1794,12 @@
   },
   "tones": [
    1
+  ],
+  "parts": [
+   "w003",
+   "w170",
+   "w180",
+   "w147"
   ]
  },
  {
@@ -1020,6 +1817,11 @@
   "tones": [
    4,
    1
+  ],
+  "parts": [
+   "w003",
+   "w155",
+   "w185"
   ]
  },
  {
@@ -1037,33 +1839,13 @@
   "tones": [
    3,
    1
+  ],
+  "parts": [
+   "w035",
+   "w173",
+   "w134",
+   "w142"
   ]
- },
- {
-  "id": "w069",
-  "kind": "word",
-  "hanzi": "有的",
-  "pinyin": "yǒude",
-  "en": "some (of)",
-  "unit": "Unit 2 — Numbers & quantity",
-  "sentence": {
-   "zh": "有的人喜欢猫，有的人喜欢狗。",
-   "py": "Yǒude rén xǐhuan māo, yǒude rén xǐhuan gǒu.",
-   "en": "Some people like cats, some like dogs."
-  }
- },
- {
-  "id": "w070",
-  "kind": "word",
-  "hanzi": "一点儿",
-  "pinyin": "yìdiǎnr",
-  "en": "a little",
-  "unit": "Unit 2 — Numbers & quantity",
-  "sentence": {
-   "zh": "我会说一点儿汉语。",
-   "py": "Wǒ huì shuō yìdiǎnr Hànyǔ.",
-   "en": "I can speak a little Chinese."
-  }
  },
  {
   "id": "w071",
@@ -1076,38 +1858,28 @@
    "zh": "今天有点儿冷。",
    "py": "Jīntiān yǒudiǎnr lěng.",
    "en": "It's a bit cold today."
-  }
- },
- {
-  "id": "w072",
-  "kind": "word",
-  "hanzi": "岁",
-  "pinyin": "suì",
-  "en": "years old",
-  "unit": "Unit 2 — Numbers & quantity",
-  "sentence": {
-   "zh": "你几岁？",
-   "py": "Nǐ jǐ suì?",
-   "en": "How old are you?"
   },
-  "tones": [
-   4
+  "parts": [
+   "w102",
+   "w275"
   ]
  },
  {
-  "id": "w073",
+  "id": "w080",
   "kind": "word",
-  "hanzi": "钱",
-  "pinyin": "qián",
-  "en": "money",
-  "unit": "Unit 2 — Numbers & quantity",
+  "hanzi": "哥哥",
+  "pinyin": "gēge",
+  "en": "older brother",
+  "unit": "Unit 3 — Family & people",
   "sentence": {
-   "zh": "我没有钱。",
-   "py": "Wǒ méiyǒu qián.",
-   "en": "I don't have money."
+   "zh": "我哥哥很高兴。",
+   "py": "Wǒ gēge hěn gāoxìng.",
+   "en": "My older brother is very happy."
   },
-  "tones": [
-   2
+  "parts": [
+   "w003",
+   "w005",
+   "w033"
   ]
  },
  {
@@ -1124,6 +1896,30 @@
   },
   "tones": [
    4
+  ],
+  "parts": [
+   "w041",
+   "w062",
+   "w146",
+   "w045"
+  ]
+ },
+ {
+  "id": "w082",
+  "kind": "word",
+  "hanzi": "弟弟",
+  "pinyin": "dìdi",
+  "en": "younger brother",
+  "unit": "Unit 3 — Family & people",
+  "sentence": {
+   "zh": "我弟弟六岁。",
+   "py": "Wǒ dìdi liù suì.",
+   "en": "My younger brother is six."
+  },
+  "parts": [
+   "w003",
+   "w046",
+   "w072"
   ]
  },
  {
@@ -1140,22 +1936,13 @@
   },
   "tones": [
    2
-  ]
- },
- {
-  "id": "w076",
-  "kind": "word",
-  "hanzi": "家",
-  "pinyin": "jiā",
-  "en": "home; family",
-  "unit": "Unit 3 — Family & people",
-  "sentence": {
-   "zh": "我家有五口人。",
-   "py": "Wǒ jiā yǒu wǔ kǒu rén.",
-   "en": "There are five people in my family."
-  },
-  "tones": [
-   1
+  ],
+  "parts": [
+   "w210",
+   "w063",
+   "w246",
+   "w042",
+   "w050"
   ]
  },
  {
@@ -1173,6 +1960,12 @@
   "tones": [
    1,
    2
+  ],
+  "parts": [
+   "w003",
+   "w005",
+   "w174",
+   "w034"
   ]
  },
  {
@@ -1186,101 +1979,11 @@
    "zh": "我爸爸是医生。",
    "py": "Wǒ bàba shì yīshēng.",
    "en": "My dad is a doctor."
-  }
- },
- {
-  "id": "w079",
-  "kind": "word",
-  "hanzi": "妈妈",
-  "pinyin": "māma",
-  "en": "mom",
-  "unit": "Unit 3 — Family & people",
-  "sentence": {
-   "zh": "我妈妈是医生。",
-   "py": "Wǒ māma shì yīshēng.",
-   "en": "My mom is a doctor."
-  }
- },
- {
-  "id": "w080",
-  "kind": "word",
-  "hanzi": "哥哥",
-  "pinyin": "gēge",
-  "en": "older brother",
-  "unit": "Unit 3 — Family & people",
-  "sentence": {
-   "zh": "我哥哥很高兴。",
-   "py": "Wǒ gēge hěn gāoxìng.",
-   "en": "My older brother is very happy."
-  }
- },
- {
-  "id": "w081",
-  "kind": "word",
-  "hanzi": "姐姐",
-  "pinyin": "jiějie",
-  "en": "older sister",
-  "unit": "Unit 3 — Family & people",
-  "sentence": {
-   "zh": "我姐姐在公司工作。",
-   "py": "Wǒ jiějie zài gōngsī gōngzuò.",
-   "en": "My older sister works at a company."
-  }
- },
- {
-  "id": "w082",
-  "kind": "word",
-  "hanzi": "弟弟",
-  "pinyin": "dìdi",
-  "en": "younger brother",
-  "unit": "Unit 3 — Family & people",
-  "sentence": {
-   "zh": "我弟弟六岁。",
-   "py": "Wǒ dìdi liù suì.",
-   "en": "My younger brother is six."
-  }
- },
- {
-  "id": "w083",
-  "kind": "word",
-  "hanzi": "妹妹",
-  "pinyin": "mèimei",
-  "en": "younger sister",
-  "unit": "Unit 3 — Family & people",
-  "sentence": {
-   "zh": "我妹妹喜欢猫。",
-   "py": "Wǒ mèimei xǐhuan māo.",
-   "en": "My younger sister likes cats."
-  }
- },
- {
-  "id": "w084",
-  "kind": "word",
-  "hanzi": "儿子",
-  "pinyin": "érzi",
-  "en": "son",
-  "unit": "Unit 3 — Family & people",
-  "sentence": {
-   "zh": "他儿子是大学生。",
-   "py": "Tā érzi shì dàxuéshēng.",
-   "en": "His son is a university student."
-  }
- },
- {
-  "id": "w085",
-  "kind": "word",
-  "hanzi": "女儿",
-  "pinyin": "nǚ'ér",
-  "en": "daughter",
-  "unit": "Unit 3 — Family & people",
-  "sentence": {
-   "zh": "她女儿很漂亮。",
-   "py": "Tā nǚ'ér hěn piàoliang.",
-   "en": "Her daughter is very pretty."
   },
-  "tones": [
-   3,
-   2
+  "parts": [
+   "w003",
+   "w004",
+   "w095"
   ]
  },
  {
@@ -1294,7 +1997,12 @@
    "zh": "你有孩子吗？",
    "py": "Nǐ yǒu háizi ma?",
    "en": "Do you have children?"
-  }
+  },
+  "parts": [
+   "w001",
+   "w155",
+   "w006"
+  ]
  },
  {
   "id": "w087",
@@ -1307,38 +2015,46 @@
    "zh": "小朋友，你好！",
    "py": "Xiǎopéngyǒu, nǐ hǎo!",
    "en": "Hi there, kid!"
-  }
- },
- {
-  "id": "w088",
-  "kind": "word",
-  "hanzi": "男",
-  "pinyin": "nán",
-  "en": "male",
-  "unit": "Unit 3 — Family & people",
-  "sentence": {
-   "zh": "他是男老师。",
-   "py": "Tā shì nán lǎoshī.",
-   "en": "He is a male teacher."
   },
-  "tones": [
-   2
+  "parts": [
+   "w001",
+   "w002"
   ]
  },
  {
-  "id": "w089",
+  "id": "w079",
   "kind": "word",
-  "hanzi": "女",
-  "pinyin": "nǚ",
-  "en": "female",
+  "hanzi": "妈妈",
+  "pinyin": "māma",
+  "en": "mom",
   "unit": "Unit 3 — Family & people",
   "sentence": {
-   "zh": "我的老师是女的。",
-   "py": "Wǒ de lǎoshī shì nǚ de.",
-   "en": "My teacher is a woman."
+   "zh": "我妈妈是医生。",
+   "py": "Wǒ māma shì yīshēng.",
+   "en": "My mom is a doctor."
   },
-  "tones": [
-   3
+  "parts": [
+   "w003",
+   "w004",
+   "w095"
+  ]
+ },
+ {
+  "id": "w083",
+  "kind": "word",
+  "hanzi": "妹妹",
+  "pinyin": "mèimei",
+  "en": "younger sister",
+  "unit": "Unit 3 — Family & people",
+  "sentence": {
+   "zh": "我妹妹喜欢猫。",
+   "py": "Wǒ mèimei xǐhuan māo.",
+   "en": "My younger sister likes cats."
+  },
+  "parts": [
+   "w003",
+   "w173",
+   "w100"
   ]
  },
  {
@@ -1352,7 +2068,11 @@
    "zh": "她有男朋友。",
    "py": "Tā yǒu nánpéngyou.",
    "en": "She has a boyfriend."
-  }
+  },
+  "parts": [
+   "w012",
+   "w155"
+  ]
  },
  {
   "id": "w091",
@@ -1365,7 +2085,12 @@
    "zh": "这是我女朋友。",
    "py": "Zhè shì wǒ nǚpéngyou.",
    "en": "This is my girlfriend."
-  }
+  },
+  "parts": [
+   "w210",
+   "w004",
+   "w003"
+  ]
  },
  {
   "id": "w092",
@@ -1382,6 +2107,53 @@
   "tones": [
    3,
    1
+  ],
+  "parts": [
+   "w001",
+   "w002"
+  ]
+ },
+ {
+  "id": "w088",
+  "kind": "word",
+  "hanzi": "男",
+  "pinyin": "nán",
+  "en": "male",
+  "unit": "Unit 3 — Family & people",
+  "sentence": {
+   "zh": "他是男老师。",
+   "py": "Tā shì nán lǎoshī.",
+   "en": "He is a male teacher."
+  },
+  "tones": [
+   2
+  ],
+  "parts": [
+   "w011",
+   "w004",
+   "w092"
+  ]
+ },
+ {
+  "id": "w089",
+  "kind": "word",
+  "hanzi": "女",
+  "pinyin": "nǚ",
+  "en": "female",
+  "unit": "Unit 3 — Family & people",
+  "sentence": {
+   "zh": "我的老师是女的。",
+   "py": "Wǒ de lǎoshī shì nǚ de.",
+   "en": "My teacher is a woman."
+  },
+  "tones": [
+   3
+  ],
+  "parts": [
+   "w003",
+   "w034",
+   "w092",
+   "w004"
   ]
  },
  {
@@ -1395,7 +2167,11 @@
    "zh": "我是学生。",
    "py": "Wǒ shì xuésheng.",
    "en": "I'm a student."
-  }
+  },
+  "parts": [
+   "w003",
+   "w004"
+  ]
  },
  {
   "id": "w094",
@@ -1412,6 +2188,12 @@
   "tones": [
    2,
    2
+  ],
+  "parts": [
+   "w011",
+   "w004",
+   "w003",
+   "w034"
   ]
  },
  {
@@ -1429,6 +2211,12 @@
   "tones": [
    1,
    1
+  ],
+  "parts": [
+   "w003",
+   "w170",
+   "w158",
+   "w162"
   ]
  },
  {
@@ -1442,7 +2230,30 @@
    "zh": "我哥哥是大学生。",
    "py": "Wǒ gēge shì dàxuéshēng.",
    "en": "My older brother is a university student."
-  }
+  },
+  "parts": [
+   "w003",
+   "w080",
+   "w004"
+  ]
+ },
+ {
+  "id": "w084",
+  "kind": "word",
+  "hanzi": "儿子",
+  "pinyin": "érzi",
+  "en": "son",
+  "unit": "Unit 3 — Family & people",
+  "sentence": {
+   "zh": "他儿子是大学生。",
+   "py": "Tā érzi shì dàxuéshēng.",
+   "en": "His son is a university student."
+  },
+  "parts": [
+   "w011",
+   "w004",
+   "w096"
+  ]
  },
  {
   "id": "w097",
@@ -1455,7 +2266,11 @@
    "zh": "她是中学生。",
    "py": "Tā shì zhōngxuéshēng.",
    "en": "She's a high school student."
-  }
+  },
+  "parts": [
+   "w012",
+   "w004"
+  ]
  },
  {
   "id": "w098",
@@ -1468,22 +2283,11 @@
    "zh": "我弟弟是小学生。",
    "py": "Wǒ dìdi shì xiǎoxuéshēng.",
    "en": "My younger brother is in elementary school."
-  }
- },
- {
-  "id": "w099",
-  "kind": "word",
-  "hanzi": "狗",
-  "pinyin": "gǒu",
-  "en": "dog",
-  "unit": "Unit 3 — Family & people",
-  "sentence": {
-   "zh": "我家有一只狗。",
-   "py": "Wǒ jiā yǒu yì zhī gǒu.",
-   "en": "My family has a dog."
   },
-  "tones": [
-   3
+  "parts": [
+   "w003",
+   "w082",
+   "w004"
   ]
  },
  {
@@ -1500,6 +2304,10 @@
   },
   "tones": [
    1
+  ],
+  "parts": [
+   "w003",
+   "w173"
   ]
  },
  {
@@ -1513,40 +2321,54 @@
    "zh": "我只有一只猫。",
    "py": "Wǒ zhǐ yǒu yì zhī māo.",
    "en": "I only have one cat."
-  }
- },
- {
-  "id": "w102",
-  "kind": "word",
-  "hanzi": "今天",
-  "pinyin": "jīntiān",
-  "en": "today",
-  "unit": "Unit 4 — Time & dates",
-  "sentence": {
-   "zh": "今天星期几？",
-   "py": "Jīntiān xīngqī jǐ?",
-   "en": "What day is it today?"
   },
-  "tones": [
-   1,
-   1
+  "parts": [
+   "w003",
+   "w155",
+   "w041",
+   "w100"
   ]
  },
  {
-  "id": "w103",
+  "id": "w099",
   "kind": "word",
-  "hanzi": "明天",
-  "pinyin": "míngtiān",
-  "en": "tomorrow",
-  "unit": "Unit 4 — Time & dates",
+  "hanzi": "狗",
+  "pinyin": "gǒu",
+  "en": "dog",
+  "unit": "Unit 3 — Family & people",
   "sentence": {
-   "zh": "明天是星期天。",
-   "py": "Míngtiān shì xīngqītiān.",
-   "en": "Tomorrow is Sunday."
+   "zh": "我家有一只狗。",
+   "py": "Wǒ jiā yǒu yì zhī gǒu.",
+   "en": "My family has a dog."
   },
   "tones": [
-   2,
-   1
+   3
+  ],
+  "parts": [
+   "w003",
+   "w076",
+   "w155",
+   "w041",
+   "w101"
+  ]
+ },
+ {
+  "id": "w069",
+  "kind": "word",
+  "hanzi": "有的",
+  "pinyin": "yǒude",
+  "en": "some (of)",
+  "unit": "Unit 2 — Numbers & quantity",
+  "sentence": {
+   "zh": "有的人喜欢猫，有的人喜欢狗。",
+   "py": "Yǒude rén xǐhuan māo, yǒude rén xǐhuan gǒu.",
+   "en": "Some people like cats, some like dogs."
+  },
+  "parts": [
+   "w035",
+   "w173",
+   "w100",
+   "w099"
   ]
  },
  {
@@ -1564,6 +2386,11 @@
   "tones": [
    2,
    1
+  ],
+  "parts": [
+   "w003",
+   "w005",
+   "w274"
   ]
  },
  {
@@ -1581,6 +2408,12 @@
   "tones": [
    1,
    2
+  ],
+  "parts": [
+   "w003",
+   "w043",
+   "w050",
+   "w072"
   ]
  },
  {
@@ -1598,6 +2431,12 @@
   "tones": [
    2,
    2
+  ],
+  "parts": [
+   "w003",
+   "w170",
+   "w158",
+   "w036"
   ]
  },
  {
@@ -1608,61 +2447,18 @@
   "en": "last year",
   "unit": "Unit 4 — Time & dates",
   "sentence": {
-   "zh": "去年我在北京。",
-   "py": "Qùnián wǒ zài Běijīng.",
-   "en": "Last year I was in Beijing."
+   "zh": "去年我在中国。",
+   "py": "Qùnián wǒ zài Zhōngguó.",
+   "en": "Last year I was in China."
   },
   "tones": [
    4,
    2
-  ]
- },
- {
-  "id": "w108",
-  "kind": "word",
-  "hanzi": "年",
-  "pinyin": "nián",
-  "en": "year",
-  "unit": "Unit 4 — Time & dates",
-  "sentence": {
-   "zh": "一年有十二个月。",
-   "py": "Yì nián yǒu shí'èr ge yuè.",
-   "en": "A year has twelve months."
-  },
-  "tones": [
-   2
-  ]
- },
- {
-  "id": "w109",
-  "kind": "word",
-  "hanzi": "月",
-  "pinyin": "yuè",
-  "en": "month; moon",
-  "unit": "Unit 4 — Time & dates",
-  "sentence": {
-   "zh": "现在是十月。",
-   "py": "Xiànzài shì shí yuè.",
-   "en": "It's October now."
-  },
-  "tones": [
-   4
-  ]
- },
- {
-  "id": "w110",
-  "kind": "word",
-  "hanzi": "日",
-  "pinyin": "rì",
-  "en": "day; date (written)",
-  "unit": "Unit 4 — Time & dates",
-  "sentence": {
-   "zh": "今天是十月一日。",
-   "py": "Jīntiān shì shí yuè yī rì.",
-   "en": "Today is October 1st."
-  },
-  "tones": [
-   4
+  ],
+  "parts": [
+   "w003",
+   "w157",
+   "w036"
   ]
  },
  {
@@ -1673,12 +2469,16 @@
   "en": "date; number",
   "unit": "Unit 4 — Time & dates",
   "sentence": {
-   "zh": "你的生日是几号？",
-   "py": "Nǐ de shēngrì shì jǐ hào?",
-   "en": "What date is your birthday?"
+   "zh": "今天几号？",
+   "py": "Jīntiān jǐ hào?",
+   "en": "What's the date today?"
   },
   "tones": [
    4
+  ],
+  "parts": [
+   "w102",
+   "w058"
   ]
  },
  {
@@ -1695,6 +2495,12 @@
   },
   "tones": [
    1
+  ],
+  "parts": [
+   "w003",
+   "w158",
+   "w293",
+   "w043"
   ]
  },
  {
@@ -1712,33 +2518,36 @@
   "tones": [
    1,
    1
+  ],
+  "parts": [
+   "w210",
+   "w062",
+   "w003",
+   "w005",
+   "w274"
   ]
  },
  {
-  "id": "w114",
+  "id": "w085",
   "kind": "word",
-  "hanzi": "星期天",
-  "pinyin": "xīngqītiān",
-  "en": "Sunday",
-  "unit": "Unit 4 — Time & dates",
+  "hanzi": "女儿",
+  "pinyin": "nǚ'ér",
+  "en": "daughter",
+  "unit": "Unit 3 — Family & people",
   "sentence": {
-   "zh": "星期天我休息。",
-   "py": "Xīngqītiān wǒ xiūxi.",
-   "en": "I rest on Sunday."
-  }
- },
- {
-  "id": "w115",
-  "kind": "word",
-  "hanzi": "星期日",
-  "pinyin": "xīngqīrì",
-  "en": "Sunday (formal)",
-  "unit": "Unit 4 — Time & dates",
-  "sentence": {
-   "zh": "星期日商店开门吗？",
-   "py": "Xīngqīrì shāngdiàn kāi mén ma?",
-   "en": "Is the store open on Sunday?"
-  }
+   "zh": "她女儿很漂亮。",
+   "py": "Tā nǚ'ér hěn piàoliang.",
+   "en": "Her daughter is very pretty."
+  },
+  "tones": [
+   3,
+   2
+  ],
+  "parts": [
+   "w012",
+   "w005",
+   "w270"
+  ]
  },
  {
   "id": "w116",
@@ -1748,13 +2557,86 @@
   "en": "now",
   "unit": "Unit 4 — Time & dates",
   "sentence": {
-   "zh": "现在几点？",
-   "py": "Xiànzài jǐ diǎn?",
-   "en": "What time is it now?"
+   "zh": "我现在在家。",
+   "py": "Wǒ xiànzài zài jiā.",
+   "en": "I'm at home now."
   },
   "tones": [
    4,
    4
+  ],
+  "parts": [
+   "w003",
+   "w157",
+   "w076"
+  ]
+ },
+ {
+  "id": "w109",
+  "kind": "word",
+  "hanzi": "月",
+  "pinyin": "yuè",
+  "en": "month; moon",
+  "unit": "Unit 4 — Time & dates",
+  "sentence": {
+   "zh": "现在是十月。",
+   "py": "Xiànzài shì shí yuè.",
+   "en": "It's October now."
+  },
+  "tones": [
+   4
+  ],
+  "parts": [
+   "w116",
+   "w004",
+   "w050"
+  ]
+ },
+ {
+  "id": "w108",
+  "kind": "word",
+  "hanzi": "年",
+  "pinyin": "nián",
+  "en": "year",
+  "unit": "Unit 4 — Time & dates",
+  "sentence": {
+   "zh": "一年有十二个月。",
+   "py": "Yì nián yǒu shí'èr ge yuè.",
+   "en": "A year has twelve months."
+  },
+  "tones": [
+   2
+  ],
+  "parts": [
+   "w041",
+   "w155",
+   "w050",
+   "w042",
+   "w062",
+   "w109"
+  ]
+ },
+ {
+  "id": "w110",
+  "kind": "word",
+  "hanzi": "日",
+  "pinyin": "rì",
+  "en": "day; date (written)",
+  "unit": "Unit 4 — Time & dates",
+  "sentence": {
+   "zh": "今天是十月一日。",
+   "py": "Jīntiān shì shí yuè yī rì.",
+   "en": "Today is October 1st."
+  },
+  "tones": [
+   4
+  ],
+  "parts": [
+   "w102",
+   "w004",
+   "w050",
+   "w109",
+   "w041"
   ]
  },
  {
@@ -1765,12 +2647,16 @@
   "en": "o'clock; point",
   "unit": "Unit 4 — Time & dates",
   "sentence": {
-   "zh": "我七点起床。",
-   "py": "Wǒ qī diǎn qǐchuáng.",
-   "en": "I get up at seven."
+   "zh": "现在几点？",
+   "py": "Xiànzài jǐ diǎn?",
+   "en": "What time is it now?"
   },
   "tones": [
    3
+  ],
+  "parts": [
+   "w116",
+   "w058"
   ]
  },
  {
@@ -1787,40 +2673,33 @@
   },
   "tones": [
    1
+  ],
+  "parts": [
+   "w116",
+   "w048",
+   "w117",
+   "w050"
   ]
  },
  {
-  "id": "w119",
+  "id": "w055",
   "kind": "word",
-  "hanzi": "分钟",
-  "pinyin": "fēnzhōng",
-  "en": "minute (duration)",
+  "hanzi": "半",
+  "pinyin": "bàn",
+  "en": "half",
   "unit": "Unit 4 — Time & dates",
   "sentence": {
-   "zh": "请等五分钟。",
-   "py": "Qǐng děng wǔ fēnzhōng.",
-   "en": "Please wait five minutes."
+   "zh": "现在八点半。",
+   "py": "Xiànzài bā diǎn bàn.",
+   "en": "It's 8:30 now."
   },
   "tones": [
-   1,
-   1
-  ]
- },
- {
-  "id": "w120",
-  "kind": "word",
-  "hanzi": "小时",
-  "pinyin": "xiǎoshí",
-  "en": "hour",
-  "unit": "Unit 4 — Time & dates",
-  "sentence": {
-   "zh": "我每天学习一个小时。",
-   "py": "Wǒ měi tiān xuéxí yí ge xiǎoshí.",
-   "en": "I study one hour every day."
-  },
-  "tones": [
-   3,
-   2
+   4
+  ],
+  "parts": [
+   "w116",
+   "w048",
+   "w117"
   ]
  },
  {
@@ -1834,7 +2713,12 @@
    "zh": "你什么时候来？",
    "py": "Nǐ shénme shíhou lái?",
    "en": "When are you coming?"
-  }
+  },
+  "parts": [
+   "w001",
+   "w031",
+   "w159"
+  ]
  },
  {
   "id": "w122",
@@ -1851,6 +2735,11 @@
   "tones": [
    2,
    1
+  ],
+  "parts": [
+   "w001",
+   "w155",
+   "w006"
   ]
  },
  {
@@ -1864,7 +2753,135 @@
    "zh": "早上好！",
    "py": "Zǎoshang hǎo!",
    "en": "Good morning!"
-  }
+  },
+  "parts": [
+   "w002"
+  ]
+ },
+ {
+  "id": "w114",
+  "kind": "word",
+  "hanzi": "星期天",
+  "pinyin": "xīngqītiān",
+  "en": "Sunday",
+  "unit": "Unit 4 — Time & dates",
+  "sentence": {
+   "zh": "星期天我休息。",
+   "py": "Xīngqītiān wǒ xiūxi.",
+   "en": "I rest on Sunday."
+  },
+  "parts": [
+   "w003",
+   "w202"
+  ]
+ },
+ {
+  "id": "w115",
+  "kind": "word",
+  "hanzi": "星期日",
+  "pinyin": "xīngqīrì",
+  "en": "Sunday (formal)",
+  "unit": "Unit 4 — Time & dates",
+  "sentence": {
+   "zh": "星期日我不上班。",
+   "py": "Xīngqīrì wǒ bú shàngbān.",
+   "en": "I don't work on Sunday."
+  },
+  "parts": [
+   "w003",
+   "w008",
+   "w205"
+  ]
+ },
+ {
+  "id": "w119",
+  "kind": "word",
+  "hanzi": "分钟",
+  "pinyin": "fēnzhōng",
+  "en": "minute (duration)",
+  "unit": "Unit 4 — Time & dates",
+  "sentence": {
+   "zh": "还有五分钟。",
+   "py": "Hái yǒu wǔ fēnzhōng.",
+   "en": "There are five minutes left."
+  },
+  "tones": [
+   1,
+   1
+  ],
+  "parts": [
+   "w289",
+   "w155",
+   "w045"
+  ]
+ },
+ {
+  "id": "w128",
+  "kind": "word",
+  "hanzi": "白天",
+  "pinyin": "báitiān",
+  "en": "daytime",
+  "unit": "Unit 4 — Time & dates",
+  "sentence": {
+   "zh": "白天我很忙。",
+   "py": "Báitiān wǒ hěn máng.",
+   "en": "I'm busy during the day."
+  },
+  "tones": [
+   2,
+   1
+  ],
+  "parts": [
+   "w003",
+   "w005",
+   "w274"
+  ]
+ },
+ {
+  "id": "w129",
+  "kind": "word",
+  "hanzi": "早",
+  "pinyin": "zǎo",
+  "en": "early; good morning",
+  "unit": "Unit 4 — Time & dates",
+  "sentence": {
+   "zh": "我今天来早了。",
+   "py": "Wǒ jīntiān lái zǎo le.",
+   "en": "I came early today."
+  },
+  "tones": [
+   3
+  ],
+  "parts": [
+   "w003",
+   "w102",
+   "w159",
+   "w293"
+  ]
+ },
+ {
+  "id": "w120",
+  "kind": "word",
+  "hanzi": "小时",
+  "pinyin": "xiǎoshí",
+  "en": "hour",
+  "unit": "Unit 4 — Time & dates",
+  "sentence": {
+   "zh": "我学习了一个小时。",
+   "py": "Wǒ xuéxí le yí ge xiǎoshí.",
+   "en": "I studied for an hour."
+  },
+  "tones": [
+   3,
+   2
+  ],
+  "parts": [
+   "w003",
+   "w198",
+   "w293",
+   "w041",
+   "w062"
+  ]
  },
  {
   "id": "w124",
@@ -1881,6 +2898,10 @@
   "tones": [
    4,
    3
+  ],
+  "parts": [
+   "w003",
+   "w203"
   ]
  },
  {
@@ -1898,149 +2919,11 @@
   "tones": [
    1,
    3
-  ]
- },
- {
-  "id": "w126",
-  "kind": "word",
-  "hanzi": "下午",
-  "pinyin": "xiàwǔ",
-  "en": "afternoon",
-  "unit": "Unit 4 — Time & dates",
-  "sentence": {
-   "zh": "下午我去商店。",
-   "py": "Xiàwǔ wǒ qù shāngdiàn.",
-   "en": "I'm going to the store this afternoon."
-  },
-  "tones": [
-   4,
-   3
-  ]
- },
- {
-  "id": "w127",
-  "kind": "word",
-  "hanzi": "晚上",
-  "pinyin": "wǎnshang",
-  "en": "evening",
-  "unit": "Unit 4 — Time & dates",
-  "sentence": {
-   "zh": "晚上我看电视。",
-   "py": "Wǎnshang wǒ kàn diànshì.",
-   "en": "I watch TV in the evening."
-  }
- },
- {
-  "id": "w128",
-  "kind": "word",
-  "hanzi": "白天",
-  "pinyin": "báitiān",
-  "en": "daytime",
-  "unit": "Unit 4 — Time & dates",
-  "sentence": {
-   "zh": "白天我很忙。",
-   "py": "Báitiān wǒ hěn máng.",
-   "en": "I'm busy during the day."
-  },
-  "tones": [
-   2,
-   1
-  ]
- },
- {
-  "id": "w129",
-  "kind": "word",
-  "hanzi": "早",
-  "pinyin": "zǎo",
-  "en": "early; good morning",
-  "unit": "Unit 4 — Time & dates",
-  "sentence": {
-   "zh": "你来得很早。",
-   "py": "Nǐ lái de hěn zǎo.",
-   "en": "You came very early."
-  },
-  "tones": [
-   3
-  ]
- },
- {
-  "id": "w130",
-  "kind": "word",
-  "hanzi": "晚",
-  "pinyin": "wǎn",
-  "en": "late",
-  "unit": "Unit 4 — Time & dates",
-  "sentence": {
-   "zh": "太晚了，我要睡觉了。",
-   "py": "Tài wǎn le, wǒ yào shuìjiào le.",
-   "en": "It's late — I'm going to bed."
-  },
-  "tones": [
-   3
-  ]
- },
- {
-  "id": "w131",
-  "kind": "word",
-  "hanzi": "前",
-  "pinyin": "qián",
-  "en": "front; before",
-  "unit": "Unit 4 — Time & dates",
-  "sentence": {
-   "zh": "学校前边有一个商店。",
-   "py": "Xuéxiào qiánbian yǒu yí ge shāngdiàn.",
-   "en": "There's a store in front of the school."
-  },
-  "tones": [
-   2
-  ]
- },
- {
-  "id": "w132",
-  "kind": "word",
-  "hanzi": "后",
-  "pinyin": "hòu",
-  "en": "back; after",
-  "unit": "Unit 4 — Time & dates",
-  "sentence": {
-   "zh": "下课后我回家。",
-   "py": "Xià kè hòu wǒ huí jiā.",
-   "en": "I go home after class."
-  },
-  "tones": [
-   4
-  ]
- },
- {
-  "id": "w133",
-  "kind": "word",
-  "hanzi": "吃",
-  "pinyin": "chī",
-  "en": "to eat",
-  "unit": "Unit 5 — Food & drink",
-  "sentence": {
-   "zh": "你想吃什么？",
-   "py": "Nǐ xiǎng chī shénme?",
-   "en": "What do you want to eat?"
-  },
-  "tones": [
-   1
-  ]
- },
- {
-  "id": "w134",
-  "kind": "word",
-  "hanzi": "喝",
-  "pinyin": "hē",
-  "en": "to drink",
-  "unit": "Unit 5 — Food & drink",
-  "sentence": {
-   "zh": "我想喝茶。",
-   "py": "Wǒ xiǎng hē chá.",
-   "en": "I want to drink tea."
-  },
-  "tones": [
-   1
+  ],
+  "parts": [
+   "w015",
+   "w133",
+   "w151"
   ]
  },
  {
@@ -2057,6 +2940,12 @@
   },
   "tones": [
    4
+  ],
+  "parts": [
+   "w001",
+   "w133",
+   "w293",
+   "w006"
   ]
  },
  {
@@ -2067,13 +2956,17 @@
   "en": "cooked rice",
   "unit": "Unit 5 — Food & drink",
   "sentence": {
-   "zh": "我要一碗米饭。",
-   "py": "Wǒ yào yì wǎn mǐfàn.",
-   "en": "I'd like a bowl of rice."
+   "zh": "我要米饭。",
+   "py": "Wǒ yào mǐfàn.",
+   "en": "I'd like rice."
   },
   "tones": [
    3,
    4
+  ],
+  "parts": [
+   "w003",
+   "w171"
   ]
  },
  {
@@ -2091,6 +2984,12 @@
   "tones": [
    3,
    4
+  ],
+  "parts": [
+   "w001",
+   "w133",
+   "w293",
+   "w006"
   ]
  },
  {
@@ -2101,13 +3000,18 @@
   "en": "lunch",
   "unit": "Unit 5 — Food & drink",
   "sentence": {
-   "zh": "我们一起吃午饭吧。",
-   "py": "Wǒmen yìqǐ chī wǔfàn ba.",
-   "en": "Let's have lunch together."
+   "zh": "我们吃午饭吧。",
+   "py": "Wǒmen chī wǔfàn ba.",
+   "en": "Let's have lunch."
   },
   "tones": [
    3,
    4
+  ],
+  "parts": [
+   "w015",
+   "w133",
+   "w294"
   ]
  },
  {
@@ -2125,6 +3029,10 @@
   "tones": [
    3,
    4
+  ],
+  "parts": [
+   "w133",
+   "w031"
   ]
  },
  {
@@ -2142,22 +3050,32 @@
   "tones": [
    4,
    4
+  ],
+  "parts": [
+   "w079",
+   "w157"
   ]
  },
  {
-  "id": "w141",
+  "id": "w126",
   "kind": "word",
-  "hanzi": "菜",
-  "pinyin": "cài",
-  "en": "dish; vegetable",
-  "unit": "Unit 5 — Food & drink",
+  "hanzi": "下午",
+  "pinyin": "xiàwǔ",
+  "en": "afternoon",
+  "unit": "Unit 4 — Time & dates",
   "sentence": {
-   "zh": "这个菜很好吃。",
-   "py": "Zhège cài hěn hǎochī.",
-   "en": "This dish is delicious."
+   "zh": "下午我去商店。",
+   "py": "Xiàwǔ wǒ qù shāngdiàn.",
+   "en": "I'm going to the store this afternoon."
   },
   "tones": [
-   4
+   4,
+   3
+  ],
+  "parts": [
+   "w003",
+   "w158",
+   "w239"
   ]
  },
  {
@@ -2174,6 +3092,12 @@
   },
   "tones": [
    2
+  ],
+  "parts": [
+   "w036",
+   "w035",
+   "w173",
+   "w134"
   ]
  },
  {
@@ -2190,6 +3114,11 @@
   },
   "tones": [
    3
+  ],
+  "parts": [
+   "w003",
+   "w170",
+   "w134"
   ]
  },
  {
@@ -2207,6 +3136,11 @@
   "tones": [
    2,
    3
+  ],
+  "parts": [
+   "w003",
+   "w123",
+   "w134"
   ]
  },
  {
@@ -2220,7 +3154,13 @@
    "zh": "这是我的杯子。",
    "py": "Zhè shì wǒ de bēizi.",
    "en": "This is my cup."
-  }
+  },
+  "parts": [
+   "w210",
+   "w004",
+   "w003",
+   "w034"
+  ]
  },
  {
   "id": "w146",
@@ -2237,6 +3177,11 @@
   "tones": [
    2,
    3
+  ],
+  "parts": [
+   "w003",
+   "w173",
+   "w133"
   ]
  },
  {
@@ -2250,7 +3195,13 @@
    "zh": "你喜欢吃什么水果？",
    "py": "Nǐ xǐhuan chī shénme shuǐguǒ?",
    "en": "What fruit do you like?"
-  }
+  },
+  "parts": [
+   "w001",
+   "w173",
+   "w133",
+   "w031"
+  ]
  },
  {
   "id": "w148",
@@ -2267,6 +3218,11 @@
   "tones": [
    1,
    4
+  ],
+  "parts": [
+   "w003",
+   "w137",
+   "w133"
   ]
  },
  {
@@ -2284,6 +3240,11 @@
   "tones": [
    4,
    1
+  ],
+  "parts": [
+   "w003",
+   "w170",
+   "w180"
   ]
  },
  {
@@ -2297,7 +3258,12 @@
    "zh": "中午我吃面条儿。",
    "py": "Zhōngwǔ wǒ chī miàntiáor.",
    "en": "I eat noodles at noon."
-  }
+  },
+  "parts": [
+   "w125",
+   "w003",
+   "w133"
+  ]
  },
  {
   "id": "w151",
@@ -2310,20 +3276,31 @@
    "zh": "我很喜欢吃饺子。",
    "py": "Wǒ hěn xǐhuan chī jiǎozi.",
    "en": "I really like dumplings."
-  }
+  },
+  "parts": [
+   "w003",
+   "w005",
+   "w173",
+   "w133"
+  ]
  },
  {
-  "id": "w152",
+  "id": "w127",
   "kind": "word",
-  "hanzi": "包子",
-  "pinyin": "bāozi",
-  "en": "steamed bun",
-  "unit": "Unit 5 — Food & drink",
+  "hanzi": "晚上",
+  "pinyin": "wǎnshang",
+  "en": "evening",
+  "unit": "Unit 4 — Time & dates",
   "sentence": {
-   "zh": "这个包子很好吃。",
-   "py": "Zhège bāozi hěn hǎochī.",
-   "en": "This bun is delicious."
-  }
+   "zh": "晚上我看电视。",
+   "py": "Wǎnshang wǒ kàn diànshì.",
+   "en": "I watch TV in the evening."
+  },
+  "parts": [
+   "w003",
+   "w162",
+   "w255"
+  ]
  },
  {
   "id": "w153",
@@ -2340,6 +3317,51 @@
   "tones": [
    3,
    1
+  ],
+  "parts": [
+   "w151",
+   "w005"
+  ]
+ },
+ {
+  "id": "w141",
+  "kind": "word",
+  "hanzi": "菜",
+  "pinyin": "cài",
+  "en": "dish; vegetable",
+  "unit": "Unit 5 — Food & drink",
+  "sentence": {
+   "zh": "这个菜很好吃。",
+   "py": "Zhège cài hěn hǎochī.",
+   "en": "This dish is delicious."
+  },
+  "tones": [
+   4
+  ],
+  "parts": [
+   "w210",
+   "w062",
+   "w005",
+   "w153"
+  ]
+ },
+ {
+  "id": "w152",
+  "kind": "word",
+  "hanzi": "包子",
+  "pinyin": "bāozi",
+  "en": "steamed bun",
+  "unit": "Unit 5 — Food & drink",
+  "sentence": {
+   "zh": "这个包子很好吃。",
+   "py": "Zhège bāozi hěn hǎochī.",
+   "en": "This bun is delicious."
+  },
+  "parts": [
+   "w210",
+   "w062",
+   "w005",
+   "w153"
   ]
  },
  {
@@ -2357,87 +3379,13 @@
   "tones": [
    4,
    4
-  ]
- },
- {
-  "id": "w155",
-  "kind": "word",
-  "hanzi": "有",
-  "pinyin": "yǒu",
-  "en": "to have; there is",
-  "unit": "Unit 6 — Core verbs",
-  "sentence": {
-   "zh": "我有一个妹妹。",
-   "py": "Wǒ yǒu yí ge mèimei.",
-   "en": "I have a younger sister."
-  },
-  "tones": [
-   3
-  ]
- },
- {
-  "id": "w156",
-  "kind": "word",
-  "hanzi": "没有",
-  "pinyin": "méiyǒu",
-  "en": "not have; there isn't",
-  "unit": "Unit 6 — Core verbs",
-  "sentence": {
-   "zh": "我没有时间。",
-   "py": "Wǒ méiyǒu shíjiān.",
-   "en": "I don't have time."
-  },
-  "tones": [
-   2,
-   3
-  ]
- },
- {
-  "id": "w157",
-  "kind": "word",
-  "hanzi": "在",
-  "pinyin": "zài",
-  "en": "at; in; to be at",
-  "unit": "Unit 6 — Core verbs",
-  "sentence": {
-   "zh": "我在家。",
-   "py": "Wǒ zài jiā.",
-   "en": "I'm at home."
-  },
-  "tones": [
-   4
-  ]
- },
- {
-  "id": "w158",
-  "kind": "word",
-  "hanzi": "去",
-  "pinyin": "qù",
-  "en": "to go",
-  "unit": "Unit 6 — Core verbs",
-  "sentence": {
-   "zh": "我们去吃饭吧！",
-   "py": "Wǒmen qù chī fàn ba!",
-   "en": "Let's go eat!"
-  },
-  "tones": [
-   4
-  ]
- },
- {
-  "id": "w159",
-  "kind": "word",
-  "hanzi": "来",
-  "pinyin": "lái",
-  "en": "to come",
-  "unit": "Unit 6 — Core verbs",
-  "sentence": {
-   "zh": "你来我家吧！",
-   "py": "Nǐ lái wǒ jiā ba!",
-   "en": "Come over to my place!"
-  },
-  "tones": [
-   2
+  ],
+  "parts": [
+   "w015",
+   "w158",
+   "w133",
+   "w135",
+   "w294"
   ]
  },
  {
@@ -2454,6 +3402,11 @@
   },
   "tones": [
    2
+  ],
+  "parts": [
+   "w003",
+   "w170",
+   "w076"
   ]
  },
  {
@@ -2470,55 +3423,10 @@
   },
   "tones": [
    4
-  ]
- },
- {
-  "id": "w162",
-  "kind": "word",
-  "hanzi": "看",
-  "pinyin": "kàn",
-  "en": "to look; to watch; to read",
-  "unit": "Unit 6 — Core verbs",
-  "sentence": {
-   "zh": "我在看书。",
-   "py": "Wǒ zài kàn shū.",
-   "en": "I'm reading a book."
-  },
-  "tones": [
-   4
-  ]
- },
- {
-  "id": "w163",
-  "kind": "word",
-  "hanzi": "看见",
-  "pinyin": "kànjiàn",
-  "en": "to see",
-  "unit": "Unit 6 — Core verbs",
-  "sentence": {
-   "zh": "你看见我的手机了吗？",
-   "py": "Nǐ kànjiàn wǒ de shǒujī le ma?",
-   "en": "Did you see my phone?"
-  },
-  "tones": [
-   4,
-   4
-  ]
- },
- {
-  "id": "w164",
-  "kind": "word",
-  "hanzi": "听",
-  "pinyin": "tīng",
-  "en": "to listen",
-  "unit": "Unit 6 — Core verbs",
-  "sentence": {
-   "zh": "我喜欢听歌。",
-   "py": "Wǒ xǐhuan tīng gē.",
-   "en": "I like listening to songs."
-  },
-  "tones": [
-   1
+  ],
+  "parts": [
+   "w003",
+   "w293"
   ]
  },
  {
@@ -2536,22 +3444,10 @@
   "tones": [
    1,
    4
-  ]
- },
- {
-  "id": "w166",
-  "kind": "word",
-  "hanzi": "说",
-  "pinyin": "shuō",
-  "en": "to speak; to say",
-  "unit": "Unit 6 — Core verbs",
-  "sentence": {
-   "zh": "请再说一次。",
-   "py": "Qǐng zài shuō yí cì.",
-   "en": "Please say it again."
-  },
-  "tones": [
-   1
+  ],
+  "parts": [
+   "w003",
+   "w293"
   ]
  },
  {
@@ -2569,22 +3465,11 @@
   "tones": [
    1,
    4
-  ]
- },
- {
-  "id": "w168",
-  "kind": "word",
-  "hanzi": "见",
-  "pinyin": "jiàn",
-  "en": "to see; to meet",
-  "unit": "Unit 6 — Core verbs",
-  "sentence": {
-   "zh": "明天见！",
-   "py": "Míngtiān jiàn!",
-   "en": "See you tomorrow!"
-  },
-  "tones": [
-   4
+  ],
+  "parts": [
+   "w011",
+   "w008",
+   "w173"
   ]
  },
  {
@@ -2601,36 +3486,12 @@
   },
   "tones": [
    4
+  ],
+  "parts": [
+   "w001",
+   "w157",
+   "w031"
   ]
- },
- {
-  "id": "w170",
-  "kind": "word",
-  "hanzi": "想",
-  "pinyin": "xiǎng",
-  "en": "to want; to think; to miss",
-  "unit": "Unit 6 — Core verbs",
-  "sentence": {
-   "zh": "我想你。",
-   "py": "Wǒ xiǎng nǐ.",
-   "en": "I miss you."
-  },
-  "tones": [
-   3
-  ]
- },
- {
-  "id": "w171",
-  "kind": "word",
-  "hanzi": "要",
-  "pinyin": "yào",
-  "en": "to want; will; need",
-  "unit": "Unit 6 — Core verbs",
-  "sentence": {
-   "zh": "我要一杯茶。",
-   "py": "Wǒ yào yì bēi chá.",
-   "en": "I'd like a cup of tea."
-  }
  },
  {
   "id": "w172",
@@ -2647,20 +3508,10 @@
   "tones": [
    2,
    4
+  ],
+  "parts": [
+   "w167"
   ]
- },
- {
-  "id": "w173",
-  "kind": "word",
-  "hanzi": "喜欢",
-  "pinyin": "xǐhuan",
-  "en": "to like",
-  "unit": "Unit 6 — Core verbs",
-  "sentence": {
-   "zh": "我喜欢喝茶。",
-   "py": "Wǒ xǐhuan hē chá.",
-   "en": "I like drinking tea."
-  }
  },
  {
   "id": "w174",
@@ -2676,22 +3527,34 @@
   },
   "tones": [
    4
+  ],
+  "parts": [
+   "w003",
+   "w034",
+   "w076"
   ]
  },
  {
-  "id": "w175",
+  "id": "w130",
   "kind": "word",
-  "hanzi": "会",
-  "pinyin": "huì",
-  "en": "can (learned skill); will",
-  "unit": "Unit 6 — Core verbs",
+  "hanzi": "晚",
+  "pinyin": "wǎn",
+  "en": "late",
+  "unit": "Unit 4 — Time & dates",
   "sentence": {
-   "zh": "我会说汉语。",
-   "py": "Wǒ huì shuō Hànyǔ.",
-   "en": "I can speak Chinese."
+   "zh": "太晚了，我要睡觉了。",
+   "py": "Tài wǎn le, wǒ yào shuìjiào le.",
+   "en": "It's late — I'm going to bed."
   },
   "tones": [
-   4
+   3
+  ],
+  "parts": [
+   "w285",
+   "w293",
+   "w003",
+   "w171",
+   "w200"
   ]
  },
  {
@@ -2708,36 +3571,33 @@
   },
   "tones": [
    2
+  ],
+  "parts": [
+   "w001",
+   "w159",
+   "w006"
   ]
  },
  {
-  "id": "w177",
+  "id": "w132",
   "kind": "word",
-  "hanzi": "可以",
-  "pinyin": "kěyǐ",
-  "en": "may; can",
-  "unit": "Unit 6 — Core verbs",
+  "hanzi": "后",
+  "pinyin": "hòu",
+  "en": "back; after",
+  "unit": "Unit 4 — Time & dates",
   "sentence": {
-   "zh": "我可以坐这儿吗？",
-   "py": "Wǒ kěyǐ zuò zhèr ma?",
-   "en": "May I sit here?"
-  }
- },
- {
-  "id": "w178",
-  "kind": "word",
-  "hanzi": "知道",
-  "pinyin": "zhīdào",
-  "en": "to know (a fact)",
-  "unit": "Unit 6 — Core verbs",
-  "sentence": {
-   "zh": "我不知道。",
-   "py": "Wǒ bù zhīdào.",
-   "en": "I don't know."
+   "zh": "下课后我回家。",
+   "py": "Xià kè hòu wǒ huí jiā.",
+   "en": "I go home after class."
   },
   "tones": [
-   1,
    4
+  ],
+  "parts": [
+   "w209",
+   "w003",
+   "w160",
+   "w076"
   ]
  },
  {
@@ -2751,38 +3611,36 @@
    "zh": "我觉得很好。",
    "py": "Wǒ juéde hěn hǎo.",
    "en": "I think it's good."
-  }
- },
- {
-  "id": "w180",
-  "kind": "word",
-  "hanzi": "买",
-  "pinyin": "mǎi",
-  "en": "to buy",
-  "unit": "Unit 6 — Core verbs",
-  "sentence": {
-   "zh": "我想买一件衣服。",
-   "py": "Wǒ xiǎng mǎi yí jiàn yīfu.",
-   "en": "I want to buy a piece of clothing."
   },
-  "tones": [
-   3
+  "parts": [
+   "w003",
+   "w005",
+   "w002"
   ]
  },
  {
-  "id": "w181",
+  "id": "w163",
   "kind": "word",
-  "hanzi": "卖",
-  "pinyin": "mài",
-  "en": "to sell",
+  "hanzi": "看见",
+  "pinyin": "kànjiàn",
+  "en": "to see",
   "unit": "Unit 6 — Core verbs",
   "sentence": {
-   "zh": "这个商店卖水果。",
-   "py": "Zhège shāngdiàn mài shuǐguǒ.",
-   "en": "This store sells fruit."
+   "zh": "你看见我的手机了吗？",
+   "py": "Nǐ kànjiàn wǒ de shǒujī le ma?",
+   "en": "Did you see my phone?"
   },
   "tones": [
+   4,
    4
+  ],
+  "parts": [
+   "w001",
+   "w003",
+   "w034",
+   "w252",
+   "w293",
+   "w006"
   ]
  },
  {
@@ -2793,44 +3651,61 @@
   "en": "to give; for",
   "unit": "Unit 6 — Core verbs",
   "sentence": {
-   "zh": "请给我一杯水。",
-   "py": "Qǐng gěi wǒ yì bēi shuǐ.",
-   "en": "Please give me a glass of water."
+   "zh": "请给我一个苹果。",
+   "py": "Qǐng gěi wǒ yí ge píngguǒ.",
+   "en": "Please give me an apple."
   },
   "tones": [
    3
+  ],
+  "parts": [
+   "w026",
+   "w003",
+   "w041",
+   "w062",
+   "w146"
   ]
  },
  {
-  "id": "w183",
+  "id": "w164",
   "kind": "word",
-  "hanzi": "找",
-  "pinyin": "zhǎo",
-  "en": "to look for",
+  "hanzi": "听",
+  "pinyin": "tīng",
+  "en": "to listen",
   "unit": "Unit 6 — Core verbs",
   "sentence": {
-   "zh": "我在找我的手机。",
-   "py": "Wǒ zài zhǎo wǒ de shǒujī.",
-   "en": "I'm looking for my phone."
+   "zh": "我喜欢听歌。",
+   "py": "Wǒ xǐhuan tīng gē.",
+   "en": "I like listening to songs."
   },
   "tones": [
-   3
+   1
+  ],
+  "parts": [
+   "w003",
+   "w173",
+   "w193"
   ]
  },
  {
-  "id": "w184",
+  "id": "w175",
   "kind": "word",
-  "hanzi": "问",
-  "pinyin": "wèn",
-  "en": "to ask",
+  "hanzi": "会",
+  "pinyin": "huì",
+  "en": "can (learned skill); will",
   "unit": "Unit 6 — Core verbs",
   "sentence": {
-   "zh": "我可以问你一个问题吗？",
-   "py": "Wǒ kěyǐ wèn nǐ yí ge wèntí ma?",
-   "en": "Can I ask you a question?"
+   "zh": "我会说汉语。",
+   "py": "Wǒ huì shuō Hànyǔ.",
+   "en": "I can speak Chinese."
   },
   "tones": [
    4
+  ],
+  "parts": [
+   "w003",
+   "w166",
+   "w249"
   ]
  },
  {
@@ -2841,13 +3716,19 @@
   "en": "question; problem",
   "unit": "Unit 6 — Core verbs",
   "sentence": {
-   "zh": "没问题！",
-   "py": "Méi wèntí!",
-   "en": "No problem!"
+   "zh": "我有一个问题。",
+   "py": "Wǒ yǒu yí ge wèntí.",
+   "en": "I have a question."
   },
   "tones": [
    4,
    2
+  ],
+  "parts": [
+   "w003",
+   "w155",
+   "w041",
+   "w062"
   ]
  },
  {
@@ -2864,38 +3745,52 @@
   },
   "tones": [
    4
+  ],
+  "parts": [
+   "w001",
+   "w157",
+   "w218"
   ]
  },
  {
-  "id": "w187",
+  "id": "w070",
   "kind": "word",
-  "hanzi": "坐",
-  "pinyin": "zuò",
-  "en": "to sit; to take (transport)",
+  "hanzi": "一点儿",
+  "pinyin": "yìdiǎnr",
+  "en": "a little",
+  "unit": "Unit 2 — Numbers & quantity",
+  "sentence": {
+   "zh": "我会说一点儿汉语。",
+   "py": "Wǒ huì shuō yìdiǎnr Hànyǔ.",
+   "en": "I can speak a little Chinese."
+  },
+  "parts": [
+   "w003",
+   "w175",
+   "w166",
+   "w249"
+  ]
+ },
+ {
+  "id": "w181",
+  "kind": "word",
+  "hanzi": "卖",
+  "pinyin": "mài",
+  "en": "to sell",
   "unit": "Unit 6 — Core verbs",
   "sentence": {
-   "zh": "我坐出租车去。",
-   "py": "Wǒ zuò chūzūchē qù.",
-   "en": "I'll take a taxi."
+   "zh": "这个商店卖水果。",
+   "py": "Zhège shāngdiàn mài shuǐguǒ.",
+   "en": "This store sells fruit."
   },
   "tones": [
    4
-  ]
- },
- {
-  "id": "w188",
-  "kind": "word",
-  "hanzi": "开",
-  "pinyin": "kāi",
-  "en": "to open; to drive",
-  "unit": "Unit 6 — Core verbs",
-  "sentence": {
-   "zh": "请开门。",
-   "py": "Qǐng kāi mén.",
-   "en": "Please open the door."
-  },
-  "tones": [
-   1
+  ],
+  "parts": [
+   "w210",
+   "w062",
+   "w239",
+   "w147"
   ]
  },
  {
@@ -2913,6 +3808,10 @@
   "tones": [
    1,
    1
+  ],
+  "parts": [
+   "w003",
+   "w175"
   ]
  },
  {
@@ -2929,6 +3828,10 @@
   },
   "tones": [
    1
+  ],
+  "parts": [
+   "w102",
+   "w031"
   ]
  },
  {
@@ -2939,76 +3842,105 @@
   "en": "to play; to have fun",
   "unit": "Unit 6 — Core verbs",
   "sentence": {
-   "zh": "周末我们去玩。",
-   "py": "Zhōumò wǒmen qù wán.",
-   "en": "We'll go have fun on the weekend."
+   "zh": "明天我们去玩吧。",
+   "py": "Míngtiān wǒmen qù wán ba.",
+   "en": "Let's go out and have fun tomorrow."
   },
   "tones": [
    2
+  ],
+  "parts": [
+   "w103",
+   "w015",
+   "w158",
+   "w294"
   ]
  },
  {
-  "id": "w192",
+  "id": "w183",
   "kind": "word",
-  "hanzi": "唱",
-  "pinyin": "chàng",
-  "en": "to sing",
+  "hanzi": "找",
+  "pinyin": "zhǎo",
+  "en": "to look for",
   "unit": "Unit 6 — Core verbs",
   "sentence": {
-   "zh": "她很会唱歌。",
-   "py": "Tā hěn huì chàng gē.",
-   "en": "She sings really well."
-  },
-  "tones": [
-   4
-  ]
- },
- {
-  "id": "w193",
-  "kind": "word",
-  "hanzi": "歌",
-  "pinyin": "gē",
-  "en": "song",
-  "unit": "Unit 6 — Core verbs",
-  "sentence": {
-   "zh": "她喜欢唱歌。",
-   "py": "Tā xǐhuan chàng gē.",
-   "en": "She likes singing."
-  },
-  "tones": [
-   1
-  ]
- },
- {
-  "id": "w194",
-  "kind": "word",
-  "hanzi": "写",
-  "pinyin": "xiě",
-  "en": "to write",
-  "unit": "Unit 6 — Core verbs",
-  "sentence": {
-   "zh": "我会写汉字。",
-   "py": "Wǒ huì xiě Hànzì.",
-   "en": "I can write Chinese characters."
+   "zh": "我在找我的手机。",
+   "py": "Wǒ zài zhǎo wǒ de shǒujī.",
+   "en": "I'm looking for my phone."
   },
   "tones": [
    3
+  ],
+  "parts": [
+   "w003",
+   "w157",
+   "w034",
+   "w252"
   ]
  },
  {
-  "id": "w195",
+  "id": "w184",
   "kind": "word",
-  "hanzi": "读",
-  "pinyin": "dú",
-  "en": "to read (aloud)",
+  "hanzi": "问",
+  "pinyin": "wèn",
+  "en": "to ask",
   "unit": "Unit 6 — Core verbs",
   "sentence": {
-   "zh": "请读一下。",
-   "py": "Qǐng dú yíxià.",
-   "en": "Please read it aloud."
+   "zh": "我可以问你一个问题吗？",
+   "py": "Wǒ kěyǐ wèn nǐ yí ge wèntí ma?",
+   "en": "Can I ask you a question?"
   },
   "tones": [
-   2
+   4
+  ],
+  "parts": [
+   "w003",
+   "w177",
+   "w001",
+   "w041",
+   "w062",
+   "w185",
+   "w006"
+  ]
+ },
+ {
+  "id": "w187",
+  "kind": "word",
+  "hanzi": "坐",
+  "pinyin": "zuò",
+  "en": "to sit; to take (transport)",
+  "unit": "Unit 6 — Core verbs",
+  "sentence": {
+   "zh": "我坐出租车去。",
+   "py": "Wǒ zuò chūzūchē qù.",
+   "en": "I'll take a taxi."
+  },
+  "tones": [
+   4
+  ],
+  "parts": [
+   "w003",
+   "w261",
+   "w158"
+  ]
+ },
+ {
+  "id": "w177",
+  "kind": "word",
+  "hanzi": "可以",
+  "pinyin": "kěyǐ",
+  "en": "may; can",
+  "unit": "Unit 6 — Core verbs",
+  "sentence": {
+   "zh": "我可以坐这儿吗？",
+   "py": "Wǒ kěyǐ zuò zhèr ma?",
+   "en": "May I sit here?"
+  },
+  "parts": [
+   "w003",
+   "w187",
+   "w216",
+   "w006"
   ]
  },
  {
@@ -3026,55 +3958,74 @@
   "tones": [
    2,
    1
+  ],
+  "parts": [
+   "w011",
+   "w157"
   ]
  },
  {
-  "id": "w197",
+  "id": "w188",
   "kind": "word",
-  "hanzi": "学",
-  "pinyin": "xué",
-  "en": "to learn",
+  "hanzi": "开",
+  "pinyin": "kāi",
+  "en": "to open; to drive",
   "unit": "Unit 6 — Core verbs",
   "sentence": {
-   "zh": "我在学汉语。",
-   "py": "Wǒ zài xué Hànyǔ.",
-   "en": "I'm learning Chinese."
+   "zh": "商店几点开？",
+   "py": "Shāngdiàn jǐ diǎn kāi?",
+   "en": "What time does the shop open?"
   },
   "tones": [
-   2
+   1
+  ],
+  "parts": [
+   "w239",
+   "w058",
+   "w117"
   ]
  },
  {
-  "id": "w198",
+  "id": "w192",
   "kind": "word",
-  "hanzi": "学习",
-  "pinyin": "xuéxí",
-  "en": "to study",
+  "hanzi": "唱",
+  "pinyin": "chàng",
+  "en": "to sing",
   "unit": "Unit 6 — Core verbs",
   "sentence": {
-   "zh": "我每天学习汉语。",
-   "py": "Wǒ měi tiān xuéxí Hànyǔ.",
-   "en": "I study Chinese every day."
-  },
-  "tones": [
-   2,
-   2
-  ]
- },
- {
-  "id": "w199",
-  "kind": "word",
-  "hanzi": "睡",
-  "pinyin": "shuì",
-  "en": "to sleep",
-  "unit": "Unit 6 — Core verbs",
-  "sentence": {
-   "zh": "他还在睡。",
-   "py": "Tā hái zài shuì.",
-   "en": "He's still sleeping."
+   "zh": "她很会唱歌。",
+   "py": "Tā hěn huì chàng gē.",
+   "en": "She sings really well."
   },
   "tones": [
    4
+  ],
+  "parts": [
+   "w012",
+   "w005",
+   "w175",
+   "w193"
+  ]
+ },
+ {
+  "id": "w193",
+  "kind": "word",
+  "hanzi": "歌",
+  "pinyin": "gē",
+  "en": "song",
+  "unit": "Unit 6 — Core verbs",
+  "sentence": {
+   "zh": "她喜欢唱歌。",
+   "py": "Tā xǐhuan chàng gē.",
+   "en": "She likes singing."
+  },
+  "tones": [
+   1
+  ],
+  "parts": [
+   "w012",
+   "w173",
+   "w192"
   ]
  },
  {
@@ -3092,6 +4043,12 @@
   "tones": [
    4,
    4
+  ],
+  "parts": [
+   "w003",
+   "w050",
+   "w041",
+   "w117"
   ]
  },
  {
@@ -3109,20 +4066,33 @@
   "tones": [
    3,
    2
+  ],
+  "parts": [
+   "w001",
+   "w058",
+   "w117"
   ]
  },
  {
-  "id": "w202",
+  "id": "w194",
   "kind": "word",
-  "hanzi": "休息",
-  "pinyin": "xiūxi",
-  "en": "to rest",
+  "hanzi": "写",
+  "pinyin": "xiě",
+  "en": "to write",
   "unit": "Unit 6 — Core verbs",
   "sentence": {
-   "zh": "你休息一下吧。",
-   "py": "Nǐ xiūxi yíxià ba.",
-   "en": "Take a rest."
-  }
+   "zh": "我会写汉字。",
+   "py": "Wǒ huì xiě Hànzì.",
+   "en": "I can write Chinese characters."
+  },
+  "tones": [
+   3
+  ],
+  "parts": [
+   "w003",
+   "w175",
+   "w248"
+  ]
  },
  {
   "id": "w203",
@@ -3139,6 +4109,11 @@
   "tones": [
    1,
    4
+  ],
+  "parts": [
+   "w001",
+   "w169",
+   "w031"
   ]
  },
  {
@@ -3152,7 +4127,12 @@
    "zh": "我给妈妈打电话。",
    "py": "Wǒ gěi māma dǎ diànhuà.",
    "en": "I'm calling mom."
-  }
+  },
+  "parts": [
+   "w003",
+   "w182",
+   "w079"
+  ]
  },
  {
   "id": "w205",
@@ -3169,6 +4149,11 @@
   "tones": [
    4,
    1
+  ],
+  "parts": [
+   "w003",
+   "w048",
+   "w117"
   ]
  },
  {
@@ -3186,6 +4171,11 @@
   "tones": [
    4,
    1
+  ],
+  "parts": [
+   "w001",
+   "w058",
+   "w117"
   ]
  },
  {
@@ -3203,6 +4193,12 @@
   "tones": [
    4,
    2
+  ],
+  "parts": [
+   "w082",
+   "w047",
+   "w117",
+   "w158"
   ]
  },
  {
@@ -3220,6 +4216,11 @@
   "tones": [
    4,
    4
+  ],
+  "parts": [
+   "w015",
+   "w049",
+   "w117"
   ]
  },
  {
@@ -3237,38 +4238,9 @@
   "tones": [
    4,
    4
-  ]
- },
- {
-  "id": "w210",
-  "kind": "word",
-  "hanzi": "这",
-  "pinyin": "zhè",
-  "en": "this",
-  "unit": "Unit 7 — This, that, where, questions",
-  "sentence": {
-   "zh": "这是我的手机。",
-   "py": "Zhè shì wǒ de shǒujī.",
-   "en": "This is my phone."
-  },
-  "tones": [
-   4
-  ]
- },
- {
-  "id": "w211",
-  "kind": "word",
-  "hanzi": "那",
-  "pinyin": "nà",
-  "en": "that",
-  "unit": "Unit 7 — This, that, where, questions",
-  "sentence": {
-   "zh": "那是什么？",
-   "py": "Nà shì shénme?",
-   "en": "What is that?"
-  },
-  "tones": [
-   4
+  ],
+  "parts": [
+   "w293"
   ]
  },
  {
@@ -3285,6 +4257,11 @@
   },
   "tones": [
    3
+  ],
+  "parts": [
+   "w001",
+   "w171",
+   "w062"
   ]
  },
  {
@@ -3302,6 +4279,12 @@
   "tones": [
    4,
    1
+  ],
+  "parts": [
+   "w004",
+   "w003",
+   "w034",
+   "w246"
   ]
  },
  {
@@ -3319,6 +4302,11 @@
   "tones": [
    4,
    1
+  ],
+  "parts": [
+   "w035",
+   "w004",
+   "w225"
   ]
  },
  {
@@ -3336,6 +4324,11 @@
   "tones": [
    3,
    1
+  ],
+  "parts": [
+   "w001",
+   "w173",
+   "w141"
   ]
  },
  {
@@ -3349,7 +4342,11 @@
    "zh": "你来这儿。",
    "py": "Nǐ lái zhèr.",
    "en": "Come here."
-  }
+  },
+  "parts": [
+   "w001",
+   "w159"
+  ]
  },
  {
   "id": "w217",
@@ -3362,36 +4359,30 @@
    "zh": "我在那儿工作。",
    "py": "Wǒ zài nàr gōngzuò.",
    "en": "I work there."
-  }
- },
- {
-  "id": "w218",
-  "kind": "word",
-  "hanzi": "哪儿",
-  "pinyin": "nǎr",
-  "en": "where",
-  "unit": "Unit 7 — This, that, where, questions",
-  "sentence": {
-   "zh": "你去哪儿？",
-   "py": "Nǐ qù nǎr?",
-   "en": "Where are you going?"
-  }
- },
- {
-  "id": "w219",
-  "kind": "word",
-  "hanzi": "这里",
-  "pinyin": "zhèlǐ",
-  "en": "here",
-  "unit": "Unit 7 — This, that, where, questions",
-  "sentence": {
-   "zh": "这里很漂亮。",
-   "py": "Zhèlǐ hěn piàoliang.",
-   "en": "It's beautiful here."
   },
-  "tones": [
-   4,
-   3
+  "parts": [
+   "w003",
+   "w157",
+   "w203"
+  ]
+ },
+ {
+  "id": "w081",
+  "kind": "word",
+  "hanzi": "姐姐",
+  "pinyin": "jiějie",
+  "en": "older sister",
+  "unit": "Unit 3 — Family & people",
+  "sentence": {
+   "zh": "我姐姐在公司工作。",
+   "py": "Wǒ jiějie zài gōngsī gōngzuò.",
+   "en": "My older sister works at a company."
+  },
+  "parts": [
+   "w003",
+   "w157",
+   "w237",
+   "w203"
   ]
  },
  {
@@ -3409,6 +4400,12 @@
   "tones": [
    4,
    3
+  ],
+  "parts": [
+   "w155",
+   "w005",
+   "w060",
+   "w035"
   ]
  },
  {
@@ -3419,10 +4416,15 @@
   "en": "where",
   "unit": "Unit 7 — This, that, where, questions",
   "sentence": {
-   "zh": "洗手间在哪里？",
-   "py": "Xǐshǒujiān zài nǎlǐ?",
-   "en": "Where is the bathroom?"
-  }
+   "zh": "你家在哪里？",
+   "py": "Nǐ jiā zài nǎlǐ?",
+   "en": "Where is your home?"
+  },
+  "parts": [
+   "w001",
+   "w076",
+   "w157"
+  ]
  },
  {
   "id": "w222",
@@ -3432,13 +4434,201 @@
   "en": "this side; over here",
   "unit": "Unit 7 — This, that, where, questions",
   "sentence": {
-   "zh": "请这边走。",
-   "py": "Qǐng zhèbiān zǒu.",
-   "en": "This way, please."
+   "zh": "请到这边来。",
+   "py": "Qǐng dào zhèbiān lái.",
+   "en": "Please come over here."
   },
   "tones": [
    4,
    1
+  ],
+  "parts": [
+   "w026",
+   "w161",
+   "w159"
+  ]
+ },
+ {
+  "id": "w195",
+  "kind": "word",
+  "hanzi": "读",
+  "pinyin": "dú",
+  "en": "to read (aloud)",
+  "unit": "Unit 6 — Core verbs",
+  "sentence": {
+   "zh": "请读一下。",
+   "py": "Qǐng dú yíxià.",
+   "en": "Please read it aloud."
+  },
+  "tones": [
+   2
+  ],
+  "parts": [
+   "w026",
+   "w041",
+   "w229"
+  ]
+ },
+ {
+  "id": "w197",
+  "kind": "word",
+  "hanzi": "学",
+  "pinyin": "xué",
+  "en": "to learn",
+  "unit": "Unit 6 — Core verbs",
+  "sentence": {
+   "zh": "我在学汉语。",
+   "py": "Wǒ zài xué Hànyǔ.",
+   "en": "I'm learning Chinese."
+  },
+  "tones": [
+   2
+  ],
+  "parts": [
+   "w003",
+   "w157",
+   "w249"
+  ]
+ },
+ {
+  "id": "w198",
+  "kind": "word",
+  "hanzi": "学习",
+  "pinyin": "xuéxí",
+  "en": "to study",
+  "unit": "Unit 6 — Core verbs",
+  "sentence": {
+   "zh": "我喜欢学习汉语。",
+   "py": "Wǒ xǐhuan xuéxí Hànyǔ.",
+   "en": "I like studying Chinese."
+  },
+  "tones": [
+   2,
+   2
+  ],
+  "parts": [
+   "w003",
+   "w173",
+   "w249"
+  ]
+ },
+ {
+  "id": "w227",
+  "kind": "word",
+  "hanzi": "怎么样",
+  "pinyin": "zěnmeyàng",
+  "en": "how about; how is it",
+  "unit": "Unit 7 — This, that, where, questions",
+  "sentence": {
+   "zh": "明天去怎么样？",
+   "py": "Míngtiān qù zěnmeyàng?",
+   "en": "How about going tomorrow?"
+  },
+  "parts": [
+   "w103",
+   "w158"
+  ]
+ },
+ {
+  "id": "w199",
+  "kind": "word",
+  "hanzi": "睡",
+  "pinyin": "shuì",
+  "en": "to sleep",
+  "unit": "Unit 6 — Core verbs",
+  "sentence": {
+   "zh": "他还在睡。",
+   "py": "Tā hái zài shuì.",
+   "en": "He's still sleeping."
+  },
+  "tones": [
+   4
+  ],
+  "parts": [
+   "w011",
+   "w289",
+   "w157"
+  ]
+ },
+ {
+  "id": "w202",
+  "kind": "word",
+  "hanzi": "休息",
+  "pinyin": "xiūxi",
+  "en": "to rest",
+  "unit": "Unit 6 — Core verbs",
+  "sentence": {
+   "zh": "你休息一下吧。",
+   "py": "Nǐ xiūxi yíxià ba.",
+   "en": "Take a rest."
+  },
+  "parts": [
+   "w001",
+   "w041",
+   "w229",
+   "w294"
+  ]
+ },
+ {
+  "id": "w219",
+  "kind": "word",
+  "hanzi": "这里",
+  "pinyin": "zhèlǐ",
+  "en": "here",
+  "unit": "Unit 7 — This, that, where, questions",
+  "sentence": {
+   "zh": "这里很漂亮。",
+   "py": "Zhèlǐ hěn piàoliang.",
+   "en": "It's beautiful here."
+  },
+  "tones": [
+   4,
+   3
+  ],
+  "parts": [
+   "w005",
+   "w270"
+  ]
+ },
+ {
+  "id": "w231",
+  "kind": "word",
+  "hanzi": "外",
+  "pinyin": "wài",
+  "en": "outside",
+  "unit": "Unit 8 — Places & directions",
+  "sentence": {
+   "zh": "他是外国人。",
+   "py": "Tā shì wàiguó rén.",
+   "en": "He's a foreigner."
+  },
+  "tones": [
+   4
+  ],
+  "parts": [
+   "w011",
+   "w004",
+   "w037",
+   "w035"
+  ]
+ },
+ {
+  "id": "w232",
+  "kind": "word",
+  "hanzi": "外边",
+  "pinyin": "wàibian",
+  "en": "outside",
+  "unit": "Unit 8 — Places & directions",
+  "sentence": {
+   "zh": "孩子们在外边玩。",
+   "py": "Háizimen zài wàibian wán.",
+   "en": "The kids are playing outside."
+  },
+  "parts": [
+   "w086",
+   "w014",
+   "w157",
+   "w191"
   ]
  },
  {
@@ -3456,158 +4646,10 @@
   "tones": [
    4,
    1
-  ]
- },
- {
-  "id": "w224",
-  "kind": "word",
-  "hanzi": "边",
-  "pinyin": "biān",
-  "en": "side",
-  "unit": "Unit 7 — This, that, where, questions",
-  "sentence": {
-   "zh": "我坐你边上。",
-   "py": "Wǒ zuò nǐ biān shang.",
-   "en": "I'll sit beside you."
-  },
-  "tones": [
-   1
-  ]
- },
- {
-  "id": "w225",
-  "kind": "word",
-  "hanzi": "谁",
-  "pinyin": "shéi",
-  "en": "who",
-  "unit": "Unit 7 — This, that, where, questions",
-  "sentence": {
-   "zh": "他是谁？",
-   "py": "Tā shì shéi?",
-   "en": "Who is he?"
-  },
-  "tones": [
-   2
-  ]
- },
- {
-  "id": "w226",
-  "kind": "word",
-  "hanzi": "怎么",
-  "pinyin": "zěnme",
-  "en": "how; why",
-  "unit": "Unit 7 — This, that, where, questions",
-  "sentence": {
-   "zh": "这个字怎么读？",
-   "py": "Zhège zì zěnme dú?",
-   "en": "How do you read this character?"
-  }
- },
- {
-  "id": "w227",
-  "kind": "word",
-  "hanzi": "怎么样",
-  "pinyin": "zěnmeyàng",
-  "en": "how about; how is it",
-  "unit": "Unit 7 — This, that, where, questions",
-  "sentence": {
-   "zh": "明天去怎么样？",
-   "py": "Míngtiān qù zěnmeyàng?",
-   "en": "How about going tomorrow?"
-  }
- },
- {
-  "id": "w228",
-  "kind": "word",
-  "hanzi": "上",
-  "pinyin": "shàng",
-  "en": "up; on; last",
-  "unit": "Unit 8 — Places & directions",
-  "sentence": {
-   "zh": "书在桌子上。",
-   "py": "Shū zài zhuōzi shang.",
-   "en": "The book is on the table."
-  },
-  "tones": [
-   4
-  ]
- },
- {
-  "id": "w229",
-  "kind": "word",
-  "hanzi": "下",
-  "pinyin": "xià",
-  "en": "down; under; next",
-  "unit": "Unit 8 — Places & directions",
-  "sentence": {
-   "zh": "猫在椅子下。",
-   "py": "Māo zài yǐzi xià.",
-   "en": "The cat is under the chair."
-  },
-  "tones": [
-   4
-  ]
- },
- {
-  "id": "w230",
-  "kind": "word",
-  "hanzi": "里",
-  "pinyin": "lǐ",
-  "en": "inside",
-  "unit": "Unit 8 — Places & directions",
-  "sentence": {
-   "zh": "妈妈在房间里。",
-   "py": "Māma zài fángjiān lǐ.",
-   "en": "Mom is in the room."
-  },
-  "tones": [
-   3
-  ]
- },
- {
-  "id": "w231",
-  "kind": "word",
-  "hanzi": "外",
-  "pinyin": "wài",
-  "en": "outside",
-  "unit": "Unit 8 — Places & directions",
-  "sentence": {
-   "zh": "外面很冷。",
-   "py": "Wàimiàn hěn lěng.",
-   "en": "It's cold outside."
-  },
-  "tones": [
-   4
-  ]
- },
- {
-  "id": "w232",
-  "kind": "word",
-  "hanzi": "外边",
-  "pinyin": "wàibian",
-  "en": "outside",
-  "unit": "Unit 8 — Places & directions",
-  "sentence": {
-   "zh": "孩子们在外边玩。",
-   "py": "Háizimen zài wàibian wán.",
-   "en": "The kids are playing outside."
-  }
- },
- {
-  "id": "w233",
-  "kind": "word",
-  "hanzi": "学校",
-  "pinyin": "xuéxiào",
-  "en": "school",
-  "unit": "Unit 8 — Places & directions",
-  "sentence": {
-   "zh": "我们的学校很大。",
-   "py": "Wǒmen de xuéxiào hěn dà.",
-   "en": "Our school is very big."
-  },
-  "tones": [
-   2,
-   4
+  ],
+  "parts": [
+   "w239",
+   "w157"
   ]
  },
  {
@@ -3625,40 +4667,52 @@
   "tones": [
    4,
    2
+  ],
+  "parts": [
+   "w012",
+   "w157",
+   "w198"
   ]
  },
  {
-  "id": "w235",
+  "id": "w224",
   "kind": "word",
-  "hanzi": "中学",
-  "pinyin": "zhōngxué",
-  "en": "middle/high school",
-  "unit": "Unit 8 — Places & directions",
+  "hanzi": "边",
+  "pinyin": "biān",
+  "en": "side",
+  "unit": "Unit 7 — This, that, where, questions",
   "sentence": {
-   "zh": "我弟弟上中学。",
-   "py": "Wǒ dìdi shàng zhōngxué.",
-   "en": "My younger brother is in high school."
+   "zh": "我坐你边上。",
+   "py": "Wǒ zuò nǐ biān shang.",
+   "en": "I'll sit beside you."
   },
   "tones": [
-   1,
-   2
+   1
+  ],
+  "parts": [
+   "w003",
+   "w187",
+   "w001",
+   "w228"
   ]
  },
  {
-  "id": "w236",
+  "id": "w226",
   "kind": "word",
-  "hanzi": "小学",
-  "pinyin": "xiǎoxué",
-  "en": "elementary school",
-  "unit": "Unit 8 — Places & directions",
+  "hanzi": "怎么",
+  "pinyin": "zěnme",
+  "en": "how; why",
+  "unit": "Unit 7 — This, that, where, questions",
   "sentence": {
-   "zh": "我家前边有一个小学。",
-   "py": "Wǒ jiā qiánbian yǒu yí ge xiǎoxué.",
-   "en": "There's an elementary school in front of my home."
+   "zh": "这个字怎么读？",
+   "py": "Zhège zì zěnme dú?",
+   "en": "How do you read this character?"
   },
-  "tones": [
-   3,
-   2
+  "parts": [
+   "w210",
+   "w062",
+   "w247",
+   "w195"
   ]
  },
  {
@@ -3676,6 +4730,11 @@
   "tones": [
    1,
    1
+  ],
+  "parts": [
+   "w003",
+   "w157",
+   "w203"
   ]
  },
  {
@@ -3693,23 +4752,53 @@
   "tones": [
    1,
    4
+  ],
+  "parts": [
+   "w157",
+   "w218"
   ]
  },
  {
-  "id": "w239",
+  "id": "w228",
   "kind": "word",
-  "hanzi": "商店",
-  "pinyin": "shāngdiàn",
-  "en": "store",
+  "hanzi": "上",
+  "pinyin": "shàng",
+  "en": "up; on; last",
   "unit": "Unit 8 — Places & directions",
   "sentence": {
-   "zh": "这个商店很大。",
-   "py": "Zhège shāngdiàn hěn dà.",
-   "en": "This store is very big."
+   "zh": "书在桌子上。",
+   "py": "Shū zài zhuōzi shang.",
+   "en": "The book is on the table."
+  },
+  "tones": [
+   4
+  ],
+  "parts": [
+   "w246",
+   "w157",
+   "w258"
+  ]
+ },
+ {
+  "id": "w235",
+  "kind": "word",
+  "hanzi": "中学",
+  "pinyin": "zhōngxué",
+  "en": "middle/high school",
+  "unit": "Unit 8 — Places & directions",
+  "sentence": {
+   "zh": "我弟弟上中学。",
+   "py": "Wǒ dìdi shàng zhōngxué.",
+   "en": "My younger brother is in high school."
   },
   "tones": [
    1,
-   4
+   2
+  ],
+  "parts": [
+   "w003",
+   "w082",
+   "w228"
   ]
  },
  {
@@ -3726,6 +4815,12 @@
   },
   "tones": [
    4
+  ],
+  "parts": [
+   "w210",
+   "w076",
+   "w181",
+   "w031"
   ]
  },
  {
@@ -3743,23 +4838,12 @@
   "tones": [
    1,
    4
-  ]
- },
- {
-  "id": "w242",
-  "kind": "word",
-  "hanzi": "书店",
-  "pinyin": "shūdiàn",
-  "en": "bookstore",
-  "unit": "Unit 8 — Places & directions",
-  "sentence": {
-   "zh": "书店在学校前边。",
-   "py": "Shūdiàn zài xuéxiào qiánbian.",
-   "en": "The bookstore is in front of the school."
-  },
-  "tones": [
-   1,
-   4
+  ],
+  "parts": [
+   "w003",
+   "w158",
+   "w180",
+   "w147"
   ]
  },
  {
@@ -3773,23 +4857,32 @@
    "zh": "我们去电影院吧。",
    "py": "Wǒmen qù diànyǐngyuàn ba.",
    "en": "Let's go to the cinema."
-  }
+  },
+  "parts": [
+   "w015",
+   "w158",
+   "w294"
+  ]
  },
  {
-  "id": "w244",
+  "id": "w229",
   "kind": "word",
-  "hanzi": "房间",
-  "pinyin": "fángjiān",
-  "en": "room",
+  "hanzi": "下",
+  "pinyin": "xià",
+  "en": "down; under; next",
   "unit": "Unit 8 — Places & directions",
   "sentence": {
-   "zh": "我的房间很小。",
-   "py": "Wǒ de fángjiān hěn xiǎo.",
-   "en": "My room is small."
+   "zh": "猫在椅子下。",
+   "py": "Māo zài yǐzi xià.",
+   "en": "The cat is under the chair."
   },
   "tones": [
-   2,
-   1
+   4
+  ],
+  "parts": [
+   "w100",
+   "w157",
+   "w259"
   ]
  },
  {
@@ -3803,22 +4896,34 @@
    "zh": "你买什么东西？",
    "py": "Nǐ mǎi shénme dōngxi?",
    "en": "What are you buying?"
-  }
+  },
+  "parts": [
+   "w001",
+   "w180",
+   "w031"
+  ]
  },
  {
-  "id": "w246",
+  "id": "w063",
   "kind": "word",
-  "hanzi": "书",
-  "pinyin": "shū",
-  "en": "book",
+  "hanzi": "本",
+  "pinyin": "běn",
+  "en": "(measure word for books)",
   "unit": "Unit 9 — Things",
   "sentence": {
-   "zh": "这本书很好看。",
-   "py": "Zhè běn shū hěn hǎokàn.",
-   "en": "This book is good."
+   "zh": "我买了两本书。",
+   "py": "Wǒ mǎi le liǎng běn shū.",
+   "en": "I bought two books."
   },
   "tones": [
-   1
+   3
+  ],
+  "parts": [
+   "w003",
+   "w180",
+   "w293",
+   "w054",
+   "w246"
   ]
  },
  {
@@ -3835,23 +4940,34 @@
   },
   "tones": [
    4
+  ],
+  "parts": [
+   "w210",
+   "w062",
+   "w003",
+   "w008",
+   "w032"
   ]
  },
  {
-  "id": "w248",
+  "id": "w230",
   "kind": "word",
-  "hanzi": "汉字",
-  "pinyin": "Hànzì",
-  "en": "Chinese character",
-  "unit": "Unit 9 — Things",
+  "hanzi": "里",
+  "pinyin": "lǐ",
+  "en": "inside",
+  "unit": "Unit 8 — Places & directions",
   "sentence": {
-   "zh": "汉字很漂亮。",
-   "py": "Hànzì hěn piàoliang.",
-   "en": "Chinese characters are beautiful."
+   "zh": "妈妈在房间里。",
+   "py": "Māma zài fángjiān lǐ.",
+   "en": "Mom is in the room."
   },
   "tones": [
-   4,
-   4
+   3
+  ],
+  "parts": [
+   "w079",
+   "w157",
+   "w244"
   ]
  },
  {
@@ -3869,6 +4985,12 @@
   "tones": [
    4,
    3
+  ],
+  "parts": [
+   "w001",
+   "w175",
+   "w166",
+   "w006"
   ]
  },
  {
@@ -3886,6 +5008,11 @@
   "tones": [
    1,
    2
+  ],
+  "parts": [
+   "w003",
+   "w157",
+   "w197"
   ]
  },
  {
@@ -3902,6 +5029,11 @@
   },
   "tones": [
    4
+  ],
+  "parts": [
+   "w102",
+   "w155",
+   "w249"
   ]
  },
  {
@@ -3919,6 +5051,35 @@
   "tones": [
    3,
    1
+  ],
+  "parts": [
+   "w003",
+   "w034",
+   "w157",
+   "w218"
+  ]
+ },
+ {
+  "id": "w053",
+  "kind": "word",
+  "hanzi": "千",
+  "pinyin": "qiān",
+  "en": "thousand",
+  "unit": "Unit 9 — Things",
+  "sentence": {
+   "zh": "这个手机三千块。",
+   "py": "Zhège shǒujī sānqiān kuài.",
+   "en": "This phone is 3,000 yuan."
+  },
+  "tones": [
+   1
+  ],
+  "parts": [
+   "w210",
+   "w062",
+   "w252",
+   "w043",
+   "w074"
   ]
  },
  {
@@ -3936,23 +5097,58 @@
   "tones": [
    4,
    4
+  ],
+  "parts": [
+   "w001",
+   "w034"
   ]
  },
  {
-  "id": "w254",
+  "id": "w051",
   "kind": "word",
-  "hanzi": "电脑",
-  "pinyin": "diànnǎo",
-  "en": "computer",
+  "hanzi": "零",
+  "pinyin": "líng",
+  "en": "zero",
   "unit": "Unit 9 — Things",
   "sentence": {
-   "zh": "我用电脑工作。",
-   "py": "Wǒ yòng diànnǎo gōngzuò.",
-   "en": "I work on a computer."
+   "zh": "我的电话是六八零九。",
+   "py": "Wǒ de diànhuà shì liù bā líng jiǔ.",
+   "en": "My phone number is 6809."
   },
   "tones": [
-   4,
-   3
+   2
+  ],
+  "parts": [
+   "w003",
+   "w034",
+   "w253",
+   "w004",
+   "w046",
+   "w048",
+   "w049"
+  ]
+ },
+ {
+  "id": "w233",
+  "kind": "word",
+  "hanzi": "学校",
+  "pinyin": "xuéxiào",
+  "en": "school",
+  "unit": "Unit 8 — Places & directions",
+  "sentence": {
+   "zh": "我们的学校很大。",
+   "py": "Wǒmen de xuéxiào hěn dà.",
+   "en": "Our school is very big."
+  },
+  "tones": [
+   2,
+   4
+  ],
+  "parts": [
+   "w015",
+   "w034",
+   "w005",
+   "w265"
   ]
  },
  {
@@ -3970,6 +5166,12 @@
   "tones": [
    4,
    4
+  ],
+  "parts": [
+   "w003",
+   "w008",
+   "w173",
+   "w162"
   ]
  },
  {
@@ -3987,20 +5189,86 @@
   "tones": [
    4,
    3
+  ],
+  "parts": [
+   "w015",
+   "w158",
+   "w162",
+   "w294"
   ]
  },
  {
-  "id": "w257",
+  "id": "w131",
   "kind": "word",
-  "hanzi": "衣服",
-  "pinyin": "yīfu",
-  "en": "clothes",
-  "unit": "Unit 9 — Things",
+  "hanzi": "前",
+  "pinyin": "qián",
+  "en": "front; before",
+  "unit": "Unit 4 — Time & dates",
   "sentence": {
-   "zh": "我想买新衣服。",
-   "py": "Wǒ xiǎng mǎi xīn yīfu.",
-   "en": "I want to buy new clothes."
-  }
+   "zh": "学校前边有一个商店。",
+   "py": "Xuéxiào qiánbian yǒu yí ge shāngdiàn.",
+   "en": "There's a store in front of the school."
+  },
+  "tones": [
+   2
+  ],
+  "parts": [
+   "w233",
+   "w224",
+   "w155",
+   "w041",
+   "w062",
+   "w239"
+  ]
+ },
+ {
+  "id": "w236",
+  "kind": "word",
+  "hanzi": "小学",
+  "pinyin": "xiǎoxué",
+  "en": "elementary school",
+  "unit": "Unit 8 — Places & directions",
+  "sentence": {
+   "zh": "我家前边有一个小学。",
+   "py": "Wǒ jiā qiánbian yǒu yí ge xiǎoxué.",
+   "en": "There's an elementary school in front of my home."
+  },
+  "tones": [
+   3,
+   2
+  ],
+  "parts": [
+   "w003",
+   "w076",
+   "w131",
+   "w224",
+   "w155",
+   "w041",
+   "w062"
+  ]
+ },
+ {
+  "id": "w242",
+  "kind": "word",
+  "hanzi": "书店",
+  "pinyin": "shūdiàn",
+  "en": "bookstore",
+  "unit": "Unit 8 — Places & directions",
+  "sentence": {
+   "zh": "书店在学校前边。",
+   "py": "Shūdiàn zài xuéxiào qiánbian.",
+   "en": "The bookstore is in front of the school."
+  },
+  "tones": [
+   1,
+   4
+  ],
+  "parts": [
+   "w157",
+   "w233",
+   "w131",
+   "w224"
+  ]
  },
  {
   "id": "w258",
@@ -4013,20 +5281,14 @@
    "zh": "桌子上有一个杯子。",
    "py": "Zhuōzi shang yǒu yí ge bēizi.",
    "en": "There's a cup on the table."
-  }
- },
- {
-  "id": "w259",
-  "kind": "word",
-  "hanzi": "椅子",
-  "pinyin": "yǐzi",
-  "en": "chair",
-  "unit": "Unit 9 — Things",
-  "sentence": {
-   "zh": "请坐这把椅子。",
-   "py": "Qǐng zuò zhè bǎ yǐzi.",
-   "en": "Please sit on this chair."
-  }
+  },
+  "parts": [
+   "w228",
+   "w155",
+   "w041",
+   "w062",
+   "w145"
+  ]
  },
  {
   "id": "w260",
@@ -4042,6 +5304,12 @@
   },
   "tones": [
    1
+  ],
+  "parts": [
+   "w210",
+   "w004",
+   "w003",
+   "w034"
   ]
  },
  {
@@ -4055,7 +5323,12 @@
    "zh": "我们坐出租车吧。",
    "py": "Wǒmen zuò chūzūchē ba.",
    "en": "Let's take a taxi."
-  }
+  },
+  "parts": [
+   "w015",
+   "w187",
+   "w294"
+  ]
  },
  {
   "id": "w262",
@@ -4065,13 +5338,19 @@
   "en": "train",
   "unit": "Unit 9 — Things",
   "sentence": {
-   "zh": "我坐火车去北京。",
-   "py": "Wǒ zuò huǒchē qù Běijīng.",
-   "en": "I'm taking the train to Beijing."
+   "zh": "我们坐火车去吧。",
+   "py": "Wǒmen zuò huǒchē qù ba.",
+   "en": "Let's take the train."
   },
   "tones": [
    3,
    1
+  ],
+  "parts": [
+   "w015",
+   "w187",
+   "w158",
+   "w294"
   ]
  },
  {
@@ -4089,6 +5368,12 @@
   "tones": [
    1,
    1
+  ],
+  "parts": [
+   "w003",
+   "w187",
+   "w158",
+   "w036"
   ]
  },
  {
@@ -4105,22 +5390,34 @@
   },
   "tones": [
    4
+  ],
+  "parts": [
+   "w001",
+   "w155",
+   "w031"
   ]
  },
  {
-  "id": "w265",
+  "id": "w239",
   "kind": "word",
-  "hanzi": "大",
-  "pinyin": "dà",
-  "en": "big",
-  "unit": "Unit 10 — Describing things",
+  "hanzi": "商店",
+  "pinyin": "shāngdiàn",
+  "en": "store",
+  "unit": "Unit 8 — Places & directions",
   "sentence": {
-   "zh": "这个房间很大。",
-   "py": "Zhège fángjiān hěn dà.",
-   "en": "This room is big."
+   "zh": "这个商店很大。",
+   "py": "Zhège shāngdiàn hěn dà.",
+   "en": "This store is very big."
   },
   "tones": [
+   1,
    4
+  ],
+  "parts": [
+   "w210",
+   "w062",
+   "w005",
+   "w265"
   ]
  },
  {
@@ -4137,6 +5434,76 @@
   },
   "tones": [
    3
+  ],
+  "parts": [
+   "w003",
+   "w034",
+   "w099",
+   "w005"
+  ]
+ },
+ {
+  "id": "w244",
+  "kind": "word",
+  "hanzi": "房间",
+  "pinyin": "fángjiān",
+  "en": "room",
+  "unit": "Unit 8 — Places & directions",
+  "sentence": {
+   "zh": "我的房间很小。",
+   "py": "Wǒ de fángjiān hěn xiǎo.",
+   "en": "My room is small."
+  },
+  "tones": [
+   2,
+   1
+  ],
+  "parts": [
+   "w003",
+   "w034",
+   "w005",
+   "w266"
+  ]
+ },
+ {
+  "id": "w259",
+  "kind": "word",
+  "hanzi": "椅子",
+  "pinyin": "yǐzi",
+  "en": "chair",
+  "unit": "Unit 9 — Things",
+  "sentence": {
+   "zh": "这个椅子很小。",
+   "py": "Zhège yǐzi hěn xiǎo.",
+   "en": "This chair is small."
+  },
+  "parts": [
+   "w210",
+   "w062",
+   "w005",
+   "w266"
+  ]
+ },
+ {
+  "id": "w265",
+  "kind": "word",
+  "hanzi": "大",
+  "pinyin": "dà",
+  "en": "big",
+  "unit": "Unit 10 — Describing things",
+  "sentence": {
+   "zh": "这个房间很大。",
+   "py": "Zhège fángjiān hěn dà.",
+   "en": "This room is big."
+  },
+  "tones": [
+   4
+  ],
+  "parts": [
+   "w210",
+   "w062",
+   "w244",
+   "w005"
   ]
  },
  {
@@ -4153,6 +5520,54 @@
   },
   "tones": [
    1
+  ],
+  "parts": [
+   "w210",
+   "w004",
+   "w252"
+  ]
+ },
+ {
+  "id": "w254",
+  "kind": "word",
+  "hanzi": "电脑",
+  "pinyin": "diànnǎo",
+  "en": "computer",
+  "unit": "Unit 9 — Things",
+  "sentence": {
+   "zh": "这是我的新电脑。",
+   "py": "Zhè shì wǒ de xīn diànnǎo.",
+   "en": "This is my new computer."
+  },
+  "tones": [
+   4,
+   3
+  ],
+  "parts": [
+   "w210",
+   "w004",
+   "w003",
+   "w034",
+   "w267"
+  ]
+ },
+ {
+  "id": "w257",
+  "kind": "word",
+  "hanzi": "衣服",
+  "pinyin": "yīfu",
+  "en": "clothes",
+  "unit": "Unit 9 — Things",
+  "sentence": {
+   "zh": "我想买新衣服。",
+   "py": "Wǒ xiǎng mǎi xīn yīfu.",
+   "en": "I want to buy new clothes."
+  },
+  "parts": [
+   "w003",
+   "w170",
+   "w180",
+   "w267"
   ]
  },
  {
@@ -4169,6 +5584,12 @@
   },
   "tones": [
    4
+  ],
+  "parts": [
+   "w210",
+   "w062",
+   "w285",
+   "w293"
   ]
  },
  {
@@ -4182,7 +5603,12 @@
    "zh": "这个很便宜。",
    "py": "Zhège hěn piányi.",
    "en": "This is cheap."
-  }
+  },
+  "parts": [
+   "w210",
+   "w062",
+   "w005"
+  ]
  },
  {
   "id": "w270",
@@ -4195,7 +5621,79 @@
    "zh": "你的衣服很漂亮。",
    "py": "Nǐ de yīfu hěn piàoliang.",
    "en": "Your clothes are pretty."
-  }
+  },
+  "parts": [
+   "w001",
+   "w034",
+   "w257",
+   "w005"
+  ]
+ },
+ {
+  "id": "w248",
+  "kind": "word",
+  "hanzi": "汉字",
+  "pinyin": "Hànzì",
+  "en": "Chinese character",
+  "unit": "Unit 9 — Things",
+  "sentence": {
+   "zh": "汉字很漂亮。",
+   "py": "Hànzì hěn piàoliang.",
+   "en": "Chinese characters are beautiful."
+  },
+  "tones": [
+   4,
+   4
+  ],
+  "parts": [
+   "w005",
+   "w270"
+  ]
+ },
+ {
+  "id": "w064",
+  "kind": "word",
+  "hanzi": "件",
+  "pinyin": "jiàn",
+  "en": "(measure word for clothes, matters)",
+  "unit": "Unit 10 — Describing things",
+  "sentence": {
+   "zh": "这件衣服很漂亮。",
+   "py": "Zhè jiàn yīfu hěn piàoliang.",
+   "en": "This piece of clothing is very pretty."
+  },
+  "tones": [
+   4
+  ],
+  "parts": [
+   "w210",
+   "w257",
+   "w005",
+   "w270"
+  ]
+ },
+ {
+  "id": "w052",
+  "kind": "word",
+  "hanzi": "百",
+  "pinyin": "bǎi",
+  "en": "hundred",
+  "unit": "Unit 9 — Things",
+  "sentence": {
+   "zh": "这件衣服一百块。",
+   "py": "Zhè jiàn yīfu yìbǎi kuài.",
+   "en": "This piece of clothing is 100 yuan."
+  },
+  "tones": [
+   3
+  ],
+  "parts": [
+   "w210",
+   "w064",
+   "w257",
+   "w041",
+   "w074"
+  ]
  },
  {
   "id": "w271",
@@ -4212,6 +5710,12 @@
   "tones": [
    3,
    4
+  ],
+  "parts": [
+   "w210",
+   "w062",
+   "w256",
+   "w005"
   ]
  },
  {
@@ -4222,13 +5726,19 @@
   "en": "nice to hear",
   "unit": "Unit 10 — Describing things",
   "sentence": {
-   "zh": "这首歌很好听。",
-   "py": "Zhè shǒu gē hěn hǎotīng.",
-   "en": "This song is nice."
+   "zh": "她唱歌很好听。",
+   "py": "Tā chàng gē hěn hǎotīng.",
+   "en": "She sings beautifully."
   },
   "tones": [
    3,
    1
+  ],
+  "parts": [
+   "w012",
+   "w192",
+   "w193",
+   "w005"
   ]
  },
  {
@@ -4242,22 +5752,10 @@
    "zh": "中国很好玩儿。",
    "py": "Zhōngguó hěn hǎowánr.",
    "en": "China is a lot of fun."
-  }
- },
- {
-  "id": "w274",
-  "kind": "word",
-  "hanzi": "忙",
-  "pinyin": "máng",
-  "en": "busy",
-  "unit": "Unit 10 — Describing things",
-  "sentence": {
-   "zh": "你忙吗？",
-   "py": "Nǐ máng ma?",
-   "en": "Are you busy?"
   },
-  "tones": [
-   2
+  "parts": [
+   "w036",
+   "w005"
   ]
  },
  {
@@ -4274,6 +5772,10 @@
   },
   "tones": [
    3
+  ],
+  "parts": [
+   "w102",
+   "w005"
   ]
  },
  {
@@ -4290,6 +5792,11 @@
   },
   "tones": [
    4
+  ],
+  "parts": [
+   "w102",
+   "w285",
+   "w293"
   ]
  },
  {
@@ -4306,6 +5813,10 @@
   },
   "tones": [
    4
+  ],
+  "parts": [
+   "w011",
+   "w293"
   ]
  },
  {
@@ -4323,6 +5834,10 @@
   "tones": [
    1,
    4
+  ],
+  "parts": [
+   "w003",
+   "w293"
   ]
  },
  {
@@ -4340,6 +5855,11 @@
   "tones": [
    4,
    4
+  ],
+  "parts": [
+   "w003",
+   "w126",
+   "w158"
   ]
  },
  {
@@ -4357,6 +5877,10 @@
   "tones": [
    1,
    4
+  ],
+  "parts": [
+   "w102",
+   "w227"
   ]
  },
  {
@@ -4373,6 +5897,10 @@
   },
   "tones": [
    3
+  ],
+  "parts": [
+   "w005",
+   "w265"
   ]
  },
  {
@@ -4390,6 +5918,10 @@
   "tones": [
    4,
    3
+  ],
+  "parts": [
+   "w103",
+   "w175"
   ]
  },
  {
@@ -4400,41 +5932,17 @@
   "en": "snow",
   "unit": "Unit 10 — Describing things",
   "sentence": {
-   "zh": "北京冬天会下雪。",
-   "py": "Běijīng dōngtiān huì xià xuě.",
-   "en": "It snows in Beijing in winter."
+   "zh": "明天会下雪。",
+   "py": "Míngtiān huì xià xuě.",
+   "en": "It will snow tomorrow."
   },
   "tones": [
    3
-  ]
- },
- {
-  "id": "w284",
-  "kind": "word",
-  "hanzi": "都",
-  "pinyin": "dōu",
-  "en": "all; both",
-  "unit": "Unit 11 — Adverbs & particles",
-  "sentence": {
-   "zh": "我们都是学生。",
-   "py": "Wǒmen dōu shì xuésheng.",
-   "en": "We are all students."
-  }
- },
- {
-  "id": "w285",
-  "kind": "word",
-  "hanzi": "太",
-  "pinyin": "tài",
-  "en": "too; extremely",
-  "unit": "Unit 11 — Adverbs & particles",
-  "sentence": {
-   "zh": "太好了！",
-   "py": "Tài hǎo le!",
-   "en": "Great!"
-  },
-  "tones": [
-   4
+  ],
+  "parts": [
+   "w103",
+   "w175",
+   "w229"
   ]
  },
  {
@@ -4452,6 +5960,12 @@
   "tones": [
    1,
    2
+  ],
+  "parts": [
+   "w003",
+   "w173",
+   "w036",
+   "w141"
   ]
  },
  {
@@ -4468,6 +5982,10 @@
   },
   "tones": [
    1
+  ],
+  "parts": [
+   "w001",
+   "w002"
   ]
  },
  {
@@ -4478,12 +5996,17 @@
   "en": "again",
   "unit": "Unit 11 — Adverbs & particles",
   "sentence": {
-   "zh": "请再说一遍。",
-   "py": "Qǐng zài shuō yí biàn.",
-   "en": "Please say it once more."
+   "zh": "我明天再来。",
+   "py": "Wǒ míngtiān zài lái.",
+   "en": "I'll come again tomorrow."
   },
   "tones": [
    4
+  ],
+  "parts": [
+   "w003",
+   "w103",
+   "w159"
   ]
  },
  {
@@ -4494,10 +6017,16 @@
   "en": "still; also",
   "unit": "Unit 11 — Adverbs & particles",
   "sentence": {
-   "zh": "我还没吃饭。",
-   "py": "Wǒ hái méi chī fàn.",
+   "zh": "我还没有吃饭。",
+   "py": "Wǒ hái méiyǒu chī fàn.",
    "en": "I haven't eaten yet."
-  }
+  },
+  "parts": [
+   "w003",
+   "w156",
+   "w133",
+   "w135"
+  ]
  },
  {
   "id": "w290",
@@ -4514,6 +6043,11 @@
   "tones": [
    4,
    4
+  ],
+  "parts": [
+   "w003",
+   "w133",
+   "w135"
   ]
  },
  {
@@ -4524,51 +6058,17 @@
   "en": "correct; toward",
   "unit": "Unit 11 — Adverbs & particles",
   "sentence": {
-   "zh": "你说得对。",
-   "py": "Nǐ shuō de duì.",
-   "en": "You're right."
+   "zh": "对，我是学生。",
+   "py": "Duì, wǒ shì xuésheng.",
+   "en": "Yes, I'm a student."
   },
   "tones": [
    4
+  ],
+  "parts": [
+   "w003",
+   "w004",
+   "w093"
   ]
- },
- {
-  "id": "w292",
-  "kind": "word",
-  "hanzi": "和",
-  "pinyin": "hé",
-  "en": "and; with",
-  "unit": "Unit 11 — Adverbs & particles",
-  "sentence": {
-   "zh": "我和妈妈去超市。",
-   "py": "Wǒ hé māma qù chāoshì.",
-   "en": "Mom and I are going to the supermarket."
-  }
- },
- {
-  "id": "w293",
-  "kind": "word",
-  "hanzi": "了",
-  "pinyin": "le",
-  "en": "(change / completed action)",
-  "unit": "Unit 11 — Adverbs & particles",
-  "sentence": {
-   "zh": "我吃了。",
-   "py": "Wǒ chī le.",
-   "en": "I've eaten."
-  }
- },
- {
-  "id": "w294",
-  "kind": "word",
-  "hanzi": "吧",
-  "pinyin": "ba",
-  "en": "(suggestion particle)",
-  "unit": "Unit 11 — Adverbs & particles",
-  "sentence": {
-   "zh": "我们走吧。",
-   "py": "Wǒmen zǒu ba.",
-   "en": "Let's go."
-  }
  }
 ]
