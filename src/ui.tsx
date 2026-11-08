@@ -3,6 +3,7 @@ import { play } from './audio'
 import { glossClash, target, type Stage, type Word } from './data'
 import { Icon } from './icons'
 import { Pinyin } from './Pinyin'
+import { Structure } from './Structure'
 import type { BurstState } from './burst'
 import type { PauseReason } from './pause'
 
@@ -33,8 +34,25 @@ export function PlayButton({ k, text, label, slow, autoPlay, size }: {
   )
 }
 
-/** `fresh`: words in the sentence you haven't learned yet, glossed under it. */
-export function WordFace({ w, showSentence = true, fresh = [] }: { w: Word; showSentence?: boolean; fresh?: Word[] }) {
+// Whether the sentence breakdown is shown on answers (per device; shown until you hide it).
+const STRUCTURE_KEY = 'mandarin-daily:structure'
+function structureShown() {
+  try { return localStorage.getItem(STRUCTURE_KEY) !== '0' } catch { return true }
+}
+
+/**
+ * `fresh`: words in the sentence you haven't learned yet, glossed under it.
+ * `structure`: 'open' always shows the colour-coded breakdown (new-word lessons); 'toggle' lets you hide it.
+ */
+export function WordFace({ w, showSentence = true, fresh = [], structure = 'toggle' }: {
+  w: Word; showSentence?: boolean; fresh?: Word[]; structure?: 'open' | 'toggle'
+}) {
+  const [shown, setShown] = useState(structureShown)
+  const toggle = () => {
+    setShown(!shown)
+    try { localStorage.setItem(STRUCTURE_KEY, shown ? '0' : '1') } catch { /* storage unavailable */ }
+  }
+  const open = structure === 'open' || shown
   return (
     <div className={`word-face ${w.kind}`}>
       <div className="hz face-hanzi" lang="zh-CN">{w.hanzi}</div>
@@ -53,7 +71,13 @@ export function WordFace({ w, showSentence = true, fresh = [] }: { w: Word; show
           <div className="play-row">
             <PlayButton k={`${w.id}s`} text={w.sentence.zh} label={w.kind === 'word' ? 'Sentence' : 'Example'} />
             <PlayButton k={`${w.id}s`} text={w.sentence.zh} slow />
+            {w.structure && structure === 'toggle' && (
+              <button className="play" onClick={toggle} aria-expanded={shown}>
+                <span>{shown ? 'Hide parts' : 'Parts'}</span>
+              </button>
+            )}
           </div>
+          {w.structure && open && <Structure w={w} />}
         </div>
       )}
     </div>

@@ -2,7 +2,7 @@
 
 A personal, offline-first PWA for daily Mandarin listening and speaking practice, aimed at **new HSK 1 (2026, 294 words)** plus 58 travel and conversation phrases. Built for iPhone: no microphone, no backend, no database, no paid APIs.
 
-**Version 1.11** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
+**Version 1.12** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
 
 ## Who it's for
 
@@ -42,6 +42,7 @@ At 5 new words/day you cover all of HSK 1 in about 9 weeks, faster if you mark w
 - **Audio speed** starts at 85% (Settings: 70–100%; 🐢 slow = 70% of it). Once ≥20 listen cards are reviewed and 70% are Good or better, the home screen suggests the next 5% step; "Not now" or changing it yourself pauses that for a week.
 - **Word bank** (home screen): every studied item with a strength per skill — 👂 listening, 🗣 speaking, 字 reading, 句 sentences — from FSRS stability: Not tested · Learning (<2 d or relearning) · Getting there (<7 d) · Good (<30 d) · Strong. Search by 字, English, or pinyin without tone marks.
 - **Words before sentences.** A word and the sentence built around it are two jobs, and doing both at once was too much (day ~8). So speaking a word starts with the word alone (English → 你), and moves to its sentence once the speak card reaches Good; particles (吗 呢 的 了 吧 们…) mean nothing alone, so they're always in their sentence. Listen cards keep the sentence (one word alone is ambiguous: 他/她/它 are all tā), but every sentence is now made of words you know, so the only new thing in it is the word being taught. When the English gloss is shared (想 / 要 "to want"), the word prompt adds the sentence's English as context.
+- **Sentence parts.** Under each word's sentence (lessons, and review answers until you tap *Hide parts*, remembered per device) the sentence is split into labelled blocks in the basic order Subject → When → Where → How → Verb → Object, plus Talking to, To (whom), Set phrase, and particles named by what they do (Yes/no question, And…?, Suggestion, Done / change). Each word has its English underneath; the word being taught is underlined. The learner asked for colour-coded structure. Only the skeleton is coloured (subject violet, verb plum, object teal), since pinyin already uses red/orange/green/blue for tones and hue must keep meaning one thing per screen; every block also has a text label, so colour is never the only cue. The verb block says *Is* (是, or a number/noun predicate like 我二十岁), *Describes* (adjective predicate: 很好) or *Verb*. Roles come from `scripts/structure.mjs` (word classes + position), corrected per sentence in `content/structure.tsv`. Words only; phrase examples have no breakdown.
 - **Which new words come next.** The build orders words so each sentence uses only earlier words (see Editing content), and the app's picker re-checks against what *you* have learned (you may have skipped words with "I know it", or learned under an older order): of the next 8 unseen words, it takes the earliest whose sentence has the fewest words you haven't learned. Simulated from day 0: 245 of 294 words arrive in fully known sentences, 49 with one glossed word, none with more (before 1.11: 102 / 107 / 85 with 2–4).
 - **Reading is the gap** (day 3: 10 of 23 read cards failed vs 0 speak and 0 listen; basic characters like 好 是 很 吗 呢 也). The learner doesn't recognise the characters, and finds tones very hard. So read cards ask for the meaning only (tones don't count), and words failed on a read card come back in the Speak drill as **Read** items (every third item, up to 6): 字 → 4-second try → pinyin, meaning, audio and the character breakdown; 3 hits to retire, ungraded like the rest of the drill.
 - **Tone drill adapts.** Every answer is recorded per syllable (which tone played, what you picked when wrong; counts halve past 60 per tone so recent sessions weigh most). Items are drawn weighted by their hardest tone's error rate (base weight 0.1, so every tone still appears; an even 25% guess until there's data). After 20 answers, if one tone's error rate is ≥15%, the step says which tone gets extra practice and what you usually hear it as. The learner finds tones very hard; 2 vs 3 is the classic confusion.
@@ -129,6 +130,7 @@ The version is in `package.json` and shown at the bottom of the home screen and 
 - Phrases: `content/phrases.tsv` — `id|phrase|pinyin|english|example|example pinyin|example english`. The example is the phrase in use, often with the reply you'll hear.
 - **Ids are permanent** — progress and audio files are keyed by them. Add new rows anywhere *without* an id; `npm run data` assigns the next free one and writes it into the file. Never change or reuse an existing id. Each word needs its own example sentence (the build checks). Simplified characters, mainland pinyin with 一/不 tone changes marked (yí ge, bú shì).
 - Dialogues: `content/dialogues.json`. A dialogue unlocks once `unlockAfter` words and `unlockAfterPhrases` phrases are learned; `you` is the speaker you play in role-play (default B). File order = unlock order: the Dialogue step favours the newest unlocked one.
+- Sentence parts: `npm run data` tags every word sentence by rule (`scripts/structure.mjs`: word classes, prepositions 在/给/到 before a verb, clock times as When, numbers as the predicate when there's no verb). Where it's wrong, add a line to `content/structure.tsv`: `id|` and one role code per word (A talking to · S subject · W when · L where · H how · V verb · O object · T to · P particle · X set phrase); the build says if the word count is off. Review with `node scripts/build-data.mjs --structure`.
 - Character breakdowns: `npm run chars` (after `npm run data`) rebuilds `src/data/chars.json` from Make Me a Hanzi's dictionary (downloads it, or pass a local path). Unclear radical glosses are overridden in `scripts/build-chars.mjs`.
 - Listening suggestions: `src/listening.ts`.
 - Chinese font subset: after adding content with new characters, run `python3 scripts/build-font.py path/to/NotoSerifSC[wght].ttf` (from google/fonts `ofl/notoserifsc`; needs `pip install fonttools brotli`). Characters missing from the subset fall back to the system font.
@@ -148,6 +150,7 @@ src/Session.tsx     the five session steps
 src/WordBank.tsx    word bank
 src/CharParts.tsx   character breakdown (meaning/sound parts)
 src/Pinyin.tsx      tone-coloured pinyin, tone contours
+src/Structure.tsx   colour-coded sentence parts
 src/store.ts         also tone-drill stats (recordTones, toneErrors, toneFocus)
 src/Growth.tsx      home growth chart (ink squares per day)
 src/burst.ts        feedback burst state (Burst component in ui.tsx)
@@ -170,6 +173,9 @@ src/App.tsx         home + settings
 - New features should respect the profile above: whisper-friendly, no mic, no writing practice, offline-first.
 
 ## Changelog
+
+**1.12** (2026-11-08)
+- Sentence parts: each word's sentence is broken into labelled, colour-coded blocks (Subject, When, Where, How, Verb, Object, particles) with the English for every word. Shown in lessons; on review answers until you hide it.
 
 **1.11** (2026-11-08)
 - New words come in sentences made of words you already know (at most one other new word, shown as "Not learned yet"). Common words (这 有 在 去 想 了 和 吧 太 买…) are taught first; 77 sentences rewritten; names and non-HSK 1 words removed. The next new words are picked to fit what you've learned.

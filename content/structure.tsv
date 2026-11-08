@@ -1,0 +1,27 @@
+# Corrections to the sentence breakdown (scripts/structure.mjs) where the rules get it wrong.
+# id|one role per word, in the order `npm run data` splits the sentence (it says so if the count is off).
+# A talking to · S subject · W when · L where · H how · V verb · O object · T to (whom) · P particle · X set phrase
+# Check the result with: node scripts/build-data.mjs --structure
+w021|X O
+w039|A S V
+w040|A A A A S V
+w087|A S V
+w092|A S V
+w060|L S H V
+w113|W W W S H V
+w131|L L L V O O O
+w236|L L L L V O O O
+w258|L L V O O O
+w132|W W S V O
+w139|W V O
+w148|S W V O
+w203|S V O O
+w235|S S V O
+w283|W V V O
+w291|X S V O
+w247|O O O S H V
+w224|S V L L L
+w182|X V T O O O
+w184|S V V T O O O P
+w195|X V H H
+w202|S V H H P

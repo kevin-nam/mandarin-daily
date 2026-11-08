@@ -367,7 +367,7 @@ function NewWords({ state, commit, onDone }: { state: AppState; commit: Commit; 
     <div className="stage">
       {header}
       <p className="unit">{w.unit}</p>
-      <WordFace w={w} fresh={untaughtIn(state, w)} />
+      <WordFace w={w} fresh={untaughtIn(state, w)} structure={phase === 'teach' ? 'open' : 'toggle'} />
       {phase === 'teach' && <CharParts hanzi={w.hanzi} known={knownChars(state.introduced)} />}
     </div>
     {phase === 'check' ? (

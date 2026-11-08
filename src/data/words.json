@@ -16,6 +16,24 @@
   ],
   "parts": [
    "w002"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w002"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -35,6 +53,24 @@
   ],
   "parts": [
    "w005"
+  ],
+  "structure": [
+   [
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w002"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -55,6 +91,31 @@
   "parts": [
    "w001",
    "w002"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w002"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -75,6 +136,31 @@
   "parts": [
    "w005",
    "w002"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w002"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -92,6 +178,31 @@
   "parts": [
    "w001",
    "w002"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w002"
+     ],
+     "label": "Describes"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w006"
+     ],
+     "label": "Yes/no question"
+    }
+   ]
   ]
  },
  {
@@ -111,6 +222,47 @@
    "w005",
    "w002",
    "w001"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w002"
+     ],
+     "label": "Describes"
+    }
+   ],
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w007"
+     ],
+     "label": "And…?"
+    }
+   ]
   ]
  },
  {
@@ -132,6 +284,32 @@
    "w003",
    "w005",
    "w002"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w009",
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w002"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -151,6 +329,24 @@
   ],
   "parts": [
    "w003"
+  ],
+  "structure": [
+   [
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w003"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -171,6 +367,31 @@
   "parts": [
    "w004",
    "w003"
+  ],
+  "structure": [
+   [
+    {
+     "role": "how",
+     "ids": [
+      "w008"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w003"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -187,6 +408,24 @@
   },
   "parts": [
    "w001"
+  ],
+  "structure": [
+   [
+    {
+     "role": "phrase",
+     "ids": [
+      "w021"
+     ],
+     "label": "Set phrase"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w001"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -201,7 +440,18 @@
    "py": "Bú kèqi.",
    "en": "You're welcome."
   },
-  "parts": []
+  "parts": [],
+  "structure": [
+   [
+    {
+     "role": "phrase",
+     "ids": [
+      "w022"
+     ],
+     "label": "Set phrase"
+    }
+   ]
+  ]
  },
  {
   "id": "w010",
@@ -220,6 +470,24 @@
   ],
   "parts": [
    "w002"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w010"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w002"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -240,6 +508,31 @@
   "parts": [
    "w005",
    "w002"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w011"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w002"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -261,6 +554,32 @@
    "w009",
    "w005",
    "w002"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w012"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w009",
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w002"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -281,6 +600,31 @@
   "parts": [
    "w011",
    "w004"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w011"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w225"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -301,6 +645,31 @@
   "parts": [
    "w004",
    "w225"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w210"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w225"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -318,6 +687,31 @@
   "parts": [
    "w210",
    "w004"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w210"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w031"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -338,6 +732,31 @@
   "parts": [
    "w004",
    "w031"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w211"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w031"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -356,6 +775,32 @@
    "w210",
    "w004",
    "w003"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w210"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w003",
+      "w034"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -376,6 +821,34 @@
    "w003",
    "w034",
    "w002"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w011"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w003",
+      "w034",
+      "w002",
+      "w038"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -393,6 +866,31 @@
   "parts": [
    "w004",
    "w038"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w015"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w038"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -409,6 +907,24 @@
   },
   "parts": [
    "w002"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w016"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w002"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -428,6 +944,33 @@
    "w003",
    "w034",
    "w038"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w017"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w003",
+      "w034",
+      "w038"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -448,6 +991,24 @@
   ],
   "parts": [
    "w002"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w020"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w002"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -466,6 +1027,32 @@
    "w015",
    "w005",
    "w002"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w015"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w284",
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w002"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -487,6 +1074,31 @@
   "parts": [
    "w003",
    "w008"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w008"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w178"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -505,6 +1117,40 @@
    "w003",
    "w008",
    "w178"
+  ],
+  "structure": [
+   [
+    {
+     "role": "phrase",
+     "ids": [
+      "w023"
+     ],
+     "label": "Set phrase"
+    }
+   ],
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w008"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w178"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -519,7 +1165,18 @@
    "py": "Méi guānxi.",
    "en": "No problem."
   },
-  "parts": []
+  "parts": [],
+  "structure": [
+   [
+    {
+     "role": "phrase",
+     "ids": [
+      "w024"
+     ],
+     "label": "Set phrase"
+    }
+   ]
+  ]
  },
  {
   "id": "w025",
@@ -539,6 +1196,26 @@
   ],
   "parts": [
    "w021"
+  ],
+  "structure": [
+   [
+    {
+     "role": "phrase",
+     "ids": [
+      "w021"
+     ],
+     "label": "Set phrase"
+    }
+   ],
+   [
+    {
+     "role": "phrase",
+     "ids": [
+      "w025"
+     ],
+     "label": "Set phrase"
+    }
+   ]
   ]
  },
  {
@@ -560,6 +1237,31 @@
   "parts": [
    "w003",
    "w005"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w033"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -578,6 +1280,38 @@
    "w001",
    "w005",
    "w033"
+  ],
+  "structure": [
+   [
+    {
+     "role": "verb",
+     "ids": [
+      "w032"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w001"
+     ],
+     "label": "Object"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w033"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -599,6 +1333,31 @@
   "parts": [
    "w210",
    "w004"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w210"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w036"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -620,6 +1379,32 @@
    "w011",
    "w004",
    "w036"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w011"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w036",
+      "w035"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -640,6 +1425,31 @@
   "parts": [
    "w003",
    "w038"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w155"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w038"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -660,6 +1470,24 @@
   ],
   "parts": [
    "w003"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w156"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -682,6 +1510,33 @@
    "w004",
    "w003",
    "w034"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w210",
+      "w062"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w003",
+      "w034"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -704,6 +1559,33 @@
    "w155",
    "w062",
    "w038"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w155"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w041",
+      "w062",
+      "w038"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -726,6 +1608,33 @@
    "w155",
    "w062",
    "w038"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w155"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w058",
+      "w062",
+      "w038"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -748,6 +1657,33 @@
    "w155",
    "w062",
    "w038"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w155"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w054",
+      "w062",
+      "w038"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -768,6 +1704,31 @@
   "parts": [
    "w003",
    "w001"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w170"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w001"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -786,6 +1747,32 @@
    "w003",
    "w210",
    "w062"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w171"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w210",
+      "w062"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -807,6 +1794,32 @@
    "w001",
    "w170",
    "w006"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w170",
+      "w158"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w006"
+     ],
+     "label": "Yes/no question"
+    }
+   ]
   ]
  },
  {
@@ -828,6 +1841,32 @@
    "w001",
    "w170",
    "w031"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w170",
+      "w133"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w031"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -849,6 +1888,32 @@
    "w001",
    "w170",
    "w031"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w170",
+      "w134"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w031"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -866,6 +1931,31 @@
   "parts": [
    "w003",
    "w133"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w133"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w293"
+     ],
+     "label": "Done / change"
+    }
+   ]
   ]
  },
  {
@@ -886,6 +1976,31 @@
   "parts": [
    "w001",
    "w293"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w159"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w293"
+     ],
+     "label": "Done / change"
+    }
+   ]
   ]
  },
  {
@@ -906,6 +2021,31 @@
   "parts": [
    "w011",
    "w006"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w011"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w157"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w006"
+     ],
+     "label": "Yes/no question"
+    }
+   ]
   ]
  },
  {
@@ -926,6 +2066,31 @@
   "parts": [
    "w003",
    "w157"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w157"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w076"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -943,6 +2108,31 @@
   "parts": [
    "w001",
    "w157"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w157"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w218"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -965,6 +2155,38 @@
    "w003",
    "w005",
    "w033"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "when",
+     "ids": [
+      "w102"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w033"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -986,6 +2208,31 @@
   "parts": [
    "w003",
    "w158"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "when",
+     "ids": [
+      "w103"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w158"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -1005,6 +2252,24 @@
   ],
   "parts": [
    "w103"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w103"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w168"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -1023,6 +2288,32 @@
    "w003",
    "w210",
    "w062"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w173"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w210",
+      "w062"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -1043,6 +2334,25 @@
   "parts": [
    "w003",
    "w170"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w170",
+      "w162"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -1063,6 +2373,31 @@
   "parts": [
    "w001",
    "w031"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w166"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w031"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -1082,6 +2417,33 @@
    "w011",
    "w004",
    "w038"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003",
+      "w292",
+      "w011"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w038"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -1102,6 +2464,31 @@
   "parts": [
    "w001",
    "w006"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w274"
+     ],
+     "label": "Describes"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w006"
+     ],
+     "label": "Yes/no question"
+    }
+   ]
   ]
  },
  {
@@ -1119,6 +2506,31 @@
   "parts": [
    "w015",
    "w158"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w015"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w158"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w294"
+     ],
+     "label": "Suggestion"
+    }
+   ]
   ]
  },
  {
@@ -1139,6 +2551,31 @@
   "parts": [
    "w002",
    "w293"
+  ],
+  "structure": [
+   [
+    {
+     "role": "how",
+     "ids": [
+      "w285"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w002"
+     ],
+     "label": "Describes"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w293"
+     ],
+     "label": "Done / change"
+    }
+   ]
   ]
  },
  {
@@ -1161,6 +2598,33 @@
    "w170",
    "w210",
    "w062"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w170",
+      "w180"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w210",
+      "w062"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -1183,6 +2647,33 @@
    "w004",
    "w003",
    "w034"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w210"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w003",
+      "w034",
+      "w246"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -1203,6 +2694,25 @@
   "parts": [
    "w001",
    "w058"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w058",
+      "w072"
+     ],
+     "label": "Is"
+    }
+   ]
   ]
  },
  {
@@ -1221,6 +2731,32 @@
    "w284",
    "w005",
    "w002"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w018"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w284",
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w002"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -1241,6 +2777,33 @@
   "parts": [
    "w001",
    "w002"
+  ],
+  "structure": [
+   [
+    {
+     "role": "phrase",
+     "ids": [
+      "w028"
+     ],
+     "label": "Set phrase"
+    }
+   ],
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w002"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -1262,6 +2825,32 @@
    "w011",
    "w031",
    "w030"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w011"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w029"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w031",
+      "w030"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -1280,6 +2869,32 @@
    "w001",
    "w029",
    "w031"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w029"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w031",
+      "w030"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -1303,6 +2918,41 @@
    "w029",
    "w031",
    "w030"
+  ],
+  "structure": [
+   [
+    {
+     "role": "phrase",
+     "ids": [
+      "w027"
+     ],
+     "label": "Set phrase"
+    }
+   ],
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w029"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w031",
+      "w030"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -1320,6 +2970,33 @@
   "parts": [
    "w010",
    "w002"
+  ],
+  "structure": [
+   [
+    {
+     "role": "addressee",
+     "ids": [
+      "w039"
+     ],
+     "label": "Talking to"
+    }
+   ],
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w010"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w002"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -1342,6 +3019,33 @@
    "w003",
    "w034",
    "w100"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w013"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w003",
+      "w034",
+      "w100"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -1362,6 +3066,25 @@
   "parts": [
    "w011",
    "w072"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w011"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w044",
+      "w072"
+     ],
+     "label": "Is"
+    }
+   ]
   ]
  },
  {
@@ -1379,6 +3102,25 @@
   "parts": [
    "w092",
    "w002"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w092",
+      "w014"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w002"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -1402,6 +3144,44 @@
    "w039",
    "w020",
    "w002"
+  ],
+  "structure": [
+   [
+    {
+     "role": "addressee",
+     "ids": [
+      "w040",
+      "w014"
+     ],
+     "label": "Talking to"
+    }
+   ],
+   [
+    {
+     "role": "addressee",
+     "ids": [
+      "w039",
+      "w014"
+     ],
+     "label": "Talking to"
+    }
+   ],
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w020"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w002"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -1425,6 +3205,34 @@
    "w155",
    "w062",
    "w035"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003",
+      "w076"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w155"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w046",
+      "w062",
+      "w035"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -1445,6 +3253,25 @@
   "parts": [
    "w003",
    "w072"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w048",
+      "w072"
+     ],
+     "label": "Is"
+    }
+   ]
   ]
  },
  {
@@ -1467,6 +3294,33 @@
    "w155",
    "w062",
    "w035"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w015"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w155"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w049",
+      "w062",
+      "w035"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -1487,6 +3341,25 @@
   "parts": [
    "w003",
    "w072"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w050",
+      "w072"
+     ],
+     "label": "Is"
+    }
+   ]
   ]
  },
  {
@@ -1508,6 +3381,26 @@
    "w003",
    "w050",
    "w072"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w042",
+      "w050",
+      "w072"
+     ],
+     "label": "Is"
+    }
+   ]
   ]
  },
  {
@@ -1529,6 +3422,26 @@
    "w011",
    "w050",
    "w072"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w011"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w043",
+      "w050",
+      "w072"
+     ],
+     "label": "Is"
+    }
+   ]
   ]
  },
  {
@@ -1551,6 +3464,38 @@
    "w003",
    "w133",
    "w293"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w133"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w293"
+     ],
+     "label": "Done / change"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w056"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -1573,6 +3518,33 @@
    "w004",
    "w041",
    "w062"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w057",
+      "w041",
+      "w062"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -1594,6 +3566,38 @@
    "w102",
    "w035",
    "w005"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w102"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "subject",
+     "ids": [
+      "w035"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w061"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -1617,6 +3621,34 @@
    "w155",
    "w043",
    "w035"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003",
+      "w076"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w155"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w043",
+      "w065",
+      "w035"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -1636,6 +3668,33 @@
    "w003",
    "w034",
    "w099"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w019"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w003",
+      "w034",
+      "w099"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -1655,6 +3714,24 @@
   ],
   "parts": [
    "w187"
+  ],
+  "structure": [
+   [
+    {
+     "role": "phrase",
+     "ids": [
+      "w026"
+     ],
+     "label": "Set phrase"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w187"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -1677,6 +3754,33 @@
    "w004",
    "w212",
    "w035"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w212",
+      "w037",
+      "w035"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -1698,6 +3802,32 @@
    "w015",
    "w117",
    "w168"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w015"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "when",
+     "ids": [
+      "w045",
+      "w117"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w168"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -1719,6 +3849,32 @@
    "w003",
    "w117",
    "w159"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "when",
+     "ids": [
+      "w047",
+      "w117"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w159"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -1737,6 +3893,20 @@
    "w210",
    "w062",
    "w073"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w210",
+      "w062",
+      "w059",
+      "w073"
+     ],
+     "label": "Subject"
+    }
+   ]
   ]
  },
  {
@@ -1757,6 +3927,31 @@
   "parts": [
    "w003",
    "w156"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w156"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w073"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -1778,6 +3973,38 @@
    "w219",
    "w035",
    "w005"
+  ],
+  "structure": [
+   [
+    {
+     "role": "where",
+     "ids": [
+      "w219"
+     ],
+     "label": "Where"
+    },
+    {
+     "role": "subject",
+     "ids": [
+      "w035"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w060"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -1800,6 +4027,33 @@
    "w170",
    "w180",
    "w147"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w170",
+      "w180"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w066",
+      "w147"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -1822,6 +4076,32 @@
    "w003",
    "w155",
    "w185"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w155"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w067",
+      "w185"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -1845,6 +4125,33 @@
    "w173",
    "w134",
    "w142"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w068",
+      "w035"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w173",
+      "w134"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w142"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -1862,6 +4169,31 @@
   "parts": [
    "w102",
    "w275"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w102"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w071"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w275"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -1880,6 +4212,32 @@
    "w003",
    "w005",
    "w033"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003",
+      "w080"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w033"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -1902,6 +4260,27 @@
    "w062",
    "w146",
    "w045"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w041",
+      "w062",
+      "w146"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w045",
+      "w074"
+     ],
+     "label": "Is"
+    }
+   ]
   ]
  },
  {
@@ -1920,6 +4299,26 @@
    "w003",
    "w046",
    "w072"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003",
+      "w082"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w046",
+      "w072"
+     ],
+     "label": "Is"
+    }
+   ]
   ]
  },
  {
@@ -1943,6 +4342,28 @@
    "w246",
    "w042",
    "w050"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w210",
+      "w063",
+      "w246"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w042",
+      "w050",
+      "w075"
+     ],
+     "label": "Is"
+    }
+   ]
   ]
  },
  {
@@ -1966,6 +4387,40 @@
    "w005",
    "w174",
    "w034"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w174"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w003",
+      "w034",
+      "w077"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -1984,6 +4439,32 @@
    "w003",
    "w004",
    "w095"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003",
+      "w078"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w095"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -2002,6 +4483,38 @@
    "w001",
    "w155",
    "w006"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w155"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w086"
+     ],
+     "label": "Object"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w006"
+     ],
+     "label": "Yes/no question"
+    }
+   ]
   ]
  },
  {
@@ -2019,6 +4532,33 @@
   "parts": [
    "w001",
    "w002"
+  ],
+  "structure": [
+   [
+    {
+     "role": "addressee",
+     "ids": [
+      "w087"
+     ],
+     "label": "Talking to"
+    }
+   ],
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w002"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -2037,6 +4577,32 @@
    "w003",
    "w004",
    "w095"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003",
+      "w079"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w095"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -2055,6 +4621,32 @@
    "w003",
    "w173",
    "w100"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003",
+      "w083"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w173"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w100"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -2072,6 +4664,31 @@
   "parts": [
    "w012",
    "w155"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w012"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w155"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w090"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -2090,6 +4707,32 @@
    "w210",
    "w004",
    "w003"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w210"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w003",
+      "w091"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -2111,6 +4754,33 @@
   "parts": [
    "w001",
    "w002"
+  ],
+  "structure": [
+   [
+    {
+     "role": "addressee",
+     "ids": [
+      "w092"
+     ],
+     "label": "Talking to"
+    }
+   ],
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w002"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -2132,6 +4802,32 @@
    "w011",
    "w004",
    "w092"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w011"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w088",
+      "w092"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -2154,6 +4850,34 @@
    "w034",
    "w092",
    "w004"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003",
+      "w034",
+      "w092"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w089",
+      "w034"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -2171,6 +4895,31 @@
   "parts": [
    "w003",
    "w004"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w093"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -2194,6 +4943,33 @@
    "w004",
    "w003",
    "w034"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w011"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w003",
+      "w034",
+      "w094"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -2217,6 +4993,33 @@
    "w170",
    "w158",
    "w162"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w170",
+      "w158",
+      "w162"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w095"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -2235,6 +5038,32 @@
    "w003",
    "w080",
    "w004"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003",
+      "w080"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w096"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -2253,6 +5082,32 @@
    "w011",
    "w004",
    "w096"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w011",
+      "w084"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w096"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -2270,6 +5125,31 @@
   "parts": [
    "w012",
    "w004"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w012"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w097"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -2288,6 +5168,32 @@
    "w003",
    "w082",
    "w004"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003",
+      "w082"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w098"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -2308,6 +5214,31 @@
   "parts": [
    "w003",
    "w173"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w173"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w100"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -2327,6 +5258,40 @@
    "w155",
    "w041",
    "w100"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w101"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w155"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w041",
+      "w101",
+      "w100"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -2350,6 +5315,34 @@
    "w155",
    "w041",
    "w101"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003",
+      "w076"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w155"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w041",
+      "w101",
+      "w099"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -2369,6 +5362,56 @@
    "w173",
    "w100",
    "w099"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w069",
+      "w035"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w173"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w100"
+     ],
+     "label": "Object"
+    }
+   ],
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w069",
+      "w035"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w173"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w099"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -2391,6 +5434,38 @@
    "w003",
    "w005",
    "w274"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w104"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w274"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -2414,6 +5489,33 @@
    "w043",
    "w050",
    "w072"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "when",
+     "ids": [
+      "w105"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w043",
+      "w050",
+      "w072"
+     ],
+     "label": "Is"
+    }
+   ]
   ]
  },
  {
@@ -2437,6 +5539,39 @@
    "w170",
    "w158",
    "w036"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w106"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w170",
+      "w158"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w036"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -2459,6 +5594,38 @@
    "w003",
    "w157",
    "w036"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w107"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w157"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w036"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -2479,6 +5646,25 @@
   "parts": [
    "w102",
    "w058"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w102"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w058",
+      "w111"
+     ],
+     "label": "Is"
+    }
+   ]
   ]
  },
  {
@@ -2501,6 +5687,39 @@
    "w158",
    "w293",
    "w043"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w158"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w293"
+     ],
+     "label": "Done / change"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w043",
+      "w112"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -2525,6 +5744,40 @@
    "w003",
    "w005",
    "w274"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w210",
+      "w062",
+      "w113"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w274"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -2547,6 +5800,32 @@
    "w012",
    "w005",
    "w270"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w012",
+      "w085"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w270"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -2569,6 +5848,38 @@
    "w003",
    "w157",
    "w076"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "when",
+     "ids": [
+      "w116"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w157"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w076"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -2590,6 +5901,32 @@
    "w116",
    "w004",
    "w050"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w116"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w050",
+      "w109"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -2614,6 +5951,35 @@
    "w042",
    "w062",
    "w109"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w041",
+      "w108"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w155"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w050",
+      "w042",
+      "w062",
+      "w109"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -2637,6 +6003,34 @@
    "w050",
    "w109",
    "w041"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w102"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w050",
+      "w109",
+      "w041",
+      "w110"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -2657,6 +6051,25 @@
   "parts": [
    "w116",
    "w058"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w116"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w058",
+      "w117"
+     ],
+     "label": "Is"
+    }
+   ]
   ]
  },
  {
@@ -2679,6 +6092,27 @@
    "w048",
    "w117",
    "w050"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w116"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w048",
+      "w117",
+      "w050",
+      "w118"
+     ],
+     "label": "Is"
+    }
+   ]
   ]
  },
  {
@@ -2700,6 +6134,26 @@
    "w116",
    "w048",
    "w117"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w116"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w048",
+      "w117",
+      "w055"
+     ],
+     "label": "Is"
+    }
+   ]
   ]
  },
  {
@@ -2718,6 +6172,32 @@
    "w001",
    "w031",
    "w159"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "when",
+     "ids": [
+      "w031",
+      "w121"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w159"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -2740,6 +6220,38 @@
    "w001",
    "w155",
    "w006"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w155"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w122"
+     ],
+     "label": "Object"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w006"
+     ],
+     "label": "Yes/no question"
+    }
+   ]
   ]
  },
  {
@@ -2756,6 +6268,24 @@
   },
   "parts": [
    "w002"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w123"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w002"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -2773,6 +6303,31 @@
   "parts": [
    "w003",
    "w202"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w114"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w202"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -2791,6 +6346,38 @@
    "w003",
    "w008",
    "w205"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w115"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w008"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w205"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -2813,6 +6400,32 @@
    "w289",
    "w155",
    "w045"
+  ],
+  "structure": [
+   [
+    {
+     "role": "how",
+     "ids": [
+      "w289"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w155"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w045",
+      "w119"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -2835,6 +6448,38 @@
    "w003",
    "w005",
    "w274"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w128"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w274"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -2857,6 +6502,39 @@
    "w102",
    "w159",
    "w293"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "when",
+     "ids": [
+      "w102"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w159",
+      "w129"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w293"
+     ],
+     "label": "Done / change"
+    }
+   ]
   ]
  },
  {
@@ -2881,6 +6559,40 @@
    "w293",
    "w041",
    "w062"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w198"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w293"
+     ],
+     "label": "Done / change"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w041",
+      "w062",
+      "w120"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -2902,6 +6614,31 @@
   "parts": [
    "w003",
    "w203"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "when",
+     "ids": [
+      "w124"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w203"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -2924,6 +6661,38 @@
    "w015",
    "w133",
    "w151"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w125"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "subject",
+     "ids": [
+      "w015"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w133"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w151"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -2946,6 +6715,45 @@
    "w133",
    "w293",
    "w006"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w133"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w135"
+     ],
+     "label": "Object"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w293"
+     ],
+     "label": "Done / change"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w006"
+     ],
+     "label": "Yes/no question"
+    }
+   ]
   ]
  },
  {
@@ -2967,6 +6775,31 @@
   "parts": [
    "w003",
    "w171"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w171"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w136"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -2990,6 +6823,45 @@
    "w133",
    "w293",
    "w006"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w133"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w137"
+     ],
+     "label": "Object"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w293"
+     ],
+     "label": "Done / change"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w006"
+     ],
+     "label": "Yes/no question"
+    }
+   ]
   ]
  },
  {
@@ -3012,6 +6884,38 @@
    "w015",
    "w133",
    "w294"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w015"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w133"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w138"
+     ],
+     "label": "Object"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w294"
+     ],
+     "label": "Suggestion"
+    }
+   ]
   ]
  },
  {
@@ -3033,6 +6937,31 @@
   "parts": [
    "w133",
    "w031"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w139"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w133"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w031"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -3054,6 +6983,31 @@
   "parts": [
    "w079",
    "w157"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w079"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w157"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w140"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -3076,6 +7030,38 @@
    "w003",
    "w158",
    "w239"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w126"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w158"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w239"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -3098,6 +7084,33 @@
    "w035",
    "w173",
    "w134"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w036",
+      "w035"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w173",
+      "w134"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w142"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -3119,6 +7132,32 @@
    "w003",
    "w170",
    "w134"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w170",
+      "w134"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w143"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -3141,6 +7180,38 @@
    "w003",
    "w123",
    "w134"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "when",
+     "ids": [
+      "w123"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w134"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w144"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -3160,6 +7231,33 @@
    "w004",
    "w003",
    "w034"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w210"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w003",
+      "w034",
+      "w145"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -3182,6 +7280,32 @@
    "w003",
    "w173",
    "w133"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w173",
+      "w133"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w146"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -3201,6 +7325,33 @@
    "w173",
    "w133",
    "w031"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w173",
+      "w133"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w031",
+      "w147"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -3223,6 +7374,38 @@
    "w003",
    "w137",
    "w133"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "when",
+     "ids": [
+      "w137"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w133"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w148"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -3245,6 +7428,32 @@
    "w003",
    "w170",
    "w180"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w170",
+      "w180"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w149"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -3263,6 +7472,38 @@
    "w125",
    "w003",
    "w133"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w125"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w133"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w150"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -3282,6 +7523,39 @@
    "w005",
    "w173",
    "w133"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w173",
+      "w133"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w151"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -3300,6 +7574,38 @@
    "w003",
    "w162",
    "w255"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w127"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w162"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w255"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -3321,6 +7627,31 @@
   "parts": [
    "w151",
    "w005"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w151"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w153"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -3343,6 +7674,33 @@
    "w062",
    "w005",
    "w153"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w210",
+      "w062",
+      "w141"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w153"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -3362,6 +7720,33 @@
    "w062",
    "w005",
    "w153"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w210",
+      "w062",
+      "w152"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w153"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -3386,6 +7771,52 @@
    "w133",
    "w135",
    "w294"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w015"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w158"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w154"
+     ],
+     "label": "Object"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w133"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w135"
+     ],
+     "label": "Object"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w294"
+     ],
+     "label": "Suggestion"
+    }
+   ]
   ]
  },
  {
@@ -3407,6 +7838,32 @@
    "w003",
    "w170",
    "w076"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w170",
+      "w160"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w076"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -3427,6 +7884,31 @@
   "parts": [
    "w003",
    "w293"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w161"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w293"
+     ],
+     "label": "Done / change"
+    }
+   ]
   ]
  },
  {
@@ -3448,6 +7930,31 @@
   "parts": [
    "w003",
    "w293"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w165"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w293"
+     ],
+     "label": "Done / change"
+    }
+   ]
   ]
  },
  {
@@ -3470,6 +7977,32 @@
    "w011",
    "w008",
    "w173"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w011"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w008"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w173",
+      "w167"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -3491,6 +8024,38 @@
    "w001",
    "w157",
    "w031"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w157"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w169"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w031"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -3511,6 +8076,24 @@
   ],
   "parts": [
    "w167"
+  ],
+  "structure": [
+   [
+    {
+     "role": "how",
+     "ids": [
+      "w172"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w167"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -3532,6 +8115,33 @@
    "w003",
    "w034",
    "w076"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w174"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w003",
+      "w034",
+      "w076"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -3555,6 +8165,55 @@
    "w003",
    "w171",
    "w200"
+  ],
+  "structure": [
+   [
+    {
+     "role": "how",
+     "ids": [
+      "w285"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w130"
+     ],
+     "label": "Describes"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w293"
+     ],
+     "label": "Done / change"
+    }
+   ],
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w171",
+      "w200"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w293"
+     ],
+     "label": "Done / change"
+    }
+   ]
   ]
  },
  {
@@ -3576,6 +8235,32 @@
    "w001",
    "w159",
    "w006"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w176",
+      "w159"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w006"
+     ],
+     "label": "Yes/no question"
+    }
+   ]
   ]
  },
  {
@@ -3598,6 +8283,39 @@
    "w003",
    "w160",
    "w076"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w209",
+      "w132"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w160"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w076"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -3616,6 +8334,38 @@
    "w003",
    "w005",
    "w002"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w179"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w002"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -3641,6 +8391,47 @@
    "w252",
    "w293",
    "w006"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w163"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w003",
+      "w034",
+      "w252"
+     ],
+     "label": "Object"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w293"
+     ],
+     "label": "Done / change"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w006"
+     ],
+     "label": "Yes/no question"
+    }
+   ]
   ]
  },
  {
@@ -3664,6 +8455,40 @@
    "w041",
    "w062",
    "w146"
+  ],
+  "structure": [
+   [
+    {
+     "role": "phrase",
+     "ids": [
+      "w026"
+     ],
+     "label": "Set phrase"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w182"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "to",
+     "ids": [
+      "w003"
+     ],
+     "label": "To"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w041",
+      "w062",
+      "w146"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -3685,6 +8510,32 @@
    "w003",
    "w173",
    "w193"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w173",
+      "w164"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w193"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -3706,6 +8557,32 @@
    "w003",
    "w166",
    "w249"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w175",
+      "w166"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w249"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -3729,6 +8606,33 @@
    "w155",
    "w041",
    "w062"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w155"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w041",
+      "w062",
+      "w185"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -3750,6 +8654,32 @@
    "w001",
    "w157",
    "w218"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w186"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "where",
+     "ids": [
+      "w157",
+      "w218"
+     ],
+     "label": "Where"
+    }
+   ]
   ]
  },
  {
@@ -3769,6 +8699,33 @@
    "w175",
    "w166",
    "w249"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w175",
+      "w166"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w070",
+      "w249"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -3791,6 +8748,33 @@
    "w062",
    "w239",
    "w147"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w210",
+      "w062",
+      "w239"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w181"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w147"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -3812,6 +8796,25 @@
   "parts": [
    "w003",
    "w175"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w175",
+      "w189"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -3832,6 +8835,31 @@
   "parts": [
    "w102",
    "w031"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w102"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w190"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w031"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -3854,6 +8882,39 @@
    "w015",
    "w158",
    "w294"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w103"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "subject",
+     "ids": [
+      "w015"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w158",
+      "w191"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w294"
+     ],
+     "label": "Suggestion"
+    }
+   ]
   ]
  },
  {
@@ -3876,6 +8937,40 @@
    "w157",
    "w034",
    "w252"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w157"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w183"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w003",
+      "w034",
+      "w252"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -3901,6 +8996,48 @@
    "w062",
    "w185",
    "w006"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w177",
+      "w184"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "to",
+     "ids": [
+      "w001"
+     ],
+     "label": "To"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w041",
+      "w062",
+      "w185"
+     ],
+     "label": "Object"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w006"
+     ],
+     "label": "Yes/no question"
+    }
+   ]
   ]
  },
  {
@@ -3922,6 +9059,38 @@
    "w003",
    "w261",
    "w158"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w187"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w261"
+     ],
+     "label": "Object"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w158"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -3941,6 +9110,39 @@
    "w187",
    "w216",
    "w006"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w177",
+      "w187"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w216"
+     ],
+     "label": "Object"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w006"
+     ],
+     "label": "Yes/no question"
+    }
+   ]
   ]
  },
  {
@@ -3962,6 +9164,31 @@
   "parts": [
    "w011",
    "w157"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w011"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w157"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w196"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -3983,6 +9210,32 @@
    "w239",
    "w058",
    "w117"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w239"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "when",
+     "ids": [
+      "w058",
+      "w117"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w188"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -4005,6 +9258,39 @@
    "w005",
    "w175",
    "w193"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w012"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w175",
+      "w192"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w193"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -4026,6 +9312,32 @@
    "w012",
    "w173",
    "w192"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w012"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w173",
+      "w192"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w193"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -4049,6 +9361,33 @@
    "w050",
    "w041",
    "w117"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "when",
+     "ids": [
+      "w050",
+      "w041",
+      "w117"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w200"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -4071,6 +9410,32 @@
    "w001",
    "w058",
    "w117"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "when",
+     "ids": [
+      "w058",
+      "w117"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w201"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -4092,6 +9457,32 @@
    "w003",
    "w175",
    "w248"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w175",
+      "w194"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w248"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -4114,6 +9505,32 @@
    "w001",
    "w169",
    "w031"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w169"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w031",
+      "w203"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -4132,6 +9549,32 @@
    "w003",
    "w182",
    "w079"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "to",
+     "ids": [
+      "w182",
+      "w079"
+     ],
+     "label": "To"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w204"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -4154,6 +9597,32 @@
    "w003",
    "w048",
    "w117"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "when",
+     "ids": [
+      "w048",
+      "w117"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w205"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -4176,6 +9645,32 @@
    "w001",
    "w058",
    "w117"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "when",
+     "ids": [
+      "w058",
+      "w117"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w206"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -4199,6 +9694,33 @@
    "w047",
    "w117",
    "w158"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w082"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "when",
+     "ids": [
+      "w047",
+      "w117"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w158",
+      "w207"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -4221,6 +9743,32 @@
    "w015",
    "w049",
    "w117"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w015"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "when",
+     "ids": [
+      "w049",
+      "w117"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w208"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -4241,6 +9789,24 @@
   ],
   "parts": [
    "w293"
+  ],
+  "structure": [
+   [
+    {
+     "role": "verb",
+     "ids": [
+      "w209"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w293"
+     ],
+     "label": "Done / change"
+    }
+   ]
   ]
  },
  {
@@ -4262,6 +9828,32 @@
    "w001",
    "w171",
    "w062"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w171"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w212",
+      "w062"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -4285,6 +9877,33 @@
    "w003",
    "w034",
    "w246"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w213"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w003",
+      "w034",
+      "w246"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -4307,6 +9926,32 @@
    "w035",
    "w004",
    "w225"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w214",
+      "w035"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w225"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -4329,6 +9974,32 @@
    "w001",
    "w173",
    "w141"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w173"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w215",
+      "w141"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -4346,6 +10017,31 @@
   "parts": [
    "w001",
    "w159"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w159"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w216"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -4364,6 +10060,32 @@
    "w003",
    "w157",
    "w203"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "where",
+     "ids": [
+      "w157",
+      "w217"
+     ],
+     "label": "Where"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w203"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -4383,6 +10105,33 @@
    "w157",
    "w237",
    "w203"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003",
+      "w081"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "where",
+     "ids": [
+      "w157",
+      "w237"
+     ],
+     "label": "Where"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w203"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -4406,6 +10155,33 @@
    "w005",
    "w060",
    "w035"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w220"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w155"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w005",
+      "w060",
+      "w035"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -4424,6 +10200,32 @@
    "w001",
    "w076",
    "w157"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001",
+      "w076"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w157"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w221"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -4446,6 +10248,32 @@
    "w026",
    "w161",
    "w159"
+  ],
+  "structure": [
+   [
+    {
+     "role": "phrase",
+     "ids": [
+      "w026"
+     ],
+     "label": "Set phrase"
+    },
+    {
+     "role": "where",
+     "ids": [
+      "w161",
+      "w222"
+     ],
+     "label": "Where"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w159"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -4467,6 +10295,32 @@
    "w026",
    "w041",
    "w229"
+  ],
+  "structure": [
+   [
+    {
+     "role": "phrase",
+     "ids": [
+      "w026"
+     ],
+     "label": "Set phrase"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w195"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w041",
+      "w229"
+     ],
+     "label": "How"
+    }
+   ]
   ]
  },
  {
@@ -4488,6 +10342,38 @@
    "w003",
    "w157",
    "w249"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w157"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w197"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w249"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -4510,6 +10396,32 @@
    "w003",
    "w173",
    "w249"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w173",
+      "w198"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w249"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -4527,6 +10439,25 @@
   "parts": [
    "w103",
    "w158"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w103"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w158",
+      "w227"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -4548,6 +10479,32 @@
    "w011",
    "w289",
    "w157"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w011"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w289",
+      "w157"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w199"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -4567,6 +10524,39 @@
    "w041",
    "w229",
    "w294"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w202"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w041",
+      "w229"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w294"
+     ],
+     "label": "Suggestion"
+    }
+   ]
   ]
  },
  {
@@ -4588,6 +10578,31 @@
   "parts": [
    "w005",
    "w270"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w219"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w270"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -4610,6 +10625,33 @@
    "w004",
    "w037",
    "w035"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w011"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w231",
+      "w037",
+      "w035"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -4629,6 +10671,33 @@
    "w014",
    "w157",
    "w191"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w086",
+      "w014"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "where",
+     "ids": [
+      "w157",
+      "w232"
+     ],
+     "label": "Where"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w191"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -4650,6 +10719,31 @@
   "parts": [
    "w239",
    "w157"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w239"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w157"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w223"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -4672,6 +10766,32 @@
    "w012",
    "w157",
    "w198"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w012"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "where",
+     "ids": [
+      "w157",
+      "w234"
+     ],
+     "label": "Where"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w198"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -4694,6 +10814,33 @@
    "w187",
    "w001",
    "w228"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w187"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "where",
+     "ids": [
+      "w001",
+      "w224",
+      "w228"
+     ],
+     "label": "Where"
+    }
+   ]
   ]
  },
  {
@@ -4713,6 +10860,33 @@
    "w062",
    "w247",
    "w195"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w210",
+      "w062",
+      "w247"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w226"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w195"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -4735,6 +10909,32 @@
    "w003",
    "w157",
    "w203"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "where",
+     "ids": [
+      "w157",
+      "w237"
+     ],
+     "label": "Where"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w203"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -4756,6 +10956,31 @@
   "parts": [
    "w157",
    "w218"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w238"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w157"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w218"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -4777,6 +11002,32 @@
    "w246",
    "w157",
    "w258"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w246"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w157"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w258",
+      "w228"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -4799,6 +11050,32 @@
    "w003",
    "w082",
    "w228"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003",
+      "w082"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w228"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w235"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -4821,6 +11098,33 @@
    "w076",
    "w181",
    "w031"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w210",
+      "w076",
+      "w240"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w181"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w031"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -4844,6 +11148,45 @@
    "w158",
    "w180",
    "w147"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w158"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w241"
+     ],
+     "label": "Object"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w180"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w147"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -4862,6 +11205,38 @@
    "w015",
    "w158",
    "w294"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w015"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w158"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w243"
+     ],
+     "label": "Object"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w294"
+     ],
+     "label": "Suggestion"
+    }
+   ]
   ]
  },
  {
@@ -4883,6 +11258,32 @@
    "w100",
    "w157",
    "w259"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w100"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w157"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w259",
+      "w229"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -4901,6 +11302,32 @@
    "w001",
    "w180",
    "w031"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w180"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w031",
+      "w245"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -4924,6 +11351,40 @@
    "w293",
    "w054",
    "w246"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w180"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w293"
+     ],
+     "label": "Done / change"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w054",
+      "w063",
+      "w246"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -4947,6 +11408,40 @@
    "w003",
    "w008",
    "w032"
+  ],
+  "structure": [
+   [
+    {
+     "role": "object",
+     "ids": [
+      "w210",
+      "w062",
+      "w247"
+     ],
+     "label": "Object"
+    },
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w008"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w032"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -4968,6 +11463,32 @@
    "w079",
    "w157",
    "w244"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w079"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w157"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w244",
+      "w230"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -4991,6 +11512,39 @@
    "w175",
    "w166",
    "w006"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w175",
+      "w166"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w249"
+     ],
+     "label": "Object"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w006"
+     ],
+     "label": "Yes/no question"
+    }
+   ]
   ]
  },
  {
@@ -5013,6 +11567,38 @@
    "w003",
    "w157",
    "w197"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w157"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w197"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w250"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -5034,6 +11620,32 @@
    "w102",
    "w155",
    "w249"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w102"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w155"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w249",
+      "w251"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -5057,6 +11669,33 @@
    "w034",
    "w157",
    "w218"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003",
+      "w034",
+      "w252"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w157"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w218"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -5080,6 +11719,28 @@
    "w252",
    "w043",
    "w074"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w210",
+      "w062",
+      "w252"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w043",
+      "w053",
+      "w074"
+     ],
+     "label": "Is"
+    }
+   ]
   ]
  },
  {
@@ -5101,6 +11762,19 @@
   "parts": [
    "w001",
    "w034"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001",
+      "w034",
+      "w253"
+     ],
+     "label": "Subject"
+    }
+   ]
   ]
  },
  {
@@ -5126,6 +11800,36 @@
    "w046",
    "w048",
    "w049"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003",
+      "w034",
+      "w253"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w046",
+      "w048",
+      "w051",
+      "w049"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -5149,6 +11853,33 @@
    "w034",
    "w005",
    "w265"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w015",
+      "w034",
+      "w233"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w265"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -5172,6 +11903,39 @@
    "w008",
    "w173",
    "w162"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w008"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w173",
+      "w162"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w255"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -5195,6 +11959,39 @@
    "w158",
    "w162",
    "w294"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w015"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w158",
+      "w162"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w256"
+     ],
+     "label": "Object"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w294"
+     ],
+     "label": "Suggestion"
+    }
+   ]
   ]
  },
  {
@@ -5219,6 +12016,35 @@
    "w041",
    "w062",
    "w239"
+  ],
+  "structure": [
+   [
+    {
+     "role": "where",
+     "ids": [
+      "w233",
+      "w131",
+      "w224"
+     ],
+     "label": "Where"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w155"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w041",
+      "w062",
+      "w239"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -5245,6 +12071,36 @@
    "w155",
    "w041",
    "w062"
+  ],
+  "structure": [
+   [
+    {
+     "role": "where",
+     "ids": [
+      "w003",
+      "w076",
+      "w131",
+      "w224"
+     ],
+     "label": "Where"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w155"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w041",
+      "w062",
+      "w236"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -5268,6 +12124,33 @@
    "w233",
    "w131",
    "w224"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w242"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w157"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w233",
+      "w131",
+      "w224"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -5288,6 +12171,34 @@
    "w041",
    "w062",
    "w145"
+  ],
+  "structure": [
+   [
+    {
+     "role": "where",
+     "ids": [
+      "w258",
+      "w228"
+     ],
+     "label": "Where"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w155"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w041",
+      "w062",
+      "w145"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -5310,6 +12221,33 @@
    "w004",
    "w003",
    "w034"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w210"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w003",
+      "w034",
+      "w260"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -5328,6 +12266,38 @@
    "w015",
    "w187",
    "w294"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w015"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w187"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w261"
+     ],
+     "label": "Object"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w294"
+     ],
+     "label": "Suggestion"
+    }
+   ]
   ]
  },
  {
@@ -5351,6 +12321,45 @@
    "w187",
    "w158",
    "w294"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w015"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w187"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w262"
+     ],
+     "label": "Object"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w158"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w294"
+     ],
+     "label": "Suggestion"
+    }
+   ]
   ]
  },
  {
@@ -5374,6 +12383,45 @@
    "w187",
    "w158",
    "w036"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w187"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w263"
+     ],
+     "label": "Object"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w158"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w036"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -5395,6 +12443,32 @@
    "w001",
    "w155",
    "w031"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w155"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w031",
+      "w264"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -5418,6 +12492,33 @@
    "w062",
    "w005",
    "w265"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w210",
+      "w062",
+      "w239"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w265"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -5440,6 +12541,33 @@
    "w034",
    "w099",
    "w005"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003",
+      "w034",
+      "w099"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w266"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -5463,6 +12591,33 @@
    "w034",
    "w005",
    "w266"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003",
+      "w034",
+      "w244"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w266"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -5482,6 +12637,33 @@
    "w062",
    "w005",
    "w266"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w210",
+      "w062",
+      "w259"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w266"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -5504,6 +12686,33 @@
    "w062",
    "w244",
    "w005"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w210",
+      "w062",
+      "w244"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w265"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -5525,6 +12734,32 @@
    "w210",
    "w004",
    "w252"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w210"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w267",
+      "w252"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -5549,6 +12784,34 @@
    "w003",
    "w034",
    "w267"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w210"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w003",
+      "w034",
+      "w267",
+      "w254"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -5568,6 +12831,33 @@
    "w170",
    "w180",
    "w267"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w170",
+      "w180"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w267",
+      "w257"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -5590,6 +12880,39 @@
    "w062",
    "w285",
    "w293"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w210",
+      "w062"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w285"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w268"
+     ],
+     "label": "Describes"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w293"
+     ],
+     "label": "Done / change"
+    }
+   ]
   ]
  },
  {
@@ -5608,6 +12931,32 @@
    "w210",
    "w062",
    "w005"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w210",
+      "w062"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w269"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -5627,6 +12976,33 @@
    "w034",
    "w257",
    "w005"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001",
+      "w034",
+      "w257"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w270"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -5648,6 +13024,31 @@
   "parts": [
    "w005",
    "w270"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w248"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w270"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -5670,6 +13071,33 @@
    "w257",
    "w005",
    "w270"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w210",
+      "w064",
+      "w257"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w270"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -5693,6 +13121,28 @@
    "w257",
    "w041",
    "w074"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w210",
+      "w064",
+      "w257"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w041",
+      "w052",
+      "w074"
+     ],
+     "label": "Is"
+    }
+   ]
   ]
  },
  {
@@ -5716,6 +13166,33 @@
    "w062",
    "w256",
    "w005"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w210",
+      "w062",
+      "w256"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w271"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -5739,6 +13216,45 @@
    "w192",
    "w193",
    "w005"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w012"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w192"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w193"
+     ],
+     "label": "Object"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w272"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -5756,6 +13272,31 @@
   "parts": [
    "w036",
    "w005"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w036"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w273"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -5776,6 +13317,31 @@
   "parts": [
    "w102",
    "w005"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w102"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w275"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -5797,6 +13363,38 @@
    "w102",
    "w285",
    "w293"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w102"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w285"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w276"
+     ],
+     "label": "Describes"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w293"
+     ],
+     "label": "Done / change"
+    }
+   ]
   ]
  },
  {
@@ -5817,6 +13415,31 @@
   "parts": [
    "w011",
    "w293"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w011"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w277"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w293"
+     ],
+     "label": "Done / change"
+    }
+   ]
   ]
  },
  {
@@ -5838,6 +13461,31 @@
   "parts": [
    "w003",
    "w293"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w278"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "particle",
+     "ids": [
+      "w293"
+     ],
+     "label": "Done / change"
+    }
+   ]
   ]
  },
  {
@@ -5860,6 +13508,32 @@
    "w003",
    "w126",
    "w158"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "when",
+     "ids": [
+      "w126"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w158",
+      "w279"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -5881,6 +13555,31 @@
   "parts": [
    "w102",
    "w227"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w102"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "subject",
+     "ids": [
+      "w280"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w227"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -5901,6 +13600,31 @@
   "parts": [
    "w005",
    "w265"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w281"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w005"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w265"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -5922,6 +13646,25 @@
   "parts": [
    "w103",
    "w175"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w103"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w175",
+      "w282"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -5943,6 +13686,32 @@
    "w103",
    "w175",
    "w229"
+  ],
+  "structure": [
+   [
+    {
+     "role": "when",
+     "ids": [
+      "w103"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w175",
+      "w229"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w283"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -5966,6 +13735,39 @@
    "w173",
    "w036",
    "w141"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w286"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w173"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w036",
+      "w141"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -5986,6 +13788,31 @@
   "parts": [
    "w001",
    "w002"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w001"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w287"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w002"
+     ],
+     "label": "Describes"
+    }
+   ]
   ]
  },
  {
@@ -6007,6 +13834,38 @@
    "w003",
    "w103",
    "w159"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "when",
+     "ids": [
+      "w103"
+     ],
+     "label": "When"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w288"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w159"
+     ],
+     "label": "Verb"
+    }
+   ]
   ]
  },
  {
@@ -6026,6 +13885,39 @@
    "w156",
    "w133",
    "w135"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w289",
+      "w156"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w133"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w135"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -6048,6 +13940,38 @@
    "w003",
    "w133",
    "w135"
+  ],
+  "structure": [
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "how",
+     "ids": [
+      "w290"
+     ],
+     "label": "How"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w133"
+     ],
+     "label": "Verb"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w135"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  },
  {
@@ -6069,6 +13993,40 @@
    "w003",
    "w004",
    "w093"
+  ],
+  "structure": [
+   [
+    {
+     "role": "phrase",
+     "ids": [
+      "w291"
+     ],
+     "label": "Set phrase"
+    }
+   ],
+   [
+    {
+     "role": "subject",
+     "ids": [
+      "w003"
+     ],
+     "label": "Subject"
+    },
+    {
+     "role": "verb",
+     "ids": [
+      "w004"
+     ],
+     "label": "Is"
+    },
+    {
+     "role": "object",
+     "ids": [
+      "w093"
+     ],
+     "label": "Object"
+    }
+   ]
   ]
  }
 ]

@@ -30,6 +30,11 @@
   --t4: #2d5bb0;
   --t0: #6c6963;
 
+  /* Sentence parts: the skeleton only, in hues kept apart from the tone colours */
+  --r-subject: #5b45bd;
+  --r-verb: #a12f73;
+  --r-object: #0a7177;
+
   /* Strength ramp: ink at rising strength */
   --lv1: #e6e3dc;
   --lv2: #c9c5bb;
@@ -70,6 +75,9 @@
     --t3: #74c98a;
     --t4: #8fb1f5;
     --t0: #9a958d;
+    --r-subject: #b9a6ff;
+    --r-verb: #f29ccb;
+    --r-object: #63d2d6;
     --lv1: #2e2c29;
     --lv2: #4a4741;
     --lv3: #9c978e;
@@ -96,6 +104,9 @@
   --t3: #74c98a;
   --t4: #8fb1f5;
   --t0: #9a958d;
+  --r-subject: #b9a6ff;
+  --r-verb: #f29ccb;
+  --r-object: #63d2d6;
   --lv1: #2e2c29;
   --lv2: #4a4741;
   --lv3: #9c978e;
@@ -370,6 +381,32 @@ mark.key {
 .sentence-zh { font-size: 26px; line-height: 1.4; }
 .sentence-py { display: block; font-size: 16px; margin-top: 2px; }
 .sentence-en { color: var(--muted); font-size: 15px; margin: 4px 0 12px; }
+/* Sentence parts: labelled blocks; subject, verb and object carry a colour, the rest stay neutral. */
+.structure { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--rule); }
+.clause { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+.clause + .clause { margin-top: 6px; }
+.chunk {
+  --c: var(--muted);
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  padding: 5px 8px 6px; border-radius: 10px; min-width: 44px;
+  background: var(--sunken); border-bottom: 3px solid transparent;
+  animation: enter 220ms var(--ease) both;
+}
+.chunk.r-subject { --c: var(--r-subject); }
+.chunk.r-verb { --c: var(--r-verb); }
+.chunk.r-object { --c: var(--r-object); }
+.chunk.r-subject, .chunk.r-verb, .chunk.r-object {
+  background: color-mix(in srgb, var(--c) 10%, var(--surface)); border-bottom-color: var(--c);
+}
+.chunk-label { font-size: 12px; font-weight: 600; color: var(--c); letter-spacing: 0.01em; white-space: nowrap; }
+.chunk-words { display: flex; gap: 6px; }
+.chunk-word { display: flex; flex-direction: column; align-items: center; }
+.chunk-word .hz { font-size: 22px; line-height: 1.25; color: var(--ink); }
+.chunk-word.focus .hz { text-decoration: underline 2px var(--seal); text-underline-offset: 5px; }
+.chunk-word small { font-size: 12px; color: var(--muted); max-width: 7em; text-align: center; line-height: 1.2; }
+.structure-order { margin-top: 10px; font-size: 13px; color: var(--muted); text-wrap: balance; }
+@media (prefers-reduced-motion: reduce) { .chunk { animation: none; } }
+
 /* Words in the sentence not learned yet: a quiet gloss so nothing in it is a mystery. */
 .fresh { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 12px; font-size: 14px; color: var(--muted); margin: -4px 0 12px; }
 .fresh-label { flex-basis: 100%; font-weight: 600; }

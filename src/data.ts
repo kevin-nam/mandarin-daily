@@ -14,9 +14,14 @@ export interface Word {
   sentence: { zh: string; py: string; en: string }
   /** Other words the sentence uses (scripts/build-data.mjs), to gloss the ones you haven't learned yet. */
   parts: string[]
+  /** The sentence's structure, per clause: chunks of words sharing a role (scripts/structure.mjs). Words only. */
+  structure?: Chunk[][]
   /** Tones (1-4) per syllable if the word is a fair tone-drill item (see scripts/build-data.mjs). */
   tones?: number[]
 }
+
+export type Role = 'addressee' | 'subject' | 'when' | 'where' | 'how' | 'verb' | 'object' | 'to' | 'particle' | 'phrase'
+export interface Chunk { role: Role; label: string; ids: string[] }
 
 export interface DialogueLine { s: string; zh: string; py: string; en: string }
 export interface Dialogue {
@@ -30,8 +35,8 @@ export interface Dialogue {
   lines: DialogueLine[]
 }
 
-export const WORDS = wordsJson as Word[]
-export const PHRASES = phrasesJson as Word[]
+export const WORDS = wordsJson as unknown as Word[]
+export const PHRASES = phrasesJson as unknown as Word[]
 export const DIALOGUES: Dialogue[] = dialoguesJson
 /**
  * How a character is built (scripts/build-chars.mjs): m meaning, p pinyin, c parts,
@@ -81,7 +86,7 @@ export const MORE_TIME = 5
 /** Words whose first English gloss another word shares (想 / 要 "to want"): the prompt adds context. */
 const firstGloss = (w: Word) => w.en.split(';')[0].replace(/\(.*?\)/g, '').trim()
 const GLOSS_COUNT = new Map<string, number>()
-for (const w of wordsJson as Word[]) GLOSS_COUNT.set(firstGloss(w), (GLOSS_COUNT.get(firstGloss(w)) ?? 0) + 1)
+for (const w of WORDS) GLOSS_COUNT.set(firstGloss(w), (GLOSS_COUNT.get(firstGloss(w)) ?? 0) + 1)
 export const glossClash = (w: Word) => w.kind === 'word' && (GLOSS_COUNT.get(firstGloss(w)) ?? 0) > 1
 
 /**
