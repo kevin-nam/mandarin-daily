@@ -45,6 +45,12 @@ const KEY = 'mandarin-daily:v1'
 // No same-day learning steps: the session itself (Speak drill, Again re-queue) covers same-day practice,
 // so every grade schedules whole days. With steps on, graded cards came due again minutes later.
 const scheduler = fsrs({ enable_fuzz: true, request_retention: 0.9, enable_short_term: false })
+/**
+ * Listening is the learner's strong skill: no listen card was missed in the first 8 days, against the
+ * ~10% the default model expects, so it underestimates them. A lower target there (85%) spaces listen
+ * cards ~1.6× further apart, about a third fewer reviews, for time on reading.
+ */
+const listenScheduler = fsrs({ enable_fuzz: true, request_retention: 0.85, enable_short_term: false })
 
 export const today = (d = new Date()) =>
   `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
@@ -116,11 +122,29 @@ export function parseKey(key: string) {
 export function introduce(s: AppState, wordId: string, now = new Date()) {
   if (s.introduced.includes(wordId)) return
   s.introduced.push(wordId)
-  for (const k of KINDS) s.cards[cardKey(wordId, k)] = { ...createEmptyCard(now), due: startOfDay(now, 1) }
+  for (const k of KINDS) {
+    if (k === 'read' && !phraseReadable(s, wordId)) continue // waits for the words inside it
+    s.cards[cardKey(wordId, k)] = { ...createEmptyCard(now), due: startOfDay(now, 1) }
+  }
+  // A new word may be the last one a phrase was waiting for.
+  for (const p of PHRASES) {
+    if (s.introduced.includes(p.id) && !s.cards[cardKey(p.id, 'read')] && phraseReadable(s, p.id)) {
+      s.cards[cardKey(p.id, 'read')] = { ...createEmptyCard(now), due: startOfDay(now, 1) }
+    }
+  }
+}
+
+/**
+ * A phrase is read (characters only) once you know the HSK 1 words in it, so reading it means reading,
+ * not recognising a shape full of characters never taught (懂 慢 意思). Words are always readable.
+ */
+export function phraseReadable(s: AppState, id: string) {
+  const words = WORD_BY_ID.get(id)?.words
+  return !words || words.every((w) => s.introduced.includes(w))
 }
 
 export function grade(s: AppState, key: string, rating: Grade, now = new Date()) {
-  s.cards[key] = scheduler.next(s.cards[key], now, rating).card
+  s.cards[key] = (key.endsWith(':listen') ? listenScheduler : scheduler).next(s.cards[key], now, rating).card
   if (key.endsWith(':speak') && s.flagged) delete s.flagged[parseKey(key).wordId]
   // Reading a word on its own reliably unlocks reading its whole sentence, characters only.
   const { wordId, kind } = parseKey(key)

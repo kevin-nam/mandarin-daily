@@ -14,6 +14,8 @@ export interface Word {
   sentence: { zh: string; py: string; en: string }
   /** Other words the sentence uses (scripts/build-data.mjs), to gloss the ones you haven't learned yet. */
   parts: string[]
+  /** Phrases: the HSK 1 words in the phrase itself (its reading card waits for them). */
+  words?: string[]
   /** The sentence's structure, per clause: chunks of words sharing a role (scripts/structure.mjs). Words only. */
   structure?: Chunk[][]
   /** Tones (1-4) per syllable if the word is a fair tone-drill item (see scripts/build-data.mjs). */

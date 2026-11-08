@@ -18,7 +18,9 @@ const SKILLS: { kind: CardKind; mark: string; label: string }[] = [
   { kind: 'sentence', mark: '句', label: 'Sentences' },
 ]
 const applies = (kind: CardKind, w: Word) => kind !== 'sentence' || w.kind === 'word'
-const locked = (state: AppState, kind: CardKind, w: Word) => kind === 'sentence' && !state.cards[cardKey(w.id, kind)]
+// Sentences wait for reading to be Good; a phrase's reading waits for the words inside it.
+const locked = (state: AppState, kind: CardKind, w: Word) =>
+  (kind === 'sentence' || (kind === 'read' && w.kind === 'phrase')) && !state.cards[cardKey(w.id, kind)]
 
 type Filter = 'all' | 'word' | 'phrase'
 type Sort = 'weakest' | 'newest' | 'oldest'
@@ -180,12 +182,14 @@ function BankRow({ e, state, known, open, onToggle }: {
               const r = recallChance(c)
               return (
                 <div key={s.kind} className="skill-stat">
-                  <dt><span className={`mark hz ${!c && s.kind === 'sentence' ? 'locked' : `lv${levels[i]}`}`} aria-hidden="true">{s.mark}</span>{s.label}</dt>
+                  <dt><span className={`mark hz ${locked(state, s.kind, w) ? 'locked' : `lv${levels[i]}`}`} aria-hidden="true">{s.mark}</span>{s.label}</dt>
                   <dd>
-                    <b>{!c && s.kind === 'sentence' ? 'Locked' : LEVELS[levels[i]]}</b>
+                    <b>{locked(state, s.kind, w) ? 'Locked' : LEVELS[levels[i]]}</b>
                     <span>
-                      {!c && s.kind === 'sentence'
-                        ? 'Unlocks once reading is Good'
+                      {locked(state, s.kind, w)
+                        ? s.kind === 'sentence'
+                          ? 'Unlocks once reading is Good'
+                          : `Unlocks once you know ${(w.words ?? []).filter((x) => !state.introduced.includes(x)).map((x) => WORD_BY_ID.get(x)?.hanzi).join(' ')}`
                         : r === null || !c
                         ? 'First review coming up'
                         : `${Math.round(r * 100)}% recall now · ${dueText(c.due)}${c.lapses ? ` · forgot ${c.lapses}×` : ''}`}

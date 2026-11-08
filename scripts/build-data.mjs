@@ -121,6 +121,9 @@ for (const it of [...words, ...phrases]) {
     problems.push(`${it.id} ${it.hanzi}: "${it.sentence.zh}" uses ${oov.map((s) => s.slice(1)).join('')}, which no HSK 1 word covers`)
   }
   it.parts = [...new Set(segs.filter((s) => !s.startsWith('?') && s !== it.id))]
+  // A phrase's own HSK 1 words: its reading card waits until you know them (characters outside HSK 1
+  // are learned as part of the phrase).
+  if (it.kind === 'phrase') it.words = [...new Set(segment(it.hanzi).filter((s) => !s.startsWith('?')))]
 }
 
 /**
