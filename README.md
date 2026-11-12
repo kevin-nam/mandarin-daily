@@ -2,7 +2,7 @@
 
 A personal, offline-first PWA for daily Mandarin listening and speaking practice, aimed at **new HSK 1 (2026, 294 words)** plus 58 travel and conversation phrases. Built for iPhone: no microphone, no backend, no database, no paid APIs.
 
-**Version 1.18** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
+**Version 1.19** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
 
 ## Who it's for
 
@@ -40,6 +40,7 @@ At 5 new words/day you cover all of HSK 1 in about 9 weeks, faster if you mark w
 ## How the app paces you
 
 - **Once a day.** New words reset at local midnight. New cards' first review is the *next* day (after sleep). Every grade schedules whole days (FSRS same-day learning steps are off: the session's own repetition covers same-day practice). After a session the home screen says **Done for today**; "Practice anyway" is there but same-day re-practice adds little.
+- **One card per word a day** (1.19). When several of an item's cards are due, one is reviewed and the others wait for the next day (most overdue first, so they take turns), as Anki buries siblings: a listen card shows the meaning and the character, so the read card right after it tested nothing (the learner: "makes it too easy"). Cards due any time today count from the morning, so nothing turns due after the session; finishing the session ends the day, and reviews left past the 12-minute cap are in Extra practice. Before, a card reviewed at 8 pm came due at 8 pm, so finishing earlier left the home screen on *Continue session* instead of the quick recall. Siblings held back don't count as falling behind.
 - **Missing a day** costs only the streak. Reviews wait; the 12-min cap keeps sessions the same length; leftovers roll over (most at risk first). If reviewed cards are carried over from earlier days, new words are halved (>10 behind) or paused (>30 behind) until you catch up.
 - **Audio speed** starts at 85% (Settings: 70–100%; 🐢 slow = 70% of it). Once ≥20 listen cards are reviewed and 70% are Good or better, the home screen suggests the next 5% step; "Not now" or changing it yourself pauses that for a week. If listen cards are almost never missed (under 3% over 100+ reviews) it suggests 100% straight away instead (1.18; day 13: 2 misses in 180).
 - **Working on** (home, 1.15): what the app is adapting to, visible between sessions: the tone ladder step with its tally of your last 20, and the characters you mix up (read card missed 4+ times, not yet Good) as chips shaded by reading strength. Hidden before the first word, and once the ladder is done and nothing is tricky.
@@ -188,6 +189,10 @@ src/App.tsx         home + settings
 - New features should respect the profile above: whisper-friendly, no mic, no writing practice, offline-first.
 
 ## Changelog
+
+**1.19** (2026-11-12)
+- A word's cards no longer come one after another: one a day, the others the next day.
+- After finishing the session, home shows Done and the quick recall, not Continue session.
 
 **1.18** (2026-11-12)
 - Characters you've missed a lot can now get back to long gaps once you know them, instead of returning every few days for weeks.

@@ -68,7 +68,8 @@ export default function App() {
   const learned = wordsLearned(state)
   const phrases = phrasesLearned(state)
   const startedToday = !!state.history[today()]
-  const doneToday = startedToday && due === 0 && newLeft === 0
+  // Finishing the session ends the day; anything left (past the 12-minute review cap) is in Extra practice.
+  const doneToday = startedToday && (!!state.history[today()]?.finishedAt || (due === 0 && newLeft === 0))
   const listening = listeningToday()
   const days = streak(state)
   const faster = speedSuggestion(state)

@@ -172,10 +172,28 @@ export function grade(s: AppState, key: string, rating: Grade, now = new Date())
   }
 }
 
-/** Keys of cards due by `now`, most overdue first. Cards for items removed from the content are skipped. */
+/** Items with a card reviewed since `since`. */
+function reviewedSince(s: AppState, since: Date) {
+  return new Set(Object.entries(s.cards).filter(([, c]) => c.last_review && c.last_review >= since).map(([k]) => parseKey(k).wordId))
+}
+
+/**
+ * Keys of cards due today, most overdue first. Cards for items removed from the content are skipped.
+ * - Due any time today counts: due times carry the hour of the last review, so cards used to turn
+ *   due during the day, after the session ("Continue session" instead of done).
+ * - One card per item a day (siblings wait, as Anki buries them): 也's listen card shows its meaning
+ *   and character, so its read card right after tests nothing. The most overdue sibling goes first, so
+ *   they take turns; a speak card flagged in the quick recall beats the rest.
+ */
 export function dueKeys(s: AppState, now = new Date()) {
-  return Object.entries(s.cards)
-    .filter(([k, c]) => c.due <= now && WORD_BY_ID.has(parseKey(k).wordId))
+  const done = reviewedSince(s, startOfDay(now))
+  const cutoff = startOfDay(now, 1)
+  const first = (k: string) => (parseKey(k).kind === 'speak' && s.flagged?.[parseKey(k).wordId] ? 0 : 1)
+  const due = Object.entries(s.cards)
+    .filter(([k, c]) => c.due < cutoff && WORD_BY_ID.has(parseKey(k).wordId) && !done.has(parseKey(k).wordId))
+    .sort((a, b) => first(a[0]) - first(b[0]) || +a[1].due - +b[1].due)
+  const picked = new Set<string>()
+  return due.filter(([k]) => !picked.has(parseKey(k).wordId) && !!picked.add(parseKey(k).wordId))
     .sort((a, b) => +a[1].due - +b[1].due)
     .map(([k]) => k)
 }
@@ -238,8 +256,10 @@ export function byRisk(s: AppState, keys: string[], now = new Date()) {
  */
 export function newQuota(s: AppState, now = new Date()) {
   // Only reviewed cards count: a never-reviewed card waiting a day isn't a sign of falling behind.
+  // Nor is a sibling held back because another card of its item was reviewed since yesterday.
+  const recent = reviewedSince(s, startOfDay(now, -1))
   const behind = Object.entries(s.cards).filter(
-    ([k, c]) => c.reps > 0 && c.due < startOfDay(now) && WORD_BY_ID.has(parseKey(k).wordId),
+    ([k, c]) => c.reps > 0 && c.due < startOfDay(now) && WORD_BY_ID.has(parseKey(k).wordId) && !recent.has(parseKey(k).wordId),
   ).length
   const scale = behind > 30 ? 0 : behind > 10 ? 0.5 : 1
   return {
