@@ -51,6 +51,14 @@ const scheduler = fsrs({ enable_fuzz: true, request_retention: 0.9, enable_short
  * cards ~1.6× further apart, about a third fewer reviews, for time on reading.
  */
 const listenScheduler = fsrs({ enable_fuzz: true, request_retention: 0.85, enable_short_term: false })
+/**
+ * Difficulty ceiling. Repeated misses push FSRS difficulty to its 10 maximum, where a correct answer
+ * barely grows stability (11 − D is 1), so the card comes back every few days for weeks however well
+ * you now know it. Day-13 backup: 24 read cards sat at 9.4–10 with stability under a day (也 们 喂 很 呢
+ * 请 吗 叫). Simulated from 也's state, six Goods in a row give intervals of 3,3,3,4,6,8 days at 10 and
+ * 3,5,11,23,45,85 at 8; a miss still drops it back.
+ */
+const MAX_DIFFICULTY = 8
 
 export const today = (d = new Date()) =>
   `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
@@ -78,6 +86,12 @@ function revive(s: AppState): AppState {
     s.dialogues = Object.fromEntries(
       Object.entries(OLD_UNLOCK).filter(([, [w, p]]) => words >= w && phrases >= p).map(([id]) => [id, '2000-01-01']),
     )
+  }
+  // Phrases learned before 1.17 got a read card even when it tested characters never taught. Ones you
+  // haven't got Good at go back to waiting for their words (recreated, fresh, by introduce()).
+  for (const p of PHRASES) {
+    const k = cardKey(p.id, 'read')
+    if (s.cards[k] && !phraseReadable(s, p.id) && s.cards[k].stability < 7) delete s.cards[k]
   }
   for (const c of Object.values(s.cards)) {
     c.due = new Date(c.due)
@@ -144,7 +158,11 @@ export function phraseReadable(s: AppState, id: string) {
 }
 
 export function grade(s: AppState, key: string, rating: Grade, now = new Date()) {
-  s.cards[key] = (key.endsWith(':listen') ? listenScheduler : scheduler).next(s.cards[key], now, rating).card
+  const prev = s.cards[key]
+  const card = (key.endsWith(':listen') ? listenScheduler : scheduler)
+    .next({ ...prev, difficulty: Math.min(prev.difficulty, MAX_DIFFICULTY) }, now, rating).card
+  card.difficulty = Math.min(card.difficulty, MAX_DIFFICULTY)
+  s.cards[key] = card
   if (key.endsWith(':speak') && s.flagged) delete s.flagged[parseKey(key).wordId]
   // Reading a word on its own reliably unlocks reading its whole sentence, characters only.
   const { wordId, kind } = parseKey(key)
@@ -454,6 +472,10 @@ export function speedSuggestion(s: AppState, now = new Date()) {
   const speed = s.settings.audioSpeed
   if (speed >= 1 || (s.settings.speedNudgeAfter && now < new Date(s.settings.speedNudgeAfter))) return null
   const tested = s.introduced.map((id) => s.cards[cardKey(id, 'listen')]).filter((c) => c && c.reps > 0)
+  // Hardly ever missed over many reviews (day 13: 2 of 180): small steps waste weeks, go to normal speed.
+  // Checked first: with 5 new words a day, many listen cards are always too young to count as Good.
+  const reps = tested.reduce((a, c) => a + c.reps, 0)
+  if (reps >= 100 && tested.reduce((a, c) => a + c.lapses, 0) / reps < 0.03) return 1
   if (tested.length < 20 || tested.filter((c) => level(c) >= 3).length / tested.length < 0.7) return null
   return Math.min(1, Math.round((speed + 0.05) * 100) / 100)
 }

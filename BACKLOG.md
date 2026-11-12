@@ -18,6 +18,17 @@ Upcoming reviews from the backup: listen cards ~30% of what's due in the next 30
 
 **3. Pace new words by reading health: dropped for now.** The read Again rate is concentrated in five look-alike characters, which 1.13–1.15 target directly; a global slowdown would delay HSK 1 for everyone else. The existing behind-on-reviews cut covers overload. Re-check with a backup around 2026-11-15: if the tricky characters haven't moved, revisit (perhaps keyed to the number of tricky characters, not the overall rate).
 
+## From the day-13 backup analysis (2026-11-12)
+Data: 13 days, 77 words + 25 phrases, 330 cards. Miss rate per review: listen 1% (2/180), speak words 3%, speak phrases 12%, sentence 9%, read words 28%, read phrases 22%. Tone ladder on the 4-way step at 50% (39% on day 8); mix-ups 1→4, 2→3, 4→3. ~28 min/day.
+
+Built in 1.18: difficulty capped at 8 (24 read cards were stuck at 9.4–10); pre-1.17 phrase read cards locked until their words are learned; speed nudge goes to 100% when listening is almost never missed.
+
+Still open:
+- **Backward build-up for long phrases (2b above): now worth building.** Phrase speak misses are 12%, against 3% for words.
+- **Tones:** after the 4-way step passes, stress 1↔4 and 2↔3 in the two-syllable stage.
+- **Pace: keep 5/day.** Recent batches don't miss more than earlier ones; numbers (一–千, simple and distinct) read well at 11–16 days' stability.
+- Re-check around 2026-11-26: are 也 们 喂 很 呢 at multi-day stability? Did read misses drop?
+
 ## Grind mode (audio-only practice while gaming)
 Practise hands-free while playing something that doesn't need full attention. Home-screen button opens a screen with three loops over **already-studied** items (new material learns poorly under divided attention, Craik et al. 1996):
 
