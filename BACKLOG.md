@@ -29,6 +29,12 @@ Still open:
 - **Pace: keep 5/day.** Recent batches don't miss more than earlier ones; numbers (一–千, simple and distinct) read well at 11–16 days' stability.
 - Re-check around 2026-11-26: are 也 们 喂 很 呢 at multi-day stability? Did read misses drop?
 
+## From the day-15 backup analysis (2026-11-15)
+Grades replayed from the two backups: 80 Good, 10 Hard, 1 Again, 1 Easy of 92. Read misses 18.5% since day 13 (28% before); the 1.18 difficulty cap moved 也 们 呢 很 吗 to 1.5–2.5 days with no new misses. Tone ladder passed; mixed drill ~57% per syllable. Built in 1.20: review log, word speak at 85%, voices one at a time, gradual two-syllable words, word-by-word English.
+
+- **Fit FSRS parameters to the review log** once there are ~1,000 logged reviews (about 3 weeks after 1.20). ts-fsrs has no optimizer; options: `@open-spaced-repetition/binding` (WASM), or fit offline from a backup and ship the parameters. Then drop the hand-set 85% schedulers.
+- **Easy from think time?** The log keeps time to Show answer; if fast Goods turn out to be as safe as Easy, grade them Easy automatically.
+
 ## Grind mode (audio-only practice while gaming)
 Practise hands-free while playing something that doesn't need full attention. Home-screen button opens a screen with three loops over **already-studied** items (new material learns poorly under divided attention, Craik et al. 1996):
 

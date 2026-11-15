@@ -27,11 +27,18 @@ export interface AppState {
   /** Items missed in a quick recall: their speak card comes first in the next review. */
   flagged?: Record<string, true>
   /** Tone drill answers per syllable: how often each tone was played, and what you picked when wrong ('3>2'). */
-  tones?: { seen: Record<string, number>; missed: Record<string, number> }
+  tones?: { seen: Record<string, number>; missed: Record<string, number>; byVoice?: Record<string, [number, number]> }
   /** Dialogues you've finished: id → the day you last did it (YYYY-MM-DD). */
   dialogues?: Record<string, string>
   /** Tone ladder: the current level (TONE_LEVELS index) and the last answers at it (1 right, 0 wrong). */
   toneLadder?: { level: number; recent: number[] }
+  /**
+   * Every graded review: [time (ms), card key, rating 1-4, ms from card shown to answer revealed].
+   * Kept so the scheduler can later be fitted to this learner (FSRS needs the review history).
+   */
+  reviewLog?: [number, string, number, number?][]
+  /** Tone drill voices: how many are in use (in TONE_VOICE_ORDER), and the last answers per syllable. */
+  toneVoices?: { n: number; recent: number[] }
 }
 
 // `newPhrases` and `known` were added later, so older days don't have them.
@@ -51,6 +58,14 @@ const scheduler = fsrs({ enable_fuzz: true, request_retention: 0.9, enable_short
  * cards ~1.6× further apart, about a third fewer reviews, for time on reading.
  */
 const listenScheduler = fsrs({ enable_fuzz: true, request_retention: 0.85, enable_short_term: false })
+/**
+ * Speaking single words: missed 2.5% of the time by day 15 (5 in 175) against the ~10% a 90% target
+ * expects, so the default model underestimates it, like listening. Phrases stay at 90% (missed 12%).
+ */
+const speakWordScheduler = fsrs({ enable_fuzz: true, request_retention: 0.85, enable_short_term: false })
+const schedulerFor = (key: string) =>
+  key.endsWith(':listen') ? listenScheduler : key.endsWith(':speak') && key.startsWith('w') ? speakWordScheduler : scheduler
+
 /**
  * Difficulty ceiling. Repeated misses push FSRS difficulty to its 10 maximum, where a correct answer
  * barely grows stability (11 − D is 1), so the card comes back every few days for weeks however well
@@ -157,9 +172,10 @@ export function phraseReadable(s: AppState, id: string) {
   return !words || words.every((w) => s.introduced.includes(w))
 }
 
-export function grade(s: AppState, key: string, rating: Grade, now = new Date()) {
+export function grade(s: AppState, key: string, rating: Grade, now = new Date(), thinkMs?: number) {
   const prev = s.cards[key]
-  const card = (key.endsWith(':listen') ? listenScheduler : scheduler)
+  ;(s.reviewLog ??= []).push(thinkMs === undefined ? [+now, key, rating] : [+now, key, rating, Math.round(thinkMs)])
+  const card = schedulerFor(key)
     .next({ ...prev, difficulty: Math.min(prev.difficulty, MAX_DIFFICULTY) }, now, rating).card
   card.difficulty = Math.min(card.difficulty, MAX_DIFFICULTY)
   s.cards[key] = card
@@ -413,6 +429,41 @@ export function ladderStep(ladder: AppState['toneLadder'], ok: boolean) {
 export function recordLadder(s: AppState, ok: boolean) {
   s.toneLadder = ladderStep(s.toneLadder, ok).ladder
 }
+
+/**
+ * Tone drill voices, clearest first: measured from the clips' pitch, Xiaoxiao's tones match the
+ * textbook shapes 96% of the time, Xiaoyi's are squashed (71%), the two male voices less clear still.
+ * Many voices help tones carry over to new speakers, but learners who find tones hard do better
+ * starting with one clear voice (Perrachione et al. 2011). So the drill starts with one and adds the
+ * next once you get VOICE_PASS of your last VOICE_WINDOW syllables right.
+ */
+export const TONE_VOICE_ORDER = [0, 1, 2, 3]
+export const VOICE_WINDOW = 20
+export const VOICE_PASS = 0.75
+export const toneVoicesInUse = (s: AppState) => TONE_VOICE_ORDER.slice(0, s.toneVoices?.n ?? 1)
+
+/** Record mixed-drill syllables (1 right, 0 wrong); adds a voice when the window passes. Returns true if it did. */
+export function recordVoiceAnswers(s: AppState, results: number[]) {
+  const v = (s.toneVoices ??= { n: 1, recent: [] })
+  v.recent = [...v.recent, ...results].slice(-VOICE_WINDOW)
+  if (v.n < TONE_VOICE_ORDER.length && v.recent.length >= VOICE_WINDOW && v.recent.reduce((a, b) => a + b, 0) / VOICE_WINDOW >= VOICE_PASS) {
+    v.n++
+    v.recent = []
+    return true
+  }
+  return false
+}
+
+/** Per voice: syllables heard and missed in the tone drills, to see which voices are hard. */
+export function recordVoiceTones(s: AppState, voice: number, heard: number[], picked: number[]) {
+  const t = (s.tones ??= { seen: {}, missed: {} })
+  const by = (t.byVoice ??= {})
+  const c = (by[voice] ??= [0, 0])
+  heard.forEach((h, i) => { c[0]++; if (picked[i] !== h) c[1]++ })
+}
+
+/** Share of single tones right lately (from the decayed per-tone error rates). */
+export const toneAccuracy = (s: AppState) => { const e = toneErrors(s); return 1 - (e[1] + e[2] + e[3] + e[4]) / 4 }
 
 /** How often you've missed reading an item. */
 export const readLapses = (s: AppState, id: string) => s.cards[cardKey(id, 'read')]?.lapses ?? 0

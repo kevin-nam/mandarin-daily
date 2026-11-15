@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import type { Grade } from 'ts-fsrs'
 import {
-  MORE_TIME, PAIR_ITEMS, PHRASES, TONE_ITEMS, TONE_VOICES, WORD_BY_ID, gradeNote, knownChars, target, thinkFor, voiceKey,
+  MORE_TIME, PAIR_ITEMS, PHRASES, TONE_ITEMS, WORD_BY_ID, gradeNote, knownChars, target, thinkFor, voiceKey,
   type Stage, type Word,
 } from './data'
 import { epoch, lineKey, play, sleep, stop, wordKey } from './audio'
 import {
   byRisk, dueKeys, grade, introduce, logDay, markKnown, newQuota, nextNewItems, parseKey, pickDialogue, recordDialogue, Rating,
-  LADDER_PASS, LADDER_WINDOW, TONE_LEVELS, TONE_NAMES, ladderName, ladderRecent, ladderStep, readLapses, recordLadder, recordTones, speakStage, toneLevel, streak, toneErrors, toneFocus, trickyReads, untaughtIn, type AppState,
+  LADDER_PASS, LADDER_WINDOW, TONE_LEVELS, TONE_NAMES, ladderName, ladderRecent, ladderStep, readLapses, recordLadder, recordTones, recordVoiceAnswers, recordVoiceTones, speakStage, toneAccuracy, toneVoicesInUse, toneLevel, streak, toneErrors, toneFocus, trickyReads, untaughtIn, type AppState,
 } from './store'
 import { CharParts } from './CharParts'
 import { LookAlikes } from './LookAlikes'
@@ -175,6 +175,9 @@ function Reviews({ state, commit, onDone, onGraded, onMissRead }: {
   const fire = useBurst()
   const run = useRef(0)
   const [start] = useState(clock.active)
+  // Time from the card appearing to Show answer (active time: pauses don't count), for the review log.
+  const shownAt = useRef(start)
+  const thinkMs = useRef<number>(undefined)
   const known = useMemo(() => knownChars(state.introduced), [state.introduced])
 
   useEffect(() => {
@@ -192,8 +195,9 @@ function Reviews({ state, commit, onDone, onGraded, onMissRead }: {
   const timeUp = clock.active() - start > REVIEW_MINUTES * 60 * 1000
 
   const rate = (r: Grade) => {
+    const think = thinkMs.current
     commit((s) => {
-      grade(s, key, r)
+      grade(s, key, r, new Date(), think)
       logDay(s, { reviews: 1 })
     })
     onGraded(r === Rating.Again)
@@ -207,6 +211,8 @@ function Reviews({ state, commit, onDone, onGraded, onMissRead }: {
     }
     setCount((c) => c + 1)
     setRevealed(false)
+    shownAt.current = clock.active()
+    thinkMs.current = undefined
     setQueue((q) => {
       const rest = q.slice(1)
       if (timeUp) return [] // time cap reached
@@ -216,6 +222,7 @@ function Reviews({ state, commit, onDone, onGraded, onMissRead }: {
   }
 
   const reveal = () => {
+    if (thinkMs.current === undefined) thinkMs.current = clock.active() - shownAt.current
     setRevealed(true)
     if (kind === 'speak') play(t.key, t.zh)
     if (kind === 'read') play(wordKey(w.id), w.hanzi)
@@ -790,7 +797,9 @@ function DialogueStep({ state, commit, onDone }: { state: AppState; commit: Comm
 
 /* ---------------- Tone drill (single syllables, then two-syllable words; several voices) ---------------- */
 
-const randomVoice = () => Math.floor(Math.random() * TONE_VOICES)
+const randomVoice = (voices: number[]) => voices[Math.floor(Math.random() * voices.length)]
+/** Two-syllable items per drill of 15, by how well single tones are going: a smaller first step. */
+const pairCount = (accuracy: number) => (accuracy < 0.6 ? 3 : accuracy < 0.75 ? 6 : 9)
 
 /**
  * Draw n items, each weighted by its hardest tone, so the tones you miss come up more often
@@ -811,9 +820,12 @@ function Tones({ state, commit, onDone }: { state: AppState; commit: Commit; onD
   // Each round in a random voice: hearing many speakers makes tone perception carry over.
   const [items] = useState(() => {
     const err = toneErrors(state)
-    return [...weightedPick(TONE_ITEMS, 6, err), ...weightedPick(PAIR_ITEMS, 9, err)]
-      .map((w) => ({ w, voice: randomVoice() }))
+    const voices = toneVoicesInUse(state)
+    const pairs = pairCount(toneAccuracy(state))
+    return [...weightedPick(TONE_ITEMS, 15 - pairs, err), ...weightedPick(PAIR_ITEMS, pairs, err)]
+      .map((w) => ({ w, voice: randomVoice(voices) }))
   })
+  const [voiceAdded, setVoiceAdded] = useState(false)
   const [focus] = useState(() => toneFocus(state))
   const [i, setI] = useState(0)
   const [picks, setPicks] = useState<(number | undefined)[]>([])
@@ -830,7 +842,15 @@ function Tones({ state, commit, onDone }: { state: AppState; commit: Commit; onD
     p[syllable] = t
     setPicks(p)
     if (tones.some((_, k) => p[k] === undefined)) return
-    commit((s) => recordTones(s, tones, p as number[]))
+    // Worked out here as well as in the commit, which React may run later.
+    const results = tones.map((x, k) => (p[k] === x ? 1 : 0))
+    const probe = { toneVoices: state.toneVoices && { ...state.toneVoices, recent: [...state.toneVoices.recent] } } as AppState
+    if (recordVoiceAnswers(probe, results)) setVoiceAdded(true)
+    commit((s) => {
+      recordTones(s, tones, p as number[])
+      recordVoiceTones(s, voice, tones, p as number[])
+      recordVoiceAnswers(s, results)
+    })
     if (tones.every((x, k) => p[k] === x)) {
       setScore((s) => s + 1)
       const n = ++streakRun.current
@@ -851,6 +871,7 @@ function Tones({ state, commit, onDone }: { state: AppState; commit: Commit; onD
         hint={tones.length === 1 ? 'Which tone do you hear?' : 'Two syllables: pick the tone of each.'}
         right={<span className="num">{i + 1} of {items.length} · <span key={score} className="tick">{score}</span> right</span>}
       />
+      {voiceAdded && <p className="tone-focus">Good ear: a new voice joins the tone drill next time.</p>}
       {focus && i === 0 && (
         <p className="tone-focus">
           More of the <b>{TONE_NAMES[focus.tone - 1]} tone</b> today: it’s the one you miss most, usually hearing it as the {TONE_NAMES[focus.as - 1]}.
@@ -898,12 +919,12 @@ const LADDER_MINUTES = 4
 const toneless = (py: string) => py.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
 
 /** Trials for a level: single syllables with those tones, the tones taking turns at random, each in a random voice. */
-function ladderTrials(level: number, n: number) {
+function ladderTrials(level: number, n: number, voices: number[]) {
   const tones = TONE_LEVELS[level]
   const by = tones.map((t) => TONE_ITEMS.filter((w) => w.tones![0] === t))
   return Array.from({ length: n }, () => {
     const pool = by[Math.floor(Math.random() * by.length)]
-    return { w: pool[Math.floor(Math.random() * pool.length)], voice: randomVoice() }
+    return { w: pool[Math.floor(Math.random() * pool.length)], voice: randomVoice(voices) }
   })
 }
 
@@ -916,7 +937,7 @@ function contrastItem(heard: Word, tone: number) {
 
 function ToneLadder({ state, commit, onDone }: { state: AppState; commit: Commit; onDone: () => void }) {
   const [level, setLevel] = useState(() => toneLevel(state))
-  const [trials, setTrials] = useState(() => ladderTrials(level, LADDER_TRIALS))
+  const [trials, setTrials] = useState(() => ladderTrials(level, LADDER_TRIALS, toneVoicesInUse(state)))
   const [i, setI] = useState(0)
   const [pick, setPick] = useState<number>()
   const [contrast, setContrast] = useState<Word>()
@@ -954,6 +975,7 @@ function ToneLadder({ state, commit, onDone }: { state: AppState; commit: Commit
     const { up } = ladderStep(state.toneLadder, ok)
     commit((s) => {
       recordTones(s, [heard], [t])
+      recordVoiceTones(s, voice, [heard], [t])
       recordLadder(s, ok)
     })
     if (ok) {
@@ -978,7 +1000,7 @@ function ToneLadder({ state, commit, onDone }: { state: AppState; commit: Commit
       setLevelUp(true)
       setLevel(nl)
       // The rest of today's trials move to the new level (or end, past the last pair).
-      if (nl < TONE_LEVELS.length) setTrials((tr) => [...tr.slice(0, i + 1), ...ladderTrials(nl, tr.length - i - 1)])
+      if (nl < TONE_LEVELS.length) setTrials((tr) => [...tr.slice(0, i + 1), ...ladderTrials(nl, tr.length - i - 1, toneVoicesInUse(state))])
       return
     }
     if (ok) advance.current = setTimeout(next, 750)
