@@ -8,37 +8,136 @@
     "s": "A",
     "zh": "你好！",
     "py": "Nǐ hǎo!",
-    "en": "Hello!"
+    "en": "Hello!",
+    "gloss": [
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w002"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "你好！",
     "py": "Nǐ hǎo!",
-    "en": "Hello!"
+    "en": "Hello!",
+    "gloss": [
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w002"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "你是学生吗？",
     "py": "Nǐ shì xuésheng ma?",
-    "en": "Are you a student?"
+    "en": "Are you a student?",
+    "gloss": [
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w004"
+     },
+     {
+      "id": "w093"
+     },
+     {
+      "id": "w006"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "对不起，我听不懂。请说慢一点。",
     "py": "Duìbuqǐ, wǒ tīng bu dǒng. Qǐng shuō màn yìdiǎn.",
-    "en": "Sorry, I don't understand. Please speak a little slower."
+    "en": "Sorry, I don't understand. Please speak a little slower.",
+    "gloss": [
+     {
+      "id": "w023"
+     },
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w164"
+     },
+     {
+      "id": "w008"
+     },
+     {
+      "zh": "懂",
+      "py": "dǒng",
+      "en": "understand"
+     },
+     {
+      "id": "w026"
+     },
+     {
+      "id": "w166"
+     },
+     {
+      "zh": "慢",
+      "py": "màn",
+      "en": "slow"
+     },
+     {
+      "zh": "一点",
+      "py": "yìdiǎn",
+      "en": "a little"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "好的。你是学生吗？",
     "py": "Hǎo de. Nǐ shì xuésheng ma?",
-    "en": "OK. Are you a student?"
+    "en": "OK. Are you a student?",
+    "gloss": [
+     {
+      "id": "w002"
+     },
+     {
+      "id": "w034"
+     },
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w004"
+     },
+     {
+      "id": "w093"
+     },
+     {
+      "id": "w006"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "是，我是学生。",
     "py": "Shì, wǒ shì xuésheng.",
-    "en": "Yes, I'm a student."
+    "en": "Yes, I'm a student.",
+    "gloss": [
+     {
+      "id": "w004"
+     },
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w004"
+     },
+     {
+      "id": "w093"
+     }
+    ]
    }
   ],
   "cover": [
@@ -159,37 +258,167 @@
     "s": "A",
     "zh": "你会说中文吗？",
     "py": "Nǐ huì shuō Zhōngwén ma?",
-    "en": "Do you speak Chinese?"
+    "en": "Do you speak Chinese?",
+    "gloss": [
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w175"
+     },
+     {
+      "id": "w166"
+     },
+     {
+      "id": "w250"
+     },
+     {
+      "id": "w006"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "我会说一点儿中文。",
     "py": "Wǒ huì shuō yìdiǎnr Zhōngwén.",
-    "en": "I can speak a little Chinese."
+    "en": "I can speak a little Chinese.",
+    "gloss": [
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w175"
+     },
+     {
+      "id": "w166"
+     },
+     {
+      "id": "w070"
+     },
+     {
+      "id": "w250"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "你说得很好！",
     "py": "Nǐ shuō de hěn hǎo!",
-    "en": "You speak well!"
+    "en": "You speak well!",
+    "gloss": [
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w166"
+     },
+     {
+      "zh": "得",
+      "py": "de",
+      "en": "(how it's done)"
+     },
+     {
+      "id": "w005"
+     },
+     {
+      "id": "w002"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "谢谢！我小时候听过中文。",
     "py": "Xièxie! Wǒ xiǎoshíhou tīngguo Zhōngwén.",
-    "en": "Thanks! I heard Chinese as a kid."
+    "en": "Thanks! I heard Chinese as a kid.",
+    "gloss": [
+     {
+      "id": "w021"
+     },
+     {
+      "id": "w003"
+     },
+     {
+      "zh": "小时候",
+      "py": "xiǎoshíhou",
+      "en": "as a child"
+     },
+     {
+      "id": "w164"
+     },
+     {
+      "zh": "过",
+      "py": "guo",
+      "en": "(have) ever"
+     },
+     {
+      "id": "w250"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "我说得太快了吗？",
     "py": "Wǒ shuō de tài kuài le ma?",
-    "en": "Am I talking too fast?"
+    "en": "Am I talking too fast?",
+    "gloss": [
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w166"
+     },
+     {
+      "zh": "得",
+      "py": "de",
+      "en": "(how it's done)"
+     },
+     {
+      "id": "w285"
+     },
+     {
+      "zh": "快",
+      "py": "kuài",
+      "en": "fast"
+     },
+     {
+      "id": "w293"
+     },
+     {
+      "id": "w006"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "有点儿快。请说慢一点。",
     "py": "Yǒudiǎnr kuài. Qǐng shuō màn yìdiǎn.",
-    "en": "A bit fast. Please speak a little slower."
+    "en": "A bit fast. Please speak a little slower.",
+    "gloss": [
+     {
+      "id": "w071"
+     },
+     {
+      "zh": "快",
+      "py": "kuài",
+      "en": "fast"
+     },
+     {
+      "id": "w026"
+     },
+     {
+      "id": "w166"
+     },
+     {
+      "zh": "慢",
+      "py": "màn",
+      "en": "slow"
+     },
+     {
+      "zh": "一点",
+      "py": "yìdiǎn",
+      "en": "a little"
+     }
+    ]
    }
   ],
   "cover": [
@@ -349,37 +578,142 @@
     "s": "A",
     "zh": "请问，这个用中文怎么说？",
     "py": "Qǐngwèn, zhège yòng Zhōngwén zěnme shuō?",
-    "en": "Excuse me, how do you say this in Chinese?"
+    "en": "Excuse me, how do you say this in Chinese?",
+    "gloss": [
+     {
+      "id": "w027"
+     },
+     {
+      "id": "w210"
+     },
+     {
+      "id": "w062"
+     },
+     {
+      "zh": "用",
+      "py": "yòng",
+      "en": "use"
+     },
+     {
+      "id": "w250"
+     },
+     {
+      "id": "w226"
+     },
+     {
+      "id": "w166"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "这个叫杯子。",
     "py": "Zhège jiào bēizi.",
-    "en": "This is called a bēizi (cup)."
+    "en": "This is called a bēizi (cup).",
+    "gloss": [
+     {
+      "id": "w210"
+     },
+     {
+      "id": "w062"
+     },
+     {
+      "id": "w029"
+     },
+     {
+      "id": "w145"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "杯子。谢谢！那个呢？",
     "py": "Bēizi. Xièxie! Nàge ne?",
-    "en": "Bēizi. Thanks! And that one?"
+    "en": "Bēizi. Thanks! And that one?",
+    "gloss": [
+     {
+      "id": "w145"
+     },
+     {
+      "id": "w021"
+     },
+     {
+      "id": "w211"
+     },
+     {
+      "id": "w062"
+     },
+     {
+      "id": "w007"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "那个叫手机。",
     "py": "Nàge jiào shǒujī.",
-    "en": "That's called a shǒujī (phone)."
+    "en": "That's called a shǒujī (phone).",
+    "gloss": [
+     {
+      "id": "w211"
+     },
+     {
+      "id": "w062"
+     },
+     {
+      "id": "w029"
+     },
+     {
+      "id": "w252"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "这是什么意思？",
     "py": "Zhè shì shénme yìsi?",
-    "en": "What does this mean?"
+    "en": "What does this mean?",
+    "gloss": [
+     {
+      "id": "w210"
+     },
+     {
+      "id": "w004"
+     },
+     {
+      "id": "w031"
+     },
+     {
+      "zh": "意思",
+      "py": "yìsi",
+      "en": "meaning"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "这是“谢谢”的意思。",
     "py": "Zhè shì “xièxie” de yìsi.",
-    "en": "This means “thank you”."
+    "en": "This means “thank you”.",
+    "gloss": [
+     {
+      "id": "w210"
+     },
+     {
+      "id": "w004"
+     },
+     {
+      "id": "w021"
+     },
+     {
+      "id": "w034"
+     },
+     {
+      "zh": "意思",
+      "py": "yìsi",
+      "en": "meaning"
+     }
+    ]
    }
   ],
   "cover": [
@@ -520,37 +854,125 @@
     "s": "A",
     "zh": "你好！",
     "py": "Nǐ hǎo!",
-    "en": "Hello!"
+    "en": "Hello!",
+    "gloss": [
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w002"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "你好！你叫什么名字？",
     "py": "Nǐ hǎo! Nǐ jiào shénme míngzi?",
-    "en": "Hello! What's your name?"
+    "en": "Hello! What's your name?",
+    "gloss": [
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w002"
+     },
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w029"
+     },
+     {
+      "id": "w031"
+     },
+     {
+      "id": "w030"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "我叫小明。你呢？",
     "py": "Wǒ jiào Xiǎomíng. Nǐ ne?",
-    "en": "I'm Xiaoming. And you?"
+    "en": "I'm Xiaoming. And you?",
+    "gloss": [
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w029"
+     },
+     {
+      "zh": "小明",
+      "py": "Xiǎomíng",
+      "en": "Xiaoming (a name)"
+     },
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w007"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "我叫大卫。",
     "py": "Wǒ jiào Dàwèi.",
-    "en": "I'm David."
+    "en": "I'm David.",
+    "gloss": [
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w029"
+     },
+     {
+      "zh": "大卫",
+      "py": "Dàwèi",
+      "en": "David"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "认识你很高兴。",
     "py": "Rènshi nǐ hěn gāoxìng.",
-    "en": "Nice to meet you."
+    "en": "Nice to meet you.",
+    "gloss": [
+     {
+      "id": "w032"
+     },
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w005"
+     },
+     {
+      "id": "w033"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "我也很高兴。",
     "py": "Wǒ yě hěn gāoxìng.",
-    "en": "Nice to meet you too."
+    "en": "Nice to meet you too.",
+    "gloss": [
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w009"
+     },
+     {
+      "id": "w005"
+     },
+     {
+      "id": "w033"
+     }
+    ]
    }
   ],
   "cover": [
@@ -660,37 +1082,144 @@
     "s": "A",
     "zh": "不好意思，能帮我一下吗？",
     "py": "Bù hǎoyìsi, néng bāng wǒ yíxià ma?",
-    "en": "Excuse me, could you help me?"
+    "en": "Excuse me, could you help me?",
+    "gloss": [
+     {
+      "zh": "不好意思",
+      "py": "bù hǎoyìsi",
+      "en": "excuse me"
+     },
+     {
+      "id": "w176"
+     },
+     {
+      "zh": "帮",
+      "py": "bāng",
+      "en": "help"
+     },
+     {
+      "id": "w003"
+     },
+     {
+      "zh": "一下",
+      "py": "yíxià",
+      "en": "a moment (softens it)"
+     },
+     {
+      "id": "w006"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "好的，没问题。",
     "py": "Hǎo de, méi wèntí.",
-    "en": "OK, no problem."
+    "en": "OK, no problem.",
+    "gloss": [
+     {
+      "id": "w002"
+     },
+     {
+      "id": "w034"
+     },
+     {
+      "zh": "没问题",
+      "py": "méi wèntí",
+      "en": "no problem"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "这个用中文怎么说？",
     "py": "Zhège yòng Zhōngwén zěnme shuō?",
-    "en": "How do you say this in Chinese?"
+    "en": "How do you say this in Chinese?",
+    "gloss": [
+     {
+      "id": "w210"
+     },
+     {
+      "id": "w062"
+     },
+     {
+      "zh": "用",
+      "py": "yòng",
+      "en": "use"
+     },
+     {
+      "id": "w250"
+     },
+     {
+      "id": "w226"
+     },
+     {
+      "id": "w166"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "等一下……这个叫地铁。",
     "py": "Děng yíxià… zhège jiào dìtiě.",
-    "en": "Wait a moment… this is called dìtiě (subway)."
+    "en": "Wait a moment… this is called dìtiě (subway).",
+    "gloss": [
+     {
+      "zh": "等",
+      "py": "děng",
+      "en": "wait"
+     },
+     {
+      "zh": "一下",
+      "py": "yíxià",
+      "en": "a moment (softens it)"
+     },
+     {
+      "id": "w210"
+     },
+     {
+      "id": "w062"
+     },
+     {
+      "id": "w029"
+     },
+     {
+      "zh": "地铁",
+      "py": "dìtiě",
+      "en": "subway"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "谢谢你！",
     "py": "Xièxie nǐ!",
-    "en": "Thank you!"
+    "en": "Thank you!",
+    "gloss": [
+     {
+      "id": "w021"
+     },
+     {
+      "id": "w001"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "不用谢。",
     "py": "Bú yòng xiè.",
-    "en": "Don't mention it."
+    "en": "Don't mention it.",
+    "gloss": [
+     {
+      "zh": "不用",
+      "py": "búyòng",
+      "en": "no need"
+     },
+     {
+      "zh": "谢",
+      "py": "xiè",
+      "en": "thank"
+     }
+    ]
    }
   ],
   "cover": [
@@ -832,31 +1361,115 @@
     "s": "A",
     "zh": "你是哪国人？",
     "py": "Nǐ shì nǎ guó rén?",
-    "en": "Which country are you from?"
+    "en": "Which country are you from?",
+    "gloss": [
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w004"
+     },
+     {
+      "id": "w212"
+     },
+     {
+      "id": "w037"
+     },
+     {
+      "id": "w035"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "我是加拿大人。你呢？",
     "py": "Wǒ shì Jiānádà rén. Nǐ ne?",
-    "en": "I'm Canadian. And you?"
+    "en": "I'm Canadian. And you?",
+    "gloss": [
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w004"
+     },
+     {
+      "zh": "加拿大",
+      "py": "Jiānádà",
+      "en": "Canada"
+     },
+     {
+      "id": "w035"
+     },
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w007"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "我是中国人。",
     "py": "Wǒ shì Zhōngguó rén.",
-    "en": "I'm Chinese."
+    "en": "I'm Chinese.",
+    "gloss": [
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w004"
+     },
+     {
+      "id": "w036"
+     },
+     {
+      "id": "w035"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "你是老师吗？",
     "py": "Nǐ shì lǎoshī ma?",
-    "en": "Are you a teacher?"
+    "en": "Are you a teacher?",
+    "gloss": [
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w004"
+     },
+     {
+      "id": "w092"
+     },
+     {
+      "id": "w006"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "不是，我是学生。",
     "py": "Bú shì, wǒ shì xuésheng.",
-    "en": "No, I'm a student."
+    "en": "No, I'm a student.",
+    "gloss": [
+     {
+      "id": "w008"
+     },
+     {
+      "id": "w004"
+     },
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w004"
+     },
+     {
+      "id": "w093"
+     }
+    ]
    }
   ],
   "cover": [
@@ -959,43 +1572,150 @@
     "s": "A",
     "zh": "你好，几位？",
     "py": "Nǐ hǎo, jǐ wèi?",
-    "en": "Hi, how many?"
+    "en": "Hi, how many?",
+    "gloss": [
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w002"
+     },
+     {
+      "id": "w058"
+     },
+     {
+      "zh": "位",
+      "py": "wèi",
+      "en": "(people, polite)"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "两位。有菜单吗？",
     "py": "Liǎng wèi. Yǒu càidān ma?",
-    "en": "Two. Is there a menu?"
+    "en": "Two. Is there a menu?",
+    "gloss": [
+     {
+      "id": "w054"
+     },
+     {
+      "zh": "位",
+      "py": "wèi",
+      "en": "(people, polite)"
+     },
+     {
+      "id": "w155"
+     },
+     {
+      "zh": "菜单",
+      "py": "càidān",
+      "en": "menu"
+     },
+     {
+      "id": "w006"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "有，在这儿。",
     "py": "Yǒu, zài zhèr.",
-    "en": "Yes, here you go."
+    "en": "Yes, here you go.",
+    "gloss": [
+     {
+      "id": "w155"
+     },
+     {
+      "id": "w157"
+     },
+     {
+      "id": "w216"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "这个辣吗？",
     "py": "Zhège là ma?",
-    "en": "Is this spicy?"
+    "en": "Is this spicy?",
+    "gloss": [
+     {
+      "id": "w210"
+     },
+     {
+      "id": "w062"
+     },
+     {
+      "zh": "辣",
+      "py": "là",
+      "en": "spicy"
+     },
+     {
+      "id": "w006"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "有一点儿辣。",
     "py": "Yǒu yìdiǎnr là.",
-    "en": "A little."
+    "en": "A little.",
+    "gloss": [
+     {
+      "id": "w155"
+     },
+     {
+      "id": "w070"
+     },
+     {
+      "zh": "辣",
+      "py": "là",
+      "en": "spicy"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "我要这个，不要辣。",
     "py": "Wǒ yào zhège, bú yào là.",
-    "en": "I'll have this, no spice."
+    "en": "I'll have this, no spice.",
+    "gloss": [
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w171"
+     },
+     {
+      "id": "w210"
+     },
+     {
+      "id": "w062"
+     },
+     {
+      "id": "w172"
+     },
+     {
+      "zh": "辣",
+      "py": "là",
+      "en": "spicy"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "好的。",
     "py": "Hǎo de.",
-    "en": "OK."
+    "en": "OK.",
+    "gloss": [
+     {
+      "id": "w002"
+     },
+     {
+      "id": "w034"
+     }
+    ]
    }
   ],
   "cover": [
@@ -1115,37 +1835,153 @@
     "s": "A",
     "zh": "在这儿吃还是带走？",
     "py": "Zài zhèr chī háishi dài zǒu?",
-    "en": "For here or to go?"
+    "en": "For here or to go?",
+    "gloss": [
+     {
+      "id": "w157"
+     },
+     {
+      "id": "w216"
+     },
+     {
+      "id": "w133"
+     },
+     {
+      "zh": "还是",
+      "py": "háishi",
+      "en": "or"
+     },
+     {
+      "zh": "带走",
+      "py": "dàizǒu",
+      "en": "take away"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "在这儿吃。我要一杯水。",
     "py": "Zài zhèr chī. Wǒ yào yì bēi shuǐ.",
-    "en": "For here. And a glass of water, please."
+    "en": "For here. And a glass of water, please.",
+    "gloss": [
+     {
+      "id": "w157"
+     },
+     {
+      "id": "w216"
+     },
+     {
+      "id": "w133"
+     },
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w171"
+     },
+     {
+      "id": "w041"
+     },
+     {
+      "zh": "杯",
+      "py": "bēi",
+      "en": "glass / cup (of)"
+     },
+     {
+      "id": "w143"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "好的。",
     "py": "Hǎo de.",
-    "en": "OK."
+    "en": "OK.",
+    "gloss": [
+     {
+      "id": "w002"
+     },
+     {
+      "id": "w034"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "很好吃！我吃饱了。服务员，买单！",
     "py": "Hěn hǎochī! Wǒ chī bǎo le. Fúwùyuán, mǎidān!",
-    "en": "Delicious! I'm full. Waiter, the bill please!"
+    "en": "Delicious! I'm full. Waiter, the bill please!",
+    "gloss": [
+     {
+      "id": "w005"
+     },
+     {
+      "id": "w153"
+     },
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w133"
+     },
+     {
+      "zh": "饱",
+      "py": "bǎo",
+      "en": "full (fed)"
+     },
+     {
+      "id": "w293"
+     },
+     {
+      "zh": "服务员",
+      "py": "fúwùyuán",
+      "en": "waiter"
+     },
+     {
+      "zh": "买单",
+      "py": "mǎidān",
+      "en": "the bill"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "一共三十块。",
     "py": "Yígòng sānshí kuài.",
-    "en": "That's thirty yuan altogether."
+    "en": "That's thirty yuan altogether.",
+    "gloss": [
+     {
+      "zh": "一共",
+      "py": "yígòng",
+      "en": "in total"
+     },
+     {
+      "id": "w043"
+     },
+     {
+      "id": "w050"
+     },
+     {
+      "id": "w074"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "好的，谢谢！",
     "py": "Hǎo de, xièxie!",
-    "en": "OK, thanks!"
+    "en": "OK, thanks!",
+    "gloss": [
+     {
+      "id": "w002"
+     },
+     {
+      "id": "w034"
+     },
+     {
+      "id": "w021"
+     }
+    ]
    }
   ],
   "cover": [
@@ -1289,43 +2125,156 @@
     "s": "A",
     "zh": "这个多少钱？",
     "py": "Zhège duōshao qián?",
-    "en": "How much is this?"
+    "en": "How much is this?",
+    "gloss": [
+     {
+      "id": "w210"
+     },
+     {
+      "id": "w062"
+     },
+     {
+      "id": "w059"
+     },
+     {
+      "id": "w073"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "五十块。",
     "py": "Wǔshí kuài.",
-    "en": "Fifty yuan."
+    "en": "Fifty yuan.",
+    "gloss": [
+     {
+      "id": "w045"
+     },
+     {
+      "id": "w050"
+     },
+     {
+      "id": "w074"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "太贵了！能便宜一点儿吗？",
     "py": "Tài guì le! Néng piányi yìdiǎnr ma?",
-    "en": "Too expensive! Can you make it cheaper?"
+    "en": "Too expensive! Can you make it cheaper?",
+    "gloss": [
+     {
+      "id": "w285"
+     },
+     {
+      "id": "w268"
+     },
+     {
+      "id": "w293"
+     },
+     {
+      "id": "w176"
+     },
+     {
+      "id": "w269"
+     },
+     {
+      "id": "w070"
+     },
+     {
+      "id": "w006"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "四十块，好吗？",
     "py": "Sìshí kuài, hǎo ma?",
-    "en": "Forty, OK?"
+    "en": "Forty, OK?",
+    "gloss": [
+     {
+      "id": "w044"
+     },
+     {
+      "id": "w050"
+     },
+     {
+      "id": "w074"
+     },
+     {
+      "id": "w002"
+     },
+     {
+      "id": "w006"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "三十块吧。",
     "py": "Sānshí kuài ba.",
-    "en": "How about thirty."
+    "en": "How about thirty.",
+    "gloss": [
+     {
+      "id": "w043"
+     },
+     {
+      "id": "w050"
+     },
+     {
+      "id": "w074"
+     },
+     {
+      "id": "w294"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "好吧，三十五。",
     "py": "Hǎo ba, sānshíwǔ.",
-    "en": "Fine, thirty-five."
+    "en": "Fine, thirty-five.",
+    "gloss": [
+     {
+      "id": "w002"
+     },
+     {
+      "id": "w294"
+     },
+     {
+      "id": "w043"
+     },
+     {
+      "id": "w050"
+     },
+     {
+      "id": "w045"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "好的，我要了。",
     "py": "Hǎo de, wǒ yào le.",
-    "en": "OK, I'll take it."
+    "en": "OK, I'll take it.",
+    "gloss": [
+     {
+      "id": "w002"
+     },
+     {
+      "id": "w034"
+     },
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w171"
+     },
+     {
+      "id": "w293"
+     }
+    ]
    }
   ],
   "cover": [
@@ -1463,31 +2412,113 @@
     "s": "A",
     "zh": "请问，这个多少钱？",
     "py": "Qǐngwèn, zhège duōshao qián?",
-    "en": "Excuse me, how much is this?"
+    "en": "Excuse me, how much is this?",
+    "gloss": [
+     {
+      "id": "w027"
+     },
+     {
+      "id": "w210"
+     },
+     {
+      "id": "w062"
+     },
+     {
+      "id": "w059"
+     },
+     {
+      "id": "w073"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "二十块。",
     "py": "Èrshí kuài.",
-    "en": "Twenty yuan."
+    "en": "Twenty yuan.",
+    "gloss": [
+     {
+      "id": "w042"
+     },
+     {
+      "id": "w050"
+     },
+     {
+      "id": "w074"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "太贵了！十块，可以吗？",
     "py": "Tài guì le! Shí kuài, kěyǐ ma?",
-    "en": "Too expensive! Ten yuan, okay?"
+    "en": "Too expensive! Ten yuan, okay?",
+    "gloss": [
+     {
+      "id": "w285"
+     },
+     {
+      "id": "w268"
+     },
+     {
+      "id": "w293"
+     },
+     {
+      "id": "w050"
+     },
+     {
+      "id": "w074"
+     },
+     {
+      "id": "w177"
+     },
+     {
+      "id": "w006"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "十五块吧。",
     "py": "Shíwǔ kuài ba.",
-    "en": "Let's say fifteen."
+    "en": "Let's say fifteen.",
+    "gloss": [
+     {
+      "id": "w050"
+     },
+     {
+      "id": "w045"
+     },
+     {
+      "id": "w074"
+     },
+     {
+      "id": "w294"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "好，我买两个。",
     "py": "Hǎo, wǒ mǎi liǎng ge.",
-    "en": "Okay, I'll buy two."
+    "en": "Okay, I'll buy two.",
+    "gloss": [
+     {
+      "id": "w002"
+     },
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w180"
+     },
+     {
+      "id": "w054"
+     },
+     {
+      "id": "w062"
+     }
+    ]
    }
   ],
   "cover": [
@@ -1588,37 +2619,154 @@
     "s": "A",
     "zh": "你家有几口人？",
     "py": "Nǐ jiā yǒu jǐ kǒu rén?",
-    "en": "How many people are in your family?"
+    "en": "How many people are in your family?",
+    "gloss": [
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w076"
+     },
+     {
+      "id": "w155"
+     },
+     {
+      "id": "w058"
+     },
+     {
+      "id": "w065"
+     },
+     {
+      "id": "w035"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "我家有四口人。爸爸、妈妈、姐姐和我。",
     "py": "Wǒ jiā yǒu sì kǒu rén. Bàba, māma, jiějie hé wǒ.",
-    "en": "Four. Dad, mom, my older sister and me."
+    "en": "Four. Dad, mom, my older sister and me.",
+    "gloss": [
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w076"
+     },
+     {
+      "id": "w155"
+     },
+     {
+      "id": "w044"
+     },
+     {
+      "id": "w065"
+     },
+     {
+      "id": "w035"
+     },
+     {
+      "id": "w078"
+     },
+     {
+      "id": "w079"
+     },
+     {
+      "id": "w081"
+     },
+     {
+      "id": "w292"
+     },
+     {
+      "id": "w003"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "你姐姐做什么工作？",
     "py": "Nǐ jiějie zuò shénme gōngzuò?",
-    "en": "What does your sister do?"
+    "en": "What does your sister do?",
+    "gloss": [
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w081"
+     },
+     {
+      "id": "w169"
+     },
+     {
+      "id": "w031"
+     },
+     {
+      "id": "w203"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "她是医生。",
     "py": "Tā shì yīshēng.",
-    "en": "She's a doctor."
+    "en": "She's a doctor.",
+    "gloss": [
+     {
+      "id": "w012"
+     },
+     {
+      "id": "w004"
+     },
+     {
+      "id": "w095"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "你有狗吗？",
     "py": "Nǐ yǒu gǒu ma?",
-    "en": "Do you have a dog?"
+    "en": "Do you have a dog?",
+    "gloss": [
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w155"
+     },
+     {
+      "id": "w099"
+     },
+     {
+      "id": "w006"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "没有，我有一只猫。",
     "py": "Méiyǒu, wǒ yǒu yì zhī māo.",
-    "en": "No, I have a cat."
+    "en": "No, I have a cat.",
+    "gloss": [
+     {
+      "id": "w156"
+     },
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w155"
+     },
+     {
+      "id": "w041"
+     },
+     {
+      "id": "w101"
+     },
+     {
+      "id": "w100"
+     }
+    ]
    }
   ],
   "cover": [
@@ -1762,43 +2910,163 @@
     "s": "A",
     "zh": "不好意思，我迷路了。",
     "py": "Bù hǎoyìsi, wǒ mílù le.",
-    "en": "Excuse me, I'm lost."
+    "en": "Excuse me, I'm lost.",
+    "gloss": [
+     {
+      "zh": "不好意思",
+      "py": "bù hǎoyìsi",
+      "en": "excuse me"
+     },
+     {
+      "id": "w003"
+     },
+     {
+      "zh": "迷路",
+      "py": "mílù",
+      "en": "get lost"
+     },
+     {
+      "id": "w293"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "你去哪儿？",
     "py": "Nǐ qù nǎr?",
-    "en": "Where are you going?"
+    "en": "Where are you going?",
+    "gloss": [
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w158"
+     },
+     {
+      "id": "w218"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "地铁站怎么走？",
     "py": "Dìtiě zhàn zěnme zǒu?",
-    "en": "How do I get to the subway station?"
+    "en": "How do I get to the subway station?",
+    "gloss": [
+     {
+      "zh": "地铁站",
+      "py": "dìtiězhàn",
+      "en": "subway station"
+     },
+     {
+      "id": "w226"
+     },
+     {
+      "zh": "走",
+      "py": "zǒu",
+      "en": "walk / go"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "一直往前走，然后往左拐。",
     "py": "Yìzhí wǎng qián zǒu, ránhòu wǎng zuǒ guǎi.",
-    "en": "Go straight, then turn left."
+    "en": "Go straight, then turn left.",
+    "gloss": [
+     {
+      "zh": "一直",
+      "py": "yìzhí",
+      "en": "straight on"
+     },
+     {
+      "zh": "往",
+      "py": "wǎng",
+      "en": "toward"
+     },
+     {
+      "id": "w131"
+     },
+     {
+      "zh": "走",
+      "py": "zǒu",
+      "en": "walk / go"
+     },
+     {
+      "zh": "然后",
+      "py": "ránhòu",
+      "en": "then"
+     },
+     {
+      "zh": "往",
+      "py": "wǎng",
+      "en": "toward"
+     },
+     {
+      "zh": "左",
+      "py": "zuǒ",
+      "en": "left"
+     },
+     {
+      "zh": "拐",
+      "py": "guǎi",
+      "en": "turn"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "远吗？",
     "py": "Yuǎn ma?",
-    "en": "Is it far?"
+    "en": "Is it far?",
+    "gloss": [
+     {
+      "zh": "远",
+      "py": "yuǎn",
+      "en": "far"
+     },
+     {
+      "id": "w006"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "不远，走路五分钟。",
     "py": "Bù yuǎn, zǒulù wǔ fēnzhōng.",
-    "en": "Not far, five minutes on foot."
+    "en": "Not far, five minutes on foot.",
+    "gloss": [
+     {
+      "id": "w008"
+     },
+     {
+      "zh": "远",
+      "py": "yuǎn",
+      "en": "far"
+     },
+     {
+      "zh": "走路",
+      "py": "zǒulù",
+      "en": "on foot"
+     },
+     {
+      "id": "w045"
+     },
+     {
+      "id": "w119"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "谢谢！",
     "py": "Xièxie!",
-    "en": "Thanks!"
+    "en": "Thanks!",
+    "gloss": [
+     {
+      "id": "w021"
+     }
+    ]
    }
   ],
   "cover": [
@@ -1922,37 +3190,127 @@
     "s": "A",
     "zh": "现在几点？",
     "py": "Xiànzài jǐ diǎn?",
-    "en": "What time is it?"
+    "en": "What time is it?",
+    "gloss": [
+     {
+      "id": "w116"
+     },
+     {
+      "id": "w058"
+     },
+     {
+      "id": "w117"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "八点半。",
     "py": "Bā diǎn bàn.",
-    "en": "Half past eight."
+    "en": "Half past eight.",
+    "gloss": [
+     {
+      "id": "w048"
+     },
+     {
+      "id": "w117"
+     },
+     {
+      "id": "w055"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "你明天几点起床？",
     "py": "Nǐ míngtiān jǐ diǎn qǐchuáng?",
-    "en": "What time are you getting up tomorrow?"
+    "en": "What time are you getting up tomorrow?",
+    "gloss": [
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w103"
+     },
+     {
+      "id": "w058"
+     },
+     {
+      "id": "w117"
+     },
+     {
+      "id": "w201"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "七点。明天上午我很忙。",
     "py": "Qī diǎn. Míngtiān shàngwǔ wǒ hěn máng.",
-    "en": "Seven. I'm busy tomorrow morning."
+    "en": "Seven. I'm busy tomorrow morning.",
+    "gloss": [
+     {
+      "id": "w047"
+     },
+     {
+      "id": "w117"
+     },
+     {
+      "id": "w103"
+     },
+     {
+      "id": "w124"
+     },
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w005"
+     },
+     {
+      "id": "w274"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "下午你有时间吗？",
     "py": "Xiàwǔ nǐ yǒu shíjiān ma?",
-    "en": "Do you have time in the afternoon?"
+    "en": "Do you have time in the afternoon?",
+    "gloss": [
+     {
+      "id": "w126"
+     },
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w155"
+     },
+     {
+      "id": "w122"
+     },
+     {
+      "id": "w006"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "有。下午见！",
     "py": "Yǒu. Xiàwǔ jiàn!",
-    "en": "Yes. See you in the afternoon!"
+    "en": "Yes. See you in the afternoon!",
+    "gloss": [
+     {
+      "id": "w155"
+     },
+     {
+      "id": "w126"
+     },
+     {
+      "id": "w168"
+     }
+    ]
    }
   ],
   "cover": [
@@ -2069,37 +3427,133 @@
     "s": "A",
     "zh": "好久不见！最近怎么样？",
     "py": "Hǎojiǔ bú jiàn! Zuìjìn zěnmeyàng?",
-    "en": "Long time no see! How have you been?"
+    "en": "Long time no see! How have you been?",
+    "gloss": [
+     {
+      "zh": "好久不见",
+      "py": "hǎojiǔ bú jiàn",
+      "en": "long time no see"
+     },
+     {
+      "zh": "最近",
+      "py": "zuìjìn",
+      "en": "lately"
+     },
+     {
+      "id": "w227"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "还可以，有点儿忙。你呢？",
     "py": "Hái kěyǐ, yǒudiǎnr máng. Nǐ ne?",
-    "en": "Not bad, a bit busy. And you?"
+    "en": "Not bad, a bit busy. And you?",
+    "gloss": [
+     {
+      "id": "w289"
+     },
+     {
+      "id": "w177"
+     },
+     {
+      "id": "w071"
+     },
+     {
+      "id": "w274"
+     },
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w007"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "我也是。你吃饭了吗？",
     "py": "Wǒ yě shì. Nǐ chī fàn le ma?",
-    "en": "Me too. Have you eaten?"
+    "en": "Me too. Have you eaten?",
+    "gloss": [
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w009"
+     },
+     {
+      "id": "w004"
+     },
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w133"
+     },
+     {
+      "id": "w135"
+     },
+     {
+      "id": "w293"
+     },
+     {
+      "id": "w006"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "还没有。",
     "py": "Hái méiyǒu.",
-    "en": "Not yet."
+    "en": "Not yet.",
+    "gloss": [
+     {
+      "id": "w289"
+     },
+     {
+      "id": "w156"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "我们去吃饺子吧！",
     "py": "Wǒmen qù chī jiǎozi ba!",
-    "en": "Let's go eat dumplings!"
+    "en": "Let's go eat dumplings!",
+    "gloss": [
+     {
+      "id": "w015"
+     },
+     {
+      "id": "w158"
+     },
+     {
+      "id": "w133"
+     },
+     {
+      "id": "w151"
+     },
+     {
+      "id": "w294"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "好啊！",
     "py": "Hǎo a!",
-    "en": "Great!"
+    "en": "Great!",
+    "gloss": [
+     {
+      "id": "w002"
+     },
+     {
+      "zh": "啊",
+      "py": "a",
+      "en": "(friendly tone)"
+     }
+    ]
    }
   ],
   "cover": [
@@ -2237,37 +3691,129 @@
     "s": "A",
     "zh": "你想吃什么？",
     "py": "Nǐ xiǎng chī shénme?",
-    "en": "What do you want to eat?"
+    "en": "What do you want to eat?",
+    "gloss": [
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w170"
+     },
+     {
+      "id": "w133"
+     },
+     {
+      "id": "w031"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "我想吃饺子。你呢？",
     "py": "Wǒ xiǎng chī jiǎozi. Nǐ ne?",
-    "en": "I want dumplings. You?"
+    "en": "I want dumplings. You?",
+    "gloss": [
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w170"
+     },
+     {
+      "id": "w133"
+     },
+     {
+      "id": "w151"
+     },
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w007"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "我要一碗面条儿。",
     "py": "Wǒ yào yì wǎn miàntiáor.",
-    "en": "I'll have a bowl of noodles."
+    "en": "I'll have a bowl of noodles.",
+    "gloss": [
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w171"
+     },
+     {
+      "id": "w041"
+     },
+     {
+      "zh": "碗",
+      "py": "wǎn",
+      "en": "bowl (of)"
+     },
+     {
+      "id": "w150"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "你喝什么？",
     "py": "Nǐ hē shénme?",
-    "en": "What will you drink?"
+    "en": "What will you drink?",
+    "gloss": [
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w134"
+     },
+     {
+      "id": "w031"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "我喝茶。",
     "py": "Wǒ hē chá.",
-    "en": "I'll have tea."
+    "en": "I'll have tea.",
+    "gloss": [
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w134"
+     },
+     {
+      "id": "w142"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "这个饺子真好吃！",
     "py": "Zhège jiǎozi zhēn hǎochī!",
-    "en": "These dumplings are really good!"
+    "en": "These dumplings are really good!",
+    "gloss": [
+     {
+      "id": "w210"
+     },
+     {
+      "id": "w062"
+     },
+     {
+      "id": "w151"
+     },
+     {
+      "id": "w287"
+     },
+     {
+      "id": "w153"
+     }
+    ]
    }
   ],
   "cover": [
@@ -2378,31 +3924,146 @@
     "s": "A",
     "zh": "喂，你在哪儿？",
     "py": "Wéi, nǐ zài nǎr?",
-    "en": "Hello, where are you?"
+    "en": "Hello, where are you?",
+    "gloss": [
+     {
+      "id": "w028"
+     },
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w157"
+     },
+     {
+      "id": "w218"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "我在家。你在做什么？",
     "py": "Wǒ zài jiā. Nǐ zài zuò shénme?",
-    "en": "I'm home. What are you doing?"
+    "en": "I'm home. What are you doing?",
+    "gloss": [
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w157"
+     },
+     {
+      "id": "w076"
+     },
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w157"
+     },
+     {
+      "id": "w169"
+     },
+     {
+      "id": "w031"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "我在超市买东西。你要什么吗？",
     "py": "Wǒ zài chāoshì mǎi dōngxi. Nǐ yào shénme ma?",
-    "en": "I'm shopping at the supermarket. Do you need anything?"
+    "en": "I'm shopping at the supermarket. Do you need anything?",
+    "gloss": [
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w157"
+     },
+     {
+      "id": "w241"
+     },
+     {
+      "id": "w180"
+     },
+     {
+      "id": "w245"
+     },
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w171"
+     },
+     {
+      "id": "w031"
+     },
+     {
+      "id": "w006"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "请给我买一些水果和牛奶。",
     "py": "Qǐng gěi wǒ mǎi yìxiē shuǐguǒ hé niúnǎi.",
-    "en": "Please buy me some fruit and milk."
+    "en": "Please buy me some fruit and milk.",
+    "gloss": [
+     {
+      "id": "w026"
+     },
+     {
+      "id": "w182"
+     },
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w180"
+     },
+     {
+      "id": "w067"
+     },
+     {
+      "id": "w147"
+     },
+     {
+      "id": "w292"
+     },
+     {
+      "id": "w144"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "好的。我六点回家。",
     "py": "Hǎo de. Wǒ liù diǎn huí jiā.",
-    "en": "Okay. I'll be home at six."
+    "en": "Okay. I'll be home at six.",
+    "gloss": [
+     {
+      "id": "w002"
+     },
+     {
+      "id": "w034"
+     },
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w046"
+     },
+     {
+      "id": "w117"
+     },
+     {
+      "id": "w160"
+     },
+     {
+      "id": "w076"
+     }
+    ]
    }
   ],
   "cover": [
@@ -2545,37 +4206,118 @@
     "s": "A",
     "zh": "请问，医院在哪儿？",
     "py": "Qǐngwèn, yīyuàn zài nǎr?",
-    "en": "Excuse me, where's the hospital?"
+    "en": "Excuse me, where's the hospital?",
+    "gloss": [
+     {
+      "id": "w027"
+     },
+     {
+      "id": "w238"
+     },
+     {
+      "id": "w157"
+     },
+     {
+      "id": "w218"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "在那边，学校后边。",
     "py": "Zài nàbiān, xuéxiào hòubian.",
-    "en": "Over there, behind the school."
+    "en": "Over there, behind the school.",
+    "gloss": [
+     {
+      "id": "w157"
+     },
+     {
+      "id": "w223"
+     },
+     {
+      "id": "w233"
+     },
+     {
+      "id": "w132"
+     },
+     {
+      "id": "w224"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "我能坐出租车去吗？",
     "py": "Wǒ néng zuò chūzūchē qù ma?",
-    "en": "Can I take a taxi there?"
+    "en": "Can I take a taxi there?",
+    "gloss": [
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w176"
+     },
+     {
+      "id": "w187"
+     },
+     {
+      "id": "w261"
+     },
+     {
+      "id": "w158"
+     },
+     {
+      "id": "w006"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "可以，坐车十分钟。",
     "py": "Kěyǐ, zuò chē shí fēnzhōng.",
-    "en": "Sure, it's ten minutes by car."
+    "en": "Sure, it's ten minutes by car.",
+    "gloss": [
+     {
+      "id": "w177"
+     },
+     {
+      "id": "w187"
+     },
+     {
+      "id": "w260"
+     },
+     {
+      "id": "w050"
+     },
+     {
+      "id": "w119"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "谢谢你！",
     "py": "Xièxie nǐ!",
-    "en": "Thank you!"
+    "en": "Thank you!",
+    "gloss": [
+     {
+      "id": "w021"
+     },
+     {
+      "id": "w001"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "不客气。",
     "py": "Bú kèqi.",
-    "en": "You're welcome."
+    "en": "You're welcome.",
+    "gloss": [
+     {
+      "id": "w022"
+     }
+    ]
    }
   ],
   "cover": [
@@ -2694,31 +4436,101 @@
     "s": "A",
     "zh": "今天天气怎么样？",
     "py": "Jīntiān tiānqì zěnmeyàng?",
-    "en": "How's the weather today?"
+    "en": "How's the weather today?",
+    "gloss": [
+     {
+      "id": "w102"
+     },
+     {
+      "id": "w280"
+     },
+     {
+      "id": "w227"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "有点儿冷，外边下雨了。",
     "py": "Yǒudiǎnr lěng, wàibian xià yǔ le.",
-    "en": "A bit cold, it's raining outside."
+    "en": "A bit cold, it's raining outside.",
+    "gloss": [
+     {
+      "id": "w071"
+     },
+     {
+      "id": "w275"
+     },
+     {
+      "id": "w232"
+     },
+     {
+      "id": "w282"
+     },
+     {
+      "id": "w293"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "明天呢？",
     "py": "Míngtiān ne?",
-    "en": "And tomorrow?"
+    "en": "And tomorrow?",
+    "gloss": [
+     {
+      "id": "w103"
+     },
+     {
+      "id": "w007"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "明天会下雪。",
     "py": "Míngtiān huì xià xuě.",
-    "en": "It'll snow tomorrow."
+    "en": "It'll snow tomorrow.",
+    "gloss": [
+     {
+      "id": "w103"
+     },
+     {
+      "id": "w175"
+     },
+     {
+      "id": "w229"
+     },
+     {
+      "id": "w283"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "太好了！我喜欢雪。",
     "py": "Tài hǎo le! Wǒ xǐhuan xuě.",
-    "en": "Great! I love snow."
+    "en": "Great! I love snow.",
+    "gloss": [
+     {
+      "id": "w285"
+     },
+     {
+      "id": "w002"
+     },
+     {
+      "id": "w293"
+     },
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w173"
+     },
+     {
+      "id": "w283"
+     }
+    ]
    }
   ],
   "cover": [
@@ -2825,31 +4637,158 @@
     "s": "A",
     "zh": "星期天你做什么？",
     "py": "Xīngqītiān nǐ zuò shénme?",
-    "en": "What are you doing on Sunday?"
+    "en": "What are you doing on Sunday?",
+    "gloss": [
+     {
+      "id": "w114"
+     },
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w169"
+     },
+     {
+      "id": "w031"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "我想去看电影。你也去吧？",
     "py": "Wǒ xiǎng qù kàn diànyǐng. Nǐ yě qù ba?",
-    "en": "I want to see a movie. You'll come too?"
+    "en": "I want to see a movie. You'll come too?",
+    "gloss": [
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w170"
+     },
+     {
+      "id": "w158"
+     },
+     {
+      "id": "w162"
+     },
+     {
+      "id": "w256"
+     },
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w009"
+     },
+     {
+      "id": "w158"
+     },
+     {
+      "id": "w294"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "好啊！看完电影我们去吃饭吧。",
     "py": "Hǎo a! Kàn wán diànyǐng wǒmen qù chī fàn ba.",
-    "en": "Sure! After the movie let's go eat."
+    "en": "Sure! After the movie let's go eat.",
+    "gloss": [
+     {
+      "id": "w002"
+     },
+     {
+      "zh": "啊",
+      "py": "a",
+      "en": "(friendly tone)"
+     },
+     {
+      "id": "w162"
+     },
+     {
+      "zh": "完",
+      "py": "wán",
+      "en": "finish"
+     },
+     {
+      "id": "w256"
+     },
+     {
+      "id": "w015"
+     },
+     {
+      "id": "w158"
+     },
+     {
+      "id": "w133"
+     },
+     {
+      "id": "w135"
+     },
+     {
+      "id": "w294"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "没问题。我知道一个很好的饭店。",
     "py": "Méi wèntí. Wǒ zhīdào yí ge hěn hǎo de fàndiàn.",
-    "en": "No problem. I know a great restaurant."
+    "en": "No problem. I know a great restaurant.",
+    "gloss": [
+     {
+      "zh": "没问题",
+      "py": "méi wèntí",
+      "en": "no problem"
+     },
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w178"
+     },
+     {
+      "id": "w041"
+     },
+     {
+      "id": "w062"
+     },
+     {
+      "id": "w005"
+     },
+     {
+      "id": "w002"
+     },
+     {
+      "id": "w034"
+     },
+     {
+      "id": "w154"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "太好了，星期天见！",
     "py": "Tài hǎo le, xīngqītiān jiàn!",
-    "en": "Great, see you Sunday!"
+    "en": "Great, see you Sunday!",
+    "gloss": [
+     {
+      "id": "w285"
+     },
+     {
+      "id": "w002"
+     },
+     {
+      "id": "w293"
+     },
+     {
+      "id": "w114"
+     },
+     {
+      "id": "w168"
+     }
+    ]
    }
   ],
   "cover": [
@@ -3004,37 +4943,103 @@
     "s": "A",
     "zh": "你忙吗？",
     "py": "Nǐ máng ma?",
-    "en": "Are you busy?"
+    "en": "Are you busy?",
+    "gloss": [
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w274"
+     },
+     {
+      "id": "w006"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "不忙。你呢？",
     "py": "Bù máng. Nǐ ne?",
-    "en": "Not busy. And you?"
+    "en": "Not busy. And you?",
+    "gloss": [
+     {
+      "id": "w008"
+     },
+     {
+      "id": "w274"
+     },
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w007"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "我很忙。",
     "py": "Wǒ hěn máng.",
-    "en": "I'm very busy."
+    "en": "I'm very busy.",
+    "gloss": [
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w005"
+     },
+     {
+      "id": "w274"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "明天呢？",
     "py": "Míngtiān ne?",
-    "en": "And tomorrow?"
+    "en": "And tomorrow?",
+    "gloss": [
+     {
+      "id": "w103"
+     },
+     {
+      "id": "w007"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "明天不忙。",
     "py": "Míngtiān bù máng.",
-    "en": "Not busy tomorrow."
+    "en": "Not busy tomorrow.",
+    "gloss": [
+     {
+      "id": "w103"
+     },
+     {
+      "id": "w008"
+     },
+     {
+      "id": "w274"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "好，明天见！",
     "py": "Hǎo, míngtiān jiàn!",
-    "en": "OK, see you tomorrow!"
+    "en": "OK, see you tomorrow!",
+    "gloss": [
+     {
+      "id": "w002"
+     },
+     {
+      "id": "w103"
+     },
+     {
+      "id": "w168"
+     }
+    ]
    }
   ],
   "cover": [
@@ -3111,37 +5116,118 @@
     "s": "A",
     "zh": "这是谁？",
     "py": "Zhè shì shéi?",
-    "en": "Who is this?"
+    "en": "Who is this?",
+    "gloss": [
+     {
+      "id": "w210"
+     },
+     {
+      "id": "w004"
+     },
+     {
+      "id": "w225"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "这是我朋友。",
     "py": "Zhè shì wǒ péngyou.",
-    "en": "This is my friend."
+    "en": "This is my friend.",
+    "gloss": [
+     {
+      "id": "w210"
+     },
+     {
+      "id": "w004"
+     },
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w038"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "他叫什么名字？",
     "py": "Tā jiào shénme míngzi?",
-    "en": "What's his name?"
+    "en": "What's his name?",
+    "gloss": [
+     {
+      "id": "w011"
+     },
+     {
+      "id": "w029"
+     },
+     {
+      "id": "w031"
+     },
+     {
+      "id": "w030"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "我不知道。",
     "py": "Wǒ bù zhīdào.",
-    "en": "I don't know."
+    "en": "I don't know.",
+    "gloss": [
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w008"
+     },
+     {
+      "id": "w178"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "你不知道？",
     "py": "Nǐ bù zhīdào?",
-    "en": "You don't know?"
+    "en": "You don't know?",
+    "gloss": [
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w008"
+     },
+     {
+      "id": "w178"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "他是我朋友的朋友。",
     "py": "Tā shì wǒ péngyou de péngyou.",
-    "en": "He's a friend of a friend."
+    "en": "He's a friend of a friend.",
+    "gloss": [
+     {
+      "id": "w011"
+     },
+     {
+      "id": "w004"
+     },
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w038"
+     },
+     {
+      "id": "w034"
+     },
+     {
+      "id": "w038"
+     }
+    ]
    }
   ],
   "cover": [
@@ -3245,37 +5331,121 @@
     "s": "A",
     "zh": "你想吃什么？",
     "py": "Nǐ xiǎng chī shénme?",
-    "en": "What do you want to eat?"
+    "en": "What do you want to eat?",
+    "gloss": [
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w170"
+     },
+     {
+      "id": "w133"
+     },
+     {
+      "id": "w031"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "我想吃饺子。你呢？",
     "py": "Wǒ xiǎng chī jiǎozi. Nǐ ne?",
-    "en": "I want dumplings. And you?"
+    "en": "I want dumplings. And you?",
+    "gloss": [
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w170"
+     },
+     {
+      "id": "w133"
+     },
+     {
+      "id": "w151"
+     },
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w007"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "我也想吃饺子。",
     "py": "Wǒ yě xiǎng chī jiǎozi.",
-    "en": "I want dumplings too."
+    "en": "I want dumplings too.",
+    "gloss": [
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w009"
+     },
+     {
+      "id": "w170"
+     },
+     {
+      "id": "w133"
+     },
+     {
+      "id": "w151"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "喝什么？",
     "py": "Hē shénme?",
-    "en": "What to drink?"
+    "en": "What to drink?",
+    "gloss": [
+     {
+      "id": "w134"
+     },
+     {
+      "id": "w031"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "我要茶。",
     "py": "Wǒ yào chá.",
-    "en": "I'll have tea."
+    "en": "I'll have tea.",
+    "gloss": [
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w171"
+     },
+     {
+      "id": "w142"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "好，我们去吧！",
     "py": "Hǎo, wǒmen qù ba!",
-    "en": "OK, let's go!"
+    "en": "OK, let's go!",
+    "gloss": [
+     {
+      "id": "w002"
+     },
+     {
+      "id": "w015"
+     },
+     {
+      "id": "w158"
+     },
+     {
+      "id": "w294"
+     }
+    ]
    }
   ],
   "cover": [
@@ -3376,37 +5546,118 @@
     "s": "A",
     "zh": "喂，你在哪儿？",
     "py": "Wéi, nǐ zài nǎr?",
-    "en": "Hello? Where are you?"
+    "en": "Hello? Where are you?",
+    "gloss": [
+     {
+      "id": "w028"
+     },
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w157"
+     },
+     {
+      "id": "w218"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "我在家。你呢？",
     "py": "Wǒ zài jiā. Nǐ ne?",
-    "en": "I'm at home. And you?"
+    "en": "I'm at home. And you?",
+    "gloss": [
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w157"
+     },
+     {
+      "id": "w076"
+     },
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w007"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "我在商店。",
     "py": "Wǒ zài shāngdiàn.",
-    "en": "I'm at the store."
+    "en": "I'm at the store.",
+    "gloss": [
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w157"
+     },
+     {
+      "id": "w239"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "你买什么？",
     "py": "Nǐ mǎi shénme?",
-    "en": "What are you buying?"
+    "en": "What are you buying?",
+    "gloss": [
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w180"
+     },
+     {
+      "id": "w031"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "我买水果。你要吗？",
     "py": "Wǒ mǎi shuǐguǒ. Nǐ yào ma?",
-    "en": "Fruit. Do you want some?"
+    "en": "Fruit. Do you want some?",
+    "gloss": [
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w180"
+     },
+     {
+      "id": "w147"
+     },
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w171"
+     },
+     {
+      "id": "w006"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "要！谢谢！",
     "py": "Yào! Xièxie!",
-    "en": "Yes! Thanks!"
+    "en": "Yes! Thanks!",
+    "gloss": [
+     {
+      "id": "w171"
+     },
+     {
+      "id": "w021"
+     }
+    ]
    }
   ],
   "cover": [
@@ -3504,37 +5755,109 @@
     "s": "A",
     "zh": "这是我的书。",
     "py": "Zhè shì wǒ de shū.",
-    "en": "This is my book."
+    "en": "This is my book.",
+    "gloss": [
+     {
+      "id": "w210"
+     },
+     {
+      "id": "w004"
+     },
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w034"
+     },
+     {
+      "id": "w246"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "你喜欢吗？",
     "py": "Nǐ xǐhuan ma?",
-    "en": "Do you like it?"
+    "en": "Do you like it?",
+    "gloss": [
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w173"
+     },
+     {
+      "id": "w006"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "很喜欢。你想看吗？",
     "py": "Hěn xǐhuan. Nǐ xiǎng kàn ma?",
-    "en": "Very much. Do you want to read it?"
+    "en": "Very much. Do you want to read it?",
+    "gloss": [
+     {
+      "id": "w005"
+     },
+     {
+      "id": "w173"
+     },
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w170"
+     },
+     {
+      "id": "w162"
+     },
+     {
+      "id": "w006"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "想看！",
     "py": "Xiǎng kàn!",
-    "en": "I'd love to!"
+    "en": "I'd love to!",
+    "gloss": [
+     {
+      "id": "w170"
+     },
+     {
+      "id": "w162"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "给你。",
     "py": "Gěi nǐ.",
-    "en": "Here you go."
+    "en": "Here you go.",
+    "gloss": [
+     {
+      "id": "w182"
+     },
+     {
+      "id": "w001"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "谢谢你！",
     "py": "Xièxie nǐ!",
-    "en": "Thank you!"
+    "en": "Thank you!",
+    "gloss": [
+     {
+      "id": "w021"
+     },
+     {
+      "id": "w001"
+     }
+    ]
    }
   ],
   "cover": [
@@ -3617,37 +5940,136 @@
     "s": "A",
     "zh": "你有孩子吗？",
     "py": "Nǐ yǒu háizi ma?",
-    "en": "Do you have children?"
+    "en": "Do you have children?",
+    "gloss": [
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w155"
+     },
+     {
+      "id": "w086"
+     },
+     {
+      "id": "w006"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "有，我有两个孩子。",
     "py": "Yǒu, wǒ yǒu liǎng ge háizi.",
-    "en": "Yes, I have two."
+    "en": "Yes, I have two.",
+    "gloss": [
+     {
+      "id": "w155"
+     },
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w155"
+     },
+     {
+      "id": "w054"
+     },
+     {
+      "id": "w062"
+     },
+     {
+      "id": "w086"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "他们几岁？",
     "py": "Tāmen jǐ suì?",
-    "en": "How old are they?"
+    "en": "How old are they?",
+    "gloss": [
+     {
+      "id": "w017"
+     },
+     {
+      "id": "w058"
+     },
+     {
+      "id": "w072"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "一个六岁，一个八岁。",
     "py": "Yí ge liù suì, yí ge bā suì.",
-    "en": "One is six, one is eight."
+    "en": "One is six, one is eight.",
+    "gloss": [
+     {
+      "id": "w041"
+     },
+     {
+      "id": "w062"
+     },
+     {
+      "id": "w046"
+     },
+     {
+      "id": "w072"
+     },
+     {
+      "id": "w041"
+     },
+     {
+      "id": "w062"
+     },
+     {
+      "id": "w048"
+     },
+     {
+      "id": "w072"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "他们上学吗？",
     "py": "Tāmen shàngxué ma?",
-    "en": "Do they go to school?"
+    "en": "Do they go to school?",
+    "gloss": [
+     {
+      "id": "w017"
+     },
+     {
+      "id": "w207"
+     },
+     {
+      "id": "w006"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "上，他们都是小学生。",
     "py": "Shàng, tāmen dōu shì xiǎoxuéshēng.",
-    "en": "Yes, they're both in primary school."
+    "en": "Yes, they're both in primary school.",
+    "gloss": [
+     {
+      "id": "w228"
+     },
+     {
+      "id": "w017"
+     },
+     {
+      "id": "w284"
+     },
+     {
+      "id": "w004"
+     },
+     {
+      "id": "w098"
+     }
+    ]
    }
   ],
   "cover": [
@@ -3772,37 +6194,142 @@
     "s": "A",
     "zh": "喂，你好！你爸爸在家吗？",
     "py": "Wéi, nǐ hǎo! Nǐ bàba zài jiā ma?",
-    "en": "Hello! Is your dad home?"
+    "en": "Hello! Is your dad home?",
+    "gloss": [
+     {
+      "id": "w028"
+     },
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w002"
+     },
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w078"
+     },
+     {
+      "id": "w157"
+     },
+     {
+      "id": "w076"
+     },
+     {
+      "id": "w006"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "不在。他在公司。",
     "py": "Bú zài. Tā zài gōngsī.",
-    "en": "No, he's at work."
+    "en": "No, he's at work.",
+    "gloss": [
+     {
+      "id": "w008"
+     },
+     {
+      "id": "w157"
+     },
+     {
+      "id": "w011"
+     },
+     {
+      "id": "w157"
+     },
+     {
+      "id": "w237"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "他几点回家？",
     "py": "Tā jǐ diǎn huí jiā?",
-    "en": "What time does he get home?"
+    "en": "What time does he get home?",
+    "gloss": [
+     {
+      "id": "w011"
+     },
+     {
+      "id": "w058"
+     },
+     {
+      "id": "w117"
+     },
+     {
+      "id": "w160"
+     },
+     {
+      "id": "w076"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "他六点回家。",
     "py": "Tā liù diǎn huí jiā.",
-    "en": "At six."
+    "en": "At six.",
+    "gloss": [
+     {
+      "id": "w011"
+     },
+     {
+      "id": "w046"
+     },
+     {
+      "id": "w117"
+     },
+     {
+      "id": "w160"
+     },
+     {
+      "id": "w076"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "好，我晚上再打电话。",
     "py": "Hǎo, wǒ wǎnshang zài dǎ diànhuà.",
-    "en": "OK, I'll call again this evening."
+    "en": "OK, I'll call again this evening.",
+    "gloss": [
+     {
+      "id": "w002"
+     },
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w127"
+     },
+     {
+      "id": "w288"
+     },
+     {
+      "id": "w204"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "好的，再见！",
     "py": "Hǎo de, zàijiàn!",
-    "en": "Sure, bye!"
+    "en": "Sure, bye!",
+    "gloss": [
+     {
+      "id": "w002"
+     },
+     {
+      "id": "w034"
+     },
+     {
+      "id": "w025"
+     }
+    ]
    }
   ],
   "cover": [
@@ -3927,37 +6454,118 @@
     "s": "A",
     "zh": "苹果多少钱？",
     "py": "Píngguǒ duōshao qián?",
-    "en": "How much are the apples?"
+    "en": "How much are the apples?",
+    "gloss": [
+     {
+      "id": "w146"
+     },
+     {
+      "id": "w059"
+     },
+     {
+      "id": "w073"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "一个三块。",
     "py": "Yí ge sān kuài.",
-    "en": "Three kuai each."
+    "en": "Three kuai each.",
+    "gloss": [
+     {
+      "id": "w041"
+     },
+     {
+      "id": "w062"
+     },
+     {
+      "id": "w043"
+     },
+     {
+      "id": "w074"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "太贵了！",
     "py": "Tài guì le!",
-    "en": "That's too expensive!"
+    "en": "That's too expensive!",
+    "gloss": [
+     {
+      "id": "w285"
+     },
+     {
+      "id": "w268"
+     },
+     {
+      "id": "w293"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "不贵，很好吃！",
     "py": "Bú guì, hěn hǎochī!",
-    "en": "Not expensive, they're delicious!"
+    "en": "Not expensive, they're delicious!",
+    "gloss": [
+     {
+      "id": "w008"
+     },
+     {
+      "id": "w268"
+     },
+     {
+      "id": "w005"
+     },
+     {
+      "id": "w153"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "好吧，我要两个。",
     "py": "Hǎo ba, wǒ yào liǎng ge.",
-    "en": "All right, I'll take two."
+    "en": "All right, I'll take two.",
+    "gloss": [
+     {
+      "id": "w002"
+     },
+     {
+      "id": "w294"
+     },
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w171"
+     },
+     {
+      "id": "w054"
+     },
+     {
+      "id": "w062"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "六块。谢谢！",
     "py": "Liù kuài. Xièxie!",
-    "en": "Six kuai. Thanks!"
+    "en": "Six kuai. Thanks!",
+    "gloss": [
+     {
+      "id": "w046"
+     },
+     {
+      "id": "w074"
+     },
+     {
+      "id": "w021"
+     }
+    ]
    }
   ],
   "cover": [
@@ -4061,37 +6669,124 @@
     "s": "A",
     "zh": "你明天有时间吗？",
     "py": "Nǐ míngtiān yǒu shíjiān ma?",
-    "en": "Do you have time tomorrow?"
+    "en": "Do you have time tomorrow?",
+    "gloss": [
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w103"
+     },
+     {
+      "id": "w155"
+     },
+     {
+      "id": "w122"
+     },
+     {
+      "id": "w006"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "有。什么事？",
     "py": "Yǒu. Shénme shì?",
-    "en": "Yes. What's up?"
+    "en": "Yes. What's up?",
+    "gloss": [
+     {
+      "id": "w155"
+     },
+     {
+      "id": "w031"
+     },
+     {
+      "id": "w264"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "我们去看电影吧。",
     "py": "Wǒmen qù kàn diànyǐng ba.",
-    "en": "Let's go and see a movie."
+    "en": "Let's go and see a movie.",
+    "gloss": [
+     {
+      "id": "w015"
+     },
+     {
+      "id": "w158"
+     },
+     {
+      "id": "w162"
+     },
+     {
+      "id": "w256"
+     },
+     {
+      "id": "w294"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "好！几点？",
     "py": "Hǎo! Jǐ diǎn?",
-    "en": "Great! What time?"
+    "en": "Great! What time?",
+    "gloss": [
+     {
+      "id": "w002"
+     },
+     {
+      "id": "w058"
+     },
+     {
+      "id": "w117"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "下午三点，怎么样？",
     "py": "Xiàwǔ sān diǎn, zěnmeyàng?",
-    "en": "Three in the afternoon, OK?"
+    "en": "Three in the afternoon, OK?",
+    "gloss": [
+     {
+      "id": "w126"
+     },
+     {
+      "id": "w043"
+     },
+     {
+      "id": "w117"
+     },
+     {
+      "id": "w227"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "好的，明天下午见！",
     "py": "Hǎo de, míngtiān xiàwǔ jiàn!",
-    "en": "Sure, see you tomorrow afternoon!"
+    "en": "Sure, see you tomorrow afternoon!",
+    "gloss": [
+     {
+      "id": "w002"
+     },
+     {
+      "id": "w034"
+     },
+     {
+      "id": "w103"
+     },
+     {
+      "id": "w126"
+     },
+     {
+      "id": "w168"
+     }
+    ]
    }
   ],
   "cover": [
@@ -4210,37 +6905,109 @@
     "s": "A",
     "zh": "你怎么了？",
     "py": "Nǐ zěnme le?",
-    "en": "What's wrong?"
+    "en": "What's wrong?",
+    "gloss": [
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w226"
+     },
+     {
+      "id": "w293"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "我生病了。",
     "py": "Wǒ shēngbìng le.",
-    "en": "I'm sick."
+    "en": "I'm sick.",
+    "gloss": [
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w278"
+     },
+     {
+      "id": "w293"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "你去医院了吗？",
     "py": "Nǐ qù yīyuàn le ma?",
-    "en": "Have you been to the hospital?"
+    "en": "Have you been to the hospital?",
+    "gloss": [
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w158"
+     },
+     {
+      "id": "w238"
+     },
+     {
+      "id": "w293"
+     },
+     {
+      "id": "w006"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "还没有。",
     "py": "Hái méiyǒu.",
-    "en": "Not yet."
+    "en": "Not yet.",
+    "gloss": [
+     {
+      "id": "w289"
+     },
+     {
+      "id": "w156"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "我们现在去吧。",
     "py": "Wǒmen xiànzài qù ba.",
-    "en": "Let's go now."
+    "en": "Let's go now.",
+    "gloss": [
+     {
+      "id": "w015"
+     },
+     {
+      "id": "w116"
+     },
+     {
+      "id": "w158"
+     },
+     {
+      "id": "w294"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "好，谢谢你。",
     "py": "Hǎo, xièxie nǐ.",
-    "en": "OK, thank you."
+    "en": "OK, thank you.",
+    "gloss": [
+     {
+      "id": "w002"
+     },
+     {
+      "id": "w021"
+     },
+     {
+      "id": "w001"
+     }
+    ]
    }
   ],
   "cover": [
@@ -4335,37 +7102,118 @@
     "s": "A",
     "zh": "你在做什么？",
     "py": "Nǐ zài zuò shénme?",
-    "en": "What are you doing?"
+    "en": "What are you doing?",
+    "gloss": [
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w157"
+     },
+     {
+      "id": "w169"
+     },
+     {
+      "id": "w031"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "我在学汉语。",
     "py": "Wǒ zài xué Hànyǔ.",
-    "en": "I'm learning Chinese."
+    "en": "I'm learning Chinese.",
+    "gloss": [
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w157"
+     },
+     {
+      "id": "w197"
+     },
+     {
+      "id": "w249"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "汉字怎么样？",
     "py": "Hànzì zěnmeyàng?",
-    "en": "How are the characters?"
+    "en": "How are the characters?",
+    "gloss": [
+     {
+      "id": "w248"
+     },
+     {
+      "id": "w227"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "很漂亮，我会读一点儿。",
     "py": "Hěn piàoliang, wǒ huì dú yìdiǎnr.",
-    "en": "Beautiful. I can read a little."
+    "en": "Beautiful. I can read a little.",
+    "gloss": [
+     {
+      "id": "w005"
+     },
+     {
+      "id": "w270"
+     },
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w175"
+     },
+     {
+      "id": "w195"
+     },
+     {
+      "id": "w070"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "你会说吗？",
     "py": "Nǐ huì shuō ma?",
-    "en": "Can you speak it?"
+    "en": "Can you speak it?",
+    "gloss": [
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w175"
+     },
+     {
+      "id": "w166"
+     },
+     {
+      "id": "w006"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "会说一点儿。",
     "py": "Huì shuō yìdiǎnr.",
-    "en": "A little."
+    "en": "A little.",
+    "gloss": [
+     {
+      "id": "w175"
+     },
+     {
+      "id": "w166"
+     },
+     {
+      "id": "w070"
+     }
+    ]
    }
   ],
   "cover": [
@@ -4478,37 +7326,109 @@
     "s": "A",
     "zh": "你去哪儿？",
     "py": "Nǐ qù nǎr?",
-    "en": "Where are you going?"
+    "en": "Where are you going?",
+    "gloss": [
+     {
+      "id": "w001"
+     },
+     {
+      "id": "w158"
+     },
+     {
+      "id": "w218"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "我去超市。",
     "py": "Wǒ qù chāoshì.",
-    "en": "To the supermarket."
+    "en": "To the supermarket.",
+    "gloss": [
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w158"
+     },
+     {
+      "id": "w241"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "买什么？",
     "py": "Mǎi shénme?",
-    "en": "To buy what?"
+    "en": "To buy what?",
+    "gloss": [
+     {
+      "id": "w180"
+     },
+     {
+      "id": "w031"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "买牛奶和面包。",
     "py": "Mǎi niúnǎi hé miànbāo.",
-    "en": "Milk and bread."
+    "en": "Milk and bread.",
+    "gloss": [
+     {
+      "id": "w180"
+     },
+     {
+      "id": "w144"
+     },
+     {
+      "id": "w292"
+     },
+     {
+      "id": "w149"
+     }
+    ]
    },
    {
     "s": "A",
     "zh": "我也去！",
     "py": "Wǒ yě qù!",
-    "en": "I'm coming too!"
+    "en": "I'm coming too!",
+    "gloss": [
+     {
+      "id": "w003"
+     },
+     {
+      "id": "w009"
+     },
+     {
+      "id": "w158"
+     }
+    ]
    },
    {
     "s": "B",
     "zh": "好，我们坐车去。",
     "py": "Hǎo, wǒmen zuò chē qù.",
-    "en": "OK, let's take the car."
+    "en": "OK, let's take the car.",
+    "gloss": [
+     {
+      "id": "w002"
+     },
+     {
+      "id": "w015"
+     },
+     {
+      "id": "w187"
+     },
+     {
+      "id": "w260"
+     },
+     {
+      "id": "w158"
+     }
+    ]
    }
   ],
   "cover": [

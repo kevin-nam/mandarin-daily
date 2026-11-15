@@ -206,6 +206,47 @@ for (const d of dialogues) {
   if (process.argv.includes('--dialogues')) console.log(d.id, d.title, oov.size ? `not HSK 1: ${[...oov].join('')}` : '')
 }
 
+/**
+ * Word by word: phrases, their examples and dialogue lines split into words with pinyin and English,
+ * so a word you haven't met (用, 帮, 一下) isn't a mystery. HSK 1 words by id (the app glosses them);
+ * the rest from content/glosses.tsv. Longest match over both, so 一下 beats 一 + 下.
+ */
+const GLOSS_FILE = 'content/glosses.tsv'
+const extra = new Map()
+for (const raw of readFileSync(GLOSS_FILE, 'utf8').split('\n')) {
+  if (!raw.trim() || raw.startsWith('#')) continue
+  const [zh, py, en] = raw.split('|').map((x) => x.trim())
+  if (!zh || !py || !en) throw new Error(`${GLOSS_FILE}: bad row "${raw}"`)
+  extra.set(zh, { zh, py, en })
+}
+const glossLongest = Math.max(longest, ...[...extra.keys()].map((k) => [...k].length))
+const missingGloss = new Set()
+function glossTokens(text) {
+  const chars = [...text].filter((c) => HAN.test(c))
+  const out = []
+  for (let i = 0; i < chars.length;) {
+    let hit
+    for (let n = Math.min(glossLongest, chars.length - i); n >= 1 && !hit; n--) {
+      const zh = chars.slice(i, i + n).join('')
+      const g = extra.get(zh)
+      const w = byHanzi.get(zh)
+      // Same length: the HSK 1 word.
+      hit = w ? { id: w.id, n } : g ? { ...g, n } : undefined
+    }
+    if (!hit) { missingGloss.add(chars[i]); hit = { zh: chars[i], py: '', en: '', n: 1 } }
+    const { n, ...tok } = hit
+    out.push(tok)
+    i += n
+  }
+  return out
+}
+for (const ph of phrases) {
+  ph.gloss = glossTokens(ph.hanzi)
+  ph.sentence.gloss = glossTokens(ph.sentence.zh)
+}
+for (const d of dialogues) for (const l of d.lines) l.gloss = glossTokens(l.zh)
+if (missingGloss.size) throw new Error(`No English for ${[...missingGloss].join('')}: add them to ${GLOSS_FILE}`)
+
 mkdirSync('src/data', { recursive: true })
 writeFileSync('src/data/words.json', JSON.stringify(words, null, 1))
 writeFileSync('src/data/phrases.json', JSON.stringify(phrases, null, 1))

@@ -17,7 +17,7 @@ import { Icon } from './icons'
 import { Pinyin, ToneContour } from './Pinyin'
 import { BurstContext, STREAK_EVERY, useBurst, useBurstState } from './burst'
 import { PauseContext, usePause, usePauseClock } from './pause'
-import { Burst, Countdown, PauseScreen, PlayButton, SpeakPrompt, SpokenAnswer, StepHeader, Tally, WordFace, shuffle } from './ui'
+import { Burst, Countdown, PauseScreen, PlayButton, SpeakPrompt, SpokenAnswer, StepHeader, Tally, WordByWord, WordFace, shuffle } from './ui'
 
 type Commit = (fn: (s: AppState) => void) => void
 type StepId = 'reviews' | 'new' | 'drill' | 'dialogue' | 'tones' | 'listen' | 'done'
@@ -603,6 +603,13 @@ function DialogueStep({ state, commit, onDone }: { state: AppState; commit: Comm
   // Fixed for the step: finishing it records it, which would otherwise pick the next one mid-step.
   const [d] = useState(() => pickDialogue(state))
   const [last] = useState(() => state.dialogues?.[d.id])
+  // Under each line, the words you haven't learned (HSK 1 words not introduced, words of phrases not learned).
+  const [learned] = useState(() => {
+    const ids = new Set(state.introduced)
+    const zh = new Set(PHRASES.filter((p) => ids.has(p.id)).flatMap((p) => [...(p.gloss ?? []), ...(p.sentence.gloss ?? [])])
+      .filter((t) => !('id' in t)).map((t) => ('zh' in t ? t.zh : '')))
+    return (z: string, id?: string) => (id ? ids.has(id) : zh.has(z))
+  })
   const finishDialogue = () => {
     commit((s) => recordDialogue(s, d.id))
     onDone()
@@ -712,6 +719,7 @@ function DialogueStep({ state, commit, onDone }: { state: AppState; commit: Comm
               <div className="hz zh" lang="zh-CN">{l.zh}</div>
               <Pinyin text={l.py} />
               {(phase !== 1 || english) && <div className="en">{l.en}</div>}
+              {(phase !== 1 || english) && l.gloss && <WordByWord tokens={l.gloss} hide={learned} />}
             </div>
           ))}
           <div className="controls">
@@ -750,6 +758,7 @@ function DialogueStep({ state, commit, onDone }: { state: AppState; commit: Comm
                     <div className="hz zh" lang="zh-CN">{l.zh}</div>
                     <Pinyin text={l.py} />
                     <div className="en">{l.en}</div>
+                    {l.gloss && <WordByWord tokens={l.gloss} hide={learned} />}
                   </>
                 )}
               </div>

@@ -11,7 +11,7 @@ export interface Word {
   pinyin: string
   en: string
   unit: string
-  sentence: { zh: string; py: string; en: string }
+  sentence: { zh: string; py: string; en: string; gloss?: GlossToken[] }
   /** Other words the sentence uses (scripts/build-data.mjs), to gloss the ones you haven't learned yet. */
   parts: string[]
   /** Phrases: the HSK 1 words in the phrase itself (its reading card waits for them). */
@@ -20,12 +20,17 @@ export interface Word {
   structure?: Chunk[][]
   /** Tones (1-4) per syllable if the word is a fair tone-drill item (see scripts/build-data.mjs). */
   tones?: number[]
+  /** Phrases: the phrase word by word (scripts/build-data.mjs). */
+  gloss?: GlossToken[]
 }
+
+/** One word of a phrase or dialogue line: an HSK 1 word by id, or a word from content/glosses.tsv. */
+export type GlossToken = { id: string } | { zh: string; py: string; en: string }
 
 export type Role = 'addressee' | 'subject' | 'when' | 'where' | 'how' | 'verb' | 'object' | 'to' | 'particle' | 'phrase'
 export interface Chunk { role: Role; label: string; ids: string[] }
 
-export interface DialogueLine { s: string; zh: string; py: string; en: string }
+export interface DialogueLine { s: string; zh: string; py: string; en: string; gloss?: GlossToken[] }
 export interface Dialogue {
   id: string
   title: string

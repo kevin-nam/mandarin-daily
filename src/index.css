@@ -426,6 +426,15 @@ mark.key {
 .structure-order { margin-top: 10px; font-size: 13px; color: var(--muted); text-wrap: balance; }
 @media (prefers-reduced-motion: reduce) { .chunk { animation: none; } }
 
+/* Phrases and dialogue lines word by word: hanzi, pinyin, English, wrapping on small screens. */
+.word-by-word { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 12px; margin: 0 0 12px; }
+.wbw { display: flex; flex-direction: column; align-items: center; min-width: 2.5em; }
+.wbw .hz { font-size: 20px; line-height: 1.25; color: var(--ink); }
+.wbw .py { font-size: 13px; }
+.wbw small { font-size: 12px; color: var(--muted); max-width: 8em; text-align: center; line-height: 1.2; }
+.line .word-by-word { justify-content: flex-start; margin: 6px 0 0; gap: 6px 10px; }
+.line .wbw .hz { font-size: 17px; }
+
 /* Words in the sentence not learned yet: a quiet gloss so nothing in it is a mystery. */
 .fresh { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 12px; font-size: 14px; color: var(--muted); margin: -4px 0 12px; }
 .fresh-label { flex-basis: 100%; font-weight: 600; font-size: 13px; }
@@ -811,3 +820,4 @@ details.char-parts:not([open]) { padding-bottom: 10px; }
 .growth-legend span:last-child { margin-left: 4px; }
 .growth-pace { margin-top: 10px; font-size: 14px; color: var(--muted); text-wrap: pretty; }
 .growth-pace b { color: var(--ink); font-weight: 600; }
+.bank-sentence .word-by-word { justify-content: flex-start; margin-top: 8px; }

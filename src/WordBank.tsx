@@ -7,7 +7,7 @@ import { wordKey } from './audio'
 import { Icon } from './icons'
 import { Pinyin } from './Pinyin'
 import { cardKey, LEVELS, level, recallChance, type AppState, type CardKind, type Level } from './store'
-import { PlayButton } from './ui'
+import { PlayButton, PhraseWords } from './ui'
 
 // Each skill is marked by the Chinese verb for it: 听 listen, 说 speak, 读 read, 句 sentence.
 const SKILLS: { kind: CardKind; mark: string; label: string }[] = [
@@ -172,6 +172,7 @@ function BankRow({ e, state, known, open, onToggle }: {
             <Pinyin text={w.sentence.py} />
             <div className="en">{w.sentence.en}</div>
             <Structure w={w} />
+            <PhraseWords w={w} />
           </div>
           <CharParts hanzi={w.hanzi} known={known} />
           <LookAlikes w={w} state={state} />

@@ -1,6 +1,6 @@
 import { useEffect, useState, type CSSProperties, type ReactNode } from 'react'
 import { play } from './audio'
-import { glossClash, shortGloss, target, type Stage, type Word } from './data'
+import { WORD_BY_ID, glossClash, shortGloss, target, type GlossToken, type Stage, type Word } from './data'
 import { Icon } from './icons'
 import { Pinyin } from './Pinyin'
 import { Structure } from './Structure'
@@ -73,6 +73,8 @@ export function WordFace({ w, showSentence = true, fresh = [], structure = 'togg
           <Pinyin text={w.sentence.py} className="sentence-py" />
           <div className="sentence-en">{w.sentence.en}</div>
           {fresh.length > 0 && <FreshWords words={fresh} />}
+          {/* Phrases have no structure breakdown: every word with its pinyin and English instead. */}
+          <PhraseWords w={w} />
           <div className="play-row">
             <PlayButton k={`${w.id}s`} text={w.sentence.zh} label={w.kind === 'word' ? 'Sentence' : 'Example'} />
             <PlayButton k={`${w.id}s`} text={w.sentence.zh} slow />
@@ -85,6 +87,49 @@ export function WordFace({ w, showSentence = true, fresh = [], structure = 'togg
           {w.structure && open && <Structure w={w} order={structure === 'open'} />}
         </div>
       )}
+    </div>
+  )
+}
+
+const han = (s: string) => [...s].filter((c) => /\p{Script=Han}/u.test(c)).join('')
+/** Whether the example contains the phrase (then one breakdown covers both). */
+const sameChars = (phrase: string, sentence: string) => han(sentence).includes(han(phrase))
+
+/** A phrase word by word: its example, and the phrase itself if the example doesn't contain it. */
+export function PhraseWords({ w }: { w: Word }) {
+  return (
+    <>
+      {w.gloss && !sameChars(w.hanzi, w.sentence.zh) && <WordByWord tokens={w.gloss} />}
+      {w.sentence.gloss && <WordByWord tokens={w.sentence.gloss} />}
+    </>
+  )
+}
+
+/** What a gloss token reads as: hanzi, pinyin, a short English. */
+function glossOf(t: GlossToken) {
+  if ('id' in t) {
+    const w = WORD_BY_ID.get(t.id)!
+    return { zh: w.hanzi, py: w.pinyin, en: shortGloss(w), id: t.id }
+  }
+  return { ...t, id: undefined }
+}
+
+/**
+ * A phrase or line word by word: each word, its pinyin and its English, so 用 帮 一下 aren't a mystery.
+ * `hide`: words not to repeat (in dialogues, the ones you've learned).
+ */
+export function WordByWord({ tokens, hide }: { tokens: GlossToken[]; hide?: (zh: string, id?: string) => boolean }) {
+  const words = tokens.map(glossOf).filter((g) => !hide?.(g.zh, g.id))
+  if (!words.length) return null
+  return (
+    <div className="word-by-word" aria-label="Word by word">
+      {words.map((g, i) => (
+        <span key={i} className="wbw">
+          <span className="hz" lang="zh-CN">{g.zh}</span>
+          <Pinyin text={g.py} />
+          <small>{g.en}</small>
+        </span>
+      ))}
     </div>
   )
 }

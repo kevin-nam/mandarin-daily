@@ -9,7 +9,37 @@
   "sentence": {
    "zh": "我听不懂，请再说一遍。",
    "py": "Wǒ tīng bu dǒng, qǐng zài shuō yí biàn.",
-   "en": "I don't understand, please say it again."
+   "en": "I don't understand, please say it again.",
+   "gloss": [
+    {
+     "id": "w003"
+    },
+    {
+     "id": "w164"
+    },
+    {
+     "id": "w008"
+    },
+    {
+     "zh": "懂",
+     "py": "dǒng",
+     "en": "understand"
+    },
+    {
+     "id": "w026"
+    },
+    {
+     "id": "w288"
+    },
+    {
+     "id": "w166"
+    },
+    {
+     "zh": "一遍",
+     "py": "yí biàn",
+     "en": "once (more)"
+    }
+   ]
   },
   "parts": [
    "w003",
@@ -24,6 +54,22 @@
    "w003",
    "w164",
    "w008"
+  ],
+  "gloss": [
+   {
+    "id": "w003"
+   },
+   {
+    "id": "w164"
+   },
+   {
+    "id": "w008"
+   },
+   {
+    "zh": "懂",
+    "py": "dǒng",
+    "en": "understand"
+   }
   ]
  },
  {
@@ -36,7 +82,28 @@
   "sentence": {
    "zh": "对不起，请说慢一点。",
    "py": "Duìbuqǐ, qǐng shuō màn yìdiǎn.",
-   "en": "Sorry, please speak a bit slower."
+   "en": "Sorry, please speak a bit slower.",
+   "gloss": [
+    {
+     "id": "w023"
+    },
+    {
+     "id": "w026"
+    },
+    {
+     "id": "w166"
+    },
+    {
+     "zh": "慢",
+     "py": "màn",
+     "en": "slow"
+    },
+    {
+     "zh": "一点",
+     "py": "yìdiǎn",
+     "en": "a little"
+    }
+   ]
   },
   "parts": [
    "w023",
@@ -50,6 +117,24 @@
    "w166",
    "w041",
    "w117"
+  ],
+  "gloss": [
+   {
+    "id": "w026"
+   },
+   {
+    "id": "w166"
+   },
+   {
+    "zh": "慢",
+    "py": "màn",
+    "en": "slow"
+   },
+   {
+    "zh": "一点",
+    "py": "yìdiǎn",
+    "en": "a little"
+   }
   ]
  },
  {
@@ -62,7 +147,45 @@
   "sentence": {
    "zh": "你说得太快了，我听不懂。",
    "py": "Nǐ shuō de tài kuài le, wǒ tīng bu dǒng.",
-   "en": "You're talking too fast; I can't follow."
+   "en": "You're talking too fast; I can't follow.",
+   "gloss": [
+    {
+     "id": "w001"
+    },
+    {
+     "id": "w166"
+    },
+    {
+     "zh": "得",
+     "py": "de",
+     "en": "(how it's done)"
+    },
+    {
+     "id": "w285"
+    },
+    {
+     "zh": "快",
+     "py": "kuài",
+     "en": "fast"
+    },
+    {
+     "id": "w293"
+    },
+    {
+     "id": "w003"
+    },
+    {
+     "id": "w164"
+    },
+    {
+     "id": "w008"
+    },
+    {
+     "zh": "懂",
+     "py": "dǒng",
+     "en": "understand"
+    }
+   ]
   },
   "parts": [
    "w001",
@@ -78,6 +201,30 @@
    "w166",
    "w285",
    "w293"
+  ],
+  "gloss": [
+   {
+    "id": "w001"
+   },
+   {
+    "id": "w166"
+   },
+   {
+    "zh": "得",
+    "py": "de",
+    "en": "(how it's done)"
+   },
+   {
+    "id": "w285"
+   },
+   {
+    "zh": "快",
+    "py": "kuài",
+    "en": "fast"
+   },
+   {
+    "id": "w293"
+   }
   ]
  },
  {
@@ -90,7 +237,43 @@
   "sentence": {
    "zh": "我会说一点儿中文，可是说得不好。",
    "py": "Wǒ huì shuō yìdiǎnr Zhōngwén, kěshì shuō de bù hǎo.",
-   "en": "I speak a little Chinese, but not well."
+   "en": "I speak a little Chinese, but not well.",
+   "gloss": [
+    {
+     "id": "w003"
+    },
+    {
+     "id": "w175"
+    },
+    {
+     "id": "w166"
+    },
+    {
+     "id": "w070"
+    },
+    {
+     "id": "w250"
+    },
+    {
+     "zh": "可是",
+     "py": "kěshì",
+     "en": "but"
+    },
+    {
+     "id": "w166"
+    },
+    {
+     "zh": "得",
+     "py": "de",
+     "en": "(how it's done)"
+    },
+    {
+     "id": "w008"
+    },
+    {
+     "id": "w002"
+    }
+   ]
   },
   "parts": [
    "w003",
@@ -108,6 +291,23 @@
    "w166",
    "w070",
    "w250"
+  ],
+  "gloss": [
+   {
+    "id": "w003"
+   },
+   {
+    "id": "w175"
+   },
+   {
+    "id": "w166"
+   },
+   {
+    "id": "w070"
+   },
+   {
+    "id": "w250"
+   }
   ]
  },
  {
@@ -120,7 +320,45 @@
   "sentence": {
    "zh": "我小时候听过中文，可是不太会说。",
    "py": "Wǒ xiǎoshíhou tīngguo Zhōngwén, kěshì bú tài huì shuō.",
-   "en": "I heard Chinese as a kid, but I can't really speak it."
+   "en": "I heard Chinese as a kid, but I can't really speak it.",
+   "gloss": [
+    {
+     "id": "w003"
+    },
+    {
+     "zh": "小时候",
+     "py": "xiǎoshíhou",
+     "en": "as a child"
+    },
+    {
+     "id": "w164"
+    },
+    {
+     "zh": "过",
+     "py": "guo",
+     "en": "(have) ever"
+    },
+    {
+     "id": "w250"
+    },
+    {
+     "zh": "可是",
+     "py": "kěshì",
+     "en": "but"
+    },
+    {
+     "id": "w008"
+    },
+    {
+     "id": "w285"
+    },
+    {
+     "id": "w175"
+    },
+    {
+     "id": "w166"
+    }
+   ]
   },
   "parts": [
    "w003",
@@ -138,6 +376,27 @@
    "w120",
    "w164",
    "w250"
+  ],
+  "gloss": [
+   {
+    "id": "w003"
+   },
+   {
+    "zh": "小时候",
+    "py": "xiǎoshíhou",
+    "en": "as a child"
+   },
+   {
+    "id": "w164"
+   },
+   {
+    "zh": "过",
+    "py": "guo",
+    "en": "(have) ever"
+   },
+   {
+    "id": "w250"
+   }
   ]
  },
  {
@@ -150,7 +409,26 @@
   "sentence": {
    "zh": "对不起，这是什么意思？",
    "py": "Duìbuqǐ, zhè shì shénme yìsi?",
-   "en": "Sorry, what does this mean?"
+   "en": "Sorry, what does this mean?",
+   "gloss": [
+    {
+     "id": "w023"
+    },
+    {
+     "id": "w210"
+    },
+    {
+     "id": "w004"
+    },
+    {
+     "id": "w031"
+    },
+    {
+     "zh": "意思",
+     "py": "yìsi",
+     "en": "meaning"
+    }
+   ]
   },
   "parts": [
    "w023",
@@ -162,6 +440,22 @@
    "w210",
    "w004",
    "w031"
+  ],
+  "gloss": [
+   {
+    "id": "w210"
+   },
+   {
+    "id": "w004"
+   },
+   {
+    "id": "w031"
+   },
+   {
+    "zh": "意思",
+    "py": "yìsi",
+    "en": "meaning"
+   }
   ]
  },
  {
@@ -174,7 +468,32 @@
   "sentence": {
    "zh": "请问，这个用中文怎么说？",
    "py": "Qǐngwèn, zhège yòng Zhōngwén zěnme shuō?",
-   "en": "Excuse me, how do you say this in Chinese?"
+   "en": "Excuse me, how do you say this in Chinese?",
+   "gloss": [
+    {
+     "id": "w027"
+    },
+    {
+     "id": "w210"
+    },
+    {
+     "id": "w062"
+    },
+    {
+     "zh": "用",
+     "py": "yòng",
+     "en": "use"
+    },
+    {
+     "id": "w250"
+    },
+    {
+     "id": "w226"
+    },
+    {
+     "id": "w166"
+    }
+   ]
   },
   "parts": [
    "w027",
@@ -190,6 +509,28 @@
    "w250",
    "w226",
    "w166"
+  ],
+  "gloss": [
+   {
+    "id": "w210"
+   },
+   {
+    "id": "w062"
+   },
+   {
+    "zh": "用",
+    "py": "yòng",
+    "en": "use"
+   },
+   {
+    "id": "w250"
+   },
+   {
+    "id": "w226"
+   },
+   {
+    "id": "w166"
+   }
   ]
  },
  {
@@ -202,7 +543,28 @@
   "sentence": {
    "zh": "不好意思，请问洗手间在哪儿？",
    "py": "Bù hǎoyìsi, qǐngwèn xǐshǒujiān zài nǎr?",
-   "en": "Excuse me, where's the restroom?"
+   "en": "Excuse me, where's the restroom?",
+   "gloss": [
+    {
+     "zh": "不好意思",
+     "py": "bù hǎoyìsi",
+     "en": "excuse me"
+    },
+    {
+     "id": "w027"
+    },
+    {
+     "zh": "洗手间",
+     "py": "xǐshǒujiān",
+     "en": "restroom"
+    },
+    {
+     "id": "w157"
+    },
+    {
+     "id": "w218"
+    }
+   ]
   },
   "parts": [
    "w008",
@@ -214,6 +576,13 @@
   "words": [
    "w008",
    "w002"
+  ],
+  "gloss": [
+   {
+    "zh": "不好意思",
+    "py": "bù hǎoyìsi",
+    "en": "excuse me"
+   }
   ]
  },
  {
@@ -226,7 +595,15 @@
   "sentence": {
    "zh": "对不起！——没关系。",
    "py": "Duìbuqǐ! — Méi guānxi.",
-   "en": "Sorry! — That's OK."
+   "en": "Sorry! — That's OK.",
+   "gloss": [
+    {
+     "id": "w023"
+    },
+    {
+     "id": "w024"
+    }
+   ]
   },
   "parts": [
    "w023",
@@ -234,6 +611,11 @@
   ],
   "words": [
    "w024"
+  ],
+  "gloss": [
+   {
+    "id": "w024"
+   }
   ]
  },
  {
@@ -246,7 +628,25 @@
   "sentence": {
    "zh": "谢谢你！——不用谢。",
    "py": "Xièxie nǐ! — Bú yòng xiè.",
-   "en": "Thank you! — Don't mention it."
+   "en": "Thank you! — Don't mention it.",
+   "gloss": [
+    {
+     "id": "w021"
+    },
+    {
+     "id": "w001"
+    },
+    {
+     "zh": "不用",
+     "py": "búyòng",
+     "en": "no need"
+    },
+    {
+     "zh": "谢",
+     "py": "xiè",
+     "en": "thank"
+    }
+   ]
   },
   "parts": [
    "w021",
@@ -255,6 +655,18 @@
   ],
   "words": [
    "w008"
+  ],
+  "gloss": [
+   {
+    "zh": "不用",
+    "py": "búyòng",
+    "en": "no need"
+   },
+   {
+    "zh": "谢",
+    "py": "xiè",
+    "en": "thank"
+   }
   ]
  },
  {
@@ -267,7 +679,39 @@
   "sentence": {
    "zh": "能帮我一下吗？——好的，没问题。",
    "py": "Néng bāng wǒ yíxià ma? — Hǎo de, méi wèntí.",
-   "en": "Can you help me? — OK, no problem."
+   "en": "Can you help me? — OK, no problem.",
+   "gloss": [
+    {
+     "id": "w176"
+    },
+    {
+     "zh": "帮",
+     "py": "bāng",
+     "en": "help"
+    },
+    {
+     "id": "w003"
+    },
+    {
+     "zh": "一下",
+     "py": "yíxià",
+     "en": "a moment (softens it)"
+    },
+    {
+     "id": "w006"
+    },
+    {
+     "id": "w002"
+    },
+    {
+     "id": "w034"
+    },
+    {
+     "zh": "没问题",
+     "py": "méi wèntí",
+     "en": "no problem"
+    }
+   ]
   },
   "parts": [
    "w176",
@@ -283,6 +727,19 @@
    "w002",
    "w034",
    "w185"
+  ],
+  "gloss": [
+   {
+    "id": "w002"
+   },
+   {
+    "id": "w034"
+   },
+   {
+    "zh": "没问题",
+    "py": "méi wèntí",
+    "en": "no problem"
+   }
   ]
  },
  {
@@ -295,7 +752,33 @@
   "sentence": {
    "zh": "请等一下，我马上来。",
    "py": "Qǐng děng yíxià, wǒ mǎshàng lái.",
-   "en": "Please wait a moment, I'll be right there."
+   "en": "Please wait a moment, I'll be right there.",
+   "gloss": [
+    {
+     "id": "w026"
+    },
+    {
+     "zh": "等",
+     "py": "děng",
+     "en": "wait"
+    },
+    {
+     "zh": "一下",
+     "py": "yíxià",
+     "en": "a moment (softens it)"
+    },
+    {
+     "id": "w003"
+    },
+    {
+     "zh": "马上",
+     "py": "mǎshàng",
+     "en": "right away"
+    },
+    {
+     "id": "w159"
+    }
+   ]
   },
   "parts": [
    "w026",
@@ -308,6 +791,18 @@
   "words": [
    "w041",
    "w229"
+  ],
+  "gloss": [
+   {
+    "zh": "等",
+    "py": "děng",
+    "en": "wait"
+   },
+   {
+    "zh": "一下",
+    "py": "yíxià",
+    "en": "a moment (softens it)"
+   }
   ]
  },
  {
@@ -320,7 +815,33 @@
   "sentence": {
    "zh": "不好意思，能帮我一下吗？",
    "py": "Bù hǎoyìsi, néng bāng wǒ yíxià ma?",
-   "en": "Excuse me, could you help me?"
+   "en": "Excuse me, could you help me?",
+   "gloss": [
+    {
+     "zh": "不好意思",
+     "py": "bù hǎoyìsi",
+     "en": "excuse me"
+    },
+    {
+     "id": "w176"
+    },
+    {
+     "zh": "帮",
+     "py": "bāng",
+     "en": "help"
+    },
+    {
+     "id": "w003"
+    },
+    {
+     "zh": "一下",
+     "py": "yíxià",
+     "en": "a moment (softens it)"
+    },
+    {
+     "id": "w006"
+    }
+   ]
   },
   "parts": [
    "w008",
@@ -337,6 +858,27 @@
    "w041",
    "w229",
    "w006"
+  ],
+  "gloss": [
+   {
+    "id": "w176"
+   },
+   {
+    "zh": "帮",
+    "py": "bāng",
+    "en": "help"
+   },
+   {
+    "id": "w003"
+   },
+   {
+    "zh": "一下",
+    "py": "yíxià",
+    "en": "a moment (softens it)"
+   },
+   {
+    "id": "w006"
+   }
   ]
  },
  {
@@ -349,7 +891,31 @@
   "sentence": {
    "zh": "你好，几位？——两位。",
    "py": "Nǐ hǎo, jǐ wèi? — Liǎng wèi.",
-   "en": "Hi, how many? — Two."
+   "en": "Hi, how many? — Two.",
+   "gloss": [
+    {
+     "id": "w001"
+    },
+    {
+     "id": "w002"
+    },
+    {
+     "id": "w058"
+    },
+    {
+     "zh": "位",
+     "py": "wèi",
+     "en": "(people, polite)"
+    },
+    {
+     "id": "w054"
+    },
+    {
+     "zh": "位",
+     "py": "wèi",
+     "en": "(people, polite)"
+    }
+   ]
   },
   "parts": [
    "w001",
@@ -359,6 +925,16 @@
   ],
   "words": [
    "w058"
+  ],
+  "gloss": [
+   {
+    "id": "w058"
+   },
+   {
+    "zh": "位",
+    "py": "wèi",
+    "en": "(people, polite)"
+   }
   ]
  },
  {
@@ -371,7 +947,31 @@
   "sentence": {
    "zh": "你好，有英文菜单吗？",
    "py": "Nǐ hǎo, yǒu Yīngwén càidān ma?",
-   "en": "Hi, is there an English menu?"
+   "en": "Hi, is there an English menu?",
+   "gloss": [
+    {
+     "id": "w001"
+    },
+    {
+     "id": "w002"
+    },
+    {
+     "id": "w155"
+    },
+    {
+     "zh": "英文",
+     "py": "Yīngwén",
+     "en": "English"
+    },
+    {
+     "zh": "菜单",
+     "py": "càidān",
+     "en": "menu"
+    },
+    {
+     "id": "w006"
+    }
+   ]
   },
   "parts": [
    "w001",
@@ -384,6 +984,19 @@
    "w155",
    "w141",
    "w006"
+  ],
+  "gloss": [
+   {
+    "id": "w155"
+   },
+   {
+    "zh": "菜单",
+    "py": "càidān",
+    "en": "menu"
+   },
+   {
+    "id": "w006"
+   }
   ]
  },
  {
@@ -396,7 +1009,29 @@
   "sentence": {
    "zh": "服务员，我要这个，谢谢。",
    "py": "Fúwùyuán, wǒ yào zhège, xièxie.",
-   "en": "Waiter, I'll have this, thanks."
+   "en": "Waiter, I'll have this, thanks.",
+   "gloss": [
+    {
+     "zh": "服务员",
+     "py": "fúwùyuán",
+     "en": "waiter"
+    },
+    {
+     "id": "w003"
+    },
+    {
+     "id": "w171"
+    },
+    {
+     "id": "w210"
+    },
+    {
+     "id": "w062"
+    },
+    {
+     "id": "w021"
+    }
+   ]
   },
   "parts": [
    "w003",
@@ -410,6 +1045,20 @@
    "w171",
    "w210",
    "w062"
+  ],
+  "gloss": [
+   {
+    "id": "w003"
+   },
+   {
+    "id": "w171"
+   },
+   {
+    "id": "w210"
+   },
+   {
+    "id": "w062"
+   }
   ]
  },
  {
@@ -422,7 +1071,34 @@
   "sentence": {
    "zh": "这个辣吗？——有一点儿辣。",
    "py": "Zhège là ma? — Yǒu yìdiǎnr là.",
-   "en": "Is this spicy? — A little."
+   "en": "Is this spicy? — A little.",
+   "gloss": [
+    {
+     "id": "w210"
+    },
+    {
+     "id": "w062"
+    },
+    {
+     "zh": "辣",
+     "py": "là",
+     "en": "spicy"
+    },
+    {
+     "id": "w006"
+    },
+    {
+     "id": "w155"
+    },
+    {
+     "id": "w070"
+    },
+    {
+     "zh": "辣",
+     "py": "là",
+     "en": "spicy"
+    }
+   ]
   },
   "parts": [
    "w210",
@@ -435,6 +1111,22 @@
    "w210",
    "w062",
    "w006"
+  ],
+  "gloss": [
+   {
+    "id": "w210"
+   },
+   {
+    "id": "w062"
+   },
+   {
+    "zh": "辣",
+    "py": "là",
+    "en": "spicy"
+   },
+   {
+    "id": "w006"
+   }
   ]
  },
  {
@@ -447,7 +1139,29 @@
   "sentence": {
    "zh": "这个菜不要辣，谢谢。",
    "py": "Zhège cài bú yào là, xièxie.",
-   "en": "No spice in this dish, please."
+   "en": "No spice in this dish, please.",
+   "gloss": [
+    {
+     "id": "w210"
+    },
+    {
+     "id": "w062"
+    },
+    {
+     "id": "w141"
+    },
+    {
+     "id": "w172"
+    },
+    {
+     "zh": "辣",
+     "py": "là",
+     "en": "spicy"
+    },
+    {
+     "id": "w021"
+    }
+   ]
   },
   "parts": [
    "w210",
@@ -458,6 +1172,16 @@
   ],
   "words": [
    "w172"
+  ],
+  "gloss": [
+   {
+    "id": "w172"
+   },
+   {
+    "zh": "辣",
+    "py": "là",
+    "en": "spicy"
+   }
   ]
  },
  {
@@ -470,7 +1194,35 @@
   "sentence": {
    "zh": "你好，我要一杯水，谢谢。",
    "py": "Nǐ hǎo, wǒ yào yì bēi shuǐ, xièxie.",
-   "en": "Hi, a glass of water please."
+   "en": "Hi, a glass of water please.",
+   "gloss": [
+    {
+     "id": "w001"
+    },
+    {
+     "id": "w002"
+    },
+    {
+     "id": "w003"
+    },
+    {
+     "id": "w171"
+    },
+    {
+     "id": "w041"
+    },
+    {
+     "zh": "杯",
+     "py": "bēi",
+     "en": "glass / cup (of)"
+    },
+    {
+     "id": "w143"
+    },
+    {
+     "id": "w021"
+    }
+   ]
   },
   "parts": [
    "w001",
@@ -486,6 +1238,25 @@
    "w171",
    "w041",
    "w143"
+  ],
+  "gloss": [
+   {
+    "id": "w003"
+   },
+   {
+    "id": "w171"
+   },
+   {
+    "id": "w041"
+   },
+   {
+    "zh": "杯",
+    "py": "bēi",
+    "en": "glass / cup (of)"
+   },
+   {
+    "id": "w143"
+   }
   ]
  },
  {
@@ -498,7 +1269,36 @@
   "sentence": {
    "zh": "在这儿吃还是带走？——带走，谢谢。",
    "py": "Zài zhèr chī háishi dài zǒu? — Dài zǒu, xièxie.",
-   "en": "For here or to go? — To go, thanks."
+   "en": "For here or to go? — To go, thanks.",
+   "gloss": [
+    {
+     "id": "w157"
+    },
+    {
+     "id": "w216"
+    },
+    {
+     "id": "w133"
+    },
+    {
+     "zh": "还是",
+     "py": "háishi",
+     "en": "or"
+    },
+    {
+     "zh": "带走",
+     "py": "dàizǒu",
+     "en": "take away"
+    },
+    {
+     "zh": "带走",
+     "py": "dàizǒu",
+     "en": "take away"
+    },
+    {
+     "id": "w021"
+    }
+   ]
   },
   "parts": [
    "w157",
@@ -514,6 +1314,27 @@
    "w133",
    "w289",
    "w004"
+  ],
+  "gloss": [
+   {
+    "id": "w157"
+   },
+   {
+    "id": "w216"
+   },
+   {
+    "id": "w133"
+   },
+   {
+    "zh": "还是",
+    "py": "háishi",
+    "en": "or"
+   },
+   {
+    "zh": "带走",
+    "py": "dàizǒu",
+    "en": "take away"
+   }
   ]
  },
  {
@@ -526,7 +1347,24 @@
   "sentence": {
    "zh": "这个菜很好吃！",
    "py": "Zhège cài hěn hǎochī!",
-   "en": "This dish is delicious!"
+   "en": "This dish is delicious!",
+   "gloss": [
+    {
+     "id": "w210"
+    },
+    {
+     "id": "w062"
+    },
+    {
+     "id": "w141"
+    },
+    {
+     "id": "w005"
+    },
+    {
+     "id": "w153"
+    }
+   ]
   },
   "parts": [
    "w210",
@@ -538,6 +1376,14 @@
   "words": [
    "w005",
    "w153"
+  ],
+  "gloss": [
+   {
+    "id": "w005"
+   },
+   {
+    "id": "w153"
+   }
   ]
  },
  {
@@ -550,7 +1396,26 @@
   "sentence": {
    "zh": "我吃饱了，谢谢！",
    "py": "Wǒ chī bǎo le, xièxie!",
-   "en": "I'm full, thank you!"
+   "en": "I'm full, thank you!",
+   "gloss": [
+    {
+     "id": "w003"
+    },
+    {
+     "id": "w133"
+    },
+    {
+     "zh": "饱",
+     "py": "bǎo",
+     "en": "full (fed)"
+    },
+    {
+     "id": "w293"
+    },
+    {
+     "id": "w021"
+    }
+   ]
   },
   "parts": [
    "w003",
@@ -562,6 +1427,22 @@
    "w003",
    "w133",
    "w293"
+  ],
+  "gloss": [
+   {
+    "id": "w003"
+   },
+   {
+    "id": "w133"
+   },
+   {
+    "zh": "饱",
+    "py": "bǎo",
+    "en": "full (fed)"
+   },
+   {
+    "id": "w293"
+   }
   ]
  },
  {
@@ -574,13 +1455,32 @@
   "sentence": {
    "zh": "服务员，买单！",
    "py": "Fúwùyuán, mǎidān!",
-   "en": "Waiter, the bill please!"
+   "en": "Waiter, the bill please!",
+   "gloss": [
+    {
+     "zh": "服务员",
+     "py": "fúwùyuán",
+     "en": "waiter"
+    },
+    {
+     "zh": "买单",
+     "py": "mǎidān",
+     "en": "the bill"
+    }
+   ]
   },
   "parts": [
    "w180"
   ],
   "words": [
    "w180"
+  ],
+  "gloss": [
+   {
+    "zh": "买单",
+    "py": "mǎidān",
+    "en": "the bill"
+   }
   ]
  },
  {
@@ -593,7 +1493,30 @@
   "sentence": {
    "zh": "这个多少钱？——二十块。",
    "py": "Zhège duōshao qián? — Èrshí kuài.",
-   "en": "How much is this? — Twenty yuan."
+   "en": "How much is this? — Twenty yuan.",
+   "gloss": [
+    {
+     "id": "w210"
+    },
+    {
+     "id": "w062"
+    },
+    {
+     "id": "w059"
+    },
+    {
+     "id": "w073"
+    },
+    {
+     "id": "w042"
+    },
+    {
+     "id": "w050"
+    },
+    {
+     "id": "w074"
+    }
+   ]
   },
   "parts": [
    "w210",
@@ -607,6 +1530,14 @@
   "words": [
    "w059",
    "w073"
+  ],
+  "gloss": [
+   {
+    "id": "w059"
+   },
+   {
+    "id": "w073"
+   }
   ]
  },
  {
@@ -619,7 +1550,27 @@
   "sentence": {
    "zh": "太贵了！我不要了。",
    "py": "Tài guì le! Wǒ bú yào le.",
-   "en": "Too expensive! I'll pass."
+   "en": "Too expensive! I'll pass.",
+   "gloss": [
+    {
+     "id": "w285"
+    },
+    {
+     "id": "w268"
+    },
+    {
+     "id": "w293"
+    },
+    {
+     "id": "w003"
+    },
+    {
+     "id": "w172"
+    },
+    {
+     "id": "w293"
+    }
+   ]
   },
   "parts": [
    "w285",
@@ -632,6 +1583,17 @@
    "w285",
    "w268",
    "w293"
+  ],
+  "gloss": [
+   {
+    "id": "w285"
+   },
+   {
+    "id": "w268"
+   },
+   {
+    "id": "w293"
+   }
   ]
  },
  {
@@ -644,7 +1606,36 @@
   "sentence": {
    "zh": "能便宜一点儿吗？——好吧，十五块。",
    "py": "Néng piányi yìdiǎnr ma? — Hǎo ba, shíwǔ kuài.",
-   "en": "Can you make it cheaper? — OK, fifteen yuan."
+   "en": "Can you make it cheaper? — OK, fifteen yuan.",
+   "gloss": [
+    {
+     "id": "w176"
+    },
+    {
+     "id": "w269"
+    },
+    {
+     "id": "w070"
+    },
+    {
+     "id": "w006"
+    },
+    {
+     "id": "w002"
+    },
+    {
+     "id": "w294"
+    },
+    {
+     "id": "w050"
+    },
+    {
+     "id": "w045"
+    },
+    {
+     "id": "w074"
+    }
+   ]
   },
   "parts": [
    "w176",
@@ -662,6 +1653,20 @@
    "w269",
    "w070",
    "w006"
+  ],
+  "gloss": [
+   {
+    "id": "w176"
+   },
+   {
+    "id": "w269"
+   },
+   {
+    "id": "w070"
+   },
+   {
+    "id": "w006"
+   }
   ]
  },
  {
@@ -674,7 +1679,26 @@
   "sentence": {
    "zh": "我先看看，谢谢。",
    "py": "Wǒ xiān kànkan, xièxie.",
-   "en": "I'm just looking first, thanks."
+   "en": "I'm just looking first, thanks.",
+   "gloss": [
+    {
+     "id": "w003"
+    },
+    {
+     "zh": "先",
+     "py": "xiān",
+     "en": "first"
+    },
+    {
+     "id": "w162"
+    },
+    {
+     "id": "w162"
+    },
+    {
+     "id": "w021"
+    }
+   ]
   },
   "parts": [
    "w003",
@@ -684,6 +1708,22 @@
   "words": [
    "w003",
    "w162"
+  ],
+  "gloss": [
+   {
+    "id": "w003"
+   },
+   {
+    "zh": "先",
+    "py": "xiān",
+    "en": "first"
+   },
+   {
+    "id": "w162"
+   },
+   {
+    "id": "w162"
+   }
   ]
  },
  {
@@ -696,7 +1736,39 @@
   "sentence": {
    "zh": "这个太小了，有没有大一点儿的？",
    "py": "Zhège tài xiǎo le, yǒu méiyǒu dà yìdiǎnr de?",
-   "en": "This is too small — do you have a bigger one?"
+   "en": "This is too small — do you have a bigger one?",
+   "gloss": [
+    {
+     "id": "w210"
+    },
+    {
+     "id": "w062"
+    },
+    {
+     "id": "w285"
+    },
+    {
+     "id": "w266"
+    },
+    {
+     "id": "w293"
+    },
+    {
+     "id": "w155"
+    },
+    {
+     "id": "w156"
+    },
+    {
+     "id": "w265"
+    },
+    {
+     "id": "w070"
+    },
+    {
+     "id": "w034"
+    }
+   ]
   },
   "parts": [
    "w210",
@@ -716,6 +1788,23 @@
    "w265",
    "w070",
    "w034"
+  ],
+  "gloss": [
+   {
+    "id": "w155"
+   },
+   {
+    "id": "w156"
+   },
+   {
+    "id": "w265"
+   },
+   {
+    "id": "w070"
+   },
+   {
+    "id": "w034"
+   }
   ]
  },
  {
@@ -728,7 +1817,31 @@
   "sentence": {
    "zh": "可以扫码吗？——可以，扫这儿。",
    "py": "Kěyǐ sǎo mǎ ma? — Kěyǐ, sǎo zhèr.",
-   "en": "Can I scan to pay? — Yes, scan here."
+   "en": "Can I scan to pay? — Yes, scan here.",
+   "gloss": [
+    {
+     "id": "w177"
+    },
+    {
+     "zh": "扫码",
+     "py": "sǎomǎ",
+     "en": "scan the QR code"
+    },
+    {
+     "id": "w006"
+    },
+    {
+     "id": "w177"
+    },
+    {
+     "zh": "扫",
+     "py": "sǎo",
+     "en": "scan"
+    },
+    {
+     "id": "w216"
+    }
+   ]
   },
   "parts": [
    "w177",
@@ -738,6 +1851,19 @@
   "words": [
    "w177",
    "w006"
+  ],
+  "gloss": [
+   {
+    "id": "w177"
+   },
+   {
+    "zh": "扫码",
+    "py": "sǎomǎ",
+    "en": "scan the QR code"
+   },
+   {
+    "id": "w006"
+   }
   ]
  },
  {
@@ -750,7 +1876,37 @@
   "sentence": {
    "zh": "可以刷卡吗？——不可以，只能扫码。",
    "py": "Kěyǐ shuā kǎ ma? — Bù kěyǐ, zhǐ néng sǎo mǎ.",
-   "en": "Can I pay by card? — No, QR code only."
+   "en": "Can I pay by card? — No, QR code only.",
+   "gloss": [
+    {
+     "id": "w177"
+    },
+    {
+     "zh": "刷卡",
+     "py": "shuākǎ",
+     "en": "pay by card"
+    },
+    {
+     "id": "w006"
+    },
+    {
+     "id": "w008"
+    },
+    {
+     "id": "w177"
+    },
+    {
+     "id": "w101"
+    },
+    {
+     "id": "w176"
+    },
+    {
+     "zh": "扫码",
+     "py": "sǎomǎ",
+     "en": "scan the QR code"
+    }
+   ]
   },
   "parts": [
    "w177",
@@ -762,6 +1918,19 @@
   "words": [
    "w177",
    "w006"
+  ],
+  "gloss": [
+   {
+    "id": "w177"
+   },
+   {
+    "zh": "刷卡",
+    "py": "shuākǎ",
+    "en": "pay by card"
+   },
+   {
+    "id": "w006"
+   }
   ]
  },
  {
@@ -774,7 +1943,27 @@
   "sentence": {
    "zh": "你好，很高兴认识你！",
    "py": "Nǐ hǎo, hěn gāoxìng rènshi nǐ!",
-   "en": "Hi, nice to meet you!"
+   "en": "Hi, nice to meet you!",
+   "gloss": [
+    {
+     "id": "w001"
+    },
+    {
+     "id": "w002"
+    },
+    {
+     "id": "w005"
+    },
+    {
+     "id": "w033"
+    },
+    {
+     "id": "w032"
+    },
+    {
+     "id": "w001"
+    }
+   ]
   },
   "parts": [
    "w001",
@@ -788,6 +1977,20 @@
    "w033",
    "w032",
    "w001"
+  ],
+  "gloss": [
+   {
+    "id": "w005"
+   },
+   {
+    "id": "w033"
+   },
+   {
+    "id": "w032"
+   },
+   {
+    "id": "w001"
+   }
   ]
  },
  {
@@ -800,7 +2003,27 @@
   "sentence": {
    "zh": "你好！你叫什么名字？",
    "py": "Nǐ hǎo! Nǐ jiào shénme míngzi?",
-   "en": "Hi! What's your name?"
+   "en": "Hi! What's your name?",
+   "gloss": [
+    {
+     "id": "w001"
+    },
+    {
+     "id": "w002"
+    },
+    {
+     "id": "w001"
+    },
+    {
+     "id": "w029"
+    },
+    {
+     "id": "w031"
+    },
+    {
+     "id": "w030"
+    }
+   ]
   },
   "parts": [
    "w001",
@@ -814,6 +2037,20 @@
    "w029",
    "w031",
    "w030"
+  ],
+  "gloss": [
+   {
+    "id": "w001"
+   },
+   {
+    "id": "w029"
+   },
+   {
+    "id": "w031"
+   },
+   {
+    "id": "w030"
+   }
   ]
  },
  {
@@ -826,7 +2063,39 @@
   "sentence": {
    "zh": "你是哪国人？你是中国人吗？",
    "py": "Nǐ shì nǎ guó rén? Nǐ shì Zhōngguó rén ma?",
-   "en": "Where are you from? Are you Chinese?"
+   "en": "Where are you from? Are you Chinese?",
+   "gloss": [
+    {
+     "id": "w001"
+    },
+    {
+     "id": "w004"
+    },
+    {
+     "id": "w212"
+    },
+    {
+     "id": "w037"
+    },
+    {
+     "id": "w035"
+    },
+    {
+     "id": "w001"
+    },
+    {
+     "id": "w004"
+    },
+    {
+     "id": "w036"
+    },
+    {
+     "id": "w035"
+    },
+    {
+     "id": "w006"
+    }
+   ]
   },
   "parts": [
    "w001",
@@ -843,6 +2112,23 @@
    "w212",
    "w037",
    "w035"
+  ],
+  "gloss": [
+   {
+    "id": "w001"
+   },
+   {
+    "id": "w004"
+   },
+   {
+    "id": "w212"
+   },
+   {
+    "id": "w037"
+   },
+   {
+    "id": "w035"
+   }
   ]
  },
  {
@@ -855,7 +2141,30 @@
   "sentence": {
    "zh": "你做什么工作？——我是老师。",
    "py": "Nǐ zuò shénme gōngzuò? — Wǒ shì lǎoshī.",
-   "en": "What do you do? — I'm a teacher."
+   "en": "What do you do? — I'm a teacher.",
+   "gloss": [
+    {
+     "id": "w001"
+    },
+    {
+     "id": "w169"
+    },
+    {
+     "id": "w031"
+    },
+    {
+     "id": "w203"
+    },
+    {
+     "id": "w003"
+    },
+    {
+     "id": "w004"
+    },
+    {
+     "id": "w092"
+    }
+   ]
   },
   "parts": [
    "w001",
@@ -871,6 +2180,20 @@
    "w169",
    "w031",
    "w203"
+  ],
+  "gloss": [
+   {
+    "id": "w001"
+   },
+   {
+    "id": "w169"
+   },
+   {
+    "id": "w031"
+   },
+   {
+    "id": "w203"
+   }
   ]
  },
  {
@@ -883,7 +2206,35 @@
   "sentence": {
    "zh": "你住在哪儿？——我住在北京。",
    "py": "Nǐ zhù zài nǎr? — Wǒ zhù zài Běijīng.",
-   "en": "Where do you live? — I live in Beijing."
+   "en": "Where do you live? — I live in Beijing.",
+   "gloss": [
+    {
+     "id": "w001"
+    },
+    {
+     "id": "w186"
+    },
+    {
+     "id": "w157"
+    },
+    {
+     "id": "w218"
+    },
+    {
+     "id": "w003"
+    },
+    {
+     "id": "w186"
+    },
+    {
+     "id": "w157"
+    },
+    {
+     "zh": "北京",
+     "py": "Běijīng",
+     "en": "Beijing"
+    }
+   ]
   },
   "parts": [
    "w001",
@@ -897,6 +2248,20 @@
    "w186",
    "w157",
    "w218"
+  ],
+  "gloss": [
+   {
+    "id": "w001"
+   },
+   {
+    "id": "w186"
+   },
+   {
+    "id": "w157"
+   },
+   {
+    "id": "w218"
+   }
   ]
  },
  {
@@ -909,7 +2274,26 @@
   "sentence": {
    "zh": "我是第一次来中国。",
    "py": "Wǒ shì dì yī cì lái Zhōngguó.",
-   "en": "It's my first time in China."
+   "en": "It's my first time in China.",
+   "gloss": [
+    {
+     "id": "w003"
+    },
+    {
+     "id": "w004"
+    },
+    {
+     "zh": "第一次",
+     "py": "dì-yī cì",
+     "en": "first time"
+    },
+    {
+     "id": "w159"
+    },
+    {
+     "id": "w036"
+    }
+   ]
   },
   "parts": [
    "w003",
@@ -925,6 +2309,22 @@
    "w057",
    "w041",
    "w159"
+  ],
+  "gloss": [
+   {
+    "id": "w003"
+   },
+   {
+    "id": "w004"
+   },
+   {
+    "zh": "第一次",
+    "py": "dì-yī cì",
+    "en": "first time"
+   },
+   {
+    "id": "w159"
+   }
   ]
  },
  {
@@ -937,7 +2337,29 @@
   "sentence": {
    "zh": "请问，洗手间在哪儿？——在那边。",
    "py": "Qǐngwèn, xǐshǒujiān zài nǎr? — Zài nàbiān.",
-   "en": "Excuse me, where's the restroom? — Over there."
+   "en": "Excuse me, where's the restroom? — Over there.",
+   "gloss": [
+    {
+     "id": "w027"
+    },
+    {
+     "zh": "洗手间",
+     "py": "xǐshǒujiān",
+     "en": "restroom"
+    },
+    {
+     "id": "w157"
+    },
+    {
+     "id": "w218"
+    },
+    {
+     "id": "w157"
+    },
+    {
+     "id": "w223"
+    }
+   ]
   },
   "parts": [
    "w027",
@@ -948,6 +2370,19 @@
   "words": [
    "w157",
    "w218"
+  ],
+  "gloss": [
+   {
+    "zh": "洗手间",
+    "py": "xǐshǒujiān",
+    "en": "restroom"
+   },
+   {
+    "id": "w157"
+   },
+   {
+    "id": "w218"
+   }
   ]
  },
  {
@@ -960,7 +2395,43 @@
   "sentence": {
    "zh": "请问，地铁站怎么走？——一直往前走。",
    "py": "Qǐngwèn, dìtiě zhàn zěnme zǒu? — Yìzhí wǎng qián zǒu.",
-   "en": "Excuse me, how do I get to the subway? — Go straight ahead."
+   "en": "Excuse me, how do I get to the subway? — Go straight ahead.",
+   "gloss": [
+    {
+     "id": "w027"
+    },
+    {
+     "zh": "地铁站",
+     "py": "dìtiězhàn",
+     "en": "subway station"
+    },
+    {
+     "id": "w226"
+    },
+    {
+     "zh": "走",
+     "py": "zǒu",
+     "en": "walk / go"
+    },
+    {
+     "zh": "一直",
+     "py": "yìzhí",
+     "en": "straight on"
+    },
+    {
+     "zh": "往",
+     "py": "wǎng",
+     "en": "toward"
+    },
+    {
+     "id": "w131"
+    },
+    {
+     "zh": "走",
+     "py": "zǒu",
+     "en": "walk / go"
+    }
+   ]
   },
   "parts": [
    "w027",
@@ -970,6 +2441,21 @@
   ],
   "words": [
    "w226"
+  ],
+  "gloss": [
+   {
+    "zh": "地铁站",
+    "py": "dìtiězhàn",
+    "en": "subway station"
+   },
+   {
+    "id": "w226"
+   },
+   {
+    "zh": "走",
+    "py": "zǒu",
+    "en": "walk / go"
+   }
   ]
  },
  {
@@ -982,7 +2468,36 @@
   "sentence": {
    "zh": "远吗？——不远，走路五分钟。",
    "py": "Yuǎn ma? — Bù yuǎn, zǒulù wǔ fēnzhōng.",
-   "en": "Is it far? — No, five minutes on foot."
+   "en": "Is it far? — No, five minutes on foot.",
+   "gloss": [
+    {
+     "zh": "远",
+     "py": "yuǎn",
+     "en": "far"
+    },
+    {
+     "id": "w006"
+    },
+    {
+     "id": "w008"
+    },
+    {
+     "zh": "远",
+     "py": "yuǎn",
+     "en": "far"
+    },
+    {
+     "zh": "走路",
+     "py": "zǒulù",
+     "en": "on foot"
+    },
+    {
+     "id": "w045"
+    },
+    {
+     "id": "w119"
+    }
+   ]
   },
   "parts": [
    "w006",
@@ -992,6 +2507,16 @@
   ],
   "words": [
    "w006"
+  ],
+  "gloss": [
+   {
+    "zh": "远",
+    "py": "yuǎn",
+    "en": "far"
+   },
+   {
+    "id": "w006"
+   }
   ]
  },
  {
@@ -1004,13 +2529,65 @@
   "sentence": {
    "zh": "往前走，然后往左拐。",
    "py": "Wǎng qián zǒu, ránhòu wǎng zuǒ guǎi.",
-   "en": "Go straight, then turn left."
+   "en": "Go straight, then turn left.",
+   "gloss": [
+    {
+     "zh": "往",
+     "py": "wǎng",
+     "en": "toward"
+    },
+    {
+     "id": "w131"
+    },
+    {
+     "zh": "走",
+     "py": "zǒu",
+     "en": "walk / go"
+    },
+    {
+     "zh": "然后",
+     "py": "ránhòu",
+     "en": "then"
+    },
+    {
+     "zh": "往",
+     "py": "wǎng",
+     "en": "toward"
+    },
+    {
+     "zh": "左",
+     "py": "zuǒ",
+     "en": "left"
+    },
+    {
+     "zh": "拐",
+     "py": "guǎi",
+     "en": "turn"
+    }
+   ]
   },
   "parts": [
    "w131",
    "w132"
   ],
-  "words": []
+  "words": [],
+  "gloss": [
+   {
+    "zh": "往",
+    "py": "wǎng",
+    "en": "toward"
+   },
+   {
+    "zh": "左",
+    "py": "zuǒ",
+    "en": "left"
+   },
+   {
+    "zh": "拐",
+    "py": "guǎi",
+    "en": "turn"
+   }
+  ]
  },
  {
   "id": "p041",
@@ -1022,13 +2599,55 @@
   "sentence": {
    "zh": "到路口往右拐。",
    "py": "Dào lùkǒu wǎng yòu guǎi.",
-   "en": "Turn right at the intersection."
+   "en": "Turn right at the intersection.",
+   "gloss": [
+    {
+     "id": "w161"
+    },
+    {
+     "zh": "路口",
+     "py": "lùkǒu",
+     "en": "intersection"
+    },
+    {
+     "zh": "往",
+     "py": "wǎng",
+     "en": "toward"
+    },
+    {
+     "zh": "右",
+     "py": "yòu",
+     "en": "right"
+    },
+    {
+     "zh": "拐",
+     "py": "guǎi",
+     "en": "turn"
+    }
+   ]
   },
   "parts": [
    "w161",
    "w065"
   ],
-  "words": []
+  "words": [],
+  "gloss": [
+   {
+    "zh": "往",
+    "py": "wǎng",
+    "en": "toward"
+   },
+   {
+    "zh": "右",
+    "py": "yòu",
+    "en": "right"
+   },
+   {
+    "zh": "拐",
+    "py": "guǎi",
+    "en": "turn"
+   }
+  ]
  },
  {
   "id": "p042",
@@ -1040,7 +2659,31 @@
   "sentence": {
    "zh": "师傅，去这个地方，谢谢。",
    "py": "Shīfu, qù zhège dìfang, xièxie.",
-   "en": "Driver, to this place please."
+   "en": "Driver, to this place please.",
+   "gloss": [
+    {
+     "zh": "师傅",
+     "py": "shīfu",
+     "en": "driver (polite)"
+    },
+    {
+     "id": "w158"
+    },
+    {
+     "id": "w210"
+    },
+    {
+     "id": "w062"
+    },
+    {
+     "zh": "地方",
+     "py": "dìfang",
+     "en": "place"
+    },
+    {
+     "id": "w021"
+    }
+   ]
   },
   "parts": [
    "w158",
@@ -1052,6 +2695,27 @@
    "w158",
    "w210",
    "w062"
+  ],
+  "gloss": [
+   {
+    "zh": "师傅",
+    "py": "shīfu",
+    "en": "driver (polite)"
+   },
+   {
+    "id": "w158"
+   },
+   {
+    "id": "w210"
+   },
+   {
+    "id": "w062"
+   },
+   {
+    "zh": "地方",
+    "py": "dìfang",
+    "en": "place"
+   }
   ]
  },
  {
@@ -1064,7 +2728,30 @@
   "sentence": {
    "zh": "师傅，在这儿停就行。",
    "py": "Shīfu, zài zhèr tíng jiù xíng.",
-   "en": "Driver, stopping here is fine."
+   "en": "Driver, stopping here is fine.",
+   "gloss": [
+    {
+     "zh": "师傅",
+     "py": "shīfu",
+     "en": "driver (polite)"
+    },
+    {
+     "id": "w157"
+    },
+    {
+     "id": "w216"
+    },
+    {
+     "zh": "停",
+     "py": "tíng",
+     "en": "stop"
+    },
+    {
+     "zh": "就行",
+     "py": "jiù xíng",
+     "en": "is fine"
+    }
+   ]
   },
   "parts": [
    "w157",
@@ -1073,6 +2760,24 @@
   "words": [
    "w157",
    "w216"
+  ],
+  "gloss": [
+   {
+    "id": "w157"
+   },
+   {
+    "id": "w216"
+   },
+   {
+    "zh": "停",
+    "py": "tíng",
+    "en": "stop"
+   },
+   {
+    "zh": "就行",
+    "py": "jiù xíng",
+    "en": "is fine"
+   }
   ]
  },
  {
@@ -1085,7 +2790,34 @@
   "sentence": {
    "zh": "不好意思，我迷路了，这是哪儿？",
    "py": "Bù hǎoyìsi, wǒ mílù le, zhè shì nǎr?",
-   "en": "Excuse me, I'm lost — where is this?"
+   "en": "Excuse me, I'm lost — where is this?",
+   "gloss": [
+    {
+     "zh": "不好意思",
+     "py": "bù hǎoyìsi",
+     "en": "excuse me"
+    },
+    {
+     "id": "w003"
+    },
+    {
+     "zh": "迷路",
+     "py": "mílù",
+     "en": "get lost"
+    },
+    {
+     "id": "w293"
+    },
+    {
+     "id": "w210"
+    },
+    {
+     "id": "w004"
+    },
+    {
+     "id": "w218"
+    }
+   ]
   },
   "parts": [
    "w008",
@@ -1099,6 +2831,19 @@
   "words": [
    "w003",
    "w293"
+  ],
+  "gloss": [
+   {
+    "id": "w003"
+   },
+   {
+    "zh": "迷路",
+    "py": "mílù",
+    "en": "get lost"
+   },
+   {
+    "id": "w293"
+   }
   ]
  },
  {
@@ -1111,7 +2856,43 @@
   "sentence": {
    "zh": "你好，我有预订。这是我的护照。",
    "py": "Nǐ hǎo, wǒ yǒu yùdìng. Zhè shì wǒ de hùzhào.",
-   "en": "Hi, I have a reservation. Here's my passport."
+   "en": "Hi, I have a reservation. Here's my passport.",
+   "gloss": [
+    {
+     "id": "w001"
+    },
+    {
+     "id": "w002"
+    },
+    {
+     "id": "w003"
+    },
+    {
+     "id": "w155"
+    },
+    {
+     "zh": "预订",
+     "py": "yùdìng",
+     "en": "reservation"
+    },
+    {
+     "id": "w210"
+    },
+    {
+     "id": "w004"
+    },
+    {
+     "id": "w003"
+    },
+    {
+     "id": "w034"
+    },
+    {
+     "zh": "护照",
+     "py": "hùzhào",
+     "en": "passport"
+    }
+   ]
   },
   "parts": [
    "w001",
@@ -1125,6 +2906,19 @@
   "words": [
    "w003",
    "w155"
+  ],
+  "gloss": [
+   {
+    "id": "w003"
+   },
+   {
+    "id": "w155"
+   },
+   {
+    "zh": "预订",
+    "py": "yùdìng",
+    "en": "reservation"
+   }
   ]
  },
  {
@@ -1137,7 +2931,32 @@
   "sentence": {
    "zh": "请问，几点退房？——十二点。",
    "py": "Qǐngwèn, jǐ diǎn tuì fáng? — Shí'èr diǎn.",
-   "en": "Excuse me, what time is checkout? — Twelve."
+   "en": "Excuse me, what time is checkout? — Twelve.",
+   "gloss": [
+    {
+     "id": "w027"
+    },
+    {
+     "id": "w058"
+    },
+    {
+     "id": "w117"
+    },
+    {
+     "zh": "退房",
+     "py": "tuìfáng",
+     "en": "check out"
+    },
+    {
+     "id": "w050"
+    },
+    {
+     "id": "w042"
+    },
+    {
+     "id": "w117"
+    }
+   ]
   },
   "parts": [
    "w027",
@@ -1149,6 +2968,19 @@
   "words": [
    "w058",
    "w117"
+  ],
+  "gloss": [
+   {
+    "id": "w058"
+   },
+   {
+    "id": "w117"
+   },
+   {
+    "zh": "退房",
+    "py": "tuìfáng",
+    "en": "check out"
+   }
   ]
  },
  {
@@ -1161,7 +2993,28 @@
   "sentence": {
    "zh": "请问，无线网密码是多少？",
    "py": "Qǐngwèn, wúxiàn wǎng mìmǎ shì duōshao?",
-   "en": "Excuse me, what's the Wi-Fi password?"
+   "en": "Excuse me, what's the Wi-Fi password?",
+   "gloss": [
+    {
+     "id": "w027"
+    },
+    {
+     "zh": "无线网",
+     "py": "wúxiànwǎng",
+     "en": "Wi-Fi"
+    },
+    {
+     "zh": "密码",
+     "py": "mìmǎ",
+     "en": "password"
+    },
+    {
+     "id": "w004"
+    },
+    {
+     "id": "w059"
+    }
+   ]
   },
   "parts": [
    "w027",
@@ -1171,6 +3024,24 @@
   "words": [
    "w004",
    "w059"
+  ],
+  "gloss": [
+   {
+    "zh": "无线网",
+    "py": "wúxiànwǎng",
+    "en": "Wi-Fi"
+   },
+   {
+    "zh": "密码",
+    "py": "mìmǎ",
+    "en": "password"
+   },
+   {
+    "id": "w004"
+   },
+   {
+    "id": "w059"
+   }
   ]
  },
  {
@@ -1183,7 +3054,26 @@
   "sentence": {
    "zh": "这儿可以拍照吗？——可以。",
    "py": "Zhèr kěyǐ pāizhào ma? — Kěyǐ.",
-   "en": "Can I take photos here? — Yes."
+   "en": "Can I take photos here? — Yes.",
+   "gloss": [
+    {
+     "id": "w216"
+    },
+    {
+     "id": "w177"
+    },
+    {
+     "zh": "拍照",
+     "py": "pāizhào",
+     "en": "take photos"
+    },
+    {
+     "id": "w006"
+    },
+    {
+     "id": "w177"
+    }
+   ]
   },
   "parts": [
    "w216",
@@ -1193,6 +3083,19 @@
   "words": [
    "w177",
    "w006"
+  ],
+  "gloss": [
+   {
+    "id": "w177"
+   },
+   {
+    "zh": "拍照",
+    "py": "pāizhào",
+    "en": "take photos"
+   },
+   {
+    "id": "w006"
+   }
   ]
  },
  {
@@ -1205,7 +3108,34 @@
   "sentence": {
    "zh": "我有点儿不舒服，想休息一下。",
    "py": "Wǒ yǒudiǎnr bù shūfu, xiǎng xiūxi yíxià.",
-   "en": "I don't feel well; I want to rest a bit."
+   "en": "I don't feel well; I want to rest a bit.",
+   "gloss": [
+    {
+     "id": "w003"
+    },
+    {
+     "id": "w071"
+    },
+    {
+     "id": "w008"
+    },
+    {
+     "zh": "舒服",
+     "py": "shūfu",
+     "en": "well, comfortable"
+    },
+    {
+     "id": "w170"
+    },
+    {
+     "id": "w202"
+    },
+    {
+     "zh": "一下",
+     "py": "yíxià",
+     "en": "a moment (softens it)"
+    }
+   ]
   },
   "parts": [
    "w003",
@@ -1219,6 +3149,19 @@
   "words": [
    "w003",
    "w008"
+  ],
+  "gloss": [
+   {
+    "id": "w003"
+   },
+   {
+    "id": "w008"
+   },
+   {
+    "zh": "舒服",
+    "py": "shūfu",
+    "en": "well, comfortable"
+   }
   ]
  },
  {
@@ -1231,7 +3174,36 @@
   "sentence": {
    "zh": "你吃饭了吗？——吃了，你呢？",
    "py": "Nǐ chī fàn le ma? — Chī le, nǐ ne?",
-   "en": "Have you eaten? — Yes, and you?"
+   "en": "Have you eaten? — Yes, and you?",
+   "gloss": [
+    {
+     "id": "w001"
+    },
+    {
+     "id": "w133"
+    },
+    {
+     "id": "w135"
+    },
+    {
+     "id": "w293"
+    },
+    {
+     "id": "w006"
+    },
+    {
+     "id": "w133"
+    },
+    {
+     "id": "w293"
+    },
+    {
+     "id": "w001"
+    },
+    {
+     "id": "w007"
+    }
+   ]
   },
   "parts": [
    "w001",
@@ -1247,6 +3219,23 @@
    "w135",
    "w293",
    "w006"
+  ],
+  "gloss": [
+   {
+    "id": "w001"
+   },
+   {
+    "id": "w133"
+   },
+   {
+    "id": "w135"
+   },
+   {
+    "id": "w293"
+   },
+   {
+    "id": "w006"
+   }
   ]
  },
  {
@@ -1259,7 +3248,22 @@
   "sentence": {
    "zh": "好久不见！最近怎么样？",
    "py": "Hǎojiǔ bú jiàn! Zuìjìn zěnmeyàng?",
-   "en": "Long time no see! How have you been?"
+   "en": "Long time no see! How have you been?",
+   "gloss": [
+    {
+     "zh": "好久不见",
+     "py": "hǎojiǔ bú jiàn",
+     "en": "long time no see"
+    },
+    {
+     "zh": "最近",
+     "py": "zuìjìn",
+     "en": "lately"
+    },
+    {
+     "id": "w227"
+    }
+   ]
   },
   "parts": [
    "w002",
@@ -1269,6 +3273,16 @@
   ],
   "words": [
    "w227"
+  ],
+  "gloss": [
+   {
+    "zh": "最近",
+    "py": "zuìjìn",
+    "en": "lately"
+   },
+   {
+    "id": "w227"
+   }
   ]
  },
  {
@@ -1281,7 +3295,29 @@
   "sentence": {
    "zh": "最近怎么样？——还可以，有点儿忙。",
    "py": "Zuìjìn zěnmeyàng? — Hái kěyǐ, yǒudiǎnr máng.",
-   "en": "How's it going? — Not bad, a bit busy."
+   "en": "How's it going? — Not bad, a bit busy.",
+   "gloss": [
+    {
+     "zh": "最近",
+     "py": "zuìjìn",
+     "en": "lately"
+    },
+    {
+     "id": "w227"
+    },
+    {
+     "id": "w289"
+    },
+    {
+     "id": "w177"
+    },
+    {
+     "id": "w071"
+    },
+    {
+     "id": "w274"
+    }
+   ]
   },
   "parts": [
    "w227",
@@ -1293,6 +3329,14 @@
   "words": [
    "w289",
    "w177"
+  ],
+  "gloss": [
+   {
+    "id": "w289"
+   },
+   {
+    "id": "w177"
+   }
   ]
  },
  {
@@ -1305,7 +3349,30 @@
   "sentence": {
    "zh": "多吃点儿，别客气！",
    "py": "Duō chī diǎnr, bié kèqi!",
-   "en": "Eat more, don't be shy!"
+   "en": "Eat more, don't be shy!",
+   "gloss": [
+    {
+     "id": "w060"
+    },
+    {
+     "id": "w133"
+    },
+    {
+     "zh": "点儿",
+     "py": "diǎnr",
+     "en": "a bit"
+    },
+    {
+     "zh": "别",
+     "py": "bié",
+     "en": "don't"
+    },
+    {
+     "zh": "客气",
+     "py": "kèqi",
+     "en": "polite, formal"
+    }
+   ]
   },
   "parts": [
    "w060",
@@ -1316,6 +3383,19 @@
    "w060",
    "w133",
    "w117"
+  ],
+  "gloss": [
+   {
+    "id": "w060"
+   },
+   {
+    "id": "w133"
+   },
+   {
+    "zh": "点儿",
+    "py": "diǎnr",
+    "en": "a bit"
+   }
   ]
  },
  {
@@ -1328,7 +3408,38 @@
   "sentence": {
    "zh": "你有兄弟姐妹吗？——我有一个哥哥。",
    "py": "Nǐ yǒu xiōngdì jiěmèi ma? — Wǒ yǒu yí ge gēge.",
-   "en": "Do you have siblings? — I have an older brother."
+   "en": "Do you have siblings? — I have an older brother.",
+   "gloss": [
+    {
+     "id": "w001"
+    },
+    {
+     "id": "w155"
+    },
+    {
+     "zh": "兄弟姐妹",
+     "py": "xiōngdì jiěmèi",
+     "en": "brothers and sisters"
+    },
+    {
+     "id": "w006"
+    },
+    {
+     "id": "w003"
+    },
+    {
+     "id": "w155"
+    },
+    {
+     "id": "w041"
+    },
+    {
+     "id": "w062"
+    },
+    {
+     "id": "w080"
+    }
+   ]
   },
   "parts": [
    "w001",
@@ -1343,6 +3454,22 @@
    "w001",
    "w155",
    "w006"
+  ],
+  "gloss": [
+   {
+    "id": "w001"
+   },
+   {
+    "id": "w155"
+   },
+   {
+    "zh": "兄弟姐妹",
+    "py": "xiōngdì jiěmèi",
+    "en": "brothers and sisters"
+   },
+   {
+    "id": "w006"
+   }
   ]
  },
  {
@@ -1355,7 +3482,35 @@
   "sentence": {
    "zh": "你周末做什么？——我喜欢看电影。",
    "py": "Nǐ zhōumò zuò shénme? — Wǒ xǐhuan kàn diànyǐng.",
-   "en": "What do you do on weekends? — I like watching movies."
+   "en": "What do you do on weekends? — I like watching movies.",
+   "gloss": [
+    {
+     "id": "w001"
+    },
+    {
+     "zh": "周末",
+     "py": "zhōumò",
+     "en": "weekend"
+    },
+    {
+     "id": "w169"
+    },
+    {
+     "id": "w031"
+    },
+    {
+     "id": "w003"
+    },
+    {
+     "id": "w173"
+    },
+    {
+     "id": "w162"
+    },
+    {
+     "id": "w256"
+    }
+   ]
   },
   "parts": [
    "w001",
@@ -1370,6 +3525,22 @@
    "w001",
    "w169",
    "w031"
+  ],
+  "gloss": [
+   {
+    "id": "w001"
+   },
+   {
+    "zh": "周末",
+    "py": "zhōumò",
+    "en": "weekend"
+   },
+   {
+    "id": "w169"
+   },
+   {
+    "id": "w031"
+   }
   ]
  },
  {
@@ -1382,7 +3553,33 @@
   "sentence": {
    "zh": "我很喜欢吃饺子。——我也是！",
    "py": "Wǒ hěn xǐhuan chī jiǎozi. — Wǒ yě shì!",
-   "en": "I love dumplings. — Me too!"
+   "en": "I love dumplings. — Me too!",
+   "gloss": [
+    {
+     "id": "w003"
+    },
+    {
+     "id": "w005"
+    },
+    {
+     "id": "w173"
+    },
+    {
+     "id": "w133"
+    },
+    {
+     "id": "w151"
+    },
+    {
+     "id": "w003"
+    },
+    {
+     "id": "w009"
+    },
+    {
+     "id": "w004"
+    }
+   ]
   },
   "parts": [
    "w003",
@@ -1397,6 +3594,17 @@
    "w003",
    "w009",
    "w004"
+  ],
+  "gloss": [
+   {
+    "id": "w003"
+   },
+   {
+    "id": "w009"
+   },
+   {
+    "id": "w004"
+   }
   ]
  },
  {
@@ -1409,7 +3617,40 @@
   "sentence": {
    "zh": "我会说三种语言。——真的吗？",
    "py": "Wǒ huì shuō sān zhǒng yǔyán. — Zhēn de ma?",
-   "en": "I speak three languages. — Really?"
+   "en": "I speak three languages. — Really?",
+   "gloss": [
+    {
+     "id": "w003"
+    },
+    {
+     "id": "w175"
+    },
+    {
+     "id": "w166"
+    },
+    {
+     "id": "w043"
+    },
+    {
+     "zh": "种",
+     "py": "zhǒng",
+     "en": "kind(s) of"
+    },
+    {
+     "zh": "语言",
+     "py": "yǔyán",
+     "en": "language"
+    },
+    {
+     "id": "w287"
+    },
+    {
+     "id": "w034"
+    },
+    {
+     "id": "w006"
+    }
+   ]
   },
   "parts": [
    "w003",
@@ -1424,6 +3665,17 @@
    "w287",
    "w034",
    "w006"
+  ],
+  "gloss": [
+   {
+    "id": "w287"
+   },
+   {
+    "id": "w034"
+   },
+   {
+    "id": "w006"
+   }
   ]
  },
  {
@@ -1436,7 +3688,26 @@
   "sentence": {
    "zh": "好久不见，我很想你！",
    "py": "Hǎojiǔ bú jiàn, wǒ hěn xiǎng nǐ!",
-   "en": "Long time no see, I missed you!"
+   "en": "Long time no see, I missed you!",
+   "gloss": [
+    {
+     "zh": "好久不见",
+     "py": "hǎojiǔ bú jiàn",
+     "en": "long time no see"
+    },
+    {
+     "id": "w003"
+    },
+    {
+     "id": "w005"
+    },
+    {
+     "id": "w170"
+    },
+    {
+     "id": "w001"
+    }
+   ]
   },
   "parts": [
    "w002",
@@ -1452,6 +3723,20 @@
    "w170",
    "w001",
    "w293"
+  ],
+  "gloss": [
+   {
+    "id": "w003"
+   },
+   {
+    "id": "w170"
+   },
+   {
+    "id": "w001"
+   },
+   {
+    "id": "w293"
+   }
   ]
  }
 ]
