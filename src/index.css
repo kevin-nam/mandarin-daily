@@ -821,3 +821,5 @@ details.char-parts:not([open]) { padding-bottom: 10px; }
 .growth-pace { margin-top: 10px; font-size: 14px; color: var(--muted); text-wrap: pretty; }
 .growth-pace b { color: var(--ink); font-weight: 600; }
 .bank-sentence .word-by-word { justify-content: flex-start; margin-top: 8px; }
+.practice-pair { display: flex; gap: 8px; }
+.practice-pair > .btn { flex: 1 1 0; min-width: 0; }

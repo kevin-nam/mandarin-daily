@@ -178,6 +178,11 @@ function Reviews({ state, commit, onDone, onGraded, onMissRead }: {
   // Time from the card appearing to Show answer (active time: pauses don't count), for the review log.
   const shownAt = useRef(start)
   const thinkMs = useRef<number>(undefined)
+  // Cards missed this session, shown again a few cards later as practice: how many repeats are left.
+  // Not graded again: the miss already set the card for tomorrow, and a Good minutes later made FSRS
+  // treat it as a same-day success (3 days instead of 1; 48 times in the day-20 log). Two Agains
+  // counted two lapses and pushed difficulty up.
+  const [repeats, setRepeats] = useState<Record<string, number>>({})
   const known = useMemo(() => knownChars(state.introduced), [state.introduced])
 
   useEffect(() => {
@@ -193,6 +198,29 @@ function Reviews({ state, commit, onDone, onGraded, onMissRead }: {
   const t = target(w, stage)
   const note = gradeNote(w, kind, stage)
   const timeUp = clock.active() - start > REVIEW_MINUTES * 60 * 1000
+  const repeat = key in repeats
+
+  /** A missed card seen again: practice only. Missed again → once more, at most twice. */
+  const practised = (ok: boolean) => {
+    fire(ok ? 'good' : 'again')
+    const left = repeats[key] - 1
+    setRepeats((m) => {
+      const n = { ...m }
+      if (ok || left <= 0) delete n[key]
+      else n[key] = left
+      return n
+    })
+    setCount((c) => c + 1)
+    setRevealed(false)
+    shownAt.current = clock.active()
+    thinkMs.current = undefined
+    setQueue((q) => {
+      const rest = q.slice(1)
+      if (timeUp) return []
+      if (!ok && left > 0) rest.splice(Math.min(4, rest.length), 0, key)
+      return rest
+    })
+  }
 
   const rate = (r: Grade) => {
     const think = thinkMs.current
@@ -219,6 +247,7 @@ function Reviews({ state, commit, onDone, onGraded, onMissRead }: {
       if (r === Rating.Again) rest.splice(Math.min(4, rest.length), 0, key) // see it again soon
       return rest
     })
+    if (r === Rating.Again) setRepeats((m) => ({ ...m, [key]: 2 }))
   }
 
   const reveal = () => {
@@ -273,9 +302,15 @@ function Reviews({ state, commit, onDone, onGraded, onMissRead }: {
     </div>
     <div className="dock">
       {count > 0 && timeUp && <p className="dock-note">{REVIEW_MINUTES} minutes reached: this is the last card.</p>}
-      {revealed && note && <p className="dock-note">{note}</p>}
+      {revealed && note && !repeat && <p className="dock-note">{note}</p>}
+      {revealed && repeat && <p className="dock-note">Once more, for practice: it’s already set for tomorrow.</p>}
       {!revealed ? (
         <button className="btn primary wide" onClick={reveal}>Show answer</button>
+      ) : repeat ? (
+        <div className="practice-pair">
+          <button className="btn wide" onClick={() => practised(false)}>Missed it</button>
+          <button className="btn primary wide" onClick={() => practised(true)}>Got it</button>
+        </div>
       ) : (
         <div className="grades" role="group" aria-label="How well did you know it?">
           <button className="grade again" onClick={() => rate(Rating.Again)}>Again<small>missed it</small></button>

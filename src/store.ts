@@ -155,6 +155,18 @@ function revive(s: AppState): AppState {
   for (const c of Object.values(s.cards)) {
     c.due = new Date(c.due)
     if (c.last_review) c.last_review = new Date(c.last_review)
+  }
+  // Before 1.23 a card missed and then got right minutes later in the same session was graded twice,
+  // and the second grade pushed it out 2–3 days. Bring back any still waiting: due the day after the miss.
+  const lastTwo = new Map<string, [number, string, number, number?][]>()
+  for (const e of s.reviewLog ?? []) lastTwo.set(e[1], [...(lastTwo.get(e[1]) ?? []), e].slice(-2))
+  for (const [k, [a, b]] of lastTwo) {
+    const c = s.cards[k]
+    if (!c || !b || a[2] !== Rating.Again || b[2] === Rating.Again || b[0] - a[0] > 6 * 3600000) continue
+    const back = startOfDay(new Date(a[0]), 1)
+    if (c.due > back) c.due = back
+  }
+  for (const c of Object.values(s.cards)) {
     // Cards graded before learning steps were turned off (1.1): move "due in minutes" to the next day.
     if (c.last_review && c.due < startOfDay(c.last_review, 1)) c.due = startOfDay(c.last_review, 1)
   }
@@ -216,8 +228,22 @@ export function phraseReadable(s: AppState, id: string) {
   return !words || words.every((w) => s.introduced.includes(w))
 }
 
+/**
+ * The card as FSRS should see it at `now`: days since the last review counted in app days (4 am to
+ * 4 am, local), not UTC dates. ts-fsrs counts elapsed days by UTC calendar date, and the learner's
+ * evening sessions fall around UTC midnight (19:00 in New York), so a day's gap could count as 0 days
+ * (no stability gain, as if reviewed twice the same day) or 2 (too much). 44 gaps in the day-20 log:
+ * all counted one day too many. Moving last_review to the same clock time `n` app days back makes
+ * ts-fsrs count exactly `n`.
+ */
+function asSeenAt(c: Card, now: Date): Card {
+  if (!c.last_review || c.reps === 0) return c
+  const days = Math.round((+appDate(now) - +appDate(c.last_review)) / 86400000)
+  return { ...c, last_review: new Date(+now - Math.max(0, days) * 86400000) }
+}
+
 export function grade(s: AppState, key: string, rating: Grade, now = new Date(), thinkMs?: number) {
-  const prev = s.cards[key]
+  const prev = asSeenAt(s.cards[key], now)
   ;(s.reviewLog ??= []).push(thinkMs === undefined ? [+now, key, rating] : [+now, key, rating, Math.round(thinkMs)])
   const card = schedulerFor(key)
     .next({ ...prev, difficulty: Math.min(prev.difficulty, MAX_DIFFICULTY) }, now, rating).card
@@ -238,20 +264,34 @@ function reviewedSince(s: AppState, since: Date) {
 }
 
 /**
+ * Which of an item's due cards goes today (lowest first): a speak card flagged in the quick recall,
+ * then never-reviewed cards (reading first, the weak skill, then sentence, speaking, listening), then
+ * the one you're most likely to have forgotten. Before 1.23 the most overdue went first, ties in card
+ * order, so a new word's listen card came first, then speak, and its read card only on the third day:
+ * first read reviews were missed 21 of 36 times (listen 1, speak 1).
+ */
+const NEW_ORDER: CardKind[] = ['read', 'sentence', 'speak', 'listen']
+function siblingRank(s: AppState, key: string, now: Date) {
+  const { wordId, kind } = parseKey(key)
+  if (kind === 'speak' && s.flagged?.[wordId]) return -10
+  const r = recallChance(s.cards[key], now)
+  return r === null ? -5 + NEW_ORDER.indexOf(kind) * 0.1 : r
+}
+
+/**
  * Keys of cards due today, most overdue first. Cards for items removed from the content are skipped.
  * - Due any time today counts: due times carry the hour of the last review, so cards used to turn
  *   due during the day, after the session ("Continue session" instead of done).
  * - One card per item a day (siblings wait, as Anki buries them): 也's listen card shows its meaning
- *   and character, so its read card right after tests nothing. The most overdue sibling goes first, so
- *   they take turns; a speak card flagged in the quick recall beats the rest.
+ *   and character, so its read card right after tests nothing. Which sibling goes: siblingRank. A held
+ *   back card's recall chance keeps falling, so siblings take turns.
  */
 export function dueKeys(s: AppState, now = new Date()) {
   const done = reviewedSince(s, startOfDay(now))
   const cutoff = startOfDay(now, 1)
-  const first = (k: string) => (parseKey(k).kind === 'speak' && s.flagged?.[parseKey(k).wordId] ? 0 : 1)
   const due = Object.entries(s.cards)
     .filter(([k, c]) => c.due < cutoff && WORD_BY_ID.has(parseKey(k).wordId) && !done.has(parseKey(k).wordId))
-    .sort((a, b) => first(a[0]) - first(b[0]) || +a[1].due - +b[1].due)
+    .sort((a, b) => siblingRank(s, a[0], now) - siblingRank(s, b[0], now))
   const picked = new Set<string>()
   return due.filter(([k]) => !picked.has(parseKey(k).wordId) && !!picked.add(parseKey(k).wordId))
     .sort((a, b) => +a[1].due - +b[1].due)
@@ -603,7 +643,7 @@ export function speedSuggestion(s: AppState, now = new Date()) {
 /** Estimated chance you'd recall it right now, 0–1 (null if never reviewed). */
 export function recallChance(c: Card | undefined, now = new Date()) {
   if (!c || c.reps === 0) return null
-  return scheduler.get_retrievability(c, now, false)
+  return scheduler.get_retrievability(asSeenAt(c, now), now, false)
 }
 
 /** Resolves true once the backup was handed off (share sheet completed or download started), false if cancelled. */

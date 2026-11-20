@@ -2,7 +2,7 @@
 
 A personal, offline-first PWA for daily Mandarin listening and speaking practice, aimed at **new HSK 1 (2026, 294 words)** plus 58 travel and conversation phrases. Built for iPhone: no microphone, no backend, no database, no paid APIs.
 
-**Version 1.22** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
+**Version 1.23** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
 
 ## Who it's for
 
@@ -53,6 +53,10 @@ At 5 new words/day you cover all of HSK 1 in about 9 weeks, faster if you mark w
 - **Difficulty ceiling** (1.18). FSRS difficulty is capped at 8 (of 10). Repeated misses had pushed 24 read cards to 9.4–10, where a correct answer barely grows stability, so 也 们 喂 很 呢 请 吗 叫 came back every few days with no way out. Simulated from 也's state, six Goods in a row now give intervals of 3, 5, 11, 23, 45 days instead of 3, 3, 3, 4, 6; a miss still sends it back.
 - **Reading is the gap** (day 3: 10 of 23 read cards failed vs 0 speak and 0 listen; basic characters like 好 是 很 吗 呢 也). The learner doesn't recognise the characters, and finds tones very hard. So read cards ask for the meaning only (tones don't count), and words failed on a read card come back in the Speak drill as **Read** items (every third item, up to 6): 字 → 4-second try → pinyin, meaning, audio and the character breakdown; 3 hits to retire, ungraded like the rest of the drill.
 - **Answer screens** (1.14 audit). Each card's answer leads with what helps for that card: a read card shows *Don't mix up* and how the characters are built right under the character, then the sentence; a lesson shows how it's built before the sentence (reading is the weak skill). Phrase answers drop the "Not learned yet" list (phrase examples are context; 5 glosses was clutter). Grammar words gloss as what they do (个 "measure word", 吗 "yes/no question"), not dictionary notes. Grade notes are one line. The listen card says up front "You'll grade the word it's built around."
+- **Scheduling fixes** (1.23, from an audit against the day-20 review log):
+  - *A missed card shown again in the session is practice, not a second grade* (Missed it / Got it, at most twice). Graded again, a Good minutes after Again counted as a same-day success and set the card 3 days out instead of 1 (48 of 347 reviews); Again twice counted two lapses and pushed difficulty up. On load, cards still waiting from such a double grade come back the day after the miss (27 in the day-20 backup).
+  - *Elapsed days are counted in app days* (4 am to 4 am, local). ts-fsrs counts UTC calendar dates, and evening sessions in New York fall around UTC midnight, so one day's gap could count as 0 or 2 (all 44 multi-day gaps in the log counted one day too many).
+  - *Which sibling goes first*: never-reviewed cards first (read, sentence, speak, listen), then the lowest recall chance. Before, ties went by card order, so a new word was heard first and its read card waited until the third day: first read reviews were missed 21 of 36 times (listen and speak 1 each).
 - **Review time 12 → 18 min, Speak drill 8 → 6** (1.22). Day 20: ~67 reviews fit in 12 minutes (~11 s each) while ~66 were due a day, so leftovers built up (31 overdue paused new words). A 60-day forecast from the backup (FSRS recall odds, reading capped at 80%) gives ~85–95 reviews a day at 5 words + 2 phrases, ~16–17 minutes. Sessions were 19–26 minutes against a 30-minute budget, so the time comes from slack and 2 minutes of the Speak drill.
 - **Tone drill** (1.22): only the newest voice's answers count toward adding the next one (pooled, ~67% accuracy passed 75% windows by chance and all four voices were in within ~100 syllables; reset to one voice); a missed single syllable plays beside the tone you picked, as in the ladder; items are drawn from words you've studied, so a tone goes with a meaning you know.
 - **Tone voices, one at a time** (1.20). The drills start with Xiaoxiao (the normal word audio) and add Yunyang, Xiaoyi, then Yunjian, each once 75% of your last 20 syllables in the mixed drill are right. Why: the learner found some voices much harder, and a pitch analysis of the 126 single-syllable clips per voice agreed. A template classifier matched Xiaoxiao's tones to the textbook shapes 96% of the time, Xiaoyi's 71% (squashed: tone 4 falls ~4 semitones vs ~8.5), the male voices ~44–56% (less certain: the tracker read only part of their clips). Many talkers help tones generalise, but learners who find tones hard do better starting with one clear voice (Perrachione et al. 2011). Misses are now counted per voice (`tones.byVoice`).
@@ -196,6 +200,11 @@ src/App.tsx         home + settings
 - New features should respect the profile above: whisper-friendly, no mic, no writing practice, offline-first.
 
 ## Changelog
+
+**1.23** (2026-11-20)
+- A card you miss comes back later in the session for practice only, and always returns tomorrow. Before, getting it right a few cards later pushed it out 3 days. Cards affected by this come back now.
+- A new word's reading card comes first, the day after you learn it (it used to wait until the third day).
+- Days between reviews are counted in your local time; they were counted in UTC and came out a day too long.
 
 **1.22** (2026-11-20)
 - Reviews get up to 18 minutes (was 12) so they stop piling up; the Speak drill is 6 minutes.
