@@ -111,6 +111,17 @@ function emptyState(): AppState {
  */
 const OLD_UNLOCK: Record<string, [number, number]> = { d11: [0, 2], d12: [0, 5], d13: [0, 7], d1: [30, 0], d14: [0, 13], d2: [40, 0], d15: [0, 19], d16: [0, 23], d17: [0, 27], d3: [75, 0], d4: [100, 0] }
 
+function mergeDays(a: DayLog, b: DayLog): DayLog {
+  const add = (x?: number, y?: number) => (x === undefined && y === undefined ? undefined : (x ?? 0) + (y ?? 0))
+  const out: DayLog = {
+    reviews: a.reviews + b.reviews, newWords: a.newWords + b.newWords, minutes: a.minutes + b.minutes,
+    newPhrases: add(a.newPhrases, b.newPhrases), known: add(a.known, b.known), listened: add(a.listened, b.listened),
+    recalled: add(a.recalled, b.recalled), finishedAt: a.finishedAt ?? b.finishedAt,
+  }
+  for (const k of Object.keys(out) as (keyof DayLog)[]) if (out[k] === undefined) delete out[k]
+  return out
+}
+
 function revive(s: AppState): AppState {
   s.settings = { ...emptyState().settings, ...s.settings }
   if (!s.dialogues && Object.keys(s.history).length) {
@@ -126,16 +137,18 @@ function revive(s: AppState): AppState {
     const k = cardKey(p.id, 'read')
     if (s.cards[k] && !phraseReadable(s, p.id) && s.cards[k].stability < 7) delete s.cards[k]
   }
-  // Before the 4 am day start: a session finished between midnight and 4 am, with nothing logged the
-  // day before, was that evening's session.
+  // Before the 4 am day start (1.21), a session finished between midnight and 4 am was logged under the
+  // new date. It belongs to the evening before: merged into that day if it has a log (a session that
+  // started before midnight was split across both), else moved there. In order, so a chain shifts back:
+  // the learner's 18th split over the 18th/19th, then their 19th session logged as the 20th.
   for (const k of Object.keys(s.history).sort()) {
-    const f = s.history[k].finishedAt
+    const cur = s.history[k]
+    const f = cur.finishedAt
+    if (!f || dateKey(new Date(f)) !== k || new Date(f).getHours() >= DAY_START_HOUR) continue
     const [y, m, d] = k.split('-').map(Number)
     const prev = dateKey(new Date(y, m - 1, d - 1))
-    if (f && dateKey(new Date(f)) === k && new Date(f).getHours() < DAY_START_HOUR && !s.history[prev]) {
-      s.history[prev] = s.history[k]
-      delete s.history[k]
-    }
+    s.history[prev] = s.history[prev] ? mergeDays(s.history[prev], cur) : cur
+    delete s.history[k]
   }
   for (const c of Object.values(s.cards)) {
     c.due = new Date(c.due)

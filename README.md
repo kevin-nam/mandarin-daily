@@ -2,7 +2,7 @@
 
 A personal, offline-first PWA for daily Mandarin listening and speaking practice, aimed at **new HSK 1 (2026, 294 words)** plus 58 travel and conversation phrases. Built for iPhone: no microphone, no backend, no database, no paid APIs.
 
-**Version 1.21** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
+**Version 1.21.1** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
 
 ## Who it's for
 
@@ -39,7 +39,7 @@ At 5 new words/day you cover all of HSK 1 in about 9 weeks, faster if you mark w
 
 ## How the app paces you
 
-- **Once a day.** The app's day starts at **4 am** (1.21, as in Anki): a session at 00:30, or one running past midnight, counts for the evening before. With midnight it counted for the next day (the learner's session at midnight broke the streak; it would also have given a second batch of new words). On load, a day whose session finished between midnight and 4 am, with nothing the day before, moves to the day before. New words reset at 4 am. New cards' first review is the *next* day (after sleep). Every grade schedules whole days (FSRS same-day learning steps are off: the session's own repetition covers same-day practice). After a session the home screen says **Done for today**; "Practice anyway" is there but same-day re-practice adds little.
+- **Once a day.** The app's day starts at **4 am** (1.21, as in Anki): a session at 00:30, or one running past midnight, counts for the evening before. With midnight it counted for the next day (the learner's session at midnight broke the streak; it would also have given a second batch of new words). On load, a day whose session finished between midnight and 4 am moves to the day before, merged with it if that day has a log (1.21.1: 1.21 only moved it when the day before was empty, which missed the learner's case, a session split over the 18th/19th followed by one logged as the 20th). New words reset at 4 am. New cards' first review is the *next* day (after sleep). Every grade schedules whole days (FSRS same-day learning steps are off: the session's own repetition covers same-day practice). After a session the home screen says **Done for today**; "Practice anyway" is there but same-day re-practice adds little.
 - **One card per word a day** (1.19). When several of an item's cards are due, one is reviewed and the others wait for the next day (most overdue first, so they take turns), as Anki buries siblings: a listen card shows the meaning and the character, so the read card right after it tested nothing (the learner: "makes it too easy"). Cards due any time today count from the morning, so nothing turns due after the session; finishing the session ends the day, and reviews left past the 12-minute cap are in Extra practice. Before, a card reviewed at 8 pm came due at 8 pm, so finishing earlier left the home screen on *Continue session* instead of the quick recall. Siblings held back don't count as falling behind.
 - **Missing a day** costs only the streak. Reviews wait; the 12-min cap keeps sessions the same length; leftovers roll over (most at risk first). If reviewed cards are carried over from earlier days, new words are halved (>10 behind) or paused (>30 behind) until you catch up.
 - **Audio speed** starts at 85% (Settings: 70–100%; 🐢 slow = 70% of it). Once ≥20 listen cards are reviewed and 70% are Good or better, the home screen suggests the next 5% step; "Not now" or changing it yourself pauses that for a week. If listen cards are almost never missed (under 3% over 100+ reviews) it suggests 100% straight away instead (1.18; day 13: 2 misses in 180).
@@ -194,6 +194,9 @@ src/App.tsx         home + settings
 - New features should respect the profile above: whisper-friendly, no mic, no writing practice, offline-first.
 
 ## Changelog
+
+**1.21.1** (2026-11-20)
+- Fixed: sessions done around midnight before 1.21 now move back to the right day even when that day already had a log. Today shows as not done.
 
 **1.21** (2026-11-20)
 - The day now starts at 4 am: a session at or past midnight counts for the evening before. Your midnight session moves to the 19th.
