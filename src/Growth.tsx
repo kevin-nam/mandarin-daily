@@ -1,6 +1,6 @@
 import { useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { WORD_BY_ID, WORDS } from './data'
-import { cardKey, LEVELS, level, startOfDay, today, wordsLearned, type AppState, type CardKind } from './store'
+import { appDate, cardKey, dateKey, LEVELS, level, startOfDay, wordsLearned, type AppState, type CardKind } from './store'
 
 const SKILLS: { kind: CardKind; label: string; well: string }[] = [
   { kind: 'speak', label: 'Say', well: 'you can say well' },
@@ -31,7 +31,7 @@ function columns(s: AppState, now: Date): Column[] {
   keys.forEach((k, j) => { at[k] = s.introduced.slice(i, (i += counts[j])) })
 
   const [y, m, d] = keys[0].split('-').map(Number)
-  const todayAt = +startOfDay(now)
+  const todayAt = +appDate(now)
   const lived = Math.round((todayAt - +new Date(y, m - 1, d)) / 86400000) + 1
   const span = Math.max(WINDOW, lived)
   const per = span > MAX_DAY_COLUMNS ? 7 : 1
@@ -42,7 +42,7 @@ function columns(s: AppState, now: Date): Column[] {
     let isToday = false
     for (let k = 0; k < per; k++) {
       const day = new Date(y, m - 1, d + n + k)
-      ids.push(...(at[today(day)] ?? []))
+      ids.push(...(at[dateKey(day)] ?? []))
       if (+day === todayAt) isToday = true
     }
     out.push({ start, days: per, ids, future: +start > todayAt, today: isToday })
@@ -94,7 +94,7 @@ export function Growth({ state }: { state: AppState }) {
 
   const total = state.introduced.length
   const good = state.introduced.filter((id) => levelOf(id) >= 3).length
-  const weekAgo = +startOfDay(now, -6)
+  const weekAgo = +appDate(now, -6)
   const thisWeek = cols.filter((c) => !c.future && +c.start >= weekAgo).reduce((a, c) => a + c.ids.length, 0)
   const s = SKILLS.find((x) => x.kind === skill)!
   const finish = finishDate(state, now)

@@ -13,7 +13,7 @@ import { LISTEN_MINUTES, listeningToday } from './listening'
 import { applyTheme, type Theme } from './theme'
 import { Week } from './Week'
 import {
-  bestStreak, dueKeys, introducedToday, exportState, importState, load, logDay, newQuota, phrasesLearned, save, speedSuggestion, streak,
+  appDate, bestStreak, dueKeys, introducedToday, exportState, importState, load, logDay, newQuota, phrasesLearned, save, speedSuggestion, streak,
   today, wordsLearned, type AppState,
 } from './store'
 import { VERSION } from './updates'
@@ -21,7 +21,7 @@ import { VERSION } from './updates'
 const RECALL_AFTER_HOURS = 3
 const isPast = (d: Date) => +d <= Date.now()
 const inDays = (n: number) => new Date(Date.now() + n * 86400000).toISOString()
-const dateLabel = (d = new Date()) => d.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })
+const dateLabel = (d = appDate()) => d.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })
 const plural = (n: number, one: string, many = `${one}s`) => `${n} ${n === 1 ? one : many}`
 
 /** Only count it as backed up once the file was actually saved, not if the share sheet was cancelled. */

@@ -75,12 +75,30 @@ const schedulerFor = (key: string) =>
  */
 const MAX_DIFFICULTY = 8
 
-export const today = (d = new Date()) =>
+/**
+ * The app's day starts at 4 am, not midnight (as in Anki): a session at 00:30, or one that runs past
+ * midnight, belongs to the evening it started in. With midnight, a session done "at midnight exactly"
+ * counted for the next day (broken streak, a second batch of new words, words due minutes later).
+ */
+export const DAY_START_HOUR = 4
+
+/** A calendar date as YYYY-MM-DD (no shift: for dates that are already days, like a week's columns). */
+export const dateKey = (d: Date) =>
   `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
 
-/** Local midnight at the start of the day `days` from `d`. */
+/** Local midnight of the app day `d` falls in, plus `days`: at 1 am on the 20th, the 19th. */
+export function appDate(d = new Date(), days = 0) {
+  const s = new Date(+d - DAY_START_HOUR * 3600000)
+  return new Date(s.getFullYear(), s.getMonth(), s.getDate() + days)
+}
+
+/** The app day as YYYY-MM-DD: the key for history. */
+export const today = (d = new Date()) => dateKey(appDate(d))
+
+/** When the app day `days` from `d`'s starts (4 am). */
 export function startOfDay(d = new Date(), days = 0) {
-  return new Date(d.getFullYear(), d.getMonth(), d.getDate() + days)
+  const a = appDate(d, days)
+  return new Date(a.getFullYear(), a.getMonth(), a.getDate(), DAY_START_HOUR)
 }
 
 function emptyState(): AppState {
@@ -107,6 +125,17 @@ function revive(s: AppState): AppState {
   for (const p of PHRASES) {
     const k = cardKey(p.id, 'read')
     if (s.cards[k] && !phraseReadable(s, p.id) && s.cards[k].stability < 7) delete s.cards[k]
+  }
+  // Before the 4 am day start: a session finished between midnight and 4 am, with nothing logged the
+  // day before, was that evening's session.
+  for (const k of Object.keys(s.history).sort()) {
+    const f = s.history[k].finishedAt
+    const [y, m, d] = k.split('-').map(Number)
+    const prev = dateKey(new Date(y, m - 1, d - 1))
+    if (f && dateKey(new Date(f)) === k && new Date(f).getHours() < DAY_START_HOUR && !s.history[prev]) {
+      s.history[prev] = s.history[k]
+      delete s.history[k]
+    }
   }
   for (const c of Object.values(s.cards)) {
     c.due = new Date(c.due)

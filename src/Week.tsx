@@ -1,4 +1,4 @@
-import { today } from './store'
+import { appDate, dateKey, today } from './store'
 
 const WEEKDAY = ['一', '二', '三', '四', '五', '六', '日'] // 星期一 … 星期日
 const EN = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
@@ -14,14 +14,14 @@ function thisWeek(now = new Date()) {
  * Chinese weekday. `stamp` animates today's seal landing (right after a session).
  */
 export function Week({ history, stamp }: { history: Record<string, unknown>; stamp: boolean }) {
-  const days = thisWeek()
+  const days = thisWeek(appDate())
   const todayKey = today()
   const first = Object.keys(history).sort()[0] ?? todayKey // days before you started aren't missed
   return (
     <ol className="week" aria-label="This week">
       {WEEKDAY.map((zh, i) => {
         const d = days[i]
-        const key = today(d)
+        const key = dateKey(d)
         const done = !!history[key]
         const state = done ? 'done' : key === todayKey ? 'today' : key < todayKey ? (key > first ? 'missed' : 'before') : 'future'
         const cls = `day is-${state} ${stamp && key === todayKey && done ? 'stamp' : ''}`
