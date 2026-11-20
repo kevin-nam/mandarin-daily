@@ -23,9 +23,9 @@ type Commit = (fn: (s: AppState) => void) => void
 type StepId = 'reviews' | 'new' | 'drill' | 'dialogue' | 'tones' | 'listen' | 'done'
 
 const STEPS: { id: StepId; label: string; minutes: number }[] = [
-  { id: 'reviews', label: 'Review', minutes: 12 },
+  { id: 'reviews', label: 'Review', minutes: 18 },
   { id: 'new', label: 'New words', minutes: 5 },
-  { id: 'drill', label: 'Speak', minutes: 8 },
+  { id: 'drill', label: 'Speak', minutes: 6 },
   // Tones before the dialogue: the weakest skill goes before the step a short session can do without.
   { id: 'tones', label: 'Tones', minutes: 4 },
   { id: 'dialogue', label: 'Dialogue', minutes: 4 },
@@ -147,17 +147,17 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
 
 /* ---------------- Reviews ---------------- */
 
-const REVIEW_MINUTES = 12
+const REVIEW_MINUTES = 18
 
 /**
- * Due cards, most at risk of being forgotten first (only ~80 fit in the time cap), with
+ * Due cards, most at risk of being forgotten first (only ~100 fit in the time cap), with
  * speak cards prioritised (2 speak : 1 other) so the main gap gets the most time, still interleaved.
  */
 function reviewQueue(state: AppState) {
   // Items missed in a quick recall go first; then most at risk.
   const flagged = (k: string) => parseKey(k).kind === 'speak' && !!state.flagged?.[parseKey(k).wordId]
   const ranked = byRisk(state, dueKeys(state))
-  const due = [...ranked.filter(flagged), ...ranked.filter((k) => !flagged(k))].slice(0, 80)
+  const due = [...ranked.filter(flagged), ...ranked.filter((k) => !flagged(k))].slice(0, 120)
   const speak = due.filter((k) => parseKey(k).kind === 'speak')
   const other = due.filter((k) => parseKey(k).kind !== 'speak')
   const out: string[] = []
@@ -432,7 +432,7 @@ function NewWords({ state, commit, onDone }: { state: AppState; commit: Commit; 
  */
 interface DrillItem { w: Word; hits: number; stage: Stage; retire: number; read?: 'missed' | 'tricky' | 'like'; like?: string }
 
-const DRILL_MINUTES = 8
+const DRILL_MINUTES = 6
 /** More retrievals in the first session improve long-term recall (Nakata 2017: 5+ beat 1-3). */
 const RETIRE_AFTER = 3
 /** A look-alike added for contrast is usually known already: two recalls are enough. */
@@ -822,10 +822,18 @@ function Tones({ state, commit, onDone }: { state: AppState; commit: Commit; onD
     const err = toneErrors(state)
     const voices = toneVoicesInUse(state)
     const pairs = pairCount(toneAccuracy(state))
-    return [...weightedPick(TONE_ITEMS, 15 - pairs, err), ...weightedPick(PAIR_ITEMS, pairs, err)]
+    // Words you've studied first, so a tone is tied to a meaning you know (买 buy / 卖 sell).
+    const studied = new Set(state.introduced)
+    const pool = (items: Word[], n: number) => {
+      const known = items.filter((w) => studied.has(w.id))
+      return known.length >= n * 2 ? known : items
+    }
+    return [...weightedPick(pool(TONE_ITEMS, 15 - pairs), 15 - pairs, err), ...weightedPick(pool(PAIR_ITEMS, pairs), pairs, err)]
       .map((w) => ({ w, voice: randomVoice(voices) }))
   })
   const [voiceAdded, setVoiceAdded] = useState(false)
+  // A missed single syllable: hear it beside the tone you picked, as in the ladder.
+  const [contrast, setContrast] = useState<{ c: Word; pick: number }>()
   const [focus] = useState(() => toneFocus(state))
   const [i, setI] = useState(0)
   const [picks, setPicks] = useState<(number | undefined)[]>([])
@@ -845,12 +853,17 @@ function Tones({ state, commit, onDone }: { state: AppState; commit: Commit; onD
     // Worked out here as well as in the commit, which React may run later.
     const results = tones.map((x, k) => (p[k] === x ? 1 : 0))
     const probe = { toneVoices: state.toneVoices && { ...state.toneVoices, recent: [...state.toneVoices.recent] } } as AppState
-    if (recordVoiceAnswers(probe, results)) setVoiceAdded(true)
+    if (recordVoiceAnswers(probe, voice, results)) setVoiceAdded(true)
     commit((s) => {
       recordTones(s, tones, p as number[])
       recordVoiceTones(s, voice, tones, p as number[])
-      recordVoiceAnswers(s, results)
+      recordVoiceAnswers(s, voice, results)
     })
+    if (tones.length === 1 && p[0] !== tones[0]) {
+      const c = contrastItem(w, p[0]!)
+      setContrast({ c, pick: p[0]! })
+      playContrast(w, c, voice)
+    }
     if (tones.every((x, k) => p[k] === x)) {
       setScore((s) => s + 1)
       const n = ++streakRun.current
@@ -858,7 +871,9 @@ function Tones({ state, commit, onDone }: { state: AppState; commit: Commit; onD
     } else streakRun.current = 0
   }
   const next = () => {
+    stop()
     setPicks([])
+    setContrast(undefined)
     if (i + 1 < items.length) setI(i + 1)
     else onDone()
   }
@@ -889,6 +904,7 @@ function Tones({ state, commit, onDone }: { state: AppState; commit: Commit; onD
         )}
         {done && <PlayButton k={voiceKey(w.id, voice)} text={w.hanzi} label="Hear it again" />}
       </div>
+      {contrast && done && <ToneContrast w={w} heard={tones[0]} pick={contrast.pick} contrast={contrast.c} voice={voice} />}
       {tones.map((tone, k) => (
         <div key={`${i}-${k}`} className="tone-group">
           {tones.length > 1 && <p className="tone-group-label">{k === 0 ? 'First syllable' : 'Second syllable'}</p>}
@@ -986,14 +1002,7 @@ function ToneLadder({ state, commit, onDone }: { state: AppState; commit: Commit
       // Hear the two side by side: what was played, then the tone you picked.
       const c = contrastItem(w, t)
       setContrast(c)
-      ;(async () => {
-        await sleep(300)
-        const p = play(voiceKey(w.id, voice), w.hanzi)
-        const e = epoch()
-        await p
-        await sleep(600)
-        if (e === epoch()) play(voiceKey(c.id, voice), c.hanzi)
-      })()
+      playContrast(w, c, voice)
     }
     if (up) {
       const nl = level + 1
@@ -1070,31 +1079,48 @@ function ToneLadder({ state, commit, onDone }: { state: AppState; commit: Commit
           )
         })}
       </div>
-      {contrast && pick !== undefined && (
-        <div className="tone-contrast">
-          <p className="hint">Hear them side by side:</p>
-          <div className="contrast-row">
-            <div className="contrast-item">
-              <small>You heard · {TONE_NAMES[heard - 1]}</small>
-              <span className="hz" lang="zh-CN">{w.hanzi}</span>
-              <Pinyin text={w.pinyin} />
-              <ToneContour tone={heard} />
-              <PlayButton k={voiceKey(w.id, voice)} text={w.hanzi} />
-            </div>
-            <div className="contrast-item">
-              <small>You picked · {TONE_NAMES[pick - 1]}</small>
-              <span className="hz" lang="zh-CN">{contrast.hanzi}</span>
-              <Pinyin text={contrast.pinyin} />
-              <ToneContour tone={pick} />
-              <PlayButton k={voiceKey(contrast.id, voice)} text={contrast.hanzi} />
-            </div>
-          </div>
-        </div>
-      )}
+      {contrast && pick !== undefined && <ToneContrast w={w} heard={heard} pick={pick} contrast={contrast} voice={voice} />}
     </div>
     {contrast && pick !== undefined && <div className="dock"><button className="btn primary wide" onClick={next}>Next</button></div>}
     </>
   )
+}
+
+/** After a miss: what was played beside the tone you picked, same voice. */
+function ToneContrast({ w, heard, pick, contrast, voice }: { w: Word; heard: number; pick: number; contrast: Word; voice: number }) {
+  return (
+    <div className="tone-contrast">
+      <p className="hint">Hear them side by side:</p>
+      <div className="contrast-row">
+        <div className="contrast-item">
+          <small>You heard · {TONE_NAMES[heard - 1]}</small>
+          <span className="hz" lang="zh-CN">{w.hanzi}</span>
+          <Pinyin text={w.pinyin} />
+          <ToneContour tone={heard} />
+          <PlayButton k={voiceKey(w.id, voice)} text={w.hanzi} />
+        </div>
+        <div className="contrast-item">
+          <small>You picked · {TONE_NAMES[pick - 1]}</small>
+          <span className="hz" lang="zh-CN">{contrast.hanzi}</span>
+          <Pinyin text={contrast.pinyin} />
+          <ToneContour tone={pick} />
+          <PlayButton k={voiceKey(contrast.id, voice)} text={contrast.hanzi} />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/** Play what was heard, then the contrast, in the same voice. */
+function playContrast(w: Word, c: Word, voice: number) {
+  ;(async () => {
+    await sleep(300)
+    const p = play(voiceKey(w.id, voice), w.hanzi)
+    const e = epoch()
+    await p
+    await sleep(600)
+    if (e === epoch()) play(voiceKey(c.id, voice), c.hanzi)
+  })()
 }
 
 /* ---------------- Easy listening (optional, outside the app) ---------------- */

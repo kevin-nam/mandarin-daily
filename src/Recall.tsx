@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { MORE_TIME, WORD_BY_ID, target, thinkFor, type Stage, type Word } from './data'
-import { epoch, play, sleep, stop } from './audio'
+import { epoch, play, sleep, stop, wordKey } from './audio'
 import { Icon } from './icons'
 import { Pinyin } from './Pinyin'
 import { flagMissed, introducedToday, logDay, speakStage, weakestItems, type AppState } from './store'
@@ -11,23 +11,32 @@ import { Burst, Countdown, PauseScreen, PlayButton, SpeakPrompt, SpokenAnswer, S
 type Commit = (fn: (s: AppState) => void) => void
 
 /** About 5 minutes; anything left is covered by tomorrow's review. */
-const RECALL_MINUTES = 6
+const RECALL_MINUTES = 7
 const WEAK = 4
+/** Seconds to think of a character's meaning. */
+const READ_THINK = 5
+
+interface Item { w: Word; stage: Stage; retry: boolean; read?: boolean }
+const thinkTime = (it: Item) => (it.read ? READ_THINK : thinkFor(target(it.w, it.stage).zh))
 
 /**
- * Quick recall, a few hours after the session (ideally before bed): today's new items, then the
- * weakest older ones, speaking first. Never graded, so it can't push anything further out;
+ * Quick recall, a few hours after the session (ideally before bed): first today's new words read
+ * (character → meaning: reading is the weak skill, and a new character's first review the next day was
+ * missed ~40% of the time), then today's new items and the weakest older ones said from memory.
+ * Reading goes first so the spoken answers, which show the characters, don't give it away. Never graded, so it can't push anything further out;
  * a miss moves the item to the front of tomorrow's review.
  */
 export default function Recall({ state, commit, onExit }: { state: AppState; commit: Commit; onExit: () => void }) {
   const [queue, setQueue] = useState(() => {
     const fresh = introducedToday(state)
     const ids = [...shuffle(fresh), ...weakestItems(state, WEAK, fresh)]
-    return ids.map((id) => ({ w: WORD_BY_ID.get(id)!, stage: speakStage(state, id), retry: false }))
+    const reads: Item[] = shuffle(fresh).map((id) => WORD_BY_ID.get(id)!).filter((w) => w.kind === 'word')
+      .map((w) => ({ w, stage: 'word', retry: false, read: true }))
+    return [...reads, ...ids.map((id): Item => ({ w: WORD_BY_ID.get(id)!, stage: speakStage(state, id), retry: false }))]
   })
   const [total] = useState(queue.length)
   const [phase, setPhase] = useState<'prompt' | 'answer'>('prompt')
-  const [countdown, setCountdown] = useState(() => (queue[0] ? thinkFor(target(queue[0].w, queue[0].stage).zh) : 0))
+  const [countdown, setCountdown] = useState(() => (queue[0] ? thinkTime(queue[0]) : 0))
   const [got, setGot] = useState(0)
   const [missed, setMissed] = useState<Word[]>([])
   const left = useRef(countdown)
@@ -39,9 +48,13 @@ export default function Recall({ state, commit, onExit }: { state: AppState; com
   const [extra, setExtra] = useState(0)
 
   /** Show the answer and play it twice. */
-  const reveal = (w: Word, stage: Stage) => {
+  const reveal = (it: Item) => {
     setPhase('answer')
-    const t = target(w, stage)
+    if (it.read) {
+      play(wordKey(it.w.id), it.w.hanzi)
+      return
+    }
+    const t = target(it.w, it.stage)
     ;(async () => {
       const p = play(t.key, t.zh)
       const e = epoch()
@@ -59,7 +72,7 @@ export default function Recall({ state, commit, onExit }: { state: AppState; com
       setCountdown(left.current)
       if (left.current <= 0) {
         clearInterval(t)
-        reveal(item.w, item.stage)
+        reveal(item)
       }
     }, 1000)
     return () => clearInterval(t)
@@ -106,7 +119,7 @@ export default function Recall({ state, commit, onExit }: { state: AppState; com
           <p className="done-stats">
             {missed.length === 0
               ? 'Everything came back. Sleep on it.'
-              : 'The ones you missed come first in tomorrow’s review:'}
+              : 'These come back in tomorrow’s review (the ones you couldn’t say come first):'}
           </p>
           {missed.length > 0 && (
             <ul className="panel list missed-list">
@@ -133,13 +146,14 @@ export default function Recall({ state, commit, onExit }: { state: AppState; com
     setTurn((n) => n + 1)
     if (ok) setGot((g) => g + (cur.retry ? 0 : 1))
     else if (!cur.retry) {
-      commit((s) => flagMissed(s, cur.w.id))
-      setMissed((m) => [...m, cur.w])
+      // A missed character's read card is already due tomorrow (new today); a missed spoken item moves up.
+      if (!cur.read) commit((s) => flagMissed(s, cur.w.id))
+      setMissed((m) => (m.some((x) => x.id === cur.w.id) ? m : [...m, cur.w]))
     }
     // A miss comes back once at the end; time's up ends the round.
     const next = timeUp ? [] : !ok && !cur.retry ? [...rest, { ...cur, retry: true }] : rest
     setQueue(next)
-    if (next[0]) setCountdown((left.current = thinkFor(target(next[0].w, next[0].stage).zh)))
+    if (next[0]) setCountdown((left.current = thinkTime(next[0])))
     setExtra(0)
     setPhase('prompt')
   }
@@ -149,14 +163,22 @@ export default function Recall({ state, commit, onExit }: { state: AppState; com
       {bar}
       <div className="stage turn" key={turn}>
         <StepHeader
-          title={item.retry ? 'Once more' : 'From memory'}
-          hint="Say it in Mandarin before the answer plays. Whispering counts. Nothing here changes your schedule."
+          title={item.retry ? 'Once more' : item.read ? 'Read it' : 'From memory'}
+          hint={item.read
+            ? 'What does it mean? Nothing here changes your schedule.'
+            : 'Say it in Mandarin before the answer plays. Whispering counts. Nothing here changes your schedule.'}
           right={<span className="num">{queue.length} left</span>}
         />
         <div className="center-col fill">
-          <SpeakPrompt w={item.w} stage={item.stage} />
+          {item.read ? <div className="hz prompt-hanzi word" lang="zh-CN">{item.w.hanzi}</div> : <SpeakPrompt w={item.w} stage={item.stage} />}
           {phase === 'prompt' ? (
-            <Countdown key={`${turn}-${extra}`} value={countdown} total={thinkFor(t.zh) + extra} paused={!!clock.paused} />
+            <Countdown key={`${turn}-${extra}`} value={countdown} total={thinkTime(item) + extra} paused={!!clock.paused} />
+          ) : item.read ? (
+            <div className="answer">
+              <Pinyin text={item.w.pinyin} className="answer-py" />
+              <div className="face-meaning">{item.w.en}</div>
+              <PlayButton k={wordKey(item.w.id)} text={item.w.hanzi} label="Again" />
+            </div>
           ) : (
             <div className="answer">
               <SpokenAnswer w={item.w} stage={item.stage} />
@@ -170,11 +192,11 @@ export default function Recall({ state, commit, onExit }: { state: AppState; com
         {phase === 'prompt' ? (
           <>
             <button className="btn wide" onClick={() => { setExtra((x) => x + MORE_TIME); setCountdown((left.current += MORE_TIME)) }}>More time</button>
-            <button className="btn wide" onClick={() => { left.current = 0; setCountdown(0); reveal(item.w, item.stage) }}>Show answer</button>
+            <button className="btn wide" onClick={() => { left.current = 0; setCountdown(0); reveal(item) }}>Show answer</button>
           </>
         ) : (
           <>
-            {!t.word && item.w.kind === 'word' && <p className="dock-note">Counts if you said {item.w.hanzi}, even if the rest of the sentence slipped.</p>}
+            {!item.read && !t.word && item.w.kind === 'word' && <p className="dock-note">Counts if you said {item.w.hanzi}, even if the rest of the sentence slipped.</p>}
             <button className="btn wide" onClick={() => mark(false)}>Missed it</button>
             <button className="btn primary wide" onClick={() => mark(true)}>Got it</button>
           </>

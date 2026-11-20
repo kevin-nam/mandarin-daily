@@ -35,6 +35,12 @@ Grades replayed from the two backups: 80 Good, 10 Hard, 1 Again, 1 Easy of 92. R
 - **Fit FSRS parameters to the review log** once there are ~1,000 logged reviews (about 3 weeks after 1.20). ts-fsrs has no optimizer; options: `@open-spaced-repetition/binding` (WASM), or fit offline from a backup and ship the parameters. Then drop the hand-set 85% schedulers.
 - **Easy from think time?** The log keeps time to Show answer; if fast Goods turn out to be as safe as Easy, grade them Easy automatically.
 
+## From the day-20 backup analysis (2026-11-20)
+Review log (347 reviews since day 15): Again rate read 34% (48/142, spread over many characters, half from words learned in the last week), listen 12% at 100% speed (target 15%), speak 6%, sentence 7%. Median think time read 3.9 s, speak 3.0 s. Tone mixed drill ~62% per syllable (57% day 15, 50% day 13). Built in 1.22: 18-min reviews, reading in the quick recall, tone drill changes.
+
+- **Tones: production, not just perception.** The learner finds tones hard and the drill moves slowly (~2–3 points a week). The app has no mic by design; a shadowing step with the pitch contour drawn over the model's could be done without recording anything (live pitch only). Revisit if per-syllable accuracy is under 70% on 2026-12-04.
+- **New-word pace vs reading.** If read misses stay above 30% after the quick-recall reading, try 4 words + 2 phrases (forecast: ~80 reviews/day instead of ~92).
+
 ## Grind mode (audio-only practice while gaming)
 Practise hands-free while playing something that doesn't need full attention. Home-screen button opens a screen with three loops over **already-studied** items (new material learns poorly under divided attention, Craik et al. 1996):
 

@@ -38,7 +38,7 @@ export interface AppState {
    */
   reviewLog?: [number, string, number, number?][]
   /** Tone drill voices: how many are in use (in TONE_VOICE_ORDER), and the last answers per syllable. */
-  toneVoices?: { n: number; recent: number[] }
+  toneVoices?: { n: number; recent: number[]; rule?: number }
 }
 
 // `newPhrases` and `known` were added later, so older days don't have them.
@@ -137,6 +137,8 @@ function revive(s: AppState): AppState {
     const k = cardKey(p.id, 'read')
     if (s.cards[k] && !phraseReadable(s, p.id) && s.cards[k].stability < 7) delete s.cards[k]
   }
+  // Voices added under the pooled rule (1.20) start over under the newest-voice rule.
+  if (s.toneVoices && s.toneVoices.rule !== 2) s.toneVoices = { n: 1, recent: [], rule: 2 }
   // Before the 4 am day start (1.21), a session finished between midnight and 4 am was logged under the
   // new date. It belongs to the evening before: merged into that day if it has a log (a session that
   // started before midnight was split across both), else moved there. In order, so a chain shifts back:
@@ -484,9 +486,14 @@ export const VOICE_WINDOW = 20
 export const VOICE_PASS = 0.75
 export const toneVoicesInUse = (s: AppState) => TONE_VOICE_ORDER.slice(0, s.toneVoices?.n ?? 1)
 
-/** Record mixed-drill syllables (1 right, 0 wrong); adds a voice when the window passes. Returns true if it did. */
-export function recordVoiceAnswers(s: AppState, results: number[]) {
-  const v = (s.toneVoices ??= { n: 1, recent: [] })
+/**
+ * Record mixed-drill syllables (1 right, 0 wrong). Only the newest voice's count: with all voices
+ * pooled, ~67% accuracy passed 75% windows by chance and all four voices were in within ~100
+ * syllables (day 20). Adds the next voice when the newest passes; returns true if it did.
+ */
+export function recordVoiceAnswers(s: AppState, voice: number, results: number[]) {
+  const v = (s.toneVoices ??= { n: 1, recent: [], rule: 2 })
+  if (voice !== TONE_VOICE_ORDER[v.n - 1]) return false
   v.recent = [...v.recent, ...results].slice(-VOICE_WINDOW)
   if (v.n < TONE_VOICE_ORDER.length && v.recent.length >= VOICE_WINDOW && v.recent.reduce((a, b) => a + b, 0) / VOICE_WINDOW >= VOICE_PASS) {
     v.n++

@@ -68,7 +68,7 @@ export default function App() {
   const learned = wordsLearned(state)
   const phrases = phrasesLearned(state)
   const startedToday = !!state.history[today()]
-  // Finishing the session ends the day; anything left (past the 12-minute review cap) is in Extra practice.
+  // Finishing the session ends the day; anything left (past the 18-minute review cap) is in Extra practice.
   const doneToday = startedToday && (!!state.history[today()]?.finishedAt || (due === 0 && newLeft === 0))
   const listening = listeningToday()
   const days = streak(state)
@@ -100,7 +100,7 @@ export default function App() {
   } else {
     headline = `${work.charAt(0).toUpperCase()}${work.slice(1)}`
     sub = due > 50
-      ? `Reviews stop at 12 minutes, most at risk first; the rest wait for tomorrow.`
+      ? `Reviews stop at 18 minutes, most at risk first; the rest wait for tomorrow.`
       : `About ${state.settings.sessionMinutes} minutes, plus optional listening.`
   }
 
@@ -173,8 +173,8 @@ export default function App() {
                     {recalled
                       ? 'Done today.'
                       : recallReady
-                      ? `Say today’s ${plural(freshCount, 'new item')} from memory, plus a few weak ones. Best before bed.`
-                      : `Say today’s ${plural(freshCount, 'new item')} from memory. Best after ${recallFrom!.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' })}, ideally before bed.`}
+                      ? `Read and say today’s ${plural(freshCount, 'new item')} from memory, plus a few weak ones. Best before bed.`
+                      : `Read and say today’s ${plural(freshCount, 'new item')} from memory. Best after ${recallFrom!.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' })}, ideally before bed.`}
                   </small>
                 </span>
                 {recalled ? <Icon name="check" size={18} /> : <Icon name="chevron" size={18} />}
