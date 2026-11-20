@@ -22,17 +22,20 @@ const thinkTime = (it: Item) => (it.read ? READ_THINK : thinkFor(target(it.w, it
 /**
  * Quick recall, a few hours after the session (ideally before bed): first today's new words read
  * (character → meaning: reading is the weak skill, and a new character's first review the next day was
- * missed ~40% of the time), then today's new items and the weakest older ones said from memory.
- * Reading goes first so the spoken answers, which show the characters, don't give it away. Never graded, so it can't push anything further out;
- * a miss moves the item to the front of tomorrow's review.
+ * missed ~40% of the time), then the weakest older items and today's new ones said from memory.
+ * Reading goes first so the spoken answers, which show the characters, don't give it away; the
+ * weakest older items go between the two passes. Never graded; a missed spoken item moves to the
+ * front of tomorrow's review.
  */
 export default function Recall({ state, commit, onExit }: { state: AppState; commit: Commit; onExit: () => void }) {
   const [queue, setQueue] = useState(() => {
-    const fresh = introducedToday(state)
-    const ids = [...shuffle(fresh), ...weakestItems(state, WEAK, fresh)]
-    const reads: Item[] = shuffle(fresh).map((id) => WORD_BY_ID.get(id)!).filter((w) => w.kind === 'word')
+    // One order for both passes, with the older weak items between them, so each new word's read and
+    // spoken turns are as far apart as possible (a read answer shows the pinyin and meaning).
+    const fresh = shuffle(introducedToday(state))
+    const say = (id: string): Item => ({ w: WORD_BY_ID.get(id)!, stage: speakStage(state, id), retry: false })
+    const reads: Item[] = fresh.map((id) => WORD_BY_ID.get(id)!).filter((w) => w.kind === 'word')
       .map((w) => ({ w, stage: 'word', retry: false, read: true }))
-    return [...reads, ...ids.map((id): Item => ({ w: WORD_BY_ID.get(id)!, stage: speakStage(state, id), retry: false }))]
+    return [...reads, ...weakestItems(state, WEAK, fresh).map(say), ...fresh.map(say)]
   })
   const [total] = useState(queue.length)
   const [phase, setPhase] = useState<'prompt' | 'answer'>('prompt')

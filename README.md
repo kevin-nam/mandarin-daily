@@ -2,7 +2,7 @@
 
 A personal, offline-first PWA for daily Mandarin listening and speaking practice, aimed at **new HSK 1 (2026, 294 words)** plus 58 travel and conversation phrases. Built for iPhone: no microphone, no backend, no database, no paid APIs.
 
-**Version 1.23** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
+**Version 1.24** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
 
 ## Who it's for
 
@@ -53,6 +53,11 @@ At 5 new words/day you cover all of HSK 1 in about 9 weeks, faster if you mark w
 - **Difficulty ceiling** (1.18). FSRS difficulty is capped at 8 (of 10). Repeated misses had pushed 24 read cards to 9.4–10, where a correct answer barely grows stability, so 也 们 喂 很 呢 请 吗 叫 came back every few days with no way out. Simulated from 也's state, six Goods in a row now give intervals of 3, 5, 11, 23, 45 days instead of 3, 3, 3, 4, 6; a miss still sends it back.
 - **Reading is the gap** (day 3: 10 of 23 read cards failed vs 0 speak and 0 listen; basic characters like 好 是 很 吗 呢 也). The learner doesn't recognise the characters, and finds tones very hard. So read cards ask for the meaning only (tones don't count), and words failed on a read card come back in the Speak drill as **Read** items (every third item, up to 6): 字 → 4-second try → pinyin, meaning, audio and the character breakdown; 3 hits to retire, ungraded like the rest of the drill.
 - **Answer screens** (1.14 audit). Each card's answer leads with what helps for that card: a read card shows *Don't mix up* and how the characters are built right under the character, then the sentence; a lesson shows how it's built before the sentence (reading is the weak skill). Phrase answers drop the "Not learned yet" list (phrase examples are context; 5 glosses was clutter). Grammar words gloss as what they do (个 "measure word", 吗 "yes/no question"), not dictionary notes. Grade notes are one line. The listen card says up front "You'll grade the word it's built around."
+- **Drill and quick recall fixes** (1.24, from an audit and click-through runs on the day-20 backup):
+  - *The Speak drill brings back what you missed saying or hearing in today's reviews* (before, only read misses came back). They go in among today's new items (two new, one missed) and retire after two recalls: the drill works on the first few items until they retire, so items late in the list were cut off by the 6-minute cap (the run-through reached the misses after ~20 and ~35 turns; now within ~17).
+  - *A resumed session or Extra practice drills today's new items*: with no lesson that time, the drill used to fall back to random recent words.
+  - *A new word's read card still comes first the next day when its speak card was flagged in the quick recall*; the flagged speak card follows the day after, still first in the queue.
+  - *Quick recall order*: today's words read, then the weakest older items, then today's words said, in the same order, so each word's read and spoken turns are as far apart as possible (the read answer shows the pinyin and meaning).
 - **Scheduling fixes** (1.23, from an audit against the day-20 review log):
   - *A missed card shown again in the session is practice, not a second grade* (Missed it / Got it, at most twice). Graded again, a Good minutes after Again counted as a same-day success and set the card 3 days out instead of 1 (48 of 347 reviews); Again twice counted two lapses and pushed difficulty up. On load, cards still waiting from such a double grade come back the day after the miss (27 in the day-20 backup).
   - *Elapsed days are counted in app days* (4 am to 4 am, local). ts-fsrs counts UTC calendar dates, and evening sessions in New York fall around UTC midnight, so one day's gap could count as 0 or 2 (all 44 multi-day gaps in the log counted one day too many).
@@ -200,6 +205,11 @@ src/App.tsx         home + settings
 - New features should respect the profile above: whisper-friendly, no mic, no writing practice, offline-first.
 
 ## Changelog
+
+**1.24** (2026-11-20)
+- The Speak drill now brings back words you missed saying or hearing in today's reviews, early enough to fit in the drill.
+- Resuming a session or doing Extra practice drills today's new words, not random older ones.
+- Quick recall puts more space between reading a new word and saying it.
 
 **1.23** (2026-11-20)
 - A card you miss comes back later in the session for practice only, and always returns tomorrow. Before, getting it right a few cards later pushed it out 3 days. Cards affected by this come back now.

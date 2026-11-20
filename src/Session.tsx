@@ -6,7 +6,7 @@ import {
 } from './data'
 import { epoch, lineKey, play, sleep, stop, wordKey } from './audio'
 import {
-  byRisk, dueKeys, grade, introduce, logDay, markKnown, newQuota, nextNewItems, parseKey, pickDialogue, recordDialogue, Rating,
+  byRisk, dueKeys, grade, introduce, introducedToday, logDay, markKnown, newQuota, nextNewItems, parseKey, pickDialogue, recordDialogue, Rating,
   LADDER_PASS, LADDER_WINDOW, TONE_LEVELS, TONE_NAMES, ladderName, ladderRecent, ladderStep, readLapses, recordLadder, recordTones, recordVoiceAnswers, recordVoiceTones, speakStage, toneAccuracy, toneVoicesInUse, toneLevel, streak, toneErrors, toneFocus, trickyReads, untaughtIn, type AppState,
 } from './store'
 import { CharParts } from './CharParts'
@@ -37,6 +37,8 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
   const [learnedNow, setLearnedNow] = useState<string[]>([])
   // Characters failed on a read card this session, read again in the drill.
   const [missedReads, setMissedReads] = useState<string[]>([])
+  // Items missed on a speak or listen card this session, said again in the drill.
+  const [missedSays, setMissedSays] = useState<string[]>([])
   const [knownNow, setKnownNow] = useState(0)
   // For the end screen: how the reviews went, and where the tone ladder started today.
   const [reviewed, setReviewed] = useState({ n: 0, missed: 0 })
@@ -103,11 +105,12 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
 
       {step === 'reviews' && <Reviews state={state} commit={commit} onDone={next}
         onGraded={(missed) => setReviewed((r) => ({ n: r.n + 1, missed: r.missed + (missed ? 1 : 0) }))}
-        onMissRead={(id) => setMissedReads((m) => (m.includes(id) ? m : [...m, id]))} />}
+        onMissRead={(id) => setMissedReads((m) => (m.includes(id) ? m : [...m, id]))}
+        onMissSay={(id) => setMissedSays((m) => (m.includes(id) ? m : [...m, id]))} />}
       {step === 'new' && (
         <NewWords state={state} commit={commit} onDone={(ids, known) => { setLearnedNow(ids); setKnownNow(known); next() }} />
       )}
-      {step === 'drill' && <Drill state={state} learnedNow={learnedNow} missedReads={missedReads} onDone={next} />}
+      {step === 'drill' && <Drill state={state} learnedNow={learnedNow} missedReads={missedReads} missedSays={missedSays} onDone={next} />}
       {step === 'dialogue' && <DialogueStep state={state} commit={commit} onDone={next} />}
       {step === 'tones' && (toneLevel(state) < TONE_LEVELS.length
         ? <ToneLadder state={state} commit={commit} onDone={next} />
@@ -165,8 +168,9 @@ function reviewQueue(state: AppState) {
   return out
 }
 
-function Reviews({ state, commit, onDone, onGraded, onMissRead }: {
-  state: AppState; commit: Commit; onDone: () => void; onGraded: (missed: boolean) => void; onMissRead: (id: string) => void
+function Reviews({ state, commit, onDone, onGraded, onMissRead, onMissSay }: {
+  state: AppState; commit: Commit; onDone: () => void; onGraded: (missed: boolean) => void
+  onMissRead: (id: string) => void; onMissSay: (id: string) => void
 }) {
   const [queue, setQueue] = useState(() => reviewQueue(state))
   const [revealed, setRevealed] = useState(false)
@@ -230,6 +234,7 @@ function Reviews({ state, commit, onDone, onGraded, onMissRead }: {
     })
     onGraded(r === Rating.Again)
     if (r === Rating.Again && kind === 'read') onMissRead(wordId)
+    if (r === Rating.Again && (kind === 'speak' || kind === 'listen')) onMissSay(wordId)
     if (r === Rating.Again) {
       run.current = 0
       fire('again')
@@ -478,14 +483,29 @@ const READ_SECONDS = 4
 const MAX_READS = 8
 const thinkSeconds = (it: DrillItem) => (it.read ? READ_SECONDS : thinkFor(target(it.w, it.stage).zh))
 
-function Drill({ state, learnedNow, missedReads, onDone }: {
-  state: AppState; learnedNow: string[]; missedReads: string[]; onDone: () => void
+function Drill({ state, learnedNow, missedReads, missedSays, onDone }: {
+  state: AppState; learnedNow: string[]; missedReads: string[]; missedSays: string[]; onDone: () => void
 }) {
   const known = useMemo(() => knownChars(state.introduced), [state.introduced])
   const [queue, setQueue] = useState<DrillItem[]>(() => {
-    const recent = state.introduced.slice(-30).filter((id) => !learnedNow.includes(id) && WORD_BY_ID.has(id))
-    const ids = [...learnedNow.slice(0, 12), ...shuffle(recent).slice(0, Math.max(3, 8 - learnedNow.length))]
-    const speak: DrillItem[] = ids.map((id) => ({ w: WORD_BY_ID.get(id)!, hits: 0, stage: speakStage(state, id), retire: RETIRE_AFTER }))
+    // Today's new items, also when the session is resumed or in Extra practice (no lesson this time:
+    // the drill used to fall back to random recent words and skip today's).
+    const fresh = learnedNow.length ? learnedNow : introducedToday(state)
+    // Then what you missed saying or hearing in today's reviews (before 1.24 only read misses came
+    // back here), then a few recent words to fill up.
+    const missed = missedSays.filter((id) => !fresh.includes(id) && !missedReads.includes(id) && WORD_BY_ID.has(id)).slice(0, 6)
+    const recent = state.introduced.slice(-30)
+      .filter((id) => !fresh.includes(id) && !missed.includes(id) && !missedReads.includes(id) && WORD_BY_ID.has(id))
+    // The drill works on the first few items until they retire, so whatever comes late in the list is
+    // often cut off by the time cap (a run-through of the day-20 backup reached today's misses after
+    // ~20 and ~35 turns, about what 6 minutes holds). Misses go in among the new items instead: two
+    // new, one missed. They're known words being refreshed, so two recalls retire them.
+    const item = (id: string, retire: number): DrillItem => ({ w: WORD_BY_ID.get(id)!, hits: 0, stage: speakStage(state, id), retire })
+    const newOnes = fresh.slice(0, 12).map((id) => item(id, RETIRE_AFTER))
+    const missedOnes = missed.map((id) => item(id, RETIRE_LIKE))
+    const speak: DrillItem[] = []
+    while (newOnes.length || missedOnes.length) speak.push(...newOnes.splice(0, 2), ...missedOnes.splice(0, 1))
+    speak.push(...shuffle(recent).slice(0, Math.max(3, 8 - fresh.length - missed.length)).map((id) => item(id, RETIRE_AFTER)))
     const reads: DrillItem[] = []
     const taken = new Set<string>()
     for (const id of [...missedReads, ...trickyReads(state)]) {

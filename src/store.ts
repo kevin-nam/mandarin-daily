@@ -264,8 +264,8 @@ function reviewedSince(s: AppState, since: Date) {
 }
 
 /**
- * Which of an item's due cards goes today (lowest first): a speak card flagged in the quick recall,
- * then never-reviewed cards (reading first, the weak skill, then sentence, speaking, listening), then
+ * Which of an item's due cards goes today (lowest first): a never-reviewed read card, a speak card
+ * flagged in the quick recall, other never-reviewed cards (sentence, speaking, listening), then
  * the one you're most likely to have forgotten. Before 1.23 the most overdue went first, ties in card
  * order, so a new word's listen card came first, then speak, and its read card only on the third day:
  * first read reviews were missed 21 of 36 times (listen 1, speak 1).
@@ -273,8 +273,11 @@ function reviewedSince(s: AppState, since: Date) {
 const NEW_ORDER: CardKind[] = ['read', 'sentence', 'speak', 'listen']
 function siblingRank(s: AppState, key: string, now: Date) {
   const { wordId, kind } = parseKey(key)
-  if (kind === 'speak' && s.flagged?.[wordId]) return -10
   const r = recallChance(s.cards[key], now)
+  // A new word missed in the quick recall still reads first (its first read review is the one most
+  // often missed); its flagged speak card goes the next day, still first in the queue.
+  if (r === null && kind === 'read') return -20
+  if (kind === 'speak' && s.flagged?.[wordId]) return -10
   return r === null ? -5 + NEW_ORDER.indexOf(kind) * 0.1 : r
 }
 
