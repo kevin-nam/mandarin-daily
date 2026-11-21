@@ -6,7 +6,7 @@ import {
 } from './data'
 import { epoch, lineKey, play, sleep, stop, wordKey } from './audio'
 import {
-  byRisk, dueKeys, grade, introduce, introducedToday, logDay, markKnown, newQuota, nextNewItems, parseKey, pickDialogue, recordDialogue, Rating,
+  byRisk, dueKeys, grade, introduce, introducedToday, logDay, markKnown, missedToday, recordDrilled, today, weakestItems, newQuota, nextNewItems, parseKey, pickDialogue, recordDialogue, Rating,
   LADDER_PASS, LADDER_WINDOW, TONE_LEVELS, TONE_NAMES, ladderName, ladderRecent, ladderStep, readLapses, recordLadder, recordTones, recordVoiceAnswers, recordVoiceTones, speakStage, toneAccuracy, toneVoicesInUse, toneLevel, streak, toneErrors, toneFocus, trickyReads, untaughtIn, type AppState,
 } from './store'
 import { CharParts } from './CharParts'
@@ -110,7 +110,7 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
       {step === 'new' && (
         <NewWords state={state} commit={commit} onDone={(ids, known) => { setLearnedNow(ids); setKnownNow(known); next() }} />
       )}
-      {step === 'drill' && <Drill state={state} learnedNow={learnedNow} missedReads={missedReads} missedSays={missedSays} onDone={next} />}
+      {step === 'drill' && <Drill state={state} commit={commit} learnedNow={learnedNow} missedReads={missedReads} missedSays={missedSays} onDone={next} />}
       {step === 'dialogue' && <DialogueStep state={state} commit={commit} onDone={next} />}
       {step === 'tones' && (toneLevel(state) < TONE_LEVELS.length
         ? <ToneLadder state={state} commit={commit} onDone={next} />
@@ -483,19 +483,27 @@ const READ_SECONDS = 4
 const MAX_READS = 8
 const thinkSeconds = (it: DrillItem) => (it.read ? READ_SECONDS : thinkFor(target(it.w, it.stage).zh))
 
-function Drill({ state, learnedNow, missedReads, missedSays, onDone }: {
-  state: AppState; learnedNow: string[]; missedReads: string[]; missedSays: string[]; onDone: () => void
+function Drill({ state, commit, learnedNow, missedReads: missedReadsNow, missedSays: missedSaysNow, onDone }: {
+  state: AppState; commit: Commit; learnedNow: string[]; missedReads: string[]; missedSays: string[]; onDone: () => void
 }) {
   const known = useMemo(() => knownChars(state.introduced), [state.introduced])
   const [queue, setQueue] = useState<DrillItem[]>(() => {
-    // Today's new items, also when the session is resumed or in Extra practice (no lesson this time:
-    // the drill used to fall back to random recent words and skip today's).
-    const fresh = learnedNow.length ? learnedNow : introducedToday(state)
+    // Another round today (Extra practice) skips what earlier rounds covered: it used to rebuild the
+    // same list (today's new words, the same misses and tricky characters), so it was the same drill.
+    const done = new Set(state.history[today()]?.drilled ?? [])
+    const fresh0 = done.size ? [] : learnedNow.length ? learnedNow : introducedToday(state)
+    // Today's misses from the review log, so they carry over to a resumed session or Extra practice.
+    const logged = missedToday(state)
+    const missedReads = [...new Set([...missedReadsNow, ...logged.reads])].filter((id) => !done.has(id))
+    const missedSays = [...new Set([...missedSaysNow, ...logged.says])].filter((id) => !done.has(id))
+    const fresh = fresh0.filter((id) => WORD_BY_ID.has(id))
     // Then what you missed saying or hearing in today's reviews (before 1.24 only read misses came
-    // back here), then a few recent words to fill up.
+    // back here), then fill-ups: recent words in the first round; in later rounds, the weakest
+    // spoken items not drilled yet today.
     const missed = missedSays.filter((id) => !fresh.includes(id) && !missedReads.includes(id) && WORD_BY_ID.has(id)).slice(0, 6)
-    const recent = state.introduced.slice(-30)
-      .filter((id) => !fresh.includes(id) && !missed.includes(id) && !missedReads.includes(id) && WORD_BY_ID.has(id))
+    const free = (id: string) => !fresh.includes(id) && !missed.includes(id) && !missedReads.includes(id) && !done.has(id) && WORD_BY_ID.has(id)
+    const weak = weakestItems(state, 16, [...done]).filter(free)
+    const recent = !done.size ? state.introduced.slice(-30).filter(free) : weak.length >= 3 ? weak : state.introduced.filter(free)
     // The drill works on the first few items until they retire, so whatever comes late in the list is
     // often cut off by the time cap (a run-through of the day-20 backup reached today's misses after
     // ~20 and ~35 turns, about what 6 minutes holds). Misses go in among the new items instead: two
@@ -508,7 +516,7 @@ function Drill({ state, learnedNow, missedReads, missedSays, onDone }: {
     speak.push(...shuffle(recent).slice(0, Math.max(3, 8 - fresh.length - missed.length)).map((id) => item(id, RETIRE_AFTER)))
     const reads: DrillItem[] = []
     const taken = new Set<string>()
-    for (const id of [...missedReads, ...trickyReads(state)]) {
+    for (const id of [...missedReads, ...trickyReads(state).filter((id) => !done.has(id))]) {
       if (taken.has(id) || reads.length >= MAX_READS) continue
       const w = WORD_BY_ID.get(id)!
       taken.add(id)
@@ -567,6 +575,7 @@ function Drill({ state, learnedNow, missedReads, missedSays, onDone }: {
 
   const mark = (ok: boolean) => {
     stop()
+    commit((s) => recordDrilled(s, [item.w.id]))
     const timeUp = clock.active() - start > DRILL_MINUTES * 60 * 1000
     const next = (() => {
       const [cur, ...rest] = queue

@@ -46,6 +46,8 @@ export interface DayLog {
   reviews: number; newWords: number; newPhrases?: number; known?: number; minutes: number; listened?: number
   /** When the session was finished (ISO), and how many items the quick recall covered. */
   finishedAt?: string; recalled?: number
+  /** Items the Speak drill covered today, so another round (Extra practice) picks different ones. */
+  drilled?: string[]
 }
 
 const KEY = 'mandarin-daily:v1'
@@ -407,6 +409,24 @@ export function introducedToday(s: AppState, now = new Date()) {
     const c = s.cards[cardKey(id, 'speak')]
     return c && c.reps === 0 && +c.due === tomorrow && WORD_BY_ID.has(id)
   })
+}
+
+/** Items missed (Again) in today's reviews, from the review log: read and sentence cards, and the rest. */
+export function missedToday(s: AppState, now = new Date()) {
+  const from = +startOfDay(now)
+  const reads = new Set<string>()
+  const says = new Set<string>()
+  for (const [t, key, r] of s.reviewLog ?? []) {
+    if (t < from || r !== Rating.Again) continue
+    const { wordId, kind } = parseKey(key)
+    ;(kind === 'read' || kind === 'sentence' ? reads : says).add(wordId)
+  }
+  return { reads: [...reads], says: [...says] }
+}
+
+export function recordDrilled(s: AppState, ids: string[]) {
+  const d = (s.history[today()] ??= { reviews: 0, newWords: 0, minutes: 0 })
+  d.drilled = [...new Set([...(d.drilled ?? []), ...ids])]
 }
 
 /** Old answers fade: past this many per tone, all counts are halved so recent sessions weigh most. */

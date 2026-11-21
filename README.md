@@ -2,7 +2,7 @@
 
 A personal, offline-first PWA for daily Mandarin listening and speaking practice, aimed at **new HSK 1 (2026, 294 words)** plus 58 travel and conversation phrases. Built for iPhone: no microphone, no backend, no database, no paid APIs.
 
-**Version 1.24** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
+**Version 1.25** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
 
 ## Who it's for
 
@@ -53,6 +53,7 @@ At 5 new words/day you cover all of HSK 1 in about 9 weeks, faster if you mark w
 - **Difficulty ceiling** (1.18). FSRS difficulty is capped at 8 (of 10). Repeated misses had pushed 24 read cards to 9.4–10, where a correct answer barely grows stability, so 也 们 喂 很 呢 请 吗 叫 came back every few days with no way out. Simulated from 也's state, six Goods in a row now give intervals of 3, 5, 11, 23, 45 days instead of 3, 3, 3, 4, 6; a miss still sends it back.
 - **Reading is the gap** (day 3: 10 of 23 read cards failed vs 0 speak and 0 listen; basic characters like 好 是 很 吗 呢 也). The learner doesn't recognise the characters, and finds tones very hard. So read cards ask for the meaning only (tones don't count), and words failed on a read card come back in the Speak drill as **Read** items (every third item, up to 6): 字 → 4-second try → pinyin, meaning, audio and the character breakdown; 3 hits to retire, ungraded like the rest of the drill.
 - **Answer screens** (1.14 audit). Each card's answer leads with what helps for that card: a read card shows *Don't mix up* and how the characters are built right under the character, then the sentence; a lesson shows how it's built before the sentence (reading is the weak skill). Phrase answers drop the "Not learned yet" list (phrase examples are context; 5 glosses was clutter). Grammar words gloss as what they do (个 "measure word", 吗 "yes/no question"), not dictionary notes. Grade notes are one line. The listen card says up front "You'll grade the word it's built around."
+- **Extra practice varies** (1.25). The drill records what it covered today (`drilled` in the day's log); another round skips those and takes today's remaining misses, then the weakest spoken items not drilled yet, and tricky characters not done yet. Today's misses come from the review log, so they also carry over to a resumed session. Before, every round rebuilt the same list (the learner: "it showed the same cards as the first practice"). Dialogues already rotate and tone items are random.
 - **Drill and quick recall fixes** (1.24, from an audit and click-through runs on the day-20 backup):
   - *The Speak drill brings back what you missed saying or hearing in today's reviews* (before, only read misses came back). They go in among today's new items (two new, one missed) and retire after two recalls: the drill works on the first few items until they retire, so items late in the list were cut off by the 6-minute cap (the run-through reached the misses after ~20 and ~35 turns; now within ~17).
   - *A resumed session or Extra practice drills today's new items*: with no lesson that time, the drill used to fall back to random recent words.
@@ -205,6 +206,9 @@ src/App.tsx         home + settings
 - New features should respect the profile above: whisper-friendly, no mic, no writing practice, offline-first.
 
 ## Changelog
+
+**1.25** (2026-11-21)
+- Extra practice a second (or third) time drills different words: the weakest ones you haven't drilled yet today.
 
 **1.24** (2026-11-20)
 - The Speak drill now brings back words you missed saying or hearing in today's reviews, early enough to fit in the drill.
