@@ -694,19 +694,22 @@ details.char-parts:not([open]) { padding-bottom: 10px; }
 .empty-line { padding: 20px 16px; text-align: center; }
 
 /* ---------- Motion ---------- */
-/* Each new card slides in from the right, its parts a beat apart; answers bleed in like ink. */
-.stage.turn > * { animation-name: turn-in; animation-duration: 300ms; }
-.stage > :nth-child(2) { animation-delay: 40ms; }
-.stage > :nth-child(3) { animation-delay: 80ms; }
-.stage > :nth-child(4) { animation-delay: 120ms; }
-@keyframes turn-in { from { opacity: 0; transform: translateX(18px); } }
-.stage > .word-face, .answer { animation: ink-in 440ms var(--ease) both; }
-.word-face > * { animation: ink-in 440ms var(--ease) both; }
-.word-face > :nth-child(2) { animation-delay: 60ms; }
-.word-face > :nth-child(3) { animation-delay: 110ms; }
-.word-face > :nth-child(4) { animation-delay: 150ms; }
-.word-face > :nth-child(5) { animation-delay: 220ms; }
-@keyframes ink-in { from { opacity: 0; filter: blur(6px); transform: scale(0.985); } }
+/* Each new card slides in from the right, its parts a beat apart; answers bleed in like ink.
+   Kept short: a 440 ms blurred fade with up to 220 ms of stagger made the answer look slow to come,
+   so people tapped Show answer again and the second tap landed on a grade (1.27). No blur filter:
+   it's costly on phones. */
+.stage.turn > * { animation-name: turn-in; animation-duration: 200ms; }
+.stage > :nth-child(2) { animation-delay: 20ms; }
+.stage > :nth-child(3) { animation-delay: 40ms; }
+.stage > :nth-child(4) { animation-delay: 60ms; }
+@keyframes turn-in { from { opacity: 0; transform: translateX(12px); } }
+.stage > .word-face, .answer { animation: ink-in 180ms var(--ease) both; }
+.word-face > * { animation: ink-in 180ms var(--ease) both; }
+.word-face > :nth-child(2) { animation-delay: 20ms; }
+.word-face > :nth-child(3) { animation-delay: 40ms; }
+.word-face > :nth-child(4) { animation-delay: 60ms; }
+.word-face > :nth-child(5) { animation-delay: 80ms; }
+@keyframes ink-in { from { opacity: 0; transform: translateY(3px); } }
 @keyframes pop { 40% { transform: scale(1.06); } }
 @keyframes tick { from { opacity: 0; transform: translateY(-35%) scale(1.25); } }
 @keyframes tick-last { 0% { opacity: 0; transform: scale(1.5); } 60% { opacity: 1; } }

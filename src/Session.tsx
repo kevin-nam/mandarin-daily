@@ -132,7 +132,7 @@ export default function Session({ state, commit, onExit, mode = 'full' }: { stat
         {step === 'done' ? (
           <span className="timer num" aria-label={`Time ${mm}`}>{mm}</span>
         ) : (
-          <button className={`timer num ${over ? 'over' : ''}`} onClick={() => clock.pause()} aria-label={`Pause. Time ${mm}`}>
+          <button className={`timer num ${over ? 'over' : ''}`} data-tap-free onClick={() => clock.pause()} aria-label={`Pause. Time ${mm}`}>
             <Icon name="pause" size={18} />{mm}
           </button>
         )}
