@@ -13,7 +13,7 @@ import { LISTEN_MINUTES, listeningToday } from './listening'
 import { applyTheme, type Theme } from './theme'
 import { Week } from './Week'
 import {
-  appDate, bestStreak, carriedOver, dueKeys, introducedToday, exportState, importState, load, logDay, newQuota, phrasesLearned, save, speedSuggestion, streak,
+  SIBLING_GAP_HOURS, appDate, bestStreak, carriedOver, heldBack, dueKeys, introducedToday, exportState, importState, load, logDay, newQuota, phrasesLearned, save, speedSuggestion, streak,
   today, wordsLearned, type AppState,
 } from './store'
 import { VERSION } from './updates'
@@ -36,6 +36,16 @@ export default function App() {
   const [audioReady, setAudioReady] = useState(false)
   // Set when a session just ended, so today's seal stamps in once.
   const [justFinished, setJustFinished] = useState(false)
+  // Home depends on the clock (held-back reviews freeing up, the quick recall, the 4 am day start):
+  // redraw every minute and when the app comes back to the foreground.
+  const [, setTick] = useState(0)
+  useEffect(() => {
+    const tick = () => setTick((n) => n + 1)
+    const t = setInterval(tick, 60000)
+    const onVisible = () => document.visibilityState === 'visible' && tick()
+    document.addEventListener('visibilitychange', onVisible)
+    return () => { clearInterval(t); document.removeEventListener('visibilitychange', onVisible) }
+  }, [])
   const updates = useUpdates()
 
   useEffect(() => {
@@ -85,8 +95,11 @@ export default function App() {
   const freshCount = introducedToday(state).length
   const start = (m: SessionMode = 'full') => { setMode(m); setScreen('session') }
   // Reviews still due after today's session (past its time limit): cleared on their own, no limit.
-  const leftover = doneToday ? due : 0
+  // Includes cards held back earlier today (one card per word a session) once 3 hours have passed.
+  const leftover = doneToday ? dueKeys(state, undefined, SIBLING_GAP_HOURS).length : 0
   const clearMinutes = Math.max(1, Math.round((leftover * 11) / 60)) // ~11 s a review (day-20 log)
+  const waiting = doneToday ? heldBack(state) : { items: 0, at: undefined }
+  const waitText = waiting.at && `${plural(waiting.items, 'more word')} from ${waiting.at.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' })}`
   const recallMain = freshCount > 0 && recallReady && !recalled
 
   // The one question this screen answers: what is today's practice?
@@ -96,7 +109,9 @@ export default function App() {
   if (doneToday) {
     headline = 'Done for today'
     sub = leftover > 0
-      ? `${plural(leftover, 'review')} left over: clear them now, or they wait for tomorrow.`
+      ? `${plural(leftover, 'review')} left over: clear them now, or they wait for tomorrow.${waitText ? ` (${waitText}.)` : ''}`
+      : waitText
+      ? `Reviews held back so a word’s cards don’t give each other away: ${waitText}, or tomorrow.`
       : 'Next session tomorrow, after a night’s sleep: that’s when today’s words settle in.'
   } else if (state.introduced.length === 0) {
     headline = `Your first ${plural(newLeft, 'word')}`

@@ -291,8 +291,10 @@ function siblingRank(s: AppState, key: string, now: Date) {
  *   and character, so its read card right after tests nothing. Which sibling goes: siblingRank. A held
  *   back card's recall chance keeps falling, so siblings take turns.
  */
-export function dueKeys(s: AppState, now = new Date()) {
-  const done = reviewedSince(s, startOfDay(now))
+export function dueKeys(s: AppState, now = new Date(), siblingGapHours?: number) {
+  // With a gap (Clear reviews), a held-back card is free once its item's last review is that long ago.
+  const since = siblingGapHours === undefined ? startOfDay(now) : new Date(Math.max(+startOfDay(now), +now - siblingGapHours * 3600000))
+  const done = reviewedSince(s, since)
   const cutoff = startOfDay(now, 1)
   const due = Object.entries(s.cards)
     .filter(([k, c]) => c.due < cutoff && WORD_BY_ID.has(parseKey(k).wordId) && !done.has(parseKey(k).wordId))
@@ -301,6 +303,33 @@ export function dueKeys(s: AppState, now = new Date()) {
   return due.filter(([k]) => !picked.has(parseKey(k).wordId) && !!picked.add(parseKey(k).wordId))
     .sort((a, b) => +a[1].due - +b[1].due)
     .map(([k]) => k)
+}
+
+/**
+ * Clear reviews takes cards held back today (one card per word a day) once SIBLING_GAP_HOURS have
+ * passed since another card of the word: right after seeing a word, its other cards are answered from
+ * short-term memory (easy, and FSRS then spaces them too far), but that fades over hours. Day 21: 39
+ * cards held back, 46 more expected the next day, building up faster than sessions cleared them.
+ */
+export const SIBLING_GAP_HOURS = 3
+
+/** Cards held back today that aren't free yet, and when the first of them will be. */
+export function heldBack(s: AppState, now = new Date()) {
+  const free = new Set(dueKeys(s, now, SIBLING_GAP_HOURS).map((k) => parseKey(k).wordId))
+  const last = new Map<string, number>()
+  for (const [k, c] of Object.entries(s.cards)) {
+    if (!c.last_review || c.last_review < startOfDay(now)) continue
+    const id = parseKey(k).wordId
+    last.set(id, Math.max(last.get(id) ?? 0, +c.last_review))
+  }
+  const cutoff = startOfDay(now, 1)
+  const waiting = Object.entries(s.cards).filter(([k, c]) => {
+    const id = parseKey(k).wordId
+    return c.due < cutoff && last.has(id) && !free.has(id) && WORD_BY_ID.has(id)
+  })
+  const items = new Set(waiting.map(([k]) => parseKey(k).wordId))
+  const at = Math.min(...[...items].map((id) => last.get(id)! + SIBLING_GAP_HOURS * 3600000))
+  return { items: items.size, at: items.size && at < +cutoff ? new Date(at) : undefined }
 }
 
 /** Mark an item you already understand: its listen card jumps ahead, speak and read still get tested. */

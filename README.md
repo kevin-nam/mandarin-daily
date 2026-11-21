@@ -2,7 +2,7 @@
 
 A personal, offline-first PWA for daily Mandarin listening and speaking practice, aimed at **new HSK 1 (2026, 294 words)** plus 58 travel and conversation phrases. Built for iPhone: no microphone, no backend, no database, no paid APIs.
 
-**Version 1.27** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
+**Version 1.28** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
 
 ## Who it's for
 
@@ -53,6 +53,7 @@ At 5 new words/day you cover all of HSK 1 in about 9 weeks, faster if you mark w
 - **Difficulty ceiling** (1.18). FSRS difficulty is capped at 8 (of 10). Repeated misses had pushed 24 read cards to 9.4–10, where a correct answer barely grows stability, so 也 们 喂 很 呢 请 吗 叫 came back every few days with no way out. Simulated from 也's state, six Goods in a row now give intervals of 3, 5, 11, 23, 45 days instead of 3, 3, 3, 4, 6; a miss still sends it back.
 - **Reading is the gap** (day 3: 10 of 23 read cards failed vs 0 speak and 0 listen; basic characters like 好 是 很 吗 呢 也). The learner doesn't recognise the characters, and finds tones very hard. So read cards ask for the meaning only (tones don't count), and words failed on a read card come back in the Speak drill as **Read** items (every third item, up to 6): 字 → 4-second try → pinyin, meaning, audio and the character breakdown; 3 hits to retire, ungraded like the rest of the drill.
 - **Answer screens** (1.14 audit). Each card's answer leads with what helps for that card: a read card shows *Don't mix up* and how the characters are built right under the character, then the sentence; a lesson shows how it's built before the sentence (reading is the weak skill). Phrase answers drop the "Not learned yet" list (phrase examples are context; 5 glosses was clutter). Grammar words gloss as what they do (个 "measure word", 吗 "yes/no question"), not dictionary notes. Grade notes are one line. The listen card says up front "You'll grade the word it's built around."
+- **Held-back cards can be cleared after 3 hours** (1.28). One card per word a session stays (right after a word, its other cards are answered from short-term memory, which makes them easy and makes FSRS space them too far). But Clear reviews also takes a word's held-back cards once 3 hours have passed since its last review, when that boost has faded: a session in the morning, the rest in the evening. Home says when they free up ("29 more words from 2:11 PM, or tomorrow") and redraws every minute. Why: on day 21 all 39 cards still due today were held back, so Clear reviews never showed, and 46 of 110 cards due the next day would have been held back again; the held-back rule had become the main source of the pile.
 - **No accidental double taps** (1.27). A button can't be clicked for 300 ms after it appears or its label changes (`src/tapGuard.ts`, one listener for the whole app), so a second tap on Show answer doesn't land on the grade that replaced it, and a second tap on a grade doesn't reveal the next card. The session timer opts out (`data-tap-free`). The answer also shows faster: its fade was 440 ms with a blur and up to 220 ms of stagger (rendering itself takes under 65 ms even on a slowed CPU), now 180 ms with no blur, which is what made it feel slow.
 - **Clearing reviews** (1.26). Reviews left after the session (past its time limit) get their own button on home, "Clear N reviews · about X min": reviews only, no time limit, back home when done (the main button, or under More when the quick recall is). Extra practice no longer starts with reviews: speaking drill, tones and a dialogue. And when more than 20 reviews are carried over from earlier days, the session is a catch-up one: reviews get up to 25 minutes instead of 18, the drill 3 minutes instead of 6, tones 2 minutes (or 8 items) instead of 4 (15). Why: at 5 words + 2 phrases a day the forecast is ~90 reviews a day, about what 18 minutes holds once in-session repeats are counted, so leftovers built up; the learner wanted Extra practice to focus on clearing them.
 - **Extra practice varies** (1.25). The drill records what it covered today (`drilled` in the day's log); another round skips those and takes today's remaining misses, then the weakest spoken items not drilled yet, and tricky characters not done yet. Today's misses come from the review log, so they also carry over to a resumed session. Before, every round rebuilt the same list (the learner: "it showed the same cards as the first practice"). Dialogues already rotate and tone items are random.
@@ -208,6 +209,9 @@ src/App.tsx         home + settings
 - New features should respect the profile above: whisper-friendly, no mic, no writing practice, offline-first.
 
 ## Changelog
+
+**1.28** (2026-11-21)
+- Clear reviews also takes cards held back during your session (a word's other cards), once 3 hours have passed. Home says when.
 
 **1.27** (2026-11-21)
 - Answers appear faster, and a quick second tap is ignored, so you can't grade a card by double-tapping Show answer.

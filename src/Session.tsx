@@ -6,7 +6,7 @@ import {
 } from './data'
 import { epoch, lineKey, play, sleep, stop, wordKey } from './audio'
 import {
-  byRisk, carriedOver, dueKeys, grade, introduce, introducedToday, logDay, markKnown, missedToday, recordDrilled, today, weakestItems, newQuota, nextNewItems, parseKey, pickDialogue, recordDialogue, Rating,
+  SIBLING_GAP_HOURS, byRisk, carriedOver, dueKeys, grade, introduce, introducedToday, logDay, markKnown, missedToday, recordDrilled, today, weakestItems, newQuota, nextNewItems, parseKey, pickDialogue, recordDialogue, Rating,
   LADDER_PASS, LADDER_WINDOW, TONE_LEVELS, TONE_NAMES, ladderName, ladderRecent, ladderStep, readLapses, recordLadder, recordTones, recordVoiceAnswers, recordVoiceTones, speakStage, toneAccuracy, toneVoicesInUse, toneLevel, streak, toneErrors, toneFocus, trickyReads, untaughtIn, type AppState,
 } from './store'
 import { CharParts } from './CharParts'
@@ -138,7 +138,7 @@ export default function Session({ state, commit, onExit, mode = 'full' }: { stat
         )}
       </div>
 
-      {step === 'reviews' && <Reviews state={state} commit={commit} minutes={plan.reviewMinutes} catchUp={plan.catchUp}
+      {step === 'reviews' && <Reviews state={state} commit={commit} minutes={plan.reviewMinutes} catchUp={plan.catchUp} clearing={mode === 'reviews'}
         onDone={mode === 'reviews' ? () => finishAfter() : next}
         onGraded={(missed) => setReviewed((r) => ({ n: r.n + 1, missed: r.missed + (missed ? 1 : 0) }))}
         onMissRead={(id) => setMissedReads((m) => (m.includes(id) ? m : [...m, id]))}
@@ -191,10 +191,10 @@ export default function Session({ state, commit, onExit, mode = 'full' }: { stat
  * Due cards, most at risk of being forgotten first (only ~100 fit in the time cap), with
  * speak cards prioritised (2 speak : 1 other) so the main gap gets the most time, still interleaved.
  */
-function reviewQueue(state: AppState) {
+function reviewQueue(state: AppState, siblingGapHours?: number) {
   // Items missed in a quick recall go first; then most at risk.
   const flagged = (k: string) => parseKey(k).kind === 'speak' && !!state.flagged?.[parseKey(k).wordId]
-  const ranked = byRisk(state, dueKeys(state))
+  const ranked = byRisk(state, dueKeys(state, new Date(), siblingGapHours))
   const due = [...ranked.filter(flagged), ...ranked.filter((k) => !flagged(k))].slice(0, 120)
   const speak = due.filter((k) => parseKey(k).kind === 'speak')
   const other = due.filter((k) => parseKey(k).kind !== 'speak')
@@ -203,11 +203,11 @@ function reviewQueue(state: AppState) {
   return out
 }
 
-function Reviews({ state, commit, minutes, catchUp, onDone, onGraded, onMissRead, onMissSay }: {
-  state: AppState; commit: Commit; minutes: number; catchUp: boolean; onDone: () => void; onGraded: (missed: boolean) => void
+function Reviews({ state, commit, minutes, catchUp, clearing, onDone, onGraded, onMissRead, onMissSay }: {
+  state: AppState; commit: Commit; minutes: number; catchUp: boolean; clearing: boolean; onDone: () => void; onGraded: (missed: boolean) => void
   onMissRead: (id: string) => void; onMissSay: (id: string) => void
 }) {
-  const [queue, setQueue] = useState(() => reviewQueue(state))
+  const [queue, setQueue] = useState(() => reviewQueue(state, clearing ? SIBLING_GAP_HOURS : undefined))
   const [revealed, setRevealed] = useState(false)
   const [count, setCount] = useState(0)
   const clock = usePause()
