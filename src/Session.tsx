@@ -6,7 +6,7 @@ import {
 } from './data'
 import { epoch, lineKey, play, sleep, stop, wordKey } from './audio'
 import {
-  byRisk, dueKeys, grade, introduce, introducedToday, logDay, markKnown, missedToday, recordDrilled, today, weakestItems, newQuota, nextNewItems, parseKey, pickDialogue, recordDialogue, Rating,
+  byRisk, carriedOver, dueKeys, grade, introduce, introducedToday, logDay, markKnown, missedToday, recordDrilled, today, weakestItems, newQuota, nextNewItems, parseKey, pickDialogue, recordDialogue, Rating,
   LADDER_PASS, LADDER_WINDOW, TONE_LEVELS, TONE_NAMES, ladderName, ladderRecent, ladderStep, readLapses, recordLadder, recordTones, recordVoiceAnswers, recordVoiceTones, speakStage, toneAccuracy, toneVoicesInUse, toneLevel, streak, toneErrors, toneFocus, trickyReads, untaughtIn, type AppState,
 } from './store'
 import { CharParts } from './CharParts'
@@ -22,7 +22,7 @@ import { Burst, Countdown, PauseScreen, PlayButton, SpeakPrompt, SpokenAnswer, S
 type Commit = (fn: (s: AppState) => void) => void
 type StepId = 'reviews' | 'new' | 'drill' | 'dialogue' | 'tones' | 'listen' | 'done'
 
-const STEPS: { id: StepId; label: string; minutes: number }[] = [
+const ALL_STEPS: { id: StepId; label: string; minutes: number }[] = [
   { id: 'reviews', label: 'Review', minutes: 18 },
   { id: 'new', label: 'New words', minutes: 5 },
   { id: 'drill', label: 'Speak', minutes: 6 },
@@ -32,8 +32,37 @@ const STEPS: { id: StepId; label: string; minutes: number }[] = [
   { id: 'listen', label: 'Listening (optional)', minutes: LISTEN_MINUTES },
 ]
 
-export default function Session({ state, commit, onExit }: { state: AppState; commit: Commit; onExit: () => void }) {
-  const [step, setStep] = useState<StepId>('reviews')
+/**
+ * What a session does. `full`: today's session. `reviews`: only reviews still due, no time limit
+ * (home's "Clear reviews" when some are left after the session). `extra`: the speaking drill, tones
+ * and a dialogue, no reviews (Extra practice).
+ */
+export type SessionMode = 'full' | 'reviews' | 'extra'
+
+/** Reviews carried over from earlier days above this make today's session a catch-up one. */
+const CATCH_UP_OVER = 20
+
+/**
+ * Time limits per step. On a catch-up day (more than CATCH_UP_OVER reviews carried over) reviews get
+ * 25 minutes instead of 18, and the drill and tones shrink to keep the session near 30 minutes.
+ */
+function sessionPlan(mode: SessionMode, behind: number) {
+  const catchUp = mode === 'full' && behind > CATCH_UP_OVER
+  const ids: StepId[] = mode === 'reviews' ? ['reviews'] : mode === 'extra' ? ['drill', 'tones', 'dialogue'] : ALL_STEPS.map((s) => s.id)
+  return {
+    steps: ALL_STEPS.filter((s) => ids.includes(s.id)),
+    catchUp,
+    reviewMinutes: mode === 'reviews' ? Infinity : catchUp ? 25 : 18,
+    drillMinutes: catchUp ? 3 : 6,
+    toneMinutes: catchUp ? 2 : 4,
+    toneItems: catchUp ? 8 : 15,
+  }
+}
+
+export default function Session({ state, commit, onExit, mode = 'full' }: { state: AppState; commit: Commit; onExit: () => void; mode?: SessionMode }) {
+  const [plan] = useState(() => sessionPlan(mode, carriedOver(state)))
+  const STEPS = plan.steps
+  const [step, setStep] = useState<StepId>(() => plan.steps[0].id)
   const [learnedNow, setLearnedNow] = useState<string[]>([])
   // Characters failed on a read card this session, read again in the drill.
   const [missedReads, setMissedReads] = useState<string[]>([])
@@ -61,6 +90,12 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
     stop()
     const i = STEPS.findIndex((s) => s.id === step)
     setStep(i >= 0 && i < STEPS.length - 1 ? STEPS[i + 1].id : 'done')
+  }
+
+  /** Reviews only: straight back home when they're done. */
+  const finishAfter = () => {
+    commit((s) => logDay(s, { minutes: Math.round(clock.active() / 60000) }))
+    onExit()
   }
 
   const finish = () => {
@@ -103,18 +138,19 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
         )}
       </div>
 
-      {step === 'reviews' && <Reviews state={state} commit={commit} onDone={next}
+      {step === 'reviews' && <Reviews state={state} commit={commit} minutes={plan.reviewMinutes} catchUp={plan.catchUp}
+        onDone={mode === 'reviews' ? () => finishAfter() : next}
         onGraded={(missed) => setReviewed((r) => ({ n: r.n + 1, missed: r.missed + (missed ? 1 : 0) }))}
         onMissRead={(id) => setMissedReads((m) => (m.includes(id) ? m : [...m, id]))}
         onMissSay={(id) => setMissedSays((m) => (m.includes(id) ? m : [...m, id]))} />}
       {step === 'new' && (
         <NewWords state={state} commit={commit} onDone={(ids, known) => { setLearnedNow(ids); setKnownNow(known); next() }} />
       )}
-      {step === 'drill' && <Drill state={state} commit={commit} learnedNow={learnedNow} missedReads={missedReads} missedSays={missedSays} onDone={next} />}
+      {step === 'drill' && <Drill state={state} commit={commit} minutes={plan.drillMinutes} learnedNow={learnedNow} missedReads={missedReads} missedSays={missedSays} onDone={next} />}
       {step === 'dialogue' && <DialogueStep state={state} commit={commit} onDone={next} />}
       {step === 'tones' && (toneLevel(state) < TONE_LEVELS.length
-        ? <ToneLadder state={state} commit={commit} onDone={next} />
-        : <Tones state={state} commit={commit} onDone={next} />)}
+        ? <ToneLadder state={state} commit={commit} minutes={plan.toneMinutes} onDone={next} />
+        : <Tones state={state} commit={commit} items={plan.toneItems} onDone={next} />)}
       {step === 'listen' && <Listening commit={commit} onDone={next} />}
       {step === 'done' && (
         <>
@@ -150,7 +186,6 @@ export default function Session({ state, commit, onExit }: { state: AppState; co
 
 /* ---------------- Reviews ---------------- */
 
-const REVIEW_MINUTES = 18
 
 /**
  * Due cards, most at risk of being forgotten first (only ~100 fit in the time cap), with
@@ -168,8 +203,8 @@ function reviewQueue(state: AppState) {
   return out
 }
 
-function Reviews({ state, commit, onDone, onGraded, onMissRead, onMissSay }: {
-  state: AppState; commit: Commit; onDone: () => void; onGraded: (missed: boolean) => void
+function Reviews({ state, commit, minutes, catchUp, onDone, onGraded, onMissRead, onMissSay }: {
+  state: AppState; commit: Commit; minutes: number; catchUp: boolean; onDone: () => void; onGraded: (missed: boolean) => void
   onMissRead: (id: string) => void; onMissSay: (id: string) => void
 }) {
   const [queue, setQueue] = useState(() => reviewQueue(state))
@@ -201,7 +236,7 @@ function Reviews({ state, commit, onDone, onGraded, onMissRead, onMissSay }: {
   const stage: Stage = kind === 'speak' ? speakStage(state, wordId) : 'sentence'
   const t = target(w, stage)
   const note = gradeNote(w, kind, stage)
-  const timeUp = clock.active() - start > REVIEW_MINUTES * 60 * 1000
+  const timeUp = clock.active() - start > minutes * 60 * 1000
   const repeat = key in repeats
 
   /** A missed card seen again: practice only. Missed again → once more, at most twice. */
@@ -306,7 +341,8 @@ function Reviews({ state, commit, onDone, onGraded, onMissRead, onMissSay }: {
       {revealed && kind === 'sentence' && <CharParts hanzi={w.hanzi} known={known} />}
     </div>
     <div className="dock">
-      {count > 0 && timeUp && <p className="dock-note">{REVIEW_MINUTES} minutes reached: this is the last card.</p>}
+      {count > 0 && timeUp && <p className="dock-note">{minutes} minutes reached: this is the last card.</p>}
+      {count === 0 && catchUp && !revealed && <p className="dock-note">Catching up: up to {minutes} minutes of reviews today, shorter speaking and tones.</p>}
       {revealed && note && !repeat && <p className="dock-note">{note}</p>}
       {revealed && repeat && <p className="dock-note">Once more, for practice: it’s already set for tomorrow.</p>}
       {!revealed ? (
@@ -472,7 +508,6 @@ function NewWords({ state, commit, onDone }: { state: AppState; commit: Commit; 
  */
 interface DrillItem { w: Word; hits: number; stage: Stage; retire: number; read?: 'missed' | 'tricky' | 'like'; like?: string }
 
-const DRILL_MINUTES = 6
 /** More retrievals in the first session improve long-term recall (Nakata 2017: 5+ beat 1-3). */
 const RETIRE_AFTER = 3
 /** A look-alike added for contrast is usually known already: two recalls are enough. */
@@ -483,8 +518,8 @@ const READ_SECONDS = 4
 const MAX_READS = 8
 const thinkSeconds = (it: DrillItem) => (it.read ? READ_SECONDS : thinkFor(target(it.w, it.stage).zh))
 
-function Drill({ state, commit, learnedNow, missedReads: missedReadsNow, missedSays: missedSaysNow, onDone }: {
-  state: AppState; commit: Commit; learnedNow: string[]; missedReads: string[]; missedSays: string[]; onDone: () => void
+function Drill({ state, commit, minutes, learnedNow, missedReads: missedReadsNow, missedSays: missedSaysNow, onDone }: {
+  state: AppState; commit: Commit; minutes: number; learnedNow: string[]; missedReads: string[]; missedSays: string[]; onDone: () => void
 }) {
   const known = useMemo(() => knownChars(state.introduced), [state.introduced])
   const [queue, setQueue] = useState<DrillItem[]>(() => {
@@ -576,7 +611,7 @@ function Drill({ state, commit, learnedNow, missedReads: missedReadsNow, missedS
   const mark = (ok: boolean) => {
     stop()
     commit((s) => recordDrilled(s, [item.w.id]))
-    const timeUp = clock.active() - start > DRILL_MINUTES * 60 * 1000
+    const timeUp = clock.active() - start > minutes * 60 * 1000
     const next = (() => {
       const [cur, ...rest] = queue
       if (timeUp) return [] // time cap reached
@@ -880,19 +915,19 @@ function weightedPick(items: Word[], n: number, err: number[]) {
   return out
 }
 
-function Tones({ state, commit, onDone }: { state: AppState; commit: Commit; onDone: () => void }) {
+function Tones({ state, commit, items: count, onDone }: { state: AppState; commit: Commit; items: number; onDone: () => void }) {
   // Each round in a random voice: hearing many speakers makes tone perception carry over.
   const [items] = useState(() => {
     const err = toneErrors(state)
     const voices = toneVoicesInUse(state)
-    const pairs = pairCount(toneAccuracy(state))
+    const pairs = Math.round((pairCount(toneAccuracy(state)) * count) / 15)
     // Words you've studied first, so a tone is tied to a meaning you know (买 buy / 卖 sell).
     const studied = new Set(state.introduced)
     const pool = (items: Word[], n: number) => {
       const known = items.filter((w) => studied.has(w.id))
       return known.length >= n * 2 ? known : items
     }
-    return [...weightedPick(pool(TONE_ITEMS, 15 - pairs), 15 - pairs, err), ...weightedPick(pool(PAIR_ITEMS, pairs), pairs, err)]
+    return [...weightedPick(pool(TONE_ITEMS, count - pairs), count - pairs, err), ...weightedPick(pool(PAIR_ITEMS, pairs), pairs, err)]
       .map((w) => ({ w, voice: randomVoice(voices) }))
   })
   const [voiceAdded, setVoiceAdded] = useState(false)
@@ -995,7 +1030,6 @@ function Tones({ state, commit, onDone }: { state: AppState; commit: Commit; onD
 /* ---------------- Tone ladder (two tones at a time, then all four) ---------------- */
 
 const LADDER_TRIALS = 30
-const LADDER_MINUTES = 4
 const toneless = (py: string) => py.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
 
 /** Trials for a level: single syllables with those tones, the tones taking turns at random, each in a random voice. */
@@ -1015,7 +1049,7 @@ function contrastItem(heard: Word, tone: number) {
   return pool[Math.floor(Math.random() * pool.length)]
 }
 
-function ToneLadder({ state, commit, onDone }: { state: AppState; commit: Commit; onDone: () => void }) {
+function ToneLadder({ state, commit, minutes, onDone }: { state: AppState; commit: Commit; minutes: number; onDone: () => void }) {
   const [level, setLevel] = useState(() => toneLevel(state))
   const [trials, setTrials] = useState(() => ladderTrials(level, LADDER_TRIALS, toneVoicesInUse(state)))
   const [i, setI] = useState(0)
@@ -1042,7 +1076,7 @@ function ToneLadder({ state, commit, onDone }: { state: AppState; commit: Commit
     stop()
     setPick(undefined)
     setContrast(undefined)
-    const timeUp = clock.active() - start > LADDER_MINUTES * 60 * 1000
+    const timeUp = clock.active() - start > minutes * 60 * 1000
     if (i + 1 >= trials.length || timeUp) onDone()
     else setI(i + 1)
   }

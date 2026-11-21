@@ -359,13 +359,20 @@ export function byRisk(s: AppState, keys: string[], now = new Date()) {
  * New words and phrases allowed right now. Cut back when reviews are carried over
  * from earlier days (missed days, or more than the review cap): reviewing beats adding.
  */
-export function newQuota(s: AppState, now = new Date()) {
-  // Only reviewed cards count: a never-reviewed card waiting a day isn't a sign of falling behind.
-  // Nor is a sibling held back because another card of its item was reviewed since yesterday.
+/**
+ * Reviews carried over from earlier days. Only reviewed cards count: a never-reviewed card waiting a
+ * day isn't a sign of falling behind. Nor is a sibling held back because another card of its item was
+ * reviewed since yesterday.
+ */
+export function carriedOver(s: AppState, now = new Date()) {
   const recent = reviewedSince(s, startOfDay(now, -1))
-  const behind = Object.entries(s.cards).filter(
+  return Object.entries(s.cards).filter(
     ([k, c]) => c.reps > 0 && c.due < startOfDay(now) && WORD_BY_ID.has(parseKey(k).wordId) && !recent.has(parseKey(k).wordId),
   ).length
+}
+
+export function newQuota(s: AppState, now = new Date()) {
+  const behind = carriedOver(s, now)
   const scale = behind > 30 ? 0 : behind > 10 ? 0.5 : 1
   return {
     words: Math.ceil(Math.max(0, s.settings.newPerDay - newDoneToday(s)) * scale),

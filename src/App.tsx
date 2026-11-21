@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 import { Focus } from './Focus'
 import { Growth } from './Growth'
 import Recall from './Recall'
-import Session from './Session'
+import Session, { type SessionMode } from './Session'
 import WordBank from './WordBank'
 import { UpdateNotice, UpdateRows } from './UpdateUI'
 import { useUpdates, type Updates } from './updates'
@@ -13,7 +13,7 @@ import { LISTEN_MINUTES, listeningToday } from './listening'
 import { applyTheme, type Theme } from './theme'
 import { Week } from './Week'
 import {
-  appDate, bestStreak, dueKeys, introducedToday, exportState, importState, load, logDay, newQuota, phrasesLearned, save, speedSuggestion, streak,
+  appDate, bestStreak, carriedOver, dueKeys, introducedToday, exportState, importState, load, logDay, newQuota, phrasesLearned, save, speedSuggestion, streak,
   today, wordsLearned, type AppState,
 } from './store'
 import { VERSION } from './updates'
@@ -32,6 +32,7 @@ async function backup(state: AppState, commit: (fn: (s: AppState) => void) => vo
 export default function App() {
   const [state, setState] = useState<AppState>(load)
   const [screen, setScreen] = useState<'home' | 'session' | 'settings' | 'bank' | 'recall'>('home')
+  const [mode, setMode] = useState<SessionMode>('full')
   const [audioReady, setAudioReady] = useState(false)
   // Set when a session just ended, so today's seal stamps in once.
   const [justFinished, setJustFinished] = useState(false)
@@ -56,7 +57,7 @@ export default function App() {
   }, [])
 
   if (screen === 'session')
-    return <Session state={state} commit={commit} onExit={() => { setJustFinished(true); setScreen('home') }} />
+    return <Session key={mode} state={state} commit={commit} mode={mode} onExit={() => { setJustFinished(true); setScreen('home') }} />
   if (screen === 'recall') return <Recall state={state} commit={commit} onExit={() => setScreen('home')} />
   if (screen === 'bank') return <WordBank state={state} onBack={() => setScreen('home')} />
   if (screen === 'settings')
@@ -68,7 +69,7 @@ export default function App() {
   const learned = wordsLearned(state)
   const phrases = phrasesLearned(state)
   const startedToday = !!state.history[today()]
-  // Finishing the session ends the day; anything left (past the 18-minute review cap) is in Extra practice.
+  // Finishing the session ends the day; anything left (past the review time limit) is cleared with Clear reviews.
   const doneToday = startedToday && (!!state.history[today()]?.finishedAt || (due === 0 && newLeft === 0))
   const listening = listeningToday()
   const days = streak(state)
@@ -82,7 +83,11 @@ export default function App() {
   const recallReady = !recallFrom || isPast(recallFrom)
   const recalled = !!state.history[today()]?.recalled
   const freshCount = introducedToday(state).length
-  const start = () => setScreen('session')
+  const start = (m: SessionMode = 'full') => { setMode(m); setScreen('session') }
+  // Reviews still due after today's session (past its time limit): cleared on their own, no limit.
+  const leftover = doneToday ? due : 0
+  const clearMinutes = Math.max(1, Math.round((leftover * 11) / 60)) // ~11 s a review (day-20 log)
+  const recallMain = freshCount > 0 && recallReady && !recalled
 
   // The one question this screen answers: what is today's practice?
   const work = [due > 0 && plural(due, 'review'), newLeft > 0 && plural(newLeft, 'new item')].filter(Boolean).join(' and ')
@@ -90,7 +95,9 @@ export default function App() {
   let sub: ReactNode
   if (doneToday) {
     headline = 'Done for today'
-    sub = 'Next session tomorrow, after a night’s sleep: that’s when today’s words settle in.'
+    sub = leftover > 0
+      ? `${plural(leftover, 'review')} left over: clear them now, or they wait for tomorrow.`
+      : 'Next session tomorrow, after a night’s sleep: that’s when today’s words settle in.'
   } else if (state.introduced.length === 0) {
     headline = `Your first ${plural(newLeft, 'word')}`
     sub = 'Hear each one first and skip any you already know.'
@@ -99,8 +106,10 @@ export default function App() {
     sub = `${work} left.`
   } else {
     headline = `${work.charAt(0).toUpperCase()}${work.slice(1)}`
-    sub = due > 50
-      ? `Reviews stop at 18 minutes, most at risk first; the rest wait for tomorrow.`
+    sub = carriedOver(state) > 20
+      ? `Catch-up day: up to 25 minutes of reviews, shorter speaking and tones. Anything left you can clear after.`
+      : due > 50
+      ? `Reviews stop at 18 minutes, most at risk first; anything left you can clear after.`
       : `About ${state.settings.sessionMinutes} minutes, plus optional listening.`
   }
 
@@ -147,13 +156,17 @@ export default function App() {
           </p>
         )}
         {doneToday ? (
-          freshCount > 0 && recallReady && !recalled && (
+          recallMain ? (
             <button className="btn primary wide start" onClick={() => setScreen('recall')}>
               <Icon name="moon" /> Quick recall · 5 min
             </button>
+          ) : leftover > 0 && (
+            <button className="btn primary wide start" onClick={() => start('reviews')}>
+              Clear {plural(leftover, 'review')} · about {clearMinutes} min
+            </button>
           )
         ) : (
-          <button className="btn primary wide start" onClick={start}>
+          <button className="btn primary wide start" onClick={() => start()}>
             {startedToday ? 'Continue session' : 'Start today’s session'}
           </button>
         )}
@@ -163,6 +176,17 @@ export default function App() {
         <section className="group more" aria-labelledby="more-title">
           <h2 id="more-title">More for today, all optional</h2>
           <div className="panel list">
+            {/* The main button above while the quick recall is */}
+            {leftover > 0 && recallMain && (
+              <button className="list-row option" onClick={() => start('reviews')}>
+                <Icon name="practice" />
+                <span className="option-text">
+                  <b>Clear {plural(leftover, 'review')} · about {clearMinutes} min</b>
+                  <small>Reviews left after today’s session. No time limit; stop whenever you like.</small>
+                </span>
+                <Icon name="chevron" size={18} />
+              </button>
+            )}
             {/* Shown as the main button above while it's ready and not done */}
             {freshCount > 0 && !(recallReady && !recalled) && (
               <button className="list-row option" onClick={() => setScreen('recall')} disabled={recalled}>
@@ -191,11 +215,11 @@ export default function App() {
                 <Icon name="external" size={18} />
               </a>
             )}
-            <button className="list-row option" onClick={start}>
+            <button className="list-row option" onClick={() => start('extra')}>
               <Icon name="practice" />
               <span className="option-text">
                 <b>Extra practice · about 10 min</b>
-                <small>Any reviews still due, then speaking and reading practice with recent words, the tone ladder and a dialogue.</small>
+                <small>Speaking and reading practice with words you haven’t drilled today, tones and a dialogue. No reviews.</small>
               </span>
               <Icon name="chevron" size={18} />
             </button>
