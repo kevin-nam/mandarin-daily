@@ -2,7 +2,7 @@
 
 A personal, offline-first PWA for daily Mandarin listening and speaking practice, aimed at **new HSK 1 (2026, 294 words)** plus 58 travel and conversation phrases. Built for iPhone: no microphone, no backend, no database, no paid APIs.
 
-**Version 1.29** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
+**Version 1.30** · see [Changelog](#changelog) · ideas not built yet: [BACKLOG.md](BACKLOG.md)
 
 ## Who it's for
 
@@ -29,7 +29,7 @@ So: speaking (productive recall) gets priority; prompts never demand speaking ou
 | Speak | ≤6 min | English prompt → say it (whisper/mouth is fine) → hear the answer twice. Today's new words are asked as words (5 s); older words whose speak card is Good are asked as sentences (3 s + 1 s per character, up to 15). **More time** adds 5 s. Counts if you said the word, even if the rest of the sentence slipped. Missed items come back sooner; items retire after 3 hits. | Prompted recall with expanding intervals |
 | Tones | ≤4 min | **Tone ladder**: 30 quick single-syllable trials, two tones at a time (1–3, 2–4, 1–4, 2–3, 1–2, 3–4), then all four; 80% right over the last 20 moves you up. A right answer moves on by itself; a miss plays what you heard, then the tone you picked (same syllable where one exists: 买 mǎi / 卖 mài), with both contours. Past the ladder: 15 items, 4-way, two-syllable words added as single tones get easier (3 under 60% right, 6 under 75%, else 9). Voices are added one at a time, clearest first (see below). | Identification training with immediate feedback and many trials; 2-way contrasts first because 4-way stayed near chance |
 | Dialogue | ~4 min | Listen with no text → listen while reading the Chinese (English hidden behind a toggle: with it beside each line the eye reads the English; L2 captions beat L1 ones for listening and vocabulary, Montero Perez et al. 2014) → shadow line by line → **role-play**: the app plays the other speaker, you say your line from the English before the model plays (switch sides any time). 31 dialogues. One opens once you know 70% of its characters (from the words and phrases you've actually learned, whatever the order; lower than for reading alone since you hear it and the English is there). Each day: one you haven't done yet (the one you know most of first), else the one you did longest ago, so none repeats until the others have had a turn; labelled *New dialogue* or *Last time Nov 3*. On day 1, the one you know most of. Before 1.16 the newest unlocked one came up ~2 days in 3 and nothing was recorded (the learner: "the conversations are always the same"); dialogues the old counts had opened are marked as seen for existing users. | Comprehensible input; task-based practice |
-| Listening | ~8 min, optional | A link to one beginner video in slow Mandarin (Comprehensible Chinese, Mandarin Click, BlaBla Chinese; rotates daily, YouTube searches so links don't rot). Now or later in the day; also on the home screen once done. Needs internet. | Comprehensible input; a second, separate block beats a longer first one |
+| Listening | ~8 min, optional | A link to one beginner video in slow Mandarin (Comprehensible Chinese, Mandarin Click, BlaBla Chinese, Peppa Pig in Mandarin, Growing Up with Chinese; rotates daily, YouTube searches so links don't rot). Now or later in the day; also on the home screen once done. Needs internet. | Comprehensible input; a second, separate block beats a longer first one |
 
 Tones come before the dialogue (1.15): the weakest skill goes before the step a cut-short session can most do without.
 
@@ -213,6 +213,9 @@ src/App.tsx         home + settings
 - New features should respect the profile above: whisper-friendly, no mic, no writing practice, offline-first.
 
 ## Changelog
+
+**1.30** (2026-11-26)
+- Easy listening adds Peppa Pig in Mandarin and Growing Up with Chinese to the rotation.
 
 **1.29** (2026-11-26)
 - The Speak drill now has you read today's new characters too, so they stick until tomorrow's review.

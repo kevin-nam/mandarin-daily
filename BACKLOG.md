@@ -41,6 +41,21 @@ Review log (347 reviews since day 15): Again rate read 34% (48/142, spread over 
 - **Tones: production, not just perception.** The learner finds tones hard and the drill moves slowly (~2–3 points a week). The app has no mic by design; a shadowing step with the pitch contour drawn over the model's could be done without recording anything (live pitch only). Revisit if per-syllable accuracy is under 70% on 2026-12-04.
 - **New-word pace vs reading.** If read misses stay above 30% after the quick-recall reading, try 4 words + 2 phrases (forecast: ~80 reviews/day instead of ~92).
 
+## Conversation practice with an AI partner
+Real-life scenarios (ordering coffee, a taxi, meeting someone) played with a language model that adapts: it speaks only with words you've learned (plus at most one new one, glossed), keeps turns short, rephrases when you're stuck, corrects gently, and ends with a summary (words you missed, a better way to say what you said). Task-based practice is what the phrases and dialogues are for; this makes it two-way and unscripted.
+
+What the model needs from the app: the words and phrases learned (hanzi, pinyin, English), the weakest ones to work in, the scenario, and the level rules. The app builds that as a prompt.
+
+Options, simplest first:
+1. **Copy a prompt into a Claude chat (start here).** A "Practice a conversation" screen: pick a scenario, the app copies a prompt with your words and opens Claude (app or claude.ai). Speaking works through the Claude app's voice mode. No API key, no cost beyond the subscription, nothing to host. Downsides: leaves the app; the summary doesn't come back on its own (could paste a short code back in to flag missed words).
+2. **A claude.ai artifact page.** A small published page that talks to Claude through the artifact runtime with the learner's own account: no API key, stays one tap from the app (link), and can keep its own history of conversations. Text first; voice through the browser's speech features.
+3. **In the app, calling the Claude API directly** with the learner's own API key stored on the device (browser access is allowed with an opt-in header). A small, fast model (Haiku) is enough for HSK 1–2 conversations and costs very little per conversation. Fully integrated (misses can flag cards), but the key lives in the browser: fine for personal use, not for sharing the app.
+4. **The same through a tiny proxy** (e.g. a serverless function holding the key). Safer key, shareable, but something to host and pay for.
+5. **On-device model** (a small Chinese-capable model running in the browser via WebGPU). Offline and free, but a ~1 GB download, slow on phones, and noticeably weaker conversation.
+6. **Real-time voice models** (speech in, speech out, low latency). The most natural, but the costliest and most complex; worth it only once text conversations prove useful.
+
+Voice: the app is no-mic by design (whisper-friendly, used in public). Typing pinyin or characters keeps that; voice input (browser speech recognition, or the Claude app's voice mode in option 1) would be opt-in.
+
 ## Grind mode (audio-only practice while gaming)
 Practise hands-free while playing something that doesn't need full attention. Home-screen button opens a screen with three loops over **already-studied** items (new material learns poorly under divided attention, Craik et al. 1996):
 
