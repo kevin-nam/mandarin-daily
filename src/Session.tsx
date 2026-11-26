@@ -506,7 +506,7 @@ function NewWords({ state, commit, onDone }: { state: AppState; commit: Commit; 
  * `stage`: say the word alone, or its sentence (store.speakStage); today's new words are always words.
  * `retire`: recalls in a row that retire it.
  */
-interface DrillItem { w: Word; hits: number; stage: Stage; retire: number; read?: 'missed' | 'tricky' | 'like'; like?: string }
+interface DrillItem { w: Word; hits: number; stage: Stage; retire: number; read?: 'new' | 'missed' | 'tricky' | 'like'; like?: string }
 
 /** More retrievals in the first session improve long-term recall (Nakata 2017: 5+ beat 1-3). */
 const RETIRE_AFTER = 3
@@ -549,15 +549,21 @@ function Drill({ state, commit, minutes, learnedNow, missedReads: missedReadsNow
     const speak: DrillItem[] = []
     while (newOnes.length || missedOnes.length) speak.push(...newOnes.splice(0, 2), ...missedOnes.splice(0, 1))
     speak.push(...shuffle(recent).slice(0, Math.max(3, 8 - fresh.length - missed.length)).map((id) => item(id, RETIRE_AFTER)))
-    const reads: DrillItem[] = []
-    const taken = new Set<string>()
+    // Today's new words read too (character → meaning), twice each: a new character's first review the
+    // next day was missed 18 of 27 times (day 26), because the lesson is listening and repeating and
+    // nothing asks for the character before then. Last first, so a word's read turn comes away from
+    // its spoken one (whose answer shows the character).
+    const reads: DrillItem[] = fresh.map((id) => WORD_BY_ID.get(id)!).filter((w) => w.kind === 'word').reverse()
+      .map((w) => ({ w, hits: 0, stage: 'word', retire: RETIRE_LIKE, read: 'new' }))
+    const newReads = reads.length
+    const taken = new Set<string>(reads.map((r) => r.w.id))
     for (const id of [...missedReads, ...trickyReads(state).filter((id) => !done.has(id))]) {
-      if (taken.has(id) || reads.length >= MAX_READS) continue
+      if (taken.has(id) || reads.length - newReads >= MAX_READS) continue
       const w = WORD_BY_ID.get(id)!
       taken.add(id)
       reads.push({ w, hits: 0, stage: 'word', retire: RETIRE_AFTER, read: missedReads.includes(id) ? 'missed' : 'tricky' })
       const twin = lookalikes(w, state.introduced, (x) => readLapses(state, x)).map((x) => x.w).find((x) => !taken.has(x.id))
-      if (twin && reads.length < MAX_READS) {
+      if (twin && reads.length - newReads < MAX_READS) {
         taken.add(twin.id)
         reads.push({ w: twin, hits: 0, stage: 'word', retire: RETIRE_LIKE, read: 'like', like: w.hanzi })
       }
@@ -641,6 +647,7 @@ function Drill({ state, commit, minutes, learnedNow, missedReads: missedReadsNow
         <StepHeader
           title="Read"
           hint={{
+            new: 'New today. What does it mean?',
             missed: 'You missed this one earlier. What does it mean?',
             tricky: 'One you’ve often mixed up. What does it mean?',
             like: `Looks like ${item.like}. What does this one mean?`,

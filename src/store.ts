@@ -140,7 +140,8 @@ function revive(s: AppState): AppState {
     if (s.cards[k] && !phraseReadable(s, p.id) && s.cards[k].stability < 7) delete s.cards[k]
   }
   // Voices added under the pooled rule (1.20) start over under the newest-voice rule.
-  if (s.toneVoices && s.toneVoices.rule !== 2) s.toneVoices = { n: 1, recent: [], rule: 2 }
+  // Voices added under an earlier, looser rule start over under the current one (1.29: back to one).
+  if (s.toneVoices && s.toneVoices.rule !== 3) s.toneVoices = { n: 1, recent: [], rule: 3 }
   // Before the 4 am day start (1.21), a session finished between midnight and 4 am was logged under the
   // new date. It belongs to the evening before: merged into that day if it has a log (a session that
   // started before midnight was split across both), else moved there. In order, so a chain shifts back:
@@ -340,6 +341,15 @@ export function markKnown(s: AppState, wordId: string, now = new Date()) {
 
 /** Of the next unseen words in teaching order, how far ahead the picker may look. */
 const PICK_WINDOW = 8
+/**
+ * At most this many new words from one topic (unit) a day. Words of one meaning group learned together
+ * interfere (Tinkham 1993, Waring 1997): day 26, a week's reading misses were mostly the family words
+ * taught in one batch (爸爸 妈妈 弟弟 妹妹 儿子 孩子 老师), and next came 昨天 今年 去年 明年.
+ * The rest of the day's words come from the next topic, so two topics run side by side.
+ */
+const PER_UNIT = 2
+/** Words in a new word's sentence you may not know yet (glossed in the lesson), as in the build. */
+const MAX_UNKNOWN = 1
 
 /**
  * Next unseen words and phrases, skipping ids in `exclude`. Words follow the teaching order, but
@@ -353,14 +363,36 @@ export function nextNewItems(s: AppState, words: number, phrases: number, exclud
   const pool = WORDS.filter((w) => !known.has(w.id))
   const picked: Word[] = []
   const unknown = (w: Word) => w.parts.filter((p) => !known.has(p)).length + (picked.some((x) => looksLike(x, w)) ? 1 : 0)
+  // Words of a topic picked today, counting any already learned today.
+  const perUnit = new Map<string, number>()
+  for (const id of [...introducedToday(s), ...exclude]) {
+    const w = WORD_BY_ID.get(id)
+    if (w?.kind === 'word') perUnit.set(w.unit, (perUnit.get(w.unit) ?? 0) + 1)
+  }
+  const roomIn = (w: Word) => (perUnit.get(w.unit) ?? 0) < PER_UNIT
   while (picked.length < words && pool.length) {
-    let best = 0
-    for (let i = 1; i < Math.min(PICK_WINDOW, pool.length) && unknown(pool[best]) > 0; i++) {
-      if (unknown(pool[i]) < unknown(pool[best])) best = i
+    // The earliest of the next few with the fewest unknowns, from a topic with room today...
+    let best = -1
+    for (let i = 0; i < Math.min(PICK_WINDOW, pool.length); i++) {
+      if (roomIn(pool[i]) && (best < 0 || unknown(pool[i]) < unknown(pool[best]))) best = i
+    }
+    // ...else the first word further on from a topic with room whose sentence you can still follow...
+    if (best < 0 || unknown(pool[best]) > MAX_UNKNOWN) {
+      const further = pool.findIndex((w, i) => i >= PICK_WINDOW && roomIn(w) && unknown(w) <= MAX_UNKNOWN)
+      if (further >= 0 && (best < 0 || unknown(pool[further]) < unknown(pool[best]))) best = further
+    }
+    // ...else as before, topic or not, if that gives a sentence you can follow better.
+    if (best < 0 || unknown(pool[best]) > MAX_UNKNOWN) {
+      let plain = 0
+      for (let i = 1; i < Math.min(PICK_WINDOW, pool.length) && unknown(pool[plain]) > 0; i++) {
+        if (unknown(pool[i]) < unknown(pool[plain])) plain = i
+      }
+      if (best < 0 || unknown(pool[plain]) < unknown(pool[best])) best = plain
     }
     const [w] = pool.splice(best, 1)
     picked.push(w)
     known.add(w.id)
+    perUnit.set(w.unit, (perUnit.get(w.unit) ?? 0) + 1)
   }
   return [...picked, ...PHRASES.filter((p) => !known.has(p.id)).slice(0, phrases)]
 }
@@ -578,11 +610,14 @@ export function recordLadder(s: AppState, ok: boolean) {
  * textbook shapes 96% of the time, Xiaoyi's are squashed (71%), the two male voices less clear still.
  * Many voices help tones carry over to new speakers, but learners who find tones hard do better
  * starting with one clear voice (Perrachione et al. 2011). So the drill starts with one and adds the
- * next once you get VOICE_PASS of your last VOICE_WINDOW syllables right.
+ * next once you get VOICE_PASS of your last VOICE_WINDOW syllables right, and drops the newest again
+ * if you get under VOICE_DROP of it. 1.29: was 75% of 20 with no way back; day 26, a second voice
+ * came in on a lucky run at ~61% with the first and then went 43%, pulling the drill down.
  */
 export const TONE_VOICE_ORDER = [0, 1, 2, 3]
-export const VOICE_WINDOW = 20
-export const VOICE_PASS = 0.75
+export const VOICE_WINDOW = 30
+export const VOICE_PASS = 0.8
+export const VOICE_DROP = 0.5
 export const toneVoicesInUse = (s: AppState) => TONE_VOICE_ORDER.slice(0, s.toneVoices?.n ?? 1)
 
 /**
@@ -591,13 +626,19 @@ export const toneVoicesInUse = (s: AppState) => TONE_VOICE_ORDER.slice(0, s.tone
  * syllables (day 20). Adds the next voice when the newest passes; returns true if it did.
  */
 export function recordVoiceAnswers(s: AppState, voice: number, results: number[]) {
-  const v = (s.toneVoices ??= { n: 1, recent: [], rule: 2 })
+  const v = (s.toneVoices ??= { n: 1, recent: [], rule: 3 })
   if (voice !== TONE_VOICE_ORDER[v.n - 1]) return false
   v.recent = [...v.recent, ...results].slice(-VOICE_WINDOW)
-  if (v.n < TONE_VOICE_ORDER.length && v.recent.length >= VOICE_WINDOW && v.recent.reduce((a, b) => a + b, 0) / VOICE_WINDOW >= VOICE_PASS) {
+  if (v.recent.length < VOICE_WINDOW) return false
+  const share = v.recent.reduce((a, b) => a + b, 0) / VOICE_WINDOW
+  if (v.n < TONE_VOICE_ORDER.length && share >= VOICE_PASS) {
     v.n++
     v.recent = []
     return true
+  }
+  if (v.n > 1 && share < VOICE_DROP) {
+    v.n--
+    v.recent = []
   }
   return false
 }
